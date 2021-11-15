@@ -1,0 +1,39 @@
+@import "./src/common/color";
+
+.post_cards{
+ width: 100%;
+ display: flex;
+ justify-content: center;
+}
+
+.post_card{
+ border: 1px solid blue;
+ width: 32.1vw;
+ display: flex;
+}
+
+.profile_img > img {
+ width: 30px;
+}
+
+.profile_center > img{
+ width: 100%;
+}
+
+.post_icon {
+ display: flex;
+ justify-content: space-between;
+ margin: 0 10px 0 10px;
+}
+
+.post_cmt {
+ border-top: 1px solid $instaGray;
+}
+.post_cmt>input{
+ height: 40px;
+ width: 90%;
+ border: none;
+ &:focus{
+  outline: none;
+ }
+}
