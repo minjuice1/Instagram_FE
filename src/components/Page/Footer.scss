@@ -1,0 +1,32 @@
+@import "./src/common/color.scss";
+
+.footer {
+	color: $instaLightGray;
+	font-size: small;
+	border: 1px solid black;
+	text-align: center;
+}
+
+.lst {
+	margin: 15px;
+}
+
+.lst > span {
+	margin: 15px 8px 15px 8px;
+}
+
+.sec {
+	margin-bottom: 15px;
+}
+
+.sec > span {
+	margin: 15px 8px 15px 8px;
+}
+
+.thd {
+	margin-bottom: 50px;
+}
+
+.thd > span {
+	margin: 15px 8px 15px 8px;
+}

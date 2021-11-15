@@ -38,29 +38,54 @@
 
 .login {
 	width: 350px;
-	height: 380px;
+	height: 381px;
 	border: 1px solid blue;
+	margin-top: 30px;
+	margin-bottom: 10px;
 }
 
 .login > img {
 	width: 175px;
 	height: 51px;
-	margin: 20px;
+	margin: 25px;
 }
 
 .login > form > input {
 	width: 258px;
 	height: 36px;
 	margin: 5px;
+	border-radius: 5px;
+	border: 1px solid $instaLightGray;
 }
 
 .login > form > button {
 	width: 268px;
 	height: 36px;
-	margin: 5px;
+	margin-top: 10px;
 	color: #ffffff;
 	background-color: $instaBlue;
 	border: transparent;
+	border-radius: 5px;
+}
+
+.bar {
+	display: flex;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.bar > .left {
+	width: 105px;
+	background-color: $instaLightGray;
+	height: 0.5px;
+	margin: 10px 10px 10px 40px;
+}
+
+.bar > .right {
+	width: 105px;
+	background-color: $instaLightGray;
+	height: 0.5px;
+	margin: 10px 40px 10px 10px;
 }
 
 .login > button {
@@ -68,6 +93,11 @@
 	background-color: transparent;
 	border: transparent;
 	margin-top: 15px;
+}
+
+.fb {
+	color: $instaBlue;
+	font-weight: bold;
 }
 
 .signup {

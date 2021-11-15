@@ -1,5 +1,6 @@
 import React from "react";
 
+import Footer from "./Footer";
 import FindPassword from "./FindPassword";
 import "./Login.scss";
 import {
@@ -26,10 +27,12 @@ const Login = () => {
 							<input type="password" value=" 비밀번호" />
 							<button>로그인</button>
 						</form>
-						<div>
-							<h5>-또는-</h5>
+						<div className="bar">
+							<hr className="left" />
+							<span>또는</span>
+							<hr className="right" />
 						</div>
-						<div>Facebook으로 로그인</div>
+						<div className="fb">Facebook으로 로그인</div>
 						<button>비밀번호를 잊으셨나요?</button>
 					</div>
 					<div className="signup">
@@ -43,6 +46,7 @@ const Login = () => {
 					</div>
 				</section>
 			</div>
+			<Footer />
 		</>
 	);
 };
