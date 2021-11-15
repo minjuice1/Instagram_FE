@@ -1,4 +1,26 @@
+@import "./src/common/color.scss";
+
+@mixin fontSize($size) {
+  @if $size == 'small' {
+    font-size: 10px;
+  }
+  @else if $size == 'large' {
+    font-size: 14px;
+  }
+  @else {
+    font-size: 12px;
+  }
+}
 
 .nav{
   display: flex;
+  justify-content: space-around;
+  height: 48px;
+  border-bottom: 1px solid $instaGray;
+  align-items: center;
+}
+
+.nav_icon > img{
+  margin-left: 13px;
+  width: 27px;
 }
