@@ -1,0 +1,53 @@
+@import "../../../common/color";
+
+
+
+@mixin fontSize($size) {
+  @if $size == 'small' {
+    font-size: 10px;
+  }
+  @else if $size == 'large' {
+    font-size: 14px;
+  }
+  @else {
+    font-size: 12px;
+  }
+}
+
+.nav{
+  display: flex;
+  justify-content: space-around;
+  height: 48px;
+  border-bottom: 1px solid $instaGray;
+  align-items: center;
+  @include fontSize('large');
+  background-color: $instaWhite;
+}
+
+.nav_input > input {
+  width: 200px;
+  height: 20px;
+  padding-left: 20px;
+  &:focus{
+    outline:none;
+  }
+
+}
+
+.search_icon{
+  position: absolute;
+  margin-left: 8px;
+  margin-top: 5px;
+  color: $instaMenuGray;
+
+}
+.nav_icon{
+  background-color: $instaWhite;
+}
+
+.nav_icon > img{
+  margin-left: 13px;
+  width: 27px;
+  background-color: $instaWhite;
+
+}
