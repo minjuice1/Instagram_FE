@@ -1,10 +1,11 @@
 import React from "react";
+import PostCard from "./Post/PostCard";
 
 const Home = () => {
 
   return(
     <>
-    <div>오늘저녁은 버터장조림 주먹밥</div>
+    <div><PostCard/></div>
     </>
   )
 }
