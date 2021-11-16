@@ -30,7 +30,11 @@ const Footer = () => {
 					<span>시각 예술</span>
 				</div>
 				<div className="thd">
-					<span>한국어</span>
+					<select>
+						<option value="한국어">한국어</option>
+						<option value="영어">English</option>
+						<option value="중국어">中國語</option>
+					</select>
 					<span>2021 Instagram from Meta</span>
 				</div>
 			</div>

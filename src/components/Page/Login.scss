@@ -10,20 +10,25 @@
 	}
 }
 
+body {
+	background-color: #fafafa;
+}
+
 .all {
 	display: flex;
 	margin: auto;
 	justify-content: center;
 	text-align: center;
+	height: 85vh;
 }
 
 .side_img {
 	justify-content: space-around;
 	width: 455px;
 	height: 620px;
-	border: 1px solid black;
 	align-items: center;
 	@include fontSize("large");
+	margin: auto 0px auto 0px;
 }
 
 .side_img > img {
@@ -33,27 +38,29 @@
 
 .main {
 	width: 350px;
-	border: 1px solid red;
+	margin: auto 0px auto 0px;
 }
 
 .login {
 	width: 350px;
 	height: 381px;
-	border: 1px solid blue;
+	border: 1px solid $instaGray;
+	background-color: #ffffff;
 	margin-top: 30px;
 	margin-bottom: 10px;
 }
 
 .login > img {
 	width: 175px;
-	height: 51px;
-	margin: 25px;
+	height: 65px;
+	margin: 20px;
 }
 
 .login > form > input {
 	width: 258px;
 	height: 36px;
 	margin: 5px;
+	background-color: #fafafa;
 	border-radius: 5px;
 	border: 1px solid $instaLightGray;
 }
@@ -66,24 +73,28 @@
 	background-color: $instaBlue;
 	border: transparent;
 	border-radius: 5px;
+	font-weight: bold;
 }
 
 .bar {
 	display: flex;
 	margin-top: 15px;
 	margin-bottom: 15px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #8e8e8e;
 }
 
 .bar > .left {
-	width: 105px;
-	background-color: $instaLightGray;
+	width: 110px;
+	background-color: $instaGray;
 	height: 0.5px;
 	margin: 10px 10px 10px 40px;
 }
 
 .bar > .right {
-	width: 105px;
-	background-color: $instaLightGray;
+	width: 110px;
+	background-color: $instaGray;
 	height: 0.5px;
 	margin: 10px 40px 10px 10px;
 }
@@ -93,17 +104,23 @@
 	background-color: transparent;
 	border: transparent;
 	margin-top: 15px;
+	color: #00376b;
+	font-size: 12px;
 }
 
 .fb {
-	color: $instaBlue;
+	color: #385185;
 	font-weight: bold;
+	font-size: 14px;
 }
 
 .signup {
 	width: 350px;
 	height: 63px;
-	border: 1px solid green;
+	border: 1px solid $instaGray;
+	background-color: #ffffff;
+	font-size: 14px;
+	color: #262626;
 }
 
 .signup > span {
@@ -114,11 +131,22 @@
 .download {
 	width: 350px;
 	height: 100px;
-	border: 1px solid violet;
 }
 
 .download > img {
 	width: 136px;
 	height: 40px;
-	margin-left: 5px;
+	margin-left: 10px;
+}
+
+.download > p {
+	font-size: 14px;
+	color: #262626;
+	margin: 20px 0px 15px 0px;
+}
+
+.thd > select {
+	border: transparent;
+	color: $instaLightGray;
+	margin-right: 10px;
 }

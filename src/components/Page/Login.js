@@ -8,7 +8,8 @@ import {
 	login_pic2,
 	download1,
 	download2,
-	instagram,
+	instagramlogo,
+	facebook,
 } from "./LoginPic";
 
 const Login = () => {
@@ -21,9 +22,9 @@ const Login = () => {
 				</section>
 				<section className="main">
 					<div className="login">
-						<img src={instagram} alt="instagram" />
+						<img src={instagramlogo} alt="instagram" />
 						<form>
-							<input value=" 전화번호, 사용자 이름 또는 이메일" />
+							<input type="text" value=" 전화번호, 사용자 이름 또는 이메일" />
 							<input type="password" value=" 비밀번호" />
 							<button>로그인</button>
 						</form>
@@ -32,7 +33,12 @@ const Login = () => {
 							<span>또는</span>
 							<hr className="right" />
 						</div>
-						<div className="fb">Facebook으로 로그인</div>
+						<div className="fb">
+							<span>
+								<img src={facebook} alt="fb" />
+							</span>
+							<span> Facebook으로 로그인</span>
+						</div>
 						<button>비밀번호를 잊으셨나요?</button>
 					</div>
 					<div className="signup">
@@ -40,9 +46,9 @@ const Login = () => {
 						<span>가입하기</span>
 					</div>
 					<div className="download">
-						<h5>앱을 다운로드하세요.</h5>
-						<img src={download1} alt="download1" />
+						<p>앱을 다운로드하세요.</p>
 						<img src={download2} alt="download2" />
+						<img src={download1} alt="download1" />
 					</div>
 				</section>
 			</div>
