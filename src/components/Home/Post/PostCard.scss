@@ -1,0 +1,42 @@
+@import "./src/common/variables";
+
+.post_cards{
+ width: 100%;
+ display: flex;
+}
+
+.post_card{
+ border: 1px solid $instaGray;
+ width: 36vw;
+ min-width: 490px;
+ display: flex;
+}
+
+.profile_img > img {
+ width: 28px;
+ margin-left: 2px;
+}
+
+.profile_center > img{
+ width: 100%;
+ margin-left: -1px;
+ min-width: 490px;
+}
+
+.post_icon {
+ display: flex;
+ justify-content: space-between;
+ margin: 0 10px 0 10px;
+}
+
+.post_cmt {
+ border-top: 1px solid $instaGray;
+}
+.post_cmt>input{
+ height: 40px;
+ width: 90%;
+ border: none;
+ &:focus{
+  outline: none;
+ }
+}

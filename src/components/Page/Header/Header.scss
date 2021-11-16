@@ -1,0 +1,60 @@
+@import "../../../common/variables";
+@import "../../../common/mixin";
+
+
+
+
+.nav_header {
+  width: 100%;
+  border-bottom: 1px solid $instaGray;
+}
+.nav{
+  display: flex;
+  justify-content: space-around;
+  height: 48px;
+  align-items: center;
+  @include fontSize('large');
+  background-color: $instaWhite;
+  margin-left: 15%;
+  margin-right: 18%;
+}
+
+.nav_input > input {
+  width: 200px;
+  height: 20px;
+  padding-left: 20px;
+  &:focus{
+    outline:none;
+  }
+
+}
+
+.search_icon{
+  position: absolute;
+  margin-left: 8px;
+  margin-top: 5px;
+  color: $instaMenuGray;
+
+}
+.nav_icon{
+  background-color: $instaWhite;
+}
+
+.nav_icon > img{
+  margin-left: 17px;
+  width: 27px;
+  background-color: $instaWhite;
+
+}
+
+@include mobile {
+  .nav_logo{
+    margin-left: -100px
+  }
+  .nav_icon{
+    margin-right: -100px;
+  }
+  .nav_input{
+    display: none;
+  }
+}
