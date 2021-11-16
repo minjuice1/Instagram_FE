@@ -1,4 +1,4 @@
-@import "./src/common/color.scss";
+@import "./src/common/variables.scss";
 
 @mixin fontSize($size) {
 	@if $size == "small" {
