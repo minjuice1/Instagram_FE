@@ -17,8 +17,8 @@ const Header = () => {
           <img src={Logo}/>
         </div>
         <div className="nav_input">
-          <SearchIcon className="search_icon"
-          fontSize="12px"/>
+          <label for="search_icon"><SearchIcon
+                             fontSize="12px"/></label>
           <input placeholder="검색"/>
         </div>
         <div className="nav_icon">

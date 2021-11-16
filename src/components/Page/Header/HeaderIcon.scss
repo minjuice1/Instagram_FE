@@ -2,6 +2,8 @@
 
 .nav_heart {
   cursor: pointer;
+  overflow: visible;
+
 }
 
 .like_menu{
@@ -13,6 +15,7 @@
   border-bottom-left-radius: 10px;
   height: 500px;
   box-shadow: 2px 2px 8px $instaLightGray;
+
 }
 
 .like_menu:after, .like_menu:before {

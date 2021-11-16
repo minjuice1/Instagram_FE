@@ -2,7 +2,9 @@
 @import "../../../common/mixin";
 
 
-
+.img {
+  overflow: visible;
+}
 
 .nav_header {
   width: 100%;
@@ -19,23 +21,37 @@
   margin-right: 18%;
 }
 
+.nav_input{
+  width: 220px;
+  height: 25px;
+  align-items: center;
+  display: flex;
+  border: 1px solid $instaLightGray;
+  &:hover > label{
+    display: none;
+  }
+}
+
 .nav_input > input {
   width: 200px;
   height: 20px;
   padding-left: 20px;
+  border: none;
   &:focus{
     outline:none;
   }
-
 }
+
+
+
 
 .search_icon{
   position: absolute;
   margin-left: 8px;
   margin-top: 5px;
   color: $instaMenuGray;
-
 }
+
 .nav_icon{
   background-color: $instaWhite;
 }
@@ -45,6 +61,12 @@
   width: 27px;
   background-color: $instaWhite;
 
+}
+
+@include tablet{
+  .nav_input{
+    display: none;
+  }
 }
 
 @include mobile {

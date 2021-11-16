@@ -23,5 +23,10 @@
   @include fontSize("normal");
   font-weight: bold;
   color: $instaBlue;
+}
 
+.side_title{
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
 }
