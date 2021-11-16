@@ -63,6 +63,14 @@ body {
 	background-color: #fafafa;
 	border-radius: 5px;
 	border: 1px solid $instaLightGray;
+	color: #8e8e8e;
+	outline: none;
+	font-size: 12px;
+}
+
+.login > form > input:focus {
+	padding: 0px 0px 14px 8px;
+	height: 22px;
 }
 
 .login > form > button {
@@ -99,19 +107,27 @@ body {
 	margin: 10px 40px 10px 10px;
 }
 
-.login > button {
+.fb > span {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.fb > span > a {
+	color: #385185;
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: 600;
+	outline: none;
+}
+
+.login > .findPw > button {
 	text-align: center;
 	background-color: transparent;
 	border: transparent;
 	margin-top: 15px;
 	color: #00376b;
 	font-size: 12px;
-}
-
-.fb {
-	color: #385185;
-	font-weight: bold;
-	font-size: 14px;
+	cursor: pointer;
 }
 
 .signup {
@@ -121,11 +137,13 @@ body {
 	background-color: #ffffff;
 	font-size: 14px;
 	color: #262626;
+	line-height: 63px;
 }
 
 .signup > span {
 	color: $instaBlue;
 	font-weight: bold;
+	cursor: pointer;
 }
 
 .download {
@@ -133,10 +151,11 @@ body {
 	height: 100px;
 }
 
-.download > img {
+.download > span > a > img {
 	width: 136px;
 	height: 40px;
 	margin-left: 10px;
+	cursor: pointer;
 }
 
 .download > p {

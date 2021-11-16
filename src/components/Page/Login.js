@@ -1,7 +1,6 @@
 import React from "react";
 
 import Footer from "./Footer";
-import FindPassword from "./FindPassword";
 import "./Login.scss";
 import {
 	login_pic1,
@@ -24,10 +23,14 @@ const Login = () => {
 					<div className="login">
 						<img src={instagramlogo} alt="instagram" />
 						<form>
-							<input type="text" value=" 전화번호, 사용자 이름 또는 이메일" />
-							<input type="password" value=" 비밀번호" />
+							<input
+								type="text"
+								placeholder=" 전화번호, 사용자 이름 또는 이메일"
+							></input>
+							<input type="password" placeholder=" 비밀번호" />
 							<button>로그인</button>
 						</form>
+
 						<div className="bar">
 							<hr className="left" />
 							<span>또는</span>
@@ -36,19 +39,39 @@ const Login = () => {
 						<div className="fb">
 							<span>
 								<img src={facebook} alt="fb" />
+								<a href="https://www.facebook.com/login.php">
+									Facebook으로 로그인
+								</a>
 							</span>
-							<span> Facebook으로 로그인</span>
 						</div>
-						<button>비밀번호를 잊으셨나요?</button>
+						<div class="findPw">
+							<button>비밀번호를 잊으셨나요?</button>
+						</div>
 					</div>
 					<div className="signup">
 						계정이 없으신가요?
-						<span>가입하기</span>
+						<span> 가입하기</span>
 					</div>
 					<div className="download">
 						<p>앱을 다운로드하세요.</p>
-						<img src={download2} alt="download2" />
-						<img src={download1} alt="download1" />
+						<span>
+							<a
+								target="_blank"
+								rel="noreferrer"
+								href="https://apps.apple.com/app/instagram/id389801252?vt=lo"
+							>
+								<img src={download2} alt="download2" />
+							</a>
+						</span>
+						<span>
+							<a
+								target="_blank"
+								rel="noreferrer"
+								href="https://play.google.com/store/apps/details?id=com.instagram.android"
+							>
+								<img src={download1} alt="download1" />
+							</a>
+						</span>
 					</div>
 				</section>
 			</div>
