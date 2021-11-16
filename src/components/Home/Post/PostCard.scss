@@ -1,23 +1,26 @@
-@import "./src/common/color";
+@import "./src/common/variables";
 
 .post_cards{
  width: 100%;
  display: flex;
- justify-content: center;
 }
 
 .post_card{
- border: 1px solid blue;
- width: 32.1vw;
+ border: 1px solid $instaGray;
+ width: 36vw;
+ min-width: 490px;
  display: flex;
 }
 
 .profile_img > img {
- width: 30px;
+ width: 28px;
+ margin-left: 2px;
 }
 
 .profile_center > img{
  width: 100%;
+ margin-left: -1px;
+ min-width: 490px;
 }
 
 .post_icon {
