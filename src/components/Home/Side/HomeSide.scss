@@ -1,0 +1,27 @@
+@import "./src/common/variables";
+@import "./src/common/mixin";
+
+
+
+.side {
+  border: 1px solid red;
+}
+
+.side-my{
+  display: flex;
+  border: 1px solid green;
+  width: 350px;
+  justify-content: flex-start;
+}
+
+.side-my > img {
+  width: 55px;
+}
+
+.side_blue{
+  margin-left: 140px;
+  @include fontSize("normal");
+  font-weight: bold;
+  color: $instaBlue;
+
+}

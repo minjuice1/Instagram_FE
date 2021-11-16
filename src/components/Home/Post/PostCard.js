@@ -1,7 +1,7 @@
 import React from "react";
 import "./PostCard.scss";
 
-import {heart, message} from "../../Page/Header/HeaderIconImage";
+import {heart, message, text} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
@@ -24,7 +24,7 @@ const PostCard = () => {
             <div className="post_icon">
               <div className="footer_icon">
               <img src={heart}/>
-              <img src={heart}/>
+              <img src={text}/>
               <img src={message}/>
               </div>
               <div className="footer_collection">

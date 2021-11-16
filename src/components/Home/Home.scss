@@ -1,0 +1,16 @@
+@import "../../common/mixin";
+
+.Main {
+  display: grid;
+  grid-template-columns: repeat(2, 60% 40%);
+  border: 1px solid blue;
+}
+
+@include mobile {
+  .Main_post{
+    width: 100%;
+  }
+  .Main_side {
+    display: none;
+  }
+}
