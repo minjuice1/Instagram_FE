@@ -1,0 +1,171 @@
+@import "./src/common/color.scss";
+
+@mixin fontSize($size) {
+	@if $size == "small" {
+		font-size: 10px;
+	} @else if $size == "large" {
+		font-size: 14px;
+	} @else {
+		font-size: 12px;
+	}
+}
+
+body {
+	background-color: #fafafa;
+}
+
+.all {
+	display: flex;
+	margin: auto;
+	justify-content: center;
+	text-align: center;
+	height: 85vh;
+}
+
+.side_img {
+	justify-content: space-around;
+	width: 455px;
+	height: 620px;
+	align-items: center;
+	@include fontSize("large");
+	margin: auto 0px auto 0px;
+}
+
+.side_img > img {
+	width: 455px;
+	height: 620px;
+}
+
+.main {
+	width: 350px;
+	margin: auto 0px auto 0px;
+}
+
+.login {
+	width: 350px;
+	height: 381px;
+	border: 1px solid $instaGray;
+	background-color: #ffffff;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+.login > img {
+	width: 175px;
+	height: 65px;
+	margin: 20px;
+}
+
+.login > form > input {
+	width: 258px;
+	height: 36px;
+	margin: 5px;
+	background-color: #fafafa;
+	border-radius: 5px;
+	border: 1px solid $instaLightGray;
+	color: #8e8e8e;
+	outline: none;
+	font-size: 12px;
+}
+
+.login > form > input:focus {
+	padding: 0px 0px 14px 8px;
+	height: 22px;
+}
+
+.login > form > button {
+	width: 268px;
+	height: 36px;
+	margin-top: 10px;
+	color: #ffffff;
+	background-color: $instaBlue;
+	border: transparent;
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.bar {
+	display: flex;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #8e8e8e;
+}
+
+.bar > .left {
+	width: 110px;
+	background-color: $instaGray;
+	height: 0.1px;
+	margin: 10px 10px 10px 40px;
+}
+
+.bar > .right {
+	width: 110px;
+	background-color: $instaGray;
+	height: 0.1px;
+	margin: 10px 40px 10px 10px;
+}
+
+.fb > span {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.fb > span > a {
+	color: #385185;
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: 600;
+	outline: none;
+}
+
+.login > .findPw > button {
+	text-align: center;
+	background-color: transparent;
+	border: transparent;
+	margin-top: 15px;
+	color: #00376b;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.signup {
+	width: 350px;
+	height: 63px;
+	border: 1px solid $instaGray;
+	background-color: #ffffff;
+	font-size: 14px;
+	color: #262626;
+	line-height: 63px;
+}
+
+.signup > span {
+	color: $instaBlue;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.download {
+	width: 350px;
+	height: 100px;
+}
+
+.download > span > a > img {
+	width: 136px;
+	height: 40px;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+.download > p {
+	font-size: 14px;
+	color: #262626;
+	margin: 20px 0px 15px 0px;
+}
+
+.thd > select {
+	border: transparent;
+	color: $instaLightGray;
+	margin-right: 10px;
+}
