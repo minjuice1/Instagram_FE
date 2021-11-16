@@ -7,6 +7,15 @@
 	font-weight: 400;
 }
 
+a {
+	color: #8e8e8e;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #8e8e8e;
+}
+
 .lst {
 	margin: 15px;
 }
@@ -29,4 +38,17 @@
 
 .thd > span {
 	margin: 15px 8px 15px 8px;
+}
+
+.thd > select {
+	border: none;
+	color: #8e8e8e;
+	background-color: #fafafa;
+	cursor: pointer;
+	outline: none;
+}
+
+.thd > select > option {
+	color: black;
+	background-color: #ffffff;
 }

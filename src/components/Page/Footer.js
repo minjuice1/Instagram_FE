@@ -7,27 +7,77 @@ const Footer = () => {
 		<>
 			<div className="footer">
 				<div className="lst">
-					<span>Meta</span>
-					<span>소개</span>
-					<span>블로그</span>
-					<span>채용 정보</span>
-					<span>도움말</span>
-					<span>API</span>
-					<span>개인정보처리방침</span>
-					<span>약관</span>
-					<span>인기 계정</span>
-					<span>해시태그</span>
-					<span>위치</span>
-					<span>Instagram Lite</span>
+					<span>
+						<a href="https://about.facebook.com/meta">Meta</a>
+					</span>
+					<span>
+						<a href="https://about.instagram.com/">소개</a>
+					</span>
+					<span>
+						<a href="https://about.instagram.com/blog/">블로그</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/about/jobs/">채용 정보</a>
+					</span>
+					<span>
+						<a href="https://help.instagram.com/">도움말</a>
+					</span>
+					<span>
+						<a href="https://developers.facebook.com/docs/instagram">API</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/legal/privacy/">
+							개인정보처리방침
+						</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/legal/terms/">약관</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/directory/profiles/">
+							인기 계정
+						</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/directory/hashtags/">해시태그</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/explore/locations/">위치</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/web/lite/">Instagram Lite</a>
+					</span>
 				</div>
 				<div className="sec">
-					<span>뷰티</span>
-					<span>댄스</span>
-					<span>피트니스</span>
-					<span>식음료</span>
-					<span>집 및 정원</span>
-					<span>음악</span>
-					<span>시각 예술</span>
+					<span>
+						<a href="https://www.instagram.com/topics/beauty/">뷰티</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/topics/dance-and-performance/">
+							댄스
+						</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/topics/fitness/">피트니스</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/topics/food-and-drink/">
+							식음료
+						</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/topics/home-and-garden/">
+							집 및 정원
+						</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/topics/music/">음악</a>
+					</span>
+					<span>
+						<a href="https://www.instagram.com/topics/visual-arts/">
+							시각 예술
+						</a>
+					</span>
 				</div>
 				<div className="thd">
 					<select>
