@@ -4,7 +4,6 @@
 .nav_heart {
   cursor: pointer;
   overflow: visible;
-
 }
 
 .like_menu{
@@ -88,9 +87,53 @@
   margin-top: -10px;
   margin-left: 35px;
 }
-
+.nav_profile{
+  border: 1px solid $instaBlue;
+  border-radius: 50px;
+}
 .nav_profile_img {
   width: 45px;
   padding-left: 15px;
 }
 
+
+
+.myprofile{
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid $instaGray;
+  margin-top: 6px;
+  margin-left: 45px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  height: 200px;
+  width: 330px;
+  box-shadow: 2px 2px 8px $instaLightGray;
+  //overflow-y: scroll;
+
+}
+
+.myprofile:after, .myprofile:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+
+}
+
+.myprofile:after {
+  border-color: rgba(213, 213, 213, 0);
+  border-bottom-color: #ffffff;
+  border-width: 10px;
+  margin-left: 30px;
+}
+.myprofile:before {
+  border-color: rgba(194, 225, 245, 0);
+  border-bottom-color: $instaGray;
+  border-width: 12px;
+  margin-left: 28px;
+}

@@ -1,10 +1,9 @@
 @import "./src/common/variables";
 @import "./src/common/mixin";
 
-
-
 .side {
-  border: 1px solid red;
+  border: 1px solid blanchedalmond;
+  width: 350px;
 }
 
 .side-my{
@@ -12,6 +11,7 @@
   border: 1px solid green;
   width: 350px;
   justify-content: flex-start;
+
 }
 
 .side-my > img {
@@ -29,4 +29,41 @@
   width: 350px;
   display: flex;
   justify-content: space-between;
+
+
+  &:first-child{
+    @include fontSize('large');
+    color: $instaMenuGray;
+    font-weight: bold;
+    margin: 10px 10px auto;
+    a{
+      @include fontSize('normal');
+      font-weight: bold;
+      color: $instaMenuBlack;
+      margin-right: 20px;
+    }
+  }
 }
+.follow_recommend {
+  display: flex;
+  @include fontSize('normal');
+  .recommend_follow {
+    color: $instaBlue;
+    font-weight: bold;
+    margin-left: 30px;
+  }
+  .follow_recommend_id {
+    font-weight: bold;
+    @include fontSize('large');
+    margin-left: 10px;
+  }
+  .follow_recommend_text {
+    color: $instaMenuGray;
+    margin-left: 10px;
+  }
+}
+.recommend_profile > img {
+  width: 32px;
+  margin-left: 10px;
+}
+
