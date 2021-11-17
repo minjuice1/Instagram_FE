@@ -1,23 +1,35 @@
 @import "../../../common/variables";
 @import "../../../common/mixin";
 
+.header_icon {
+  display: flex;
+  margin-right: 400px;
+}
+.nav_icon > img, .profile_icons >img{
+  width: 28px;
+  height: 28px;
+  margin-left: 14px;
+
+}
+.nav_icon{
+  margin: -1px;
+}
+
 .nav_heart {
   cursor: pointer;
-  overflow: visible;
 }
 
 .like_menu{
   position: absolute;
   background: #ffffff;
   border: 1px solid $instaGray;
-  margin-top: 6px;
-  margin-left: -100px;
+  margin-top: 38px;
+  margin-left: -275px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   height: 500px;
   width: 530px;
   box-shadow: 2px 2px 8px $instaLightGray;
-
 }
 
 .like_menu:after, .like_menu:before {
@@ -52,7 +64,7 @@
 .like_today {
   margin: 12px;
   font-weight: bold;
-
+  color: $instaMenuBlack;
 }
 
 
@@ -68,6 +80,7 @@
 
 .like_oneCmt > div:last-child {
  margin: 10px auto auto 10px;
+  color: black;
   display: flex;
   a {
     color: $instaMenuGray;
@@ -88,7 +101,7 @@
   margin-left: 35px;
 }
 .nav_profile{
-  border: 1px solid $instaBlue;
+  border: 1px solid $instaMenuBlack;
   border-radius: 50px;
 }
 .nav_profile_img {
@@ -102,15 +115,13 @@
   position: absolute;
   background: #ffffff;
   border: 1px solid $instaGray;
-  margin-top: 6px;
-  margin-left: 45px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  height: 200px;
-  width: 330px;
+  margin-top: 5px;
+  margin-left: -135px;
+  border-radius: 10px;
+  height: 201px;
+  width: 230px;
   box-shadow: 2px 2px 8px $instaLightGray;
-  //overflow-y: scroll;
-
+  color: $instaMenuBlack;
 }
 
 .myprofile:after, .myprofile:before {
@@ -129,11 +140,51 @@
   border-color: rgba(213, 213, 213, 0);
   border-bottom-color: #ffffff;
   border-width: 10px;
-  margin-left: 30px;
+  margin-left: 40px;
 }
 .myprofile:before {
   border-color: rgba(194, 225, 245, 0);
   border-bottom-color: $instaGray;
   border-width: 12px;
-  margin-left: 28px;
+  margin-left: 38px;
+}
+
+.profile_menu{
+  display: flex;
+  &> img{
+    height: 40px;
+  }
+  &> div{
+    line-height: 40px;
+  }
+}
+
+//hover줄 경우 div가 radius처리 되어있지 않아서 바깥으로 나오는걸 방지하기 위해서
+// 각각 따로 줌.
+.profile_menu:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  &:hover{
+    background: $backgroundGray;
+  }
+}
+.profile_menu:nth-child(2),
+.profile_menu:nth-child(3),
+.profile_menu:nth-child(4){
+  &:hover{
+    background: $backgroundGray;
+  }
+}
+.profile_menu:last-child{
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 1px solid $instaMenuGray;
+  &:hover{
+    background: $backgroundGray;
+
+  }
+}
+
+.profile_logout{
+  margin-left: 13px;
 }

@@ -16,12 +16,10 @@ const Header = () => {
       <div className="nav">
         <div className="nav_logo">
           <Link to = "/">
-          <img src={Logo}/>
+          <img src={Logo} alt="logo"/>
           </Link>
         </div>
         <div className="nav_input">
-          <label for="search_icon"><SearchIcon
-                             fontSize="12px"/></label>
           <input placeholder="검색"/>
         </div>
         <div className="nav_icon">

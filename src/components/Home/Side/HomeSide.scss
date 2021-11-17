@@ -11,7 +11,6 @@
   border: 1px solid green;
   width: 350px;
   justify-content: flex-start;
-
 }
 
 .side-my > img {
@@ -30,7 +29,6 @@
   display: flex;
   justify-content: space-between;
 
-
   &:first-child{
     @include fontSize('large');
     color: $instaMenuGray;
@@ -44,6 +42,7 @@
     }
   }
 }
+
 .follow_recommend {
   display: flex;
   @include fontSize('normal');
@@ -62,6 +61,7 @@
     margin-left: 10px;
   }
 }
+
 .recommend_profile > img {
   width: 32px;
   margin-left: 10px;

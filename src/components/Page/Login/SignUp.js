@@ -1,56 +1,51 @@
 import React from "react";
 
 import Footer from "../Footer/Footer";
-import "./Login.scss";
+import "./SignUp.scss";
 import {
-	login_pic1,
-	login_pic2,
 	download1,
 	download2,
 	instagramlogo,
-	facebook,
+	facebook_white,
 } from "./LoginImage";
 
-const Login = () => {
+const SignUp = () => {
 	return (
 		<>
-			<div className="all">
-				<section className="side_img">
-					<img src={login_pic1} alt="login_pic1" />
-					{/* <img src={login_pic2} alt="login_pic2" /> */}
-				</section>
-				<section className="login_main">
-					<div className="login">
+			<div className="main">
+				<div className="center">
+					<div className="content">
 						<img src={instagramlogo} alt="instagram" />
-						<form>
-							<input
-								type="text"
-								placeholder=" 전화번호, 사용자 이름 또는 이메일"
-							></input>
-							<input type="password" placeholder=" 비밀번호" />
-							<button>로그인</button>
-						</form>
-
-						<div className="login_bar">
+						<div className="intro">
+							<span>친구들의 사진과 동영상을 보려면 가입하세요.</span>
+						</div>
+						<div className="fb">
+							<button>
+								<img src={facebook_white} alt="fb_white" />
+								<a href="https://www.facebook.com/login.php">
+									Facebook으로 로그인
+								</a>
+							</button>
+						</div>
+						<div className="line">
 							<hr className="left" />
 							<span>또는</span>
 							<hr className="right" />
 						</div>
-						<div className="fb">
-							<span>
-								<img src={facebook} alt="fb" />
-								<a href="https://www.facebook.com/login.php">
-									Facebook으로 로그인
-								</a>
-							</span>
-						</div>
-						<div class="findPw">
-							<button>비밀번호를 잊으셨나요?</button>
-						</div>
+						<form>
+							<input
+								type="text"
+								placeholder=" 휴대폰 번호 또는 이메일 주소"
+							></input>
+							<input type="text" placeholder=" 성명" />
+							<input type="text" placeholder=" 사용자 이름" />
+							<input type="password" placeholder=" 비밀번호" />
+							<button>가입</button>
+						</form>
 					</div>
 					<div className="signup">
 						계정이 없으신가요?
-						<span> 가입하기</span>
+						<span> 로그인</span>
 					</div>
 					<div className="download">
 						<p>앱을 다운로드하세요.</p>
@@ -73,11 +68,11 @@ const Login = () => {
 							</a>
 						</span>
 					</div>
-				</section>
+				</div>
 			</div>
 			<Footer />
 		</>
 	);
 };
 
-export default Login;
+export default SignUp;

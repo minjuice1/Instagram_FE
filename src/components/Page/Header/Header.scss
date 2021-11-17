@@ -2,18 +2,24 @@
 @import "../../../common/mixin";
 
 
+
 .img {
   overflow: visible;
+
+}
+.nav_logo{
+  margin-left: 180px;
 }
 
 .nav_header {
   width: 100%;
   border-bottom: 1px solid $instaGray;
-  background-color: #ffffff;
+  color: $instaWhite;
 }
 .nav{
+  width: 80%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 48px;
   align-items: center;
   @include fontSize('large');
@@ -23,8 +29,10 @@
 }
 
 .nav_input{
-  width: 220px;
+  width: 215px;
   height: 25px;
+  margin-left: 150px;
+  margin-right: 20px;
   align-items: center;
   display: flex;
   border: 1px solid $instaLightGray;
@@ -34,27 +42,25 @@
 }
 
 .nav_input > input {
-  width: 200px;
+  width: 180px;
   height: 20px;
-  padding-left: 20px;
   border: none;
   &:focus{
     outline:none;
   }
 }
 
-
-
-
 .search_icon{
   position: absolute;
-  margin-left: 8px;
+  margin-left: 0px;
   margin-top: 5px;
   color: $instaMenuGray;
 }
 
 .nav_icon{
   background-color: $instaWhite;
+  margin-right: 400px;
+  display: flex;
 }
 
 .nav_icon > img{
@@ -64,20 +70,38 @@
 
 }
 
+@include desktop{
+  .nav_header{
+    background-color: $instaWhite;
+  }
+  .nav_icon{
+    margin-right: 100px;
+  }
+}
 @include tablet{
-  .nav_input{
-    display: none;
+  .nav_header{
+    background-color: $instaWhite;
+  }
+  .nav_logo{
+    margin-left: -70px
+  }
+  .nav_icon{
+    margin-left: -50px;
   }
 }
 
 @include mobile {
   .nav_logo{
-    margin-left: -100px
+    margin-left: -70px
   }
   .nav_icon{
-    margin-right: -100px;
+    margin-right: -10px;
   }
   .nav_input{
     display: none;
+  }
+  .nav_header{
+    background-color: $instaWhite;
+
   }
 }
