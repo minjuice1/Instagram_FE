@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Footer from "../Footer/Footer";
 import "./FindPassword.scss";
@@ -30,7 +31,9 @@ const FindPassword = () => {
 							<span>또는</span>
 							<hr className="right" />
 						</div>
-						<div className="newAccount">새 계정 만들기</div>
+						<Link className="link" to="/accounts/signup">
+							<div className="newAccount">새 계정 만들기</div>
+						</Link>
 					</div>
 					<div className="backToLogin">
 						<span> 로그인으로 돌아가기</span>

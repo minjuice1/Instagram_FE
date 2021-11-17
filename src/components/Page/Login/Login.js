@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Footer from "../Footer/Footer";
 import "./Login.scss";
@@ -68,12 +69,16 @@ const Login = () => {
 							</span>
 						</div>
 						<div class="findPw">
-							<button>비밀번호를 잊으셨나요?</button>
+							<Link className="link" to="/accounts/password">
+								<button>비밀번호를 잊으셨나요?</button>
+							</Link>
 						</div>
 					</div>
 					<div className="login_signup">
 						계정이 없으신가요?
-						<span> 가입하기</span>
+						<Link className="link" to="/accounts/signup">
+							<span> 가입하기</span>
+						</Link>
 					</div>
 					<div className="download">
 						<p>앱을 다운로드하세요.</p>

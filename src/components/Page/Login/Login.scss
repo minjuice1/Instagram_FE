@@ -211,7 +211,7 @@ body {
 	width: 20px;
 }
 
-.login > .findPw > button {
+.login > .findPw > .link > button {
 	text-align: center;
 	background-color: transparent;
 	border: transparent;
@@ -231,7 +231,7 @@ body {
 	line-height: 63px;
 }
 
-.login_signup > span {
+.login_signup > .link > span {
 	color: $instaBlue;
 	font-weight: 600;
 	cursor: pointer;

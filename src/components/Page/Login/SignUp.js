@@ -8,6 +8,7 @@ import {
 	instagramlogo,
 	facebook_white,
 } from "./LoginImage";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
 	return (
@@ -45,7 +46,9 @@ const SignUp = () => {
 					</div>
 					<div className="signup">
 						계정이 없으신가요?
-						<span> 로그인</span>
+						<Link className="link" to="/login">
+							<span> 로그인</span>
+						</Link>
 					</div>
 					<div className="download">
 						<p>앱을 다운로드하세요.</p>
