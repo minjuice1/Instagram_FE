@@ -1,14 +1,5 @@
 @import "./src/common/_variables.scss";
-
-@mixin fontSize($size) {
-	@if $size == "small" {
-		font-size: 10px;
-	} @else if $size == "large" {
-		font-size: 14px;
-	} @else {
-		font-size: 12px;
-	}
-}
+@import "./src/common/mixin";
 
 body {
 	background-color: #fafafa;
@@ -76,7 +67,7 @@ body {
 .fb > button > a {
 	color: #ffffff;
 	margin-left: 5px;
-	font-size: 14px;
+	@include fontSize("large");
 	font-weight: 600;
 	outline: none;
 }
@@ -113,7 +104,7 @@ body {
 	border: 1px solid $instaLightGray;
 	color: #8e8e8e;
 	outline: none;
-	font-size: 12px;
+	@include fontSize("normal");
 }
 
 .content > form > input:focus {
@@ -137,7 +128,7 @@ body {
 	height: 63px;
 	border: 1px solid $instaGray;
 	background-color: #ffffff;
-	font-size: 14px;
+	@include fontSize("large");
 	color: #262626;
 	line-height: 63px;
 }
@@ -161,7 +152,7 @@ body {
 }
 
 .download > p {
-	font-size: 14px;
+	@include fontSize("large");
 	color: #262626;
 	margin: 20px 0px 15px 0px;
 }

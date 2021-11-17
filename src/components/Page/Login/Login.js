@@ -22,15 +22,38 @@ const Login = () => {
 				<section className="login_main">
 					<div className="login">
 						<img src={instagramlogo} alt="instagram" />
-						<form>
-							<input
-								type="text"
-								placeholder=" 전화번호, 사용자 이름 또는 이메일"
-							></input>
-							<input type="password" placeholder=" 비밀번호" />
-							<button>로그인</button>
-						</form>
-
+						<div className="login_user">
+							<label>
+								<span>전화번호, 사용자 이름 또는 이메일</span>
+								<input
+									aria-label="전화번호, 사용자 이름 또는 이메일"
+									aria-required="true"
+									autoCapitalize="off"
+									autoCorrect="off"
+									name="username"
+									type="text"
+								></input>
+							</label>
+						</div>
+						<div className="login_pwd">
+							<label>
+								<span>비밀번호</span>
+								<input
+									aria-label="비밀번호"
+									aria-required="true"
+									autoCapitalize="off"
+									autoCorrect="off"
+									name="password"
+									type="password"
+								/>
+								<div className="check_pwd">
+									<button>비밀번호 표시</button>
+								</div>
+							</label>
+						</div>
+						<div className="login_btn">
+							<button type="submit">로그인</button>
+						</div>
 						<div className="login_bar">
 							<hr className="left" />
 							<span>또는</span>
@@ -48,7 +71,7 @@ const Login = () => {
 							<button>비밀번호를 잊으셨나요?</button>
 						</div>
 					</div>
-					<div className="signup">
+					<div className="login_signup">
 						계정이 없으신가요?
 						<span> 가입하기</span>
 					</div>
