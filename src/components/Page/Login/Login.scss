@@ -1,6 +1,23 @@
 @import "./src/common/variables.scss";
 @import "./src/common/mixin";
 
+@include mobile {
+	.login_main {
+		width: 100%;
+	}
+	.side_img {
+		display: none;
+	}
+}
+@include mini {
+	.login_main {
+		display: none;
+	}
+	.side_img {
+		display: none;
+	}
+}
+
 body {
 	background-color: #fafafa;
 }
@@ -22,9 +39,18 @@ body {
 	margin: auto 0px auto 0px;
 }
 
-.side_img > img {
+.side_img > .login_pic1 {
 	width: 455px;
 	height: 620px;
+}
+
+.side_img > .login_pic2 {
+	position: absolute;
+	top: 335px;
+	left: 202px;
+	width: 240px;
+	height: 427px;
+	opacity: 1;
 }
 
 .login_main {
@@ -71,10 +97,11 @@ body {
 }
 
 .login_user > label > input {
-	height: 5px;
+	@include fontSize("normal");
+	height: 14px;
 	width: 230px;
 	padding: 10px 0 0px 8px;
-	margin: 17px 0px 0px 10px;
+	margin: 8px 0px 0px 2px;
 	border: none;
 	outline: none;
 	background-color: #fafafa;
@@ -110,8 +137,8 @@ body {
 .login_pwd > label > input {
 	height: 5px;
 	width: 130px;
-	padding: 10px 0 0px 8px;
-	margin: 17px 0px 0px 10px;
+	padding: 10px 0 0px 0px;
+	margin: 13px 0px 0px 10px;
 	border: none;
 	outline: none;
 	background-color: #fafafa;
@@ -129,6 +156,7 @@ body {
 	@include fontSize("large");
 	color: #262626;
 	cursor: pointer;
+	padding-left: 10px;
 }
 
 .login_btn > button {
@@ -154,14 +182,14 @@ body {
 .login_bar > .left {
 	width: 110px;
 	background-color: $instaGray;
-	height: 0.1px;
+	height: 1px;
 	margin: 10px 10px 10px 40px;
 }
 
 .login_bar > .right {
 	width: 110px;
 	background-color: $instaGray;
-	height: 0.1px;
+	height: 1px;
 	margin: 10px 40px 10px 10px;
 }
 

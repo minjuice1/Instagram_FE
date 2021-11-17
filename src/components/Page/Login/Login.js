@@ -16,8 +16,8 @@ const Login = () => {
 		<>
 			<div className="all">
 				<section className="side_img">
-					<img src={login_pic1} alt="login_pic1" />
-					{/* <img src={login_pic2} alt="login_pic2" /> */}
+					<img className="login_pic1" src={login_pic1} alt="login_pic1" />
+					<img className="login_pic2" src={login_pic2} alt="login_pic2" />
 				</section>
 				<section className="login_main">
 					<div className="login">
@@ -55,9 +55,9 @@ const Login = () => {
 							<button type="submit">로그인</button>
 						</div>
 						<div className="login_bar">
-							<hr className="left" />
+							<div className="left" />
 							<span>또는</span>
-							<hr className="right" />
+							<div className="right" />
 						</div>
 						<div className="fb">
 							<span>
