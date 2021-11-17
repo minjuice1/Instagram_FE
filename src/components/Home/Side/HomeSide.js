@@ -1,5 +1,6 @@
 import "./HomeSide.scss";
 import profile from "../../../image/profile.jpg";
+import SideRecommend from "./SideRecommend";
 
 const HomeSide = () => {
 
@@ -14,18 +15,14 @@ const HomeSide = () => {
           </div>
           <div className="side_blue">전환</div>
         </div>
-      </div>
+
       <div className="side_recommend">
         <div className="side_title">
           <div>회원님을 위한 추천</div>
-          <div>모두 보기</div>
+          <a>모두 보기</a>
         </div>
-        <div className="follow_recommend">
-          <div>
-            <img src={profile}/>
-          </div>
-          <div>nolzencoffee</div>
-        </div>
+          <SideRecommend/>
+      </div>
       </div>
     </>
   )
