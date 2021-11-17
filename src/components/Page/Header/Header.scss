@@ -5,8 +5,8 @@
 
 .img {
   overflow: visible;
-
 }
+
 .nav_logo{
   margin-left: 180px;
 }
@@ -16,6 +16,7 @@
   border-bottom: 1px solid $instaGray;
   color: $instaWhite;
 }
+
 .nav{
   width: 80%;
   display: flex;
@@ -31,43 +32,34 @@
 .nav_input{
   width: 215px;
   height: 25px;
-  margin-left: 150px;
+  margin-left: 180px;
   margin-right: 20px;
   align-items: center;
   display: flex;
   border: 1px solid $instaLightGray;
+
   &:hover > label{
     display: none;
   }
-}
-
-.nav_input > input {
-  width: 180px;
-  height: 20px;
-  border: none;
-  &:focus{
-    outline:none;
+  &>input{
+    width: 180px;
+    height: 20px;
+    border: none;
+    &:focus{
+      outline:none;
+    }
   }
-}
-
-.search_icon{
-  position: absolute;
-  margin-left: 0px;
-  margin-top: 5px;
-  color: $instaMenuGray;
 }
 
 .nav_icon{
   background-color: $instaWhite;
-  margin-right: 400px;
   display: flex;
-}
 
-.nav_icon > img{
-  margin-left: 17px;
-  width: 27px;
-  background-color: $instaWhite;
-
+  & > img {
+      margin-left: 17px;
+      width: 27px;
+      background-color: $instaWhite;
+    }
 }
 
 @include desktop{
@@ -78,6 +70,7 @@
     margin-right: 100px;
   }
 }
+
 @include tablet{
   .nav_header{
     background-color: $instaWhite;
@@ -94,14 +87,10 @@
   .nav_logo{
     margin-left: -70px
   }
-  .nav_icon{
-    margin-right: -10px;
-  }
   .nav_input{
     display: none;
   }
   .nav_header{
     background-color: $instaWhite;
-
   }
 }

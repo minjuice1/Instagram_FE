@@ -3,6 +3,7 @@ import './App.scss';
 import Home from "./components/Home/Home";
 import Header from "./components/Page/Header/Header";
 import Login from "./components/Page/Login/Login";
+import Recommendation from "./components/Page/Recommendation/Recommendation"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
        <Routes>
          <Route path={"/"} element={<Home/>}/>
          <Route path={"/login"} element={<Login/>}/>
+         <Route path={"/recom"} element={<Recommendation/>}/>
        </Routes>
 
      </BrowserRouter>

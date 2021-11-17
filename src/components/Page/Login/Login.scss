@@ -1,14 +1,5 @@
 @import "./src/common/variables.scss";
-
-@mixin fontSize($size) {
-	@if $size == "small" {
-		font-size: 10px;
-	} @else if $size == "large" {
-		font-size: 14px;
-	} @else {
-		font-size: 12px;
-	}
-}
+@import "./src/common/mixin";
 
 body {
 	background-color: #fafafa;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./PostCard.scss";
 
-import {heart, message, text} from "../../../common/IconImage";
+import {heart, message, text, dot} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
@@ -16,7 +16,8 @@ const PostCard = () => {
           <div className="post_header">
             <div className="profile_img">
               <img src={Profile_image}/>
-              <a>hyemgu</a>
+              <div>hyemgu</div>
+              <div className="profile_img_dot"><img src={dot}/></div>
             </div>
             <div className="profile_center">
               <img src={Picture}/>
