@@ -8,10 +8,10 @@ import { lock } from "./LoginImage";
 const FindPassword = () => {
 	return (
 		<>
-			<div className="main">
-				<div className="center">
-					<div className="head">
-						<div className="title">
+			<div className="pwd_main">
+				<div className="pwd_content">
+					<div className="pwd_top">
+						<div className="pwd_title">
 							<img src={lock} alt="fb_white" />
 							<h4>로그인에 문제가 있나요?</h4>
 							<div>
@@ -26,17 +26,19 @@ const FindPassword = () => {
 							></input>
 							<button>로그인 링크 보내기</button>
 						</form>
-						<div className="bar">
+						<div className="pwd_bar">
 							<hr className="left" />
 							<span>또는</span>
 							<hr className="right" />
 						</div>
 						<Link className="link" to="/accounts/signup">
-							<div className="newAccount">새 계정 만들기</div>
+							<div className="pwd_newAccount">새 계정 만들기</div>
 						</Link>
 					</div>
-					<div className="backToLogin">
+					<div className="pwd_backToLogin">
+					<Link className="link" to="/login">
 						<span> 로그인으로 돌아가기</span>
+						</Link>
 					</div>
 				</div>
 			</div>

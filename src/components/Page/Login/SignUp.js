@@ -13,14 +13,14 @@ import { Link } from "react-router-dom";
 const SignUp = () => {
 	return (
 		<>
-			<div className="main">
-				<div className="center">
-					<div className="content">
+			<div className="signup_main">
+				<div className="signup_content">
+					<div className="signup_signup">
 						<img src={instagramlogo} alt="instagram" />
-						<div className="intro">
+						<div className="signup_header">
 							<span>친구들의 사진과 동영상을 보려면 가입하세요.</span>
 						</div>
-						<div className="fb">
+						<div className="signup_fb">
 							<button>
 								<img src={facebook_white} alt="fb_white" />
 								<a href="https://www.facebook.com/login.php">
@@ -28,7 +28,7 @@ const SignUp = () => {
 								</a>
 							</button>
 						</div>
-						<div className="line">
+						<div className="signup_bar">
 							<hr className="left" />
 							<span>또는</span>
 							<hr className="right" />
@@ -44,13 +44,13 @@ const SignUp = () => {
 							<button>가입</button>
 						</form>
 					</div>
-					<div className="signup">
-						계정이 없으신가요?
+					<div className="signup_login">
+						계정이 있으신가요?
 						<Link className="link" to="/login">
 							<span> 로그인</span>
 						</Link>
 					</div>
-					<div className="download">
+					<div className="signup_download">
 						<p>앱을 다운로드하세요.</p>
 						<span>
 							<a

@@ -1,14 +1,11 @@
 @import "./src/common/_variables.scss";
 @import "./src/common/mixin";
 
-body {
+.signup_main {
 	background-color: #fafafa;
 	justify-content: center;
 	text-align: center;
 	align-items: center;
-}
-
-.main {
 	display: flex;
 	margin: auto;
 	justify-content: center;
@@ -16,12 +13,12 @@ body {
 	height: 85vh;
 }
 
-.center {
+.signup_content {
 	width: 350px;
 	margin: auto 0px auto 0px;
 }
 
-.content {
+.signup_signup {
 	width: 350px;
 	height: 489px;
 	border: 1px solid $instaGray;
@@ -30,13 +27,13 @@ body {
 	margin-bottom: 10px;
 }
 
-.content > img {
+.signup_signup > img {
 	width: 175px;
 	height: 65px;
 	margin: 20px 20px 10px 20px;
 }
 
-.intro {
+.signup_header {
 	color: #8e8e8e;
 	font-weight: 600;
 	font-size: 17px;
@@ -48,12 +45,12 @@ body {
 // 	cursor: pointer;
 // }
 
-.fb > button > img {
+.signup_fb > button > img {
 	width: 16px;
 	height: 16px;
 }
 
-.fb > button {
+.signup_fb > button {
 	width: 271px;
 	height: 31px;
 	color: #ffffff;
@@ -64,7 +61,7 @@ body {
 	cursor: pointer;
 }
 
-.fb > button > a {
+.signup_fb > button > a {
 	color: #ffffff;
 	margin-left: 5px;
 	@include fontSize("large");
@@ -72,7 +69,7 @@ body {
 	outline: none;
 }
 
-.line {
+.signup_bar {
 	display: flex;
 	margin-top: 15px;
 	margin-bottom: 5px;
@@ -81,21 +78,21 @@ body {
 	color: #8e8e8e;
 }
 
-.line > .left {
+.signup_bar > .left {
 	width: 110px;
 	background-color: $instaGray;
 	height: 0.1px;
 	margin: 10px 10px 10px 40px;
 }
 
-.line > .right {
+.signup_bar > .right {
 	width: 110px;
 	background-color: $instaGray;
 	height: 0.1px;
 	margin: 10px 40px 10px 10px;
 }
 
-.content > form > input {
+.signup_signup > form > input {
 	width: 268px;
 	height: 36px;
 	margin: 3px;
@@ -107,12 +104,12 @@ body {
 	@include fontSize("normal");
 }
 
-.content > form > input:focus {
+.signup_signup > form > input:focus {
 	padding: 0px 0px 14px 8px;
 	height: 22px;
 }
 
-.content > form > button {
+.signup_signup > form > button {
 	width: 271px;
 	height: 30px;
 	margin-top: 10px;
@@ -123,7 +120,7 @@ body {
 	font-weight: bold;
 }
 
-.signup {
+.signup_login {
 	width: 350px;
 	height: 63px;
 	border: 1px solid $instaGray;
@@ -133,32 +130,27 @@ body {
 	line-height: 63px;
 }
 
-.signup > .link > span {
+.signup_login > .link > span {
 	color: $instaBlue;
 	font-weight: 400;
 	cursor: pointer;
 }
 
-.download {
+.signup_download {
 	width: 350px;
 	height: 100px;
 }
 
-.download > span > a > img {
+.signup_download > span > a > img {
 	width: 136px;
 	height: 40px;
 	margin-left: 10px;
 	cursor: pointer;
 }
 
-.download > p {
+.signup_download > p {
 	@include fontSize("large");
 	color: #262626;
 	margin: 20px 0px 15px 0px;
 }
 
-.thd > select {
-	border: transparent;
-	color: $instaLightGray;
-	margin-right: 10px;
-}
