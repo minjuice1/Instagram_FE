@@ -1,16 +1,21 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./HeaderIcon.scss";
-import {menu_setting, menu_save, menu_change, menu_profile} from "../../../common/IconImage";
-
-
-import {home, message, write, compass, heart, test, blackheart} from "../../../common/IconImage";
 import HeaderLikeText from "./HeaderLikeText";
+import {Link, useNavigate} from "react-router-dom";
 
+import {home, message, write, compass, heart, test, blackheart,
+  blackhome, menu_setting, menu_save, menu_change, menu_profile,
+blackcompass}
+  from "../../../common/IconImage";
 
 const HeaderIcon = () => {
+  const navigate = useNavigate();
 
   const [like, SetLike] = useState(false);
   const [myProfile, SetMyProfile] = useState(false);
+  const [homeIcon, SetHomeIcon] = useState(false);
+  const [compassIcon, SetCompassIcon] = useState(false);
+  const [direct, SetDirect] = useState(false);
 
   //외부클릭 감지
   function useOutsideClick(ref) {
@@ -28,7 +33,6 @@ const HeaderIcon = () => {
       };
     }, [ref]);
   }
-
   function LikeOutsideClick(ref) {
 
     useEffect(() => {
@@ -44,32 +48,47 @@ const HeaderIcon = () => {
       };
     }, [ref]);
   }
-
+  
   const likeSideRef = useRef(null);
   LikeOutsideClick(likeSideRef);
 
   const profileSideRef = useRef(null);
   useOutsideClick(profileSideRef);
 
-
-  const likeClickHandler = (event) => {
-    event.preventDefault();
+  const likeClickHandler = () => {
     SetLike(!like);
+    SetHomeIcon(false);
+    SetCompassIcon(false);
   }
 
-  const myProfileClickHandler = (event) => {
-    event.preventDefault();
+  const myProfileClickHandler = () => {
     SetMyProfile(!myProfile);
+    SetHomeIcon(false);
+    SetCompassIcon(false);
+  }
+  const homeClickHandler = () => {
+    SetHomeIcon(!homeIcon);
+    SetCompassIcon(false);
+    navigate("/");
+  }
+  const recommendClickHandler = (event) => {
+    SetCompassIcon(!compassIcon);
+    SetHomeIcon(false);
+    navigate("/recom");
   }
 
   return (
     <>
       <div className="header_icon">
-        <div className="nav_icon"><img src={home} alt="nav_icon"/></div>
+        {homeIcon? <div className="nav_icon"><img src={blackhome} alt="nav_icon" onClick={homeClickHandler}/>  </div>:
+          <div className="nav_icon"><img src={home} alt="nav_icon" onClick={homeClickHandler}/> </div> }
+        <Link to = {"/message"}>
         <div className="nav_icon"><img src={message} alt="nav_icon"/></div>
+        </Link>
         <div className="nav_icon"><img src={write} alt="nav_icon"/></div>
-        <div className="nav_icon"><img src={compass} alt="nav_icon"/></div>
-        <div className="nav_icon"><img src={message} alt="nav_icon"/></div>
+        {compassIcon?  <div className="nav_icon"><img src={blackcompass} alt="nav_icon" onClick={recommendClickHandler}/></div> :
+          <div className="nav_icon"><img src={compass} alt="nav_icon" onClick={recommendClickHandler}/></div>}
+
         <div className="nav_icon" ref={likeSideRef}>
           {like ? <img className="nav_heart" src={blackheart} alt="nav_icon" onClick={likeClickHandler}/> :
             <img className="nav_heart" src={heart} alt="nav_icon" onClick={likeClickHandler}/>}

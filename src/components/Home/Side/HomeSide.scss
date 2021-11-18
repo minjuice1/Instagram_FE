@@ -2,25 +2,46 @@
 @import "./src/common/mixin";
 
 .side {
-  border: 1px solid blanchedalmond;
   width: 350px;
+  margin-top: 50px;
 }
 
 .side-my{
   display: flex;
-  border: 1px solid green;
   width: 350px;
   justify-content: flex-start;
 }
 
-.side-my > img {
-  width: 55px;
+.side-image{
+  background: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 60px;
+  & > img {
+  }
 }
+
+.side_profile{
+  margin-top: 8px;
+}
+.side_myprofile {
+  margin-left: 10px;
+  @include fontSize('large');
+  &:first-child{
+    font-weight: bold;
+  }
+  &:last-child{
+    color: $instaMenuGray;
+    letter-spacing: -0.3px;
+  }
+}
+
 
 .side_blue{
   margin-left: 140px;
   @include fontSize("normal");
   font-weight: bold;
+  margin-top: 15px;
   color: $instaBlue;
 }
 
@@ -33,37 +54,39 @@
     @include fontSize('large');
     color: $instaMenuGray;
     font-weight: bold;
-    margin: 10px 10px auto;
+    margin-top: 25px;
+    margin-bottom: 10px;
     a{
       @include fontSize('normal');
       font-weight: bold;
       color: $instaMenuBlack;
-      margin-right: 20px;
+      margin-right: 42px;
     }
   }
 }
 
 .follow_recommend {
   display: flex;
+  margin-top: 15px;
   @include fontSize('normal');
   .recommend_follow {
     color: $instaBlue;
     font-weight: bold;
-    margin-left: 30px;
+    margin-left: 42px;
   }
   .follow_recommend_id {
     font-weight: bold;
     @include fontSize('large');
-    margin-left: 10px;
+    margin-left: 15px;
   }
   .follow_recommend_text {
     color: $instaMenuGray;
-    margin-left: 10px;
+    margin-left: 15px;
   }
 }
 
 .recommend_profile > img {
   width: 32px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 

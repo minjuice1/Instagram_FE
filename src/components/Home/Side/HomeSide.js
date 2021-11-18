@@ -8,10 +8,12 @@ const HomeSide = () => {
     <>
       <div className="side">
         <div className="side-my">
-          <img src={profile}/>
+          <div className="side-image">
+            {/*<img src={profile}/>*/}
+          </div>
           <div className="side_profile">
-            <div>hyemin0805</div>
-            <div>Hyemin Park</div>
+            <div className="side_myprofile">hyemin0805</div>
+            <div className="side_myprofile">Hyemin Park</div>
           </div>
           <div className="side_blue">전환</div>
         </div>
