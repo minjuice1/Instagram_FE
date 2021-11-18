@@ -10,19 +10,16 @@
 	}
 }
 
-body {
-	background-color: #fafafa;
-}
-
-.all {
+.login_all {
 	display: flex;
 	margin: auto;
 	justify-content: center;
 	text-align: center;
 	height: 85vh;
+	background-color: #fafafa;
 }
 
-.side_img {
+.login_side_img {
 	justify-content: space-around;
 	width: 455px;
 	height: 620px;
@@ -33,12 +30,12 @@ body {
 	box-sizing: border-box;
 }
 
-.side_img > .login_pic1 {
+.login_side_img > .login_pic1 {
 	width: 455px;
 	height: 620px;
 }
 
-.side_img > .login_pic2 {
+.login_side_img > .login_pic2 {
 	position: absolute;
 	top: 101px;
 	left: 151px;
@@ -52,7 +49,7 @@ body {
 	margin: auto 0px auto 0px;
 }
 
-.login {
+.login_content {
 	width: 350px;
 	height: 381px;
 	border: 1px solid $instaGray;
@@ -61,13 +58,13 @@ body {
 	margin-bottom: 10px;
 }
 
-.login > img {
+.login_content > img {
 	width: 175px;
 	height: 65px;
 	margin: 20px;
 }
 
-.login_user {
+.login_login_user {
 	display: flex;
 	width: 258px;
 	height: 36px;
@@ -80,7 +77,7 @@ body {
 	@include fontSize("normal");
 }
 
-.login_user > label > span {
+.login_login_user > label > span {
 	height: 36px;
 	line-height: 20px;
 	margin-left: 10px;
@@ -90,7 +87,7 @@ body {
 	position: absolute;
 }
 
-.login_user > label > input {
+.login_login_user > label > input {
 	@include fontSize("normal");
 	height: 14px;
 	width: 230px;
@@ -101,7 +98,7 @@ body {
 	background-color: #fafafa;
 }
 
-.login_pwd {
+.login_login_pwd {
 	display: flex;
 	width: 258px;
 	height: 36px;
@@ -114,11 +111,11 @@ body {
 	@include fontSize("normal");
 }
 
-.login_pwd > label {
+.login_login_pwd > label {
 	display: flex;
 }
 
-.login_pwd > label > span {
+.login_login_pwd > label > span {
 	height: 36px;
 	line-height: 20px;
 	margin-left: 10px;
@@ -128,7 +125,7 @@ body {
 	position: absolute;
 }
 
-.login_pwd > label > input {
+.login_login_pwd > label > input {
 	height: 5px;
 	width: 130px;
 	padding: 10px 0 0px 0px;
@@ -138,12 +135,12 @@ body {
 	background-color: #fafafa;
 }
 
-.check_pwd {
+.login_check_pwd {
 	line-height: 35px;
 	margin-left: 10px;
 }
 
-.check_pwd > button {
+.login_check_pwd > button {
 	border: none;
 	background-color: #fafafa;
 	font-weight: bold;
@@ -153,7 +150,7 @@ body {
 	padding-left: 10px;
 }
 
-.login_btn > button {
+.login_login_btn > button {
 	width: 268px;
 	height: 36px;
 	margin-top: 10px;
@@ -187,12 +184,12 @@ body {
 	margin: 10px 40px 10px 10px;
 }
 
-.fb > span {
+.login_login_fb > span {
 	font-weight: bold;
 	cursor: pointer;
 }
 
-.fb > span > a {
+.login_login_fb > span > a {
 	color: #385185;
 	margin-left: 5px;
 	@include fontSize("large");
@@ -200,12 +197,12 @@ body {
 	outline: none;
 }
 
-.fb > span > img {
+.login_login_fb > span > img {
 	height: 20px;
 	width: 20px;
 }
 
-.login > .findPw > .link > button {
+.login_content > .login_findPw > .link > button {
 	text-align: center;
 	background-color: transparent;
 	border: transparent;
@@ -231,26 +228,21 @@ body {
 	cursor: pointer;
 }
 
-.download {
+.login_download {
 	width: 350px;
 	height: 100px;
 }
 
-.download > span > a > img {
+.login_download > span > a > img {
 	width: 136px;
 	height: 40px;
 	margin-left: 10px;
 	cursor: pointer;
 }
 
-.download > p {
+.login_download > p {
 	@include fontSize("large");
 	color: #262626;
 	margin: 20px 0px 15px 0px;
 }
 
-.thd > select {
-	border: transparent;
-	color: $instaLightGray;
-	margin-right: 10px;
-}

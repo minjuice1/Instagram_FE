@@ -15,15 +15,15 @@ import {
 const Login = () => {
 	return (
 		<>
-			<div className="all">
-				<div className="side_img">
+			<div className="login_all">
+				<div className="login_side_img">
 					<img className="login_pic1" src={login_pic1} alt="login_pic1" />
 					<img className="login_pic2" src={login_pic2} alt="login_pic2" />
 				</div>
 				<section className="login_main">
-					<div className="login">
+					<div className="login_content">
 						<img src={instagramlogo} alt="instagram" />
-						<div className="login_user">
+						<div className="login_login_user">
 							<label>
 								<span>전화번호, 사용자 이름 또는 이메일</span>
 								<input
@@ -36,7 +36,7 @@ const Login = () => {
 								></input>
 							</label>
 						</div>
-						<div className="login_pwd">
+						<div className="login_login_pwd">
 							<label>
 								<span>비밀번호</span>
 								<input
@@ -47,12 +47,12 @@ const Login = () => {
 									name="password"
 									type="password"
 								/>
-								<div className="check_pwd">
+								<div className="login_check_pwd">
 									<button>비밀번호 표시</button>
 								</div>
 							</label>
 						</div>
-						<div className="login_btn">
+						<div className="login_login_btn">
 							<button type="submit">로그인</button>
 						</div>
 						<div className="login_bar">
@@ -60,7 +60,7 @@ const Login = () => {
 							<span>또는</span>
 							<div className="right" />
 						</div>
-						<div className="fb">
+						<div className="login_login_fb">
 							<span>
 								<img src={facebook} alt="fb" />
 								<a href="https://www.facebook.com/login.php">
@@ -68,7 +68,7 @@ const Login = () => {
 								</a>
 							</span>
 						</div>
-						<div class="findPw">
+						<div class="login_findPw">
 							<Link className="link" to="/accounts/password">
 								<button>비밀번호를 잊으셨나요?</button>
 							</Link>
@@ -80,7 +80,7 @@ const Login = () => {
 							<span> 가입하기</span>
 						</Link>
 					</div>
-					<div className="download">
+					<div className="login_download">
 						<p>앱을 다운로드하세요.</p>
 						<span>
 							<a
