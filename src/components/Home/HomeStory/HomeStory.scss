@@ -1,0 +1,28 @@
+@import "./src/common/variables";
+@import "./src/common/mixin";
+
+.home_story{
+  border: 1px solid $instaGray;
+  width: 34vw;
+  margin: 30px 0 20px 0;
+  min-width: 485px;
+  background: $instaWhite;
+  max-width: 615px;
+}
+
+ .follow_story{
+   display: flex;
+ }
+
+.story{
+  margin: 10px;
+  & > div > img {
+    width: 50px;
+    margin-left: 3px;
+  }
+
+}
+.story_name{
+  @include fontSize('normal');
+  color: $instaMenuGray;
+}

@@ -1,26 +1,50 @@
 @import "./src/common/variables";
+@import "./src/common/mixin";
 
 .post_cards{
- width: 100%;
+ width: 615px;
  display: flex;
+ background: $instaWhite;
 }
 
 .post_card{
  border: 1px solid $instaGray;
- width: 36vw;
- min-width: 490px;
+ width: 34vw;
+ min-width: 485px;
+ max-width: 615px;
  display: flex;
 }
 
-.profile_img > img {
- width: 28px;
- margin-left: 2px;
+.profile_img {
+ display: flex;
+ & > img{
+  width: 28px;
+  margin: 10px;
+ }
+ & > div {
+  margin-top: 15px;
+  @include fontSize('large');
+  font-weight: bold;
+  color: $instaMenuBlack;
+ }
+}
+.profile_img_dot{
+ cursor: pointer;
+ margin-left: 75%
 }
 
-.profile_center > img{
+.profile_img_dot >img {
+ width: 13px;
+
+ margin-bottom: 2px;
+}
+
+.post_center> img {
+
+}
+.post_center > img{
  width: 100%;
- margin-left: -1px;
- min-width: 490px;
+ min-width: 485px;
 }
 
 .post_icon {
@@ -39,4 +63,8 @@
  &:focus{
   outline: none;
  }
+}
+.footer_icon>img {
+ margin-right: 10px;
+ margin-top: 5px;
 }

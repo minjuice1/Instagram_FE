@@ -3,12 +3,25 @@
 .Main {
   display: grid;
   grid-template-columns: repeat(2, 60% 40%);
-  border: 1px solid blue;
+}
+
+.Main_post {
+  margin-left: 39%;
+}
+
+@include desktop{
+
+}
+@include tablet{
+  .Main_side {
+    display: none;
+  }
 }
 
 @include mobile {
   .Main_post{
     width: 100%;
+    margin: 0;
   }
   .Main_side {
     display: none;

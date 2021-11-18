@@ -16,6 +16,8 @@ function App() {
 					<Route path={"/login"} element={<Login />} />
 					<Route path={"/accounts/signup"} element={<SignUp />} />
 					<Route path={"/accounts/password"} element={<FindPassword />} />
+          <Route path={"/recom"} element={<Recommendation/>}/>
+          <Route path={"/message"} element={<DirectMessage/>}/>
 				</Routes>
 			</BrowserRouter>
 		</div>

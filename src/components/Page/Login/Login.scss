@@ -9,14 +9,6 @@
 		display: none;
 	}
 }
-@include mini {
-	.login_main {
-		display: none;
-	}
-	.side_img {
-		display: none;
-	}
-}
 
 body {
 	background-color: #fafafa;

@@ -3,15 +3,16 @@
 
 .header_icon {
   display: flex;
-  margin-right: 400px;
+  margin-right: 360px;
 }
-.nav_icon > img, .profile_icons >img{
+
+.nav_icon > img, .profile_icons > img {
   width: 28px;
   height: 28px;
   margin-left: 14px;
-
 }
-.nav_icon{
+
+.nav_icon {
   margin: -1px;
 }
 
@@ -19,46 +20,46 @@
   cursor: pointer;
 }
 
-.like_menu{
+.like_menu {
   position: absolute;
   background: #ffffff;
   border: 1px solid $instaGray;
   margin-top: 38px;
-  margin-left: -275px;
+  margin-left: -450px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   height: 500px;
   width: 530px;
   box-shadow: 2px 2px 8px $instaLightGray;
-}
 
-.like_menu:after, .like_menu:before {
-  bottom: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: "";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
+  &:after, &:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
 
-}
+  &:after {
+    border-color: rgba(213, 213, 213, 0);
+    border-bottom-color: #ffffff;
+    border-width: 10px;
+    margin-left: 202px;
+  }
 
-.like_menu:after {
-  border-color: rgba(213, 213, 213, 0);
-  border-bottom-color: #ffffff;
-  border-width: 10px;
-  margin-left: 30px;
-}
-.like_menu:before {
-  border-color: rgba(194, 225, 245, 0);
-  border-bottom-color: $instaGray;
-  border-width: 12px;
-  margin-left: 28px;
-}
-.like_menu > a {
-  @include fontSize('large');
-  font-weight: bold;
+  &:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-bottom-color: $instaGray;
+    border-width: 12px;
+    margin-left: 200px;
+  }
+  & > a {
+    @include fontSize('large');
+    font-weight: bold;
+  }
 }
 
 .like_today {
@@ -67,32 +68,33 @@
   color: $instaMenuBlack;
 }
 
-
 .like_cmt {
   height: 500px;
   overflow-y: scroll;
 }
-.like_oneCmt{
+
+.like_oneCmt {
   display: flex;
   margin-bottom: 10px;
   margin-top: 5px;
-}
 
-.like_oneCmt > div:last-child {
- margin: 10px auto auto 10px;
-  color: black;
-  display: flex;
-  a {
-    color: $instaMenuGray;
-    padding-left: 5px;
+  & > div:last-child {
+    margin: 10px auto auto 10px;
+    color: black;
+    display: flex;
+    a {
+      color: $instaMenuGray;
+      padding-left: 5px;
+    }
   }
+
   .like_cmt_id {
     font-weight: bold;
     color: black;
   }
 }
 
-.like_picture{
+.like_picture {
   border: 1px solid black;
   width: 40px;
   height: 40px;
@@ -100,53 +102,74 @@
   margin-top: -10px;
   margin-left: 35px;
 }
-.nav_profile{
+
+.nav_profile {
   border: 1px solid $instaMenuBlack;
   border-radius: 50px;
 }
+
 .nav_profile_img {
   width: 45px;
   padding-left: 15px;
 }
 
 
-
-.myprofile{
+.myprofile {
   position: absolute;
   background: #ffffff;
   border: 1px solid $instaGray;
   margin-top: 5px;
-  margin-left: -135px;
+  margin-left: -170px;
   border-radius: 10px;
   height: 201px;
   width: 230px;
   box-shadow: 2px 2px 8px $instaLightGray;
   color: $instaMenuBlack;
+
+  &:after, &:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  &:after {
+    border-color: rgba(213, 213, 213, 0);
+    border-bottom-color: #ffffff;
+    border-width: 10px;
+    margin-left: 75px;
+  }
+  &:before {
+    border-color: rgba(194, 225, 245, 0);
+    border-bottom-color: $instaGray;
+    border-width: 12px;
+    margin-left: 73px;
+  }
 }
 
-.myprofile:after, .myprofile:before {
-  bottom: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: "";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
+.profile_menu {
+  display: flex;
 
+  & > img {
+    height: 40px;
+  }
+  & > div {
+    line-height: 40px;
+  }
 }
 
-.myprofile:after {
-  border-color: rgba(213, 213, 213, 0);
-  border-bottom-color: #ffffff;
-  border-width: 10px;
-  margin-left: 40px;
-}
-.myprofile:before {
-  border-color: rgba(194, 225, 245, 0);
-  border-bottom-color: $instaGray;
-  border-width: 12px;
-  margin-left: 38px;
+//hover줄 경우 div가 radius처리 되어있지 않아서 바깥으로 나오는걸 방지하기 위해서
+// 각각 따로 줌.
+.profile_menu:first-child {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  &:hover {
+    background: $backgroundGray;
+  }
 }
 
 .profile_menu{
@@ -187,4 +210,30 @@
 
 .profile_logout{
   margin-left: 13px;
+.profile_menu:nth-child(2),
+.profile_menu:nth-child(3),
+.profile_menu:nth-child(4) {
+  &:hover {
+    background: $backgroundGray;
+  }
+}
+
+.profile_menu:last-child {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 1px solid $instaMenuGray;
+  &:hover {
+    background: $backgroundGray;
+
+  }
+}
+
+.profile_logout {
+  margin-left: 13px;
+}
+
+@include mobile {
+  .header_icon{
+    margin-left: 60px;
+  }
 }
