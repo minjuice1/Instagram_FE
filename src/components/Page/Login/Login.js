@@ -16,10 +16,10 @@ const Login = () => {
 	return (
 		<>
 			<div className="all">
-				<section className="side_img">
+				<div className="side_img">
 					<img className="login_pic1" src={login_pic1} alt="login_pic1" />
 					<img className="login_pic2" src={login_pic2} alt="login_pic2" />
-				</section>
+				</div>
 				<section className="login_main">
 					<div className="login">
 						<img src={instagramlogo} alt="instagram" />

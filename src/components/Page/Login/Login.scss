@@ -37,6 +37,8 @@ body {
 	align-items: center;
 	@include fontSize("large");
 	margin: auto 0px auto 0px;
+	position: relative;
+	box-sizing: border-box;
 }
 
 .side_img > .login_pic1 {
@@ -46,8 +48,8 @@ body {
 
 .side_img > .login_pic2 {
 	position: absolute;
-	top: 335px;
-	left: 202px;
+	top: 101px;
+	left: 151px;
 	width: 240px;
 	height: 427px;
 	opacity: 1;
