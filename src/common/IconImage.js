@@ -19,7 +19,8 @@ import menu_save from "../image/icon/menu_save.png";
 import menu_setting from "../image/icon/menu_setting.png";
 import dot from "../image/icon/dot.png";
 import recomtest from "../image/recomtest.png"
+import my_message from "../image/my_message.png";
 
 export {blackcompass, blackhome, blackmessage, blackwrite,
-compass, home, hovermark, hovertext, mark, message, text,
+compass, home, hovermark, hovertext, mark, message, text, my_message,
   heart, write, test, blackheart, menu_save, menu_setting, menu_change, menu_profile, dot, recomtest};

@@ -1,0 +1,47 @@
+@import "./src/common/variables";
+@import "./src/common/mixin";
+
+.post_modal {
+  width: 400px;
+  height: 335px;
+  border: 1px solid $instaGray;
+  border-radius: 15px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 100;
+  background: $instaWhite;
+  margin-top: 100px;
+
+
+  & > div {
+    border-bottom: 1px solid $instaGray;
+    height: 47px;
+    text-align: center;
+    line-height: 47px;
+    @include fontSize('large');
+    color: $instaMenuBlack;
+  }
+  & > div:first-child, & > div:nth-child(2){
+    color: $instaRed;
+    font-weight: bold;
+
+  }
+  & > div:last-child{
+    border: none;
+  }
+}
+.post_modal_container{
+margin-left: 15%;
+}
+
+.overlay {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+

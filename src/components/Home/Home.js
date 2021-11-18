@@ -4,9 +4,13 @@ import HomeSide from "./Side/HomeSide";
 
 import "./Home.scss";
 import HomeStory from "./HomeStory/HomeStory";
+import {useSelector} from "react-redux";
+
 
 
 const Home = () => {
+
+
 
   return(
     <>

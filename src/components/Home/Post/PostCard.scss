@@ -2,14 +2,16 @@
 @import "./src/common/mixin";
 
 .post_cards{
- width: 100%;
+ width: 615px;
  display: flex;
+ background: $instaWhite;
 }
 
 .post_card{
  border: 1px solid $instaGray;
- width: 32vw;
- min-width: 490px;
+ width: 34vw;
+ min-width: 485px;
+ max-width: 615px;
  display: flex;
 }
 
@@ -37,10 +39,12 @@
  margin-bottom: 2px;
 }
 
-.profile_center > img{
+.post_center> img {
+
+}
+.post_center > img{
  width: 100%;
- margin-left: -1px;
- min-width: 490px;
+ min-width: 485px;
 }
 
 .post_icon {

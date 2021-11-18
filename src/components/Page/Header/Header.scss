@@ -8,7 +8,7 @@
 }
 
 .nav_logo{
-  margin-left: 180px;
+  margin-left: 150px;
 }
 
 .nav_header {
@@ -26,17 +26,18 @@
   @include fontSize('large');
   background-color: $instaWhite;
   margin-left: 15%;
-  margin-right: 18%;
+  margin-right: 15%;
 }
 
 .nav_input{
-  width: 215px;
-  height: 25px;
-  margin-left: 180px;
+  width: 230px;
+  height: 30px;
+  margin-left: 150px;
   margin-right: 20px;
   align-items: center;
   display: flex;
   border: 1px solid $instaLightGray;
+  background-color: #fafafa;
 
   &:hover > label{
     display: none;
@@ -45,6 +46,8 @@
     width: 180px;
     height: 20px;
     border: none;
+    margin-left: 20px;
+    background-color: #fafafa;
     &:focus{
       outline:none;
     }
@@ -76,10 +79,9 @@
     background-color: $instaWhite;
   }
   .nav_logo{
-    margin-left: -70px
+    margin-left: -50px
   }
   .nav_icon{
-    margin-left: -50px;
   }
 }
 
