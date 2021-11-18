@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./HeaderIcon.scss";
-
 import HeaderLikeText from "./HeaderLikeText";
 import {Link, useNavigate} from "react-router-dom";
 
@@ -49,13 +48,12 @@ const HeaderIcon = () => {
       };
     }, [ref]);
   }
-
+  
   const likeSideRef = useRef(null);
   LikeOutsideClick(likeSideRef);
 
   const profileSideRef = useRef(null);
   useOutsideClick(profileSideRef);
-
 
   const likeClickHandler = () => {
     SetLike(!like);
@@ -90,7 +88,6 @@ const HeaderIcon = () => {
         <div className="nav_icon"><img src={write} alt="nav_icon"/></div>
         {compassIcon?  <div className="nav_icon"><img src={blackcompass} alt="nav_icon" onClick={recommendClickHandler}/></div> :
           <div className="nav_icon"><img src={compass} alt="nav_icon" onClick={recommendClickHandler}/></div>}
-
 
         <div className="nav_icon" ref={likeSideRef}>
           {like ? <img className="nav_heart" src={blackheart} alt="nav_icon" onClick={likeClickHandler}/> :

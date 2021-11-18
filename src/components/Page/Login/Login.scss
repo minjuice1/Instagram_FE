@@ -1,6 +1,15 @@
 @import "./src/common/variables.scss";
 @import "./src/common/mixin";
 
+@include mobile {
+	.login_main {
+		width: 100%;
+	}
+	.side_img {
+		display: none;
+	}
+}
+
 body {
 	background-color: #fafafa;
 }
@@ -20,14 +29,25 @@ body {
 	align-items: center;
 	@include fontSize("large");
 	margin: auto 0px auto 0px;
+	position: relative;
+	box-sizing: border-box;
 }
 
-.side_img > img {
+.side_img > .login_pic1 {
 	width: 455px;
 	height: 620px;
 }
 
-.main {
+.side_img > .login_pic2 {
+	position: absolute;
+	top: 101px;
+	left: 151px;
+	width: 240px;
+	height: 427px;
+	opacity: 1;
+}
+
+.login_main {
 	width: 350px;
 	margin: auto 0px auto 0px;
 }
@@ -47,24 +67,93 @@ body {
 	margin: 20px;
 }
 
-.login > form > input {
+.login_user {
+	display: flex;
 	width: 258px;
 	height: 36px;
-	margin: 5px;
+	margin: auto;
 	background-color: #fafafa;
 	border-radius: 5px;
 	border: 1px solid $instaLightGray;
 	color: #8e8e8e;
 	outline: none;
-	font-size: 12px;
+	@include fontSize("normal");
 }
 
-.login > form > input:focus {
-	padding: 0px 0px 14px 8px;
-	height: 22px;
+.login_user > label > span {
+	height: 36px;
+	line-height: 20px;
+	margin-left: 10px;
+	@include fontSize("small");
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
 }
 
-.login > form > button {
+.login_user > label > input {
+	@include fontSize("normal");
+	height: 14px;
+	width: 230px;
+	padding: 10px 0 0px 8px;
+	margin: 8px 0px 0px 2px;
+	border: none;
+	outline: none;
+	background-color: #fafafa;
+}
+
+.login_pwd {
+	display: flex;
+	width: 258px;
+	height: 36px;
+	margin: 5px auto auto auto;
+	background-color: #fafafa;
+	border-radius: 5px;
+	border: 1px solid $instaLightGray;
+	color: #8e8e8e;
+	outline: none;
+	@include fontSize("normal");
+}
+
+.login_pwd > label {
+	display: flex;
+}
+
+.login_pwd > label > span {
+	height: 36px;
+	line-height: 20px;
+	margin-left: 10px;
+	@include fontSize("small");
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
+}
+
+.login_pwd > label > input {
+	height: 5px;
+	width: 130px;
+	padding: 10px 0 0px 0px;
+	margin: 13px 0px 0px 10px;
+	border: none;
+	outline: none;
+	background-color: #fafafa;
+}
+
+.check_pwd {
+	line-height: 35px;
+	margin-left: 10px;
+}
+
+.check_pwd > button {
+	border: none;
+	background-color: #fafafa;
+	font-weight: bold;
+	@include fontSize("large");
+	color: #262626;
+	cursor: pointer;
+	padding-left: 10px;
+}
+
+.login_btn > button {
 	width: 268px;
 	height: 36px;
 	margin-top: 10px;
@@ -75,7 +164,7 @@ body {
 	font-weight: bold;
 }
 
-.bar {
+.login_bar {
 	display: flex;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -84,17 +173,17 @@ body {
 	color: #8e8e8e;
 }
 
-.bar > .left {
+.login_bar > .left {
 	width: 110px;
 	background-color: $instaGray;
-	height: 0.1px;
+	height: 1px;
 	margin: 10px 10px 10px 40px;
 }
 
-.bar > .right {
+.login_bar > .right {
 	width: 110px;
 	background-color: $instaGray;
-	height: 0.1px;
+	height: 1px;
 	margin: 10px 40px 10px 10px;
 }
 
@@ -106,34 +195,39 @@ body {
 .fb > span > a {
 	color: #385185;
 	margin-left: 5px;
-	font-size: 14px;
+	@include fontSize("large");
 	font-weight: 600;
 	outline: none;
 }
 
-.login > .findPw > button {
+.fb > span > img {
+	height: 20px;
+	width: 20px;
+}
+
+.login > .findPw > .link > button {
 	text-align: center;
 	background-color: transparent;
 	border: transparent;
 	margin-top: 15px;
 	color: #00376b;
-	font-size: 12px;
+	@include fontSize("normal");
 	cursor: pointer;
 }
 
-.signup {
+.login_signup {
 	width: 350px;
 	height: 63px;
 	border: 1px solid $instaGray;
 	background-color: #ffffff;
-	font-size: 14px;
+	@include fontSize("large");
 	color: #262626;
 	line-height: 63px;
 }
 
-.signup > span {
+.login_signup > .link > span {
 	color: $instaBlue;
-	font-weight: bold;
+	font-weight: 600;
 	cursor: pointer;
 }
 
@@ -150,7 +244,7 @@ body {
 }
 
 .download > p {
-	font-size: 14px;
+	@include fontSize("large");
 	color: #262626;
 	margin: 20px 0px 15px 0px;
 }

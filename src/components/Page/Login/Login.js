@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-// import Footer from "./Footer";
+import Footer from "../Footer/Footer";
 import "./Login.scss";
 import {
 	login_pic1,
@@ -15,26 +16,49 @@ const Login = () => {
 	return (
 		<>
 			<div className="all">
-				<section className="side_img">
-					<img src={login_pic1} alt="login_pic1" />
-					{/* <img src={login_pic2} alt="login_pic2" /> */}
-				</section>
-				<section className="main">
+				<div className="side_img">
+					<img className="login_pic1" src={login_pic1} alt="login_pic1" />
+					<img className="login_pic2" src={login_pic2} alt="login_pic2" />
+				</div>
+				<section className="login_main">
 					<div className="login">
 						<img src={instagramlogo} alt="instagram" />
-						<form>
-							<input
-								type="text"
-								placeholder=" 전화번호, 사용자 이름 또는 이메일"
-							></input>
-							<input type="password" placeholder=" 비밀번호" />
-							<button>로그인</button>
-						</form>
-
-						<div className="bar">
-							<hr className="left" />
+						<div className="login_user">
+							<label>
+								<span>전화번호, 사용자 이름 또는 이메일</span>
+								<input
+									aria-label="전화번호, 사용자 이름 또는 이메일"
+									aria-required="true"
+									autoCapitalize="off"
+									autoCorrect="off"
+									name="username"
+									type="text"
+								></input>
+							</label>
+						</div>
+						<div className="login_pwd">
+							<label>
+								<span>비밀번호</span>
+								<input
+									aria-label="비밀번호"
+									aria-required="true"
+									autoCapitalize="off"
+									autoCorrect="off"
+									name="password"
+									type="password"
+								/>
+								<div className="check_pwd">
+									<button>비밀번호 표시</button>
+								</div>
+							</label>
+						</div>
+						<div className="login_btn">
+							<button type="submit">로그인</button>
+						</div>
+						<div className="login_bar">
+							<div className="left" />
 							<span>또는</span>
-							<hr className="right" />
+							<div className="right" />
 						</div>
 						<div className="fb">
 							<span>
@@ -45,12 +69,16 @@ const Login = () => {
 							</span>
 						</div>
 						<div class="findPw">
-							<button>비밀번호를 잊으셨나요?</button>
+							<Link className="link" to="/accounts/password">
+								<button>비밀번호를 잊으셨나요?</button>
+							</Link>
 						</div>
 					</div>
-					<div className="signup">
+					<div className="login_signup">
 						계정이 없으신가요?
-						<span> 가입하기</span>
+						<Link className="link" to="/accounts/signup">
+							<span> 가입하기</span>
+						</Link>
 					</div>
 					<div className="download">
 						<p>앱을 다운로드하세요.</p>
@@ -75,7 +103,7 @@ const Login = () => {
 					</div>
 				</section>
 			</div>
-			{/*<Footer />*/}
+			<Footer />
 		</>
 	);
 };

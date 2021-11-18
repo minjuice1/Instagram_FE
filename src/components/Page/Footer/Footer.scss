@@ -1,0 +1,55 @@
+@import "./src/common/_variables.scss";
+
+.footer {
+	color: #8e8e8e;
+	font-size: 12px;
+	text-align: center;
+	font-weight: 400;
+}
+
+a {
+	color: #8e8e8e;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #8e8e8e;
+}
+
+.lst {
+	margin: 15px;
+}
+
+.lst > span {
+	margin: 15px 8px 15px 8px;
+}
+
+.sec {
+	margin-bottom: 15px;
+}
+
+.sec > span {
+	margin: 15px 8px 15px 8px;
+}
+
+.thd {
+	margin-bottom: 50px;
+	color: #8e8e8e;
+}
+
+.thd > span {
+	margin: 15px 8px 15px 8px;
+}
+
+.thd > select {
+	border: none;
+	background-color: #fafafa;
+	cursor: pointer;
+	outline: none;
+	font-size: 12px;
+}
+
+.thd > select > option {
+	color: black;
+	background-color: #ffffff;
+}

@@ -1,29 +1,32 @@
 @import "./variables";
 
+@mixin mini {
+	@media (min-width: #{$breakpoint-mini}) and (max-width: #{$breakpoint-mobile - 0.1px}) {
+		@content;
+	}
+}
 @mixin mobile {
-  @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
-    @content;
-  }
+	@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+		@content;
+	}
 }
 @mixin tablet {
-  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
-    @content;
-  }
+	@media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+		@content;
+	}
 }
 @mixin desktop {
-  @media (min-width: #{$breakpoint-desktop}) {
-    @content;
-  }
+	@media (min-width: #{$breakpoint-desktop}) {
+		@content;
+	}
 }
 
 @mixin fontSize($size) {
-  @if $size == 'small' {
-    font-size: 10px;
-  }
-  @else if $size == 'large' {
-    font-size: 14px;
-  }
-  @else {
-    font-size: 12px;
-  }
+	@if $size == "small" {
+		font-size: 10px;
+	} @else if $size == "large" {
+		font-size: 14px;
+	} @else {
+		font-size: 12px;
+	}
 }
