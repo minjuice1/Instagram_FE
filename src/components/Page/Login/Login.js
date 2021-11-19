@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Carousel from "../Login/Carousel"
 import Footer from "../Footer/Footer";
 import "./Login.scss";
 import {
@@ -18,7 +19,7 @@ const Login = () => {
 			<div className="login_all">
 				<div className="login_side_img">
 					<img className="login_pic1" src={login_pic1} alt="login_pic1" />
-					<img className="login_pic2" src={login_pic2} alt="login_pic2" />
+					<Carousel className="carousel"/>
 				</div>
 				<section className="login_main">
 					<div className="login_content">

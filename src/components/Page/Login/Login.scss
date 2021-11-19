@@ -35,14 +35,19 @@
 	height: 620px;
 }
 
-.login_side_img > .login_pic2 {
-	position: absolute;
-	top: 101px;
+.slick-slider {
 	left: 151px;
-	width: 240px;
-	height: 427px;
-	opacity: 1;
+	bottom: 523px;
 }
+
+// .login_side_img > .carousel {
+// 	position: absolute;
+// 	top: 101px;
+// 	left: 151px;
+// 	width: 240px;
+// 	height: 427px;
+// 	opacity: 1;
+// }
 
 .login_main {
 	width: 350px;

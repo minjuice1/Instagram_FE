@@ -7,6 +7,7 @@ import SignUp from "./components/Page/Login/SignUp";
 import FindPassword from "./components/Page/Login/FindPassword";
 import Recommendation from "./components/Page/Recommendation/Recommendation";
 import DirectMessage from "./components/Page/DirectMessage/DirectMessage";
+import Carousel from './components/Page/Login/Carousel'
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 			<BrowserRouter>
 				<Header />
 				<Routes>
+				<Route path={"/a"} element={<Carousel />} />
 					<Route path={"/"} element={<Home />} />
 					<Route path={"/login"} element={<Login />} />
 					<Route path={"/accounts/signup"} element={<SignUp />} />
