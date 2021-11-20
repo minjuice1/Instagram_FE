@@ -45,7 +45,7 @@ const SignUp = () => {
 							></input>
 								</label>
 								<div>
-									<span className="signup_email_check"><BiXCircle color={"#F04756"}size={24}/></span>
+									<span className="signup_email_check"><BiXCircle color={"#F04756"}size={25}/></span>
 								</div>
 							</div>
 							<div className="signup_label_name_form">
@@ -56,7 +56,7 @@ const SignUp = () => {
 							type="text"/>
 								</label>
 								<div>
-									<span className="signup_name_check"><BiCheckCircle color={"#c7c7c7"} size={24}/></span>
+									<span className="signup_name_check"><BiCheckCircle color={"#c7c7c7"} size={25}/></span>
 								</div>
 							</div>
 							<div className="signup_label_username_form">
@@ -67,7 +67,7 @@ const SignUp = () => {
 							type="text" />
 								</label>
 								<div>
-									<span className="signup_username_check"><BiXCircle color={"#F04756"} size={24}/></span>
+									<span className="signup_username_check"><BiXCircle color={"#F04756"} size={25}/></span>
 									<div>
 										<button className="signup_username_check_btn"><FiRotateCw color={"#0095f6"} size={24}/></button>
 									</div>
@@ -81,7 +81,7 @@ const SignUp = () => {
 							type="password"/>
 									</label>
 									<div className="signup_pwd_check_form">
-									<span><BiCheckCircle color={"#c7c7c7"} size={24}/></span>
+									<span><BiCheckCircle color={"#c7c7c7"} size={25}/></span>
 									<div>
 										<button className="signup_pwd_check">비밀번호 표시</button>
 									</div>
