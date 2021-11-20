@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Carousel from "../Login/Carousel"
+import Carousel from "../Login/LoginCarousel"
 import Footer from "../Footer/Footer";
 import "./Login.scss";
 import {
