@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Footer from "../Footer/Footer";
 import "./SignUp.scss";
@@ -8,7 +9,8 @@ import {
 	instagramlogo,
 	facebook_white,
 } from "./LoginImage";
-import { Link } from "react-router-dom";
+import { BiXCircle, BiCheckCircle} from "react-icons/bi";
+import { FiRotateCw } from "react-icons/fi";
 
 const SignUp = () => {
 	return (
@@ -33,16 +35,60 @@ const SignUp = () => {
 							<span>또는</span>
 							<hr className="right" />
 						</div>
-						<form>
-							<input
-								type="text"
-								placeholder=" 휴대폰 번호 또는 이메일 주소"
+						<div className="signup_form">
+							<div className="signup_label_email_form">
+								<label className="signup_label_email">
+									<span>휴대폰 번호 또는 이메일 주소</span>
+								<input
+							className="signup_email"
+								type="email"
 							></input>
-							<input type="text" placeholder=" 성명" />
-							<input type="text" placeholder=" 사용자 이름" />
-							<input type="password" placeholder=" 비밀번호" />
+								</label>
+								<div>
+									<span className="signup_email_check"><BiXCircle color={"#F04756"}size={25}/></span>
+								</div>
+							</div>
+							<div className="signup_label_name_form">
+								<label className="signup_label_name">
+									<span>성명</span>
+									<input 
+							className="signup_name"
+							type="text"/>
+								</label>
+								<div>
+									<span className="signup_name_check"><BiCheckCircle color={"#c7c7c7"} size={25}/></span>
+								</div>
+							</div>
+							<div className="signup_label_username_form">
+								<label className="signup_label_username">
+									<span>사용자 이름</span>
+									<input 
+							className="signup_username"
+							type="text" />
+								</label>
+								<div>
+									<span className="signup_username_check"><BiXCircle color={"#F04756"} size={25}/></span>
+									<div>
+										<button className="signup_username_check_btn"><FiRotateCw color={"#0095f6"} size={24}/></button>
+									</div>
+								</div>
+							</div>
+								<div className="signup_label_pwd_form">
+									<label className="signup_label_pwd">
+										<span>비밀번호</span>
+										<input 
+							className="signup_pwd"
+							type="password"/>
+									</label>
+									<div className="signup_pwd_check_form">
+									<span><BiCheckCircle color={"#c7c7c7"} size={25}/></span>
+									<div>
+										<button className="signup_pwd_check">비밀번호 표시</button>
+									</div>
+								</div>
+								</div>
 							<button>가입</button>
-						</form>
+						</div>
 					</div>
 					<div className="signup_login">
 						계정이 있으신가요?

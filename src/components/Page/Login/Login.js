@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 import "./Login.scss";
 import {
 	login_pic1,
-	login_pic2,
 	download1,
 	download2,
 	instagramlogo,
