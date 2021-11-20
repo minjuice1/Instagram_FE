@@ -37,7 +37,7 @@
 	color: #8e8e8e;
 	font-weight: 600;
 	font-size: 17px;
-	margin: 0px 40px 10px 40px;
+	margin: 0px 40px 15px 40px;
 }
 
 // .fb > span {
@@ -82,7 +82,7 @@
 	width: 110px;
 	background-color: $instaGray;
 	height: 0.1px;
-	margin: 10px 10px 10px 40px;
+	margin: 10px 10px 20px 40px;
 }
 
 .signup_bar > .right {
@@ -190,9 +190,9 @@
 	background-color: #fafafa;
 	border: none;
 	outline: none;
-	width: 228px;
+	width: 226px;
 	height: 30px;
-	margin-top: 5px;
+	margin: 5px 0px 0px 5px;
 }
 
 .signup_signup > .signup_form > button {
@@ -237,6 +237,6 @@
 .signup_download > p {
 	@include fontSize("large");
 	color: #262626;
-	margin: 20px 0px 15px 0px;
+	margin: 20px 0px 20px 0px;
 }
 
