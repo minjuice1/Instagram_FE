@@ -13,8 +13,9 @@ import {
 
 } from "./LoginImage";
 
-export default class Fade extends Component {
-  render() {
+
+ const Fade = () => {
+
     const settings = {
       fade: true,
       infinite: true,
@@ -22,8 +23,9 @@ export default class Fade extends Component {
       slidesToShow: 5,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 4500
+      autoplaySpeed: 2000
     };
+
     return (
       <div>
         <Slider {...settings}>
@@ -45,5 +47,6 @@ export default class Fade extends Component {
         </Slider>
       </div>
     );
-  }
 }
+
+export default Fade;
