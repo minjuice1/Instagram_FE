@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Carousel from "../Login/LoginCarousel"
+import Carousel from "../Login/LoginCarousel";
 import Footer from "../Footer/Footer";
 import "./Login.scss";
 import {
@@ -18,39 +18,27 @@ const Login = () => {
 			<div className="login_all">
 				<div className="login_side_img">
 					<img className="login_pic1" src={login_pic1} alt="login_pic1" />
-					<Carousel className="carousel"/>
+					<Carousel className="carousel" />
 				</div>
 				<section className="login_main">
 					<div className="login_content">
 						<img src={instagramlogo} alt="instagram" />
 						<div className="login_login_user">
-							<label>
-								<span>전화번호, 사용자 이름 또는 이메일</span>
-								<input
-									aria-label="전화번호, 사용자 이름 또는 이메일"
-									aria-required="true"
-									autoCapitalize="off"
-									autoCorrect="off"
-									name="username"
-									type="text"
-								></input>
+							<input type="text" autoComplete="off" required></input>
+							<label className="login_label_username">
+								<span className="login_content_username">
+									전화번호, 사용자 이름 또는 이메일
+								</span>
 							</label>
 						</div>
 						<div className="login_login_pwd">
-							<label>
-								<span>비밀번호</span>
-								<input
-									aria-label="비밀번호"
-									aria-required="true"
-									autoCapitalize="off"
-									autoCorrect="off"
-									name="password"
-									type="password"
-								/>
-								<div className="login_check_pwd">
-									<button>비밀번호 표시</button>
-								</div>
+							<input autoComplete="off" required type="password" />
+							<label className="login_label_pwd">
+								<span className="login_content_pwd">비밀번호</span>
 							</label>
+							<div className="login_check_pwd">
+								<button>비밀번호 표시</button>
+							</div>
 						</div>
 						<div className="login_login_btn">
 							<button type="submit">로그인</button>

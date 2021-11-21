@@ -82,26 +82,62 @@
 	@include fontSize("normal");
 }
 
-.login_login_user > label > span {
+// .login_login_user > input:focus-visible {
+// 	outline-offset: 0px;
+// }
+
+.login_login_user > label {
 	height: 36px;
+	width: 240px;
 	line-height: 20px;
 	margin-left: 10px;
 	@include fontSize("small");
-	overflow: hidden;
 	pointer-events: none;
 	position: absolute;
+	// overflow: hidden;
 }
 
-.login_login_user > label > input {
+// .login_login_user > label::after {
+// 	content: "";
+// 	position: absolute;
+// 	left: 0px;
+// 	bottom: 0px;
+// 	height: 100%;
+// 	width: 100%;
+// 	border-bottom: 3px solid blue;
+// 	transform: translateX(-100%);
+// 	transition: all 0.3s ease;
+// }
+
+.login_content_username {
+	position: absolute;
+	left: 0px;
+	bottom: 10px;
+	@include fontSize("normal");
+	// transition: trnasform all 0.3s ease;
+}
+
+.login_login_user > input {
 	@include fontSize("normal");
 	height: 14px;
-	width: 230px;
+	width: 220px;
 	padding: 10px 0 0px 8px;
 	margin: 8px 0px 0px 2px;
 	border: none;
 	outline: none;
 	background-color: #fafafa;
 }
+
+.login_login_user input:focus + .login_label_username .login_content_username,
+.login_login_user input:valid + .login_label_username .login_content_username {
+	transform: translateY(-45%);
+	@include fontSize("small");
+}
+
+// .login_login_user input:focus + .login_label_username::after,
+// .login_login_user input:valid + .login_label_username::after {
+// 	transform: translateX(0%);
+// }
 
 .login_login_pwd {
 	display: flex;
@@ -116,34 +152,68 @@
 	@include fontSize("normal");
 }
 
-.login_login_pwd > label {
-	display: flex;
-}
+// .login_login_pwd > input:focus-visible {
+// 	outline-offset: 0px;
+// }
 
-.login_login_pwd > label > span {
+.login_login_pwd > label {
+	justify-content: space-between;
+	width: 130px;
 	height: 36px;
 	line-height: 20px;
 	margin-left: 10px;
 	@include fontSize("small");
-	overflow: hidden;
 	pointer-events: none;
 	position: absolute;
+	// overflow: hidden;
 }
 
-.login_login_pwd > label > input {
+// .login_login_pwd > label::after {
+// 	content: "";
+// 	position: absolute;
+// 	left: 0px;
+// 	bottom: 0px;
+// 	height: 100%;
+// 	width: 100%;
+// 	border-bottom: 3px solid blue;
+// 	transform: translateX(-100%);
+// }
+
+.login_content_pwd {
+	position: absolute;
+	left: 0px;
+	bottom: 10px;
+	@include fontSize("normal");
+	// transition: trnasform all 0.3s ease;
+}
+
+.login_login_pwd > input {
 	height: 5px;
 	width: 130px;
 	padding: 10px 0 0px 0px;
-	margin: 13px 0px 0px 10px;
+	margin: 14px 0px 0px 10px;
 	border: none;
 	outline: none;
 	background-color: #fafafa;
+	font-size: 11px;
+	letter-spacing: 1px;
 }
 
 .login_check_pwd {
 	line-height: 35px;
 	margin-left: 10px;
 }
+
+.login_login_pwd input:focus + .login_label_pwd .login_content_pwd,
+.login_login_pwd input:valid + .login_label_pwd .login_content_pwd {
+	transform: translateY(-20%);
+	font-size: 6px;
+}
+
+// .login_login_pwd input:focus + .login_label_pwd::after,
+// .login_login_pwd input:valid + .login_label_pwd::after {
+// 	transform: translateX(0%);
+// }
 
 .login_check_pwd > button {
 	border: none;
@@ -250,4 +320,3 @@
 	color: #262626;
 	margin: 20px 0px 15px 0px;
 }
-
