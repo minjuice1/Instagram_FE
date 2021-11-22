@@ -16,9 +16,11 @@ import {
 
 const Login = () => {
 	const dispatch = useDispatch();
-
 	const [email, SetEmail] = useState();
 	const [password, SetPassword] = useState();
+
+	// 비밀번호표시
+	const [checkPassword, SetCheckPassword] = useState(false);
 
 	const onChangeEmail = (e) => {
 		SetEmail(e.target.value);
@@ -38,10 +40,9 @@ const Login = () => {
 		);
 	};
 
-	const emailCheck = () => {
-		if (email.includes("@")) {
-			console.log("골뱅이");
-		}
+	const PasswordCheckClickHandler = () => {
+		console.log(checkPassword);
+		SetCheckPassword(!checkPassword);
 	};
 
 	return (
@@ -60,7 +61,6 @@ const Login = () => {
 								autoComplete="off"
 								value={email}
 								onChange={onChangeEmail}
-								onKeyUp={emailCheck}
 								required
 							/>
 							<label className="login_label_username">
@@ -70,19 +70,40 @@ const Login = () => {
 							</label>
 						</div>
 						<div className="login_login_pwd">
-							<input
-								autoComplete="off"
-								required
-								type="password"
-								value={password}
-								onChange={onChangePassword}
-							/>
+							{checkPassword ? (
+								<input
+									className="login_login_input_pwd"
+									autoComplete="off"
+									required
+									type="password"
+									value={password}
+									onChange={onChangePassword}
+								/>
+							) : (
+								<input
+									className="login_login_input_pwd"
+									autoComplete="off"
+									required
+									type="text"
+									value={password}
+									onChange={onChangePassword}
+								/>
+							)}
+
 							<label className="login_label_pwd">
 								<span className="login_content_pwd">비밀번호</span>
 							</label>
-							<div className="login_check_pwd">
-								<button>비밀번호 표시</button>
-							</div>
+							{password && (
+								<div className="login_check_pwd">
+									{checkPassword ? (
+										<button onClick={PasswordCheckClickHandler}>
+											비밀번호 표시
+										</button>
+									) : (
+										<button onClick={PasswordCheckClickHandler}>숨기기</button>
+									)}
+								</div>
+							)}
 						</div>
 						<div className="login_login_btn">
 							<button type="submit" onClick={loginClickHandler}>
