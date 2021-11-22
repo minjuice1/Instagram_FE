@@ -9,16 +9,43 @@ import {modal_check} from "../../../redux/modal/modalSlice";
 import {useDispatch, useSelector} from "react-redux";
 import PostModal from "./PostModal";
 
-const PostCard = () => {
+const PostCard = ({contents, createdAt, writer}) => {
   const dispatch = useDispatch();
-
   const show_postModal = () => {
     dispatch(modal_check());
   }
 
+
+  //글쓴 시간 계산.
+  function displayTime(value) {
+    const today = new Date();
+    const nowTime = new Date(value);
+
+    const displayTime = Math.floor((today.getTime() - nowTime.getTime()) / 1000 / 60);
+    if (displayTime < 1) return '방금전';
+    if (displayTime < 60) {
+      return `${displayTime}분전`;
+    }
+
+    const displayTimeHour = Math.floor(displayTime/ 60);
+    if (displayTimeHour < 24) {
+      return `${displayTimeHour}시간전`;
+    }
+
+    const displayTimeDay = Math.floor(displayTime / 60 / 24);
+    if (displayTimeDay < 365) {
+      return `${displayTimeDay}일전`;
+    }
+
+    return `${Math.floor(displayTimeDay / 365)}년전`;
+  }
+
+  const time = displayTime(createdAt);
+
+
+
+
   const is_modal = useSelector(state => state.modal.is_modal);
-
-
   return (
     <>
       {is_modal === true && <PostModal/>}
@@ -27,7 +54,7 @@ const PostCard = () => {
           <div className="post_header">
             <div className="profile_img">
               <img src={Profile_image}/>
-              <div>hyemgu</div>
+              <div>{writer.userId}</div>
               <div className="profile_img_dot" onClick={show_postModal}><img src={dot}/></div>
             </div>
             <div className="post_center">
@@ -45,13 +72,13 @@ const PostCard = () => {
             </div>
             <div className="post_content">
               <div>좋아요 1,200개</div>
-              <div>아이디 여러분,,, 아아아아아아아아아 <span>더보기</span></div>
+              <div>아이디 {contents} <span>더보기</span></div>
               <div>댓글 122개 모두 보기</div>
             </div>
             <div className="post_comment">
               <div><a>hyemin085</a> 아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ <a>♡</a></div>
               <div><a>hyemin085</a> 오ㅗㅗㅗㅗㅗㅗㅗ <a>♡</a></div>
-              <div className="post_time">4시간 전</div>
+              <div className="post_time">{time}</div>
             </div>
             <div className="post_cmt">
               <input placeholder="댓글 달기.."/>
