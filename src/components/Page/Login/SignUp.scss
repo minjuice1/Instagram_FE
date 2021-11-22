@@ -25,12 +25,12 @@
 	background-color: #ffffff;
 	margin-top: 30px;
 	margin-bottom: 10px;
-}
 
-.signup_signup > img {
-	width: 175px;
-	height: 65px;
-	margin: 20px 20px 10px 20px;
+	& > img {
+		width: 175px;
+		height: 65px;
+		margin: 20px 20px 10px 20px;
+	}
 }
 
 .signup_header {
@@ -38,16 +38,6 @@
 	font-weight: 600;
 	font-size: 17px;
 	margin: 0px 40px 15px 40px;
-}
-
-// .fb > span {
-// 	font-weight: bold;
-// 	cursor: pointer;
-// }
-
-.signup_fb > button > img {
-	width: 16px;
-	height: 16px;
 }
 
 .signup_fb > button {
@@ -59,14 +49,19 @@
 	border-radius: 5px;
 	font-weight: bold;
 	cursor: pointer;
-}
 
-.signup_fb > button > a {
-	color: #ffffff;
-	margin-left: 5px;
-	@include fontSize("large");
-	font-weight: 600;
-	outline: none;
+	& > img {
+		width: 16px;
+		height: 16px;
+	}
+
+	& > a {
+		color: #ffffff;
+		margin-left: 5px;
+		@include fontSize("large");
+		font-weight: 600;
+		outline: none;
+	}
 }
 
 .signup_bar {
@@ -76,20 +71,20 @@
 	font-size: 13px;
 	font-weight: 600;
 	color: #8e8e8e;
-}
 
-.signup_bar > .left {
-	width: 110px;
-	background-color: $instaGray;
-	height: 0.1px;
-	margin: 10px 10px 20px 40px;
-}
+	.left {
+		width: 110px;
+		background-color: $instaGray;
+		height: 0.1px;
+		margin: 10px 10px 20px 40px;
+	}
 
-.signup_bar > .right {
-	width: 110px;
-	background-color: $instaGray;
-	height: 0.1px;
-	margin: 10px 40px 10px 10px;
+	.right {
+		width: 110px;
+		background-color: $instaGray;
+		height: 0.1px;
+		margin: 10px 40px 10px 10px;
+	}
 }
 
 .signup_signup > .signup_form > div {
@@ -214,28 +209,28 @@
 	@include fontSize("large");
 	color: #262626;
 	line-height: 63px;
-}
 
-.signup_login > .link > span {
-	color: $instaBlue;
-	font-weight: 400;
-	cursor: pointer;
+	.link > span {
+		color: $instaBlue;
+		font-weight: 400;
+		cursor: pointer;
+	}
 }
 
 .signup_download {
 	width: 350px;
 	height: 100px;
-}
 
-.signup_download > span > a > img {
-	width: 136px;
-	height: 40px;
-	margin-left: 10px;
-	cursor: pointer;
-}
+	& > span > a > img {
+		width: 136px;
+		height: 40px;
+		margin-left: 10px;
+		cursor: pointer;
+	}
 
-.signup_download > p {
-	@include fontSize("large");
-	color: #262626;
-	margin: 20px 0px 20px 0px;
+	& > p {
+		@include fontSize("large");
+		color: #262626;
+		margin: 20px 0px 20px 0px;
+	}
 }

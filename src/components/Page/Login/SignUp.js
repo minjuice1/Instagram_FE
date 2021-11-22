@@ -21,8 +21,13 @@ const SignUp = () => {
 	const [userId, SetUserId] = useState();
 	const [password, SetPassword] = useState();
 
+	// 유효성검사
+	const [checkEmail, SetCheckEmail] = useState(true);
+	const [checkName, SetCheckName] = useState(true);
+	const [checkUserId, SetCheckUserId] = useState(true);
+	const [checkPassword, SetCheckPassword] = useState(true);
+
 	const SingUpClickHandler = () => {
-		console.log(email, name, userId, password);
 		dispatch(
 			singUp({
 				email,
@@ -48,9 +53,36 @@ const SignUp = () => {
 		SetPassword(e.target.value);
 	};
 
-	const emailCheck = () => {
+	// 유효성 검사
+	const EmailCheck = () => {
 		if (email.includes("@")) {
-			console.log("골뱅이");
+			SetCheckEmail(true);
+		} else {
+			SetCheckEmail(false);
+		}
+	};
+
+	const NameCheck = () => {
+		if (name) {
+			SetCheckName(true);
+		} else {
+			SetCheckName(false);
+		}
+	};
+
+	const UserIdCheck = () => {
+		if (userId) {
+			SetCheckUserId(true);
+		} else {
+			SetCheckUserId(false);
+		}
+	};
+
+	const PasswordCheck = () => {
+		if (password.legnth > 5) {
+			SetCheckPassword(false);
+		} else {
+			SetCheckPassword(true);
 		}
 	};
 
@@ -84,14 +116,19 @@ const SignUp = () => {
 										className="signup_email"
 										type="email"
 										value={email}
-										onKeyUp={emailCheck}
 										onChange={EmailOnChange}
+										onKeyUp={EmailCheck}
 									/>
 								</label>
 								<div>
-									<span className="signup_email_check">
-										<BiXCircle color={"#F04756"} size={25} />
-									</span>
+									{checkEmail ? (
+										""
+									) : (
+										<span className="signup_email_check">
+											{" "}
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>
+									)}
 								</div>
 							</div>
 							<div className="signup_label_name_form">
@@ -102,12 +139,18 @@ const SignUp = () => {
 										type="text"
 										value={name}
 										onChange={NameOnChange}
+										onKeyUp={NameCheck}
 									/>
 								</label>
 								<div>
-									<span className="signup_name_check">
-										<BiCheckCircle color={"#c7c7c7"} size={25} />
-									</span>
+									{checkName ? (
+										""
+									) : (
+										<span className="signup_name_check">
+											{" "}
+											<BiCheckCircle color={"#c7c7c7"} size={25} />
+										</span>
+									)}
 								</div>
 							</div>
 							<div className="signup_label_username_form">
@@ -118,18 +161,23 @@ const SignUp = () => {
 										type="text"
 										value={userId}
 										onChange={UserIdOnChange}
+										onKeyUp={UserIdCheck}
 									/>
 								</label>
-								<div>
-									<span className="signup_username_check">
-										<BiXCircle color={"#F04756"} size={25} />
-									</span>
+								{checkUserId ? (
+									""
+								) : (
 									<div>
-										<button className="signup_username_check_btn">
-											<FiRotateCw color={"#0095f6"} size={24} />
-										</button>
+										<span className="signup_username_check">
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>
+										<div>
+											<button className="signup_username_check_btn">
+												<FiRotateCw color={"#0095f6"} size={24} />
+											</button>
+										</div>
 									</div>
-								</div>
+								)}
 							</div>
 							<div className="signup_label_pwd_form">
 								<label className="signup_label_pwd">
@@ -139,16 +187,23 @@ const SignUp = () => {
 										type="password"
 										value={password}
 										onChange={PassWordOnChange}
+										onKeyUp={PasswordCheck}
 									/>
 								</label>
-								<div className="signup_pwd_check_form">
-									<span>
-										<BiCheckCircle color={"#c7c7c7"} size={25} />
-									</span>
-									<div>
-										<button className="signup_pwd_check">비밀번호 표시</button>
+								{checkPassword ? (
+									""
+								) : (
+									<div className="signup_pwd_check_form">
+										<span>
+											<BiCheckCircle color={"#c7c7c7"} size={25} />
+										</span>
+										<div>
+											<button className="signup_pwd_check">
+												비밀번호 표시
+											</button>
+										</div>
 									</div>
-								</div>
+								)}
 							</div>
 							<button onClick={SingUpClickHandler}>가입</button>
 						</div>
