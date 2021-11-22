@@ -22,9 +22,12 @@ const SignUp = () => {
 	const [password, SetPassword] = useState();
 
 	// 유효성검사
-	const [checkEmail, SetCheckEmail] = useState(true);
-	const [checkName, SetCheckName] = useState(true);
-	const [checkUserId, SetCheckUserId] = useState(true);
+	const [IsEmail, SetIsEmail] = useState(true);
+	const [IsName, SetIsName] = useState(true);
+	const [ISUserId, SetIsUserId] = useState(true);
+	const [IsPassword, SetIsPassword] = useState(true);
+
+	// 비밀번호표시
 	const [checkPassword, SetCheckPassword] = useState(true);
 
 	const SingUpClickHandler = () => {
@@ -56,34 +59,39 @@ const SignUp = () => {
 	// 유효성 검사
 	const EmailCheck = () => {
 		if (email.includes("@")) {
-			SetCheckEmail(true);
+			SetIsEmail(true);
 		} else {
-			SetCheckEmail(false);
+			SetIsEmail(false);
 		}
 	};
 
 	const NameCheck = () => {
 		if (name) {
-			SetCheckName(true);
+			SetIsName(true);
 		} else {
-			SetCheckName(false);
+			SetIsName(false);
 		}
 	};
 
 	const UserIdCheck = () => {
 		if (userId) {
-			SetCheckUserId(true);
+			SetIsUserId(true);
 		} else {
-			SetCheckUserId(false);
+			SetIsUserId(false);
 		}
 	};
 
 	const PasswordCheck = () => {
+		// console.log(password.length);
 		if (password.legnth > 5) {
-			SetCheckPassword(false);
+			SetIsPassword(false);
 		} else {
-			SetCheckPassword(true);
+			SetIsPassword(true);
 		}
+	};
+
+	const PasswordCheckClickHandler = () => {
+		SetCheckPassword(!checkPassword);
 	};
 
 	return (
@@ -109,103 +117,113 @@ const SignUp = () => {
 							<hr className="right" />
 						</div>
 						<div className="signup_form">
-							<div className="signup_label_email_form">
-								<label className="signup_label_email">
-									<span>휴대폰 번호 또는 이메일 주소</span>
-									<input
-										className="signup_email"
-										type="email"
-										value={email}
-										onChange={EmailOnChange}
-										onKeyUp={EmailCheck}
-									/>
+							<div className="signup_content_form">
+								<input
+									className="signup_email"
+									type="email"
+									value={email}
+									onChange={EmailOnChange}
+									onKeyUp={EmailCheck}
+								/>
+								<label className="signup_label">
+									<span className="signup_content">
+										휴대폰 번호 또는 이메일 주소
+									</span>
 								</label>
-								<div>
-									{checkEmail ? (
-										""
-									) : (
-										<span className="signup_email_check">
-											{" "}
-											<BiXCircle color={"#F04756"} size={25} />
-										</span>
-									)}
+								<div className="signup_email_check">
+									<span>
+										<BiXCircle color={"#F04756"} size={25} />
+									</span>
 								</div>
 							</div>
-							<div className="signup_label_name_form">
-								<label className="signup_label_name">
-									<span>성명</span>
-									<input
-										className="signup_name"
-										type="text"
-										value={name}
-										onChange={NameOnChange}
-										onKeyUp={NameCheck}
-									/>
+							<div className="signup_content_form">
+								<input
+									className="signup_name"
+									type="text"
+									value={name}
+									onChange={NameOnChange}
+									onKeyUp={NameCheck}
+								/>
+								<label className="signup_label">
+									<span className="signup_content">성명</span>
 								</label>
 								<div>
-									{checkName ? (
-										""
-									) : (
-										<span className="signup_name_check">
-											{" "}
-											<BiCheckCircle color={"#c7c7c7"} size={25} />
-										</span>
-									)}
+									<span className="signup_name_check">
+										<BiCheckCircle color={"#c7c7c7"} size={25} />
+									</span>
 								</div>
 							</div>
-							<div className="signup_label_username_form">
-								<label className="signup_label_username">
-									<span>사용자 이름</span>
-									<input
-										className="signup_username"
-										type="text"
-										value={userId}
-										onChange={UserIdOnChange}
-										onKeyUp={UserIdCheck}
-									/>
+							<div className="signup_content_form">
+								<input
+									className="signup_username"
+									type="text"
+									value={userId}
+									onChange={UserIdOnChange}
+									onKeyUp={UserIdCheck}
+								/>
+								<label className="signup_label">
+									<span className="signup_content">사용자 이름</span>
 								</label>
-								{checkUserId ? (
-									""
-								) : (
+								<div>
+									<span className="signup_username_check">
+										<BiXCircle color={"#F04756"} size={25} />
+									</span>
 									<div>
-										<span className="signup_username_check">
-											<BiXCircle color={"#F04756"} size={25} />
-										</span>
-										<div>
-											<button className="signup_username_check_btn">
-												<FiRotateCw color={"#0095f6"} size={24} />
-											</button>
-										</div>
+										<button className="signup_username_check_btn">
+											<FiRotateCw color={"#0095f6"} size={24} />
+										</button>
 									</div>
-								)}
+								</div>
 							</div>
-							<div className="signup_label_pwd_form">
-								<label className="signup_label_pwd">
-									<span>비밀번호</span>
-									<input
-										className="signup_pwd"
-										type="password"
-										value={password}
-										onChange={PassWordOnChange}
-										onKeyUp={PasswordCheck}
-									/>
+							<div className="signup_content_form">
+								<input
+									className="signup_pwd"
+									type="password"
+									value={password}
+									onChange={PassWordOnChange}
+									onKeyUp={PasswordCheck}
+								/>
+								<label className="signup_label">
+									<span className="signup_content">비밀번호</span>
 								</label>
-								{checkPassword ? (
-									""
-								) : (
-									<div className="signup_pwd_check_form">
-										<span>
-											<BiCheckCircle color={"#c7c7c7"} size={25} />
-										</span>
-										<div>
-											<button className="signup_pwd_check">
+								<div className="signup_pwd_check_form">
+									<span>
+										<BiCheckCircle color={"#c7c7c7"} size={25} />
+									</span>
+									<div>
+										{checkPassword ? (
+											<button
+												onClick={PasswordCheckClickHandler}
+												className="signup_pwd_check"
+											>
 												비밀번호 표시
 											</button>
-										</div>
+										) : (
+											<button
+												onClick={PasswordCheckClickHandler}
+												className="signup_pwd_check"
+											>
+												숨기기
+											</button>
+										)}
 									</div>
-								)}
+								</div>
 							</div>
-							<button onClick={SingUpClickHandler}>가입</button>
+							{email && password && userId && name ? (
+								<button
+									className="signup_btn_active"
+									onClick={SingUpClickHandler}
+								>
+									가입
+								</button>
+							) : (
+								<button
+									className="signup_btn_disabled"
+									onClick={SingUpClickHandler}
+								>
+									가입
+								</button>
+							)}
 						</div>
 					</div>
 					<div className="signup_login">

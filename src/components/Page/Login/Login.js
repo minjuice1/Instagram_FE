@@ -20,7 +20,7 @@ const Login = () => {
 	const [password, SetPassword] = useState();
 
 	// 비밀번호표시
-	const [checkPassword, SetCheckPassword] = useState(false);
+	const [checkPassword, SetCheckPassword] = useState(true);
 
 	const onChangeEmail = (e) => {
 		SetEmail(e.target.value);
@@ -41,7 +41,6 @@ const Login = () => {
 	};
 
 	const PasswordCheckClickHandler = () => {
-		console.log(checkPassword);
 		SetCheckPassword(!checkPassword);
 	};
 
@@ -106,9 +105,23 @@ const Login = () => {
 							)}
 						</div>
 						<div className="login_login_btn">
-							<button type="submit" onClick={loginClickHandler}>
-								로그인
-							</button>
+							{email && password ? (
+								<button
+									className="login_btn_disabled"
+									type="submit"
+									onClick={loginClickHandler}
+								>
+									로그인
+								</button>
+							) : (
+								<button
+									className="login_btn_active"
+									type="submit"
+									onClick={loginClickHandler}
+								>
+									로그인
+								</button>
+							)}
 						</div>
 						<div className="login_bar">
 							<div className="left" />
