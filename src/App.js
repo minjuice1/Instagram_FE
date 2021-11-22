@@ -7,7 +7,7 @@ import SignUp from "./components/Page/Login/SignUp";
 import FindPassword from "./components/Page/Login/FindPassword";
 import Recommendation from "./components/Page/Recommendation/Recommendation";
 import DirectMessage from "./components/Page/DirectMessage/DirectMessage";
-// import PostForm from "./components/Home/Post/PostForm";
+import PostForm from "./components/Home/Post/PostForm/PostForm";
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
 					<Route path={"/accounts/password"} element={<FindPassword />} />
           <Route path={"/recom"} element={<Recommendation/>}/>
           <Route path={"/message"} element={<DirectMessage/>}/>
-					{/*<Route path={"/postform"} element={<PostForm/>}/>*/}
+					<Route path={"/postform"} element={<PostForm/>}/>
 				</Routes>
 			</BrowserRouter>
 		</div>
