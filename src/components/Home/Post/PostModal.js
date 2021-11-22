@@ -1,5 +1,4 @@
 import "./PostModal.scss";
-import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {modal_check} from "../../../redux/modal/modalSlice";
 

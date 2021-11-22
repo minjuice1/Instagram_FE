@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {login} from "../../../redux/user/user";
 
-import Carousel from "../Login/LoginCarousel";
+import Carousel from "../Login/LoginCarousel"
 import Footer from "../Footer/Footer";
 import "./Login.scss";
 import {
@@ -13,26 +15,54 @@ import {
 } from "./LoginImage";
 
 const Login = () => {
+	const dispatch = useDispatch();
+
+	const [email, SetEmail] = useState();
+	const [password, SetPassword] = useState();
+
+	const onChangeEmail = (e) => {
+		SetEmail(e.target.value);
+	}
+	const onChangePassword = (e) => {
+		SetPassword(e.target.value);
+	}
+
+	const loginClickHandler = () => {
+		console.log(email,password)
+		dispatch(login({
+			email, password
+		}),[dispatch])
+	}
+
 	return (
 		<>
 			<div className="login_all">
 				<div className="login_side_img">
 					<img className="login_pic1" src={login_pic1} alt="login_pic1" />
-					<Carousel className="carousel" />
+					<Carousel className="carousel"/>
 				</div>
 				<section className="login_main">
 					<div className="login_content">
 						<img src={instagramlogo} alt="instagram" />
 						<div className="login_login_user">
-							<input type="text" autoComplete="off" required></input>
+							<input
+								type="text"
+								autoComplete="off"
+								value={email}
+								onChange={onChangeEmail}
+								required/>
 							<label className="login_label_username">
-								<span className="login_content_username">
+									<span className="login_content_username">
 									전화번호, 사용자 이름 또는 이메일
 								</span>
 							</label>
 						</div>
 						<div className="login_login_pwd">
-							<input autoComplete="off" required type="password" />
+							<input
+								autoComplete="off"
+								required type="password"
+								value={password}
+								onChange={onChangePassword}/>
 							<label className="login_label_pwd">
 								<span className="login_content_pwd">비밀번호</span>
 							</label>
@@ -41,7 +71,7 @@ const Login = () => {
 							</div>
 						</div>
 						<div className="login_login_btn">
-							<button type="submit">로그인</button>
+							<button type="submit" onClick={loginClickHandler}>로그인</button>
 						</div>
 						<div className="login_bar">
 							<div className="left" />

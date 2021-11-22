@@ -87,7 +87,6 @@
       padding-left: 5px;
     }
   }
-
   .like_cmt_id {
     font-weight: bold;
     color: black;
@@ -113,10 +112,9 @@
   padding-left: 15px;
 }
 
-
 .myprofile {
   position: absolute;
-  background: #ffffff;
+  background: $instaWhite;
   border: 1px solid $instaGray;
   margin-top: 5px;
   margin-left: -170px;
@@ -186,7 +184,6 @@
   border-top: 1px solid $instaMenuGray;
   &:hover {
     background: $backgroundGray;
-
   }
 }
 

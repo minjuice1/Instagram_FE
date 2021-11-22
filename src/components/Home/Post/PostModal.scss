@@ -12,7 +12,6 @@
   background: $instaWhite;
   margin-top: 100px;
 
-
   & > div {
     border-bottom: 1px solid $instaGray;
     height: 47px;
@@ -24,12 +23,12 @@
   & > div:first-child, & > div:nth-child(2){
     color: $instaRed;
     font-weight: bold;
-
   }
   & > div:last-child{
     border: none;
   }
 }
+
 .post_modal_container{
 margin-left: 15%;
 }
