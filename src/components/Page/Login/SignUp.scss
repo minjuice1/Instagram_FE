@@ -87,7 +87,7 @@
 	}
 }
 
-.signup_form > div {
+.signup_content_form {
 	display: flex;
 	width: 258px;
 	height: 36px;
@@ -110,10 +110,22 @@
 		background-color: #fafafa;
 	}
 
+	.signup_pwd {
+		@include fontSize("normal");
+		height: 14px;
+		width: 120px;
+		padding: 10px 0 0 8px;
+		margin: 8px 0 0 2px;
+		border: none;
+		outline: none;
+		background-color: #fafafa;
+	}
+
 	& > label {
+		display: flex;
+		justify-content: space-between;
 		@include fontSize("small");
 		position: absolute;
-		left: 31%;
 		width: 180px;
 		height: 36px;
 		pointer-events: none;
@@ -129,114 +141,84 @@
 	// 	width: 100%;
 	// 	border-bottom: 3px solid blue;
 	// 	transition: all 0.3s ease;
+	// 	transform: translateX(-100%);
 	// }
 
-	& span {
+	.signup_label_name {
 		@include fontSize("normal");
-		left: -100px;
+		left: 10px;
 		position: absolute;
 		bottom: 12px;
-		// transition: trnasform all 0.3s ease;
+		@include fontSize("normal");
+		// transition: all 0.3s ease;
+	}
+
+	.signup_check_box {
+		display: flex;
+		height: 30px;
+		width: 30px;
+		line-height: 45px;
+		margin-top: 5px;
+	}
+
+	.signup_check_box_userId {
+		display: flex;
+		box-sizing: border-box;
+		width: 80px;
+		height: 30px;
+		line-height: 40px;
+		margin-top: 5px;
+	}
+
+	.signup_check_box_pwd {
+		display: flex;
+		width: 160px;
+		height: 30px;
+		line-height: 40px;
+		& div {
+			width: 100px;
+		}
+	}
+
+	.signup_check {
+		width: auto;
+		right: 0px;
+		margin-right: 10px;
+		height: 22px;
+	}
+
+	.signup_check_pwd {
+		right: 0px;
+		margin-right: 5px;
+		height: 22px;
+		margin-top: 6px;
+	}
+
+	.signup_check_btn_userId {
+		background-color: #fafafa;
+		border: none;
+		height: 22px;
+	}
+
+	.signup_pwd_check {
+		@include fontSize("large");
+		border: none;
+		background-color: #fafafa;
+		font-weight: bold;
+		text-align: center;
+		width: auto;
+		cursor: pointer;
 	}
 }
 
-.signup_content_form input:focus + .signup_label .signup_content,
-.signup_content_form input:valid + .signup_label .signup_content {
-	transform: translateY(-40%);
+.signup_content_form input:focus + .signup_label .signup_label_name {
+	transform: translateY(-45%);
 	@include fontSize("small");
 }
 
 // .signup_content_form input:focus + .signup_label_email::after,
 // .signup_content_form input:valid + .signup_label_email::after {
 // 	transform: translateX(0%);
-// }
-
-// .signup_email_check {
-// 	line-height: 35px;
-// 	margin-left: 10px;
-// 	width: 107px;
-// }
-
-// .signup_label_name_form {
-// 	display: flex;
-// 	height: 22px;
-// 	width: 38px;
-// 	margin-left: 7px;
-
-// 	& > label {
-// 		display: flex;
-// 		width: 228px;
-// 		height: 36px;
-// 		pointer-events: none;
-// 		position: absolute;
-// 	}
-// }
-
-// .signup_label_username_form > div {
-// 	display: flex;
-// 	height: 22px;
-// 	width: 38px;
-// 	margin-left: 7px;
-
-// 	& > label {
-// 		display: flex;
-// 		width: 200px;
-// 		height: 36px;
-// 		pointer-events: none;
-// 		position: absolute;
-// 	}
-
-// 	.signup_username_check_btn {
-// 		background-color: #fafafa;
-// 		border: none;
-// 		margin-left: 3px;
-// 	}
-// }
-
-// .signup_label_pwd_form > div {
-// 	display: flex;
-// 	height: 22px;
-// 	width: 133px;
-// 	margin-left: 7px;
-
-// 	& label {
-// 		display: flex;
-// 		width: 127px;
-// 		height: 36px;
-// 		pointer-events: none;
-// 		position: absolute;
-// 	}
-
-// 	.signup_pwd_check {
-// 		border: none;
-// 		width: 130px;
-// 		line-height: 25px;
-// 		background-color: #fafafa;
-// 		font-weight: bold;
-// 		@include fontSize("large");
-// 		color: #262626;
-// 		cursor: pointer;
-// 		padding-left: 10px;
-// 	}
-// }
-
-// .signup_signup > .signup_form > div > label > span {
-// 	height: 30px;
-// 	line-height: 20px;
-// 	margin-left: 10px;
-// 	@include fontSize("small");
-// 	overflow: hidden;
-// 	pointer-events: none;
-// 	position: absolute;
-// }
-
-// .signup_signup > .signup_form > div > label > input {
-// 	background-color: #fafafa;
-// 	border: none;
-// 	outline: none;
-// 	width: 226px;
-// 	height: 20px;
-// 	margin: 14px 0px 0px 5px;
 // }
 
 .signup_btn_active {

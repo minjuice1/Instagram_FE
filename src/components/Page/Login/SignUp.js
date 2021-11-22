@@ -119,75 +119,83 @@ const SignUp = () => {
 						<div className="signup_form">
 							<div className="signup_content_form">
 								<input
-									className="signup_email"
 									type="email"
 									value={email}
 									onChange={EmailOnChange}
 									onKeyUp={EmailCheck}
 								/>
 								<label className="signup_label">
-									<span className="signup_content">
+									<span className="signup_label_name">
 										휴대폰 번호 또는 이메일 주소
 									</span>
 								</label>
-								<div className="signup_email_check">
-									<span>
+								<div className="signup_check_box">
+									<span className="signup_check">
 										<BiXCircle color={"#F04756"} size={25} />
 									</span>
 								</div>
 							</div>
 							<div className="signup_content_form">
 								<input
-									className="signup_name"
 									type="text"
 									value={name}
 									onChange={NameOnChange}
 									onKeyUp={NameCheck}
 								/>
 								<label className="signup_label">
-									<span className="signup_content">성명</span>
+									<span className="signup_label_name">성명</span>
 								</label>
-								<div>
-									<span className="signup_name_check">
+								<div className="signup_check_box">
+									<span className="signup_check">
 										<BiCheckCircle color={"#c7c7c7"} size={25} />
 									</span>
 								</div>
 							</div>
 							<div className="signup_content_form">
 								<input
-									className="signup_username"
 									type="text"
 									value={userId}
 									onChange={UserIdOnChange}
 									onKeyUp={UserIdCheck}
 								/>
 								<label className="signup_label">
-									<span className="signup_content">사용자 이름</span>
+									<span className="signup_label_name">사용자 이름</span>
 								</label>
-								<div>
-									<span className="signup_username_check">
+								<div className="signup_check_box_userId">
+									<span className="signup_check">
 										<BiXCircle color={"#F04756"} size={25} />
 									</span>
 									<div>
-										<button className="signup_username_check_btn">
-											<FiRotateCw color={"#0095f6"} size={24} />
+										<button className="signup_check_btn_userId">
+											<FiRotateCw color={"#0095f6"} size={22} />
 										</button>
 									</div>
 								</div>
 							</div>
 							<div className="signup_content_form">
-								<input
-									className="signup_pwd"
-									type="password"
-									value={password}
-									onChange={PassWordOnChange}
-									onKeyUp={PasswordCheck}
-								/>
+								{checkPassword ? (
+									<input
+										className="signup_pwd"
+										type="password"
+										value={password}
+										onChange={PassWordOnChange}
+										onKeyUp={PasswordCheck}
+									/>
+								) : (
+									<input
+										className="signup_pwd"
+										type="text"
+										value={password}
+										onChange={PassWordOnChange}
+										onKeyUp={PasswordCheck}
+									/>
+								)}
+
 								<label className="signup_label">
-									<span className="signup_content">비밀번호</span>
+									<span className="signup_label_name">비밀번호</span>
 								</label>
-								<div className="signup_pwd_check_form">
-									<span>
+								<div className="signup_check_box_pwd">
+									<span className="signup_check_pwd">
 										<BiCheckCircle color={"#c7c7c7"} size={25} />
 									</span>
 									<div>
