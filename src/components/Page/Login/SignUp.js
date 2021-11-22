@@ -15,8 +15,7 @@ const SignUp = () => {
   const [name, SetName] = useState();
   const [userId, SetUserId] = useState();
   const [password, SetPassword] = useState();
-
-
+  const [checkEmail, SetCheckEmail] = useState(true);
 
   const SingUpClickHandler = () => {
 
@@ -34,12 +33,19 @@ const SignUp = () => {
 	const UserIdOnChange = (e) => {
 		SetUserId(e.target.value)};
 	const PassWordOnChange = (e) => {
-		SetPassword(e.target.value)};
+    SetPassword(e.target.value)};
 
-  //
-  // if (.indexOf("@")) {
-  //   console.log("골뱅인인")
-  // }
+
+
+const emailCheck = () =>{
+  if (email.includes("@")){
+    SetCheckEmail(true);
+    console.log(checkEmail);
+  }else {
+    SetCheckEmail(false);
+  }
+}
+
 
   return (
     <>
@@ -69,10 +75,11 @@ const SignUp = () => {
                   <span>휴대폰 번호 또는 이메일 주소</span>
                   <input
                     className="signup_email"
-                    type="email" value={email} onChange={EmailOnChange}/>
+                    type="email" value={email} onChange={EmailOnChange}
+                  onKeyUp={emailCheck}/>
                 </label>
                 <div>
-                  <span className="signup_email_check"><BiXCircle color={"#F04756"} size={25}/></span>
+                  {checkEmail? "":<span className="signup_email_check"> <BiXCircle color={"#F04756"} size={25}/></span> }
                 </div>
               </div>
               <div className="signup_label_name_form">
