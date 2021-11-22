@@ -21,9 +21,8 @@ import {
       infinite: true,
       speed: 1500,
       slidesToShow: 5,
-      slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 2000
+      autoplaySpeed: 1000
     };
 
     return (
