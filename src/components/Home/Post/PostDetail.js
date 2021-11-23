@@ -32,5 +32,4 @@ const PostDetail = () => {
 		</>
 	);
 };
-
-export default postDetail;
+export default PostDetail;

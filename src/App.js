@@ -27,8 +27,6 @@ function RejectAuth({children, redirectTo}) {
 
 function App() {
 	const dispatch = useDispatch();
-
-
 		const is_login = useSelector(state=> state.user.isLogin);
 		const token = localStorage.getItem("user");
 
@@ -49,16 +47,14 @@ function App() {
 
 					<Route path="/login" element= {<RejectAuth redirectTo="/"> <Login /> </RejectAuth>}/>
 					<Route path={"/accounts/signup"} element={<RejectAuth redirectTo="/"> <SignUp /> </RejectAuth>}/>
-
 					<Route path ="/" element ={ <RequireAuth redirectTo="/login"> <Home /> </RequireAuth>}/>
 					<Route path ="/*" element ={ <RequireAuth redirectTo="/login"> <Home /> </RequireAuth>}/>
 					<Route path ="/postform" element ={ <RequireAuth redirectTo="/login"> <PostForm /> </RequireAuth>}/>
-					<Route path ="/message" element ={ <RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
-					<Route path ="/accounts/password" element ={ <RequireAuth redirectTo="/login"> <FindPassword/> </RequireAuth>}/>
-					<Route path ="/message" element ={ <RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
-					<Route path ="/recom" element ={ <RequireAuth redirectTo="/login"> <Recommendation/> </RequireAuth>}/>
-					<Route path={"/"} element={<PostDetail />} />
-
+					<Route path ="/message" element ={ <RequireAuth redirectTo="/login"> <DirectMessage /> </RequireAuth>}/>
+					<Route path ="/accounts/password" element ={ <RequireAuth redirectTo="/login"> <FindPassword /> </RequireAuth>}/>
+					<Route path ="/message" element ={ <RequireAuth redirectTo="/login"> <DirectMessage /> </RequireAuth>}/>
+					<Route path ="/recom" element ={ <RequireAuth redirectTo="/login"> <Recommendation /> </RequireAuth>}/>
+					<Route path ="/postdetail" element ={ <RequireAuth redirectTo="/login"> <PostDetail /> </RequireAuth>}/>
 
 				</Routes>
 
