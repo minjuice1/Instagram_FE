@@ -10,9 +10,7 @@ const postSlice = createSlice({
     posts: [],
   },
   reducers: {
-    loginCheck: (state, {payload: isLogin}) => {
-      state.isLogin = true;
-    },
+
   },
   extraReducers: {
     [getPost.fulfilled]: (state, action) => {
