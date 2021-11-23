@@ -41,7 +41,7 @@ function App() {
 
 		<div className="App">
 			<BrowserRouter>
-				{is_login && <Header /> }
+				{token && <Header /> }
 
 				<Routes>
 

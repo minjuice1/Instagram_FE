@@ -5,7 +5,7 @@ import { Navigate } from "react-router-dom";
 const userSlice = createSlice({
 	name: "user",
 	initialState: {
-		isLogin: false,
+		isLogin: "",
 	},
 	reducers: {
 		loginCheck: (state, payload ) => {
