@@ -1,6 +1,10 @@
 @import "./src/common/_variables.scss";
 @import "./src/common/mixin";
 
+.all_content {
+	background-color: #fafafa;
+}
+
 .signup_main {
 	background-color: #fafafa;
 	justify-content: center;
