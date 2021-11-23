@@ -25,12 +25,12 @@
 	background-color: #ffffff;
 	margin-top: 30px;
 	margin-bottom: 10px;
-}
 
-.signup_signup > img {
-	width: 175px;
-	height: 65px;
-	margin: 20px 20px 10px 20px;
+	& > img {
+		width: 175px;
+		height: 65px;
+		margin: 20px 20px 10px 20px;
+	}
 }
 
 .signup_header {
@@ -38,16 +38,6 @@
 	font-weight: 600;
 	font-size: 17px;
 	margin: 0px 40px 15px 40px;
-}
-
-// .fb > span {
-// 	font-weight: bold;
-// 	cursor: pointer;
-// }
-
-.signup_fb > button > img {
-	width: 16px;
-	height: 16px;
 }
 
 .signup_fb > button {
@@ -59,14 +49,19 @@
 	border-radius: 5px;
 	font-weight: bold;
 	cursor: pointer;
-}
 
-.signup_fb > button > a {
-	color: #ffffff;
-	margin-left: 5px;
-	@include fontSize("large");
-	font-weight: 600;
-	outline: none;
+	& > img {
+		width: 16px;
+		height: 16px;
+	}
+
+	& > a {
+		color: #ffffff;
+		margin-left: 5px;
+		@include fontSize("large");
+		font-weight: 600;
+		outline: none;
+	}
 }
 
 .signup_bar {
@@ -76,126 +71,168 @@
 	font-size: 13px;
 	font-weight: 600;
 	color: #8e8e8e;
+
+	.left {
+		width: 110px;
+		background-color: $instaGray;
+		height: 0.1px;
+		margin: 10px 10px 20px 40px;
+	}
+
+	.right {
+		width: 110px;
+		background-color: $instaGray;
+		height: 0.1px;
+		margin: 10px 40px 10px 10px;
+	}
 }
 
-.signup_bar > .left {
-	width: 110px;
-	background-color: $instaGray;
-	height: 0.1px;
-	margin: 10px 10px 20px 40px;
-}
-
-.signup_bar > .right {
-	width: 110px;
-	background-color: $instaGray;
-	height: 0.1px;
-	margin: 10px 40px 10px 10px;
-}
-
-.signup_signup > .signup_form > div {
+.signup_content_form {
 	display: flex;
-	box-sizing: border-box;
-	align-items: center;
-	width: 268px;
+	width: 258px;
 	height: 36px;
-	margin: 6px auto;
+	margin: auto auto 5px auto;
 	background-color: #fafafa;
 	border-radius: 5px;
 	border: 1px solid $instaLightGray;
 	color: #8e8e8e;
 	outline: none;
 	@include fontSize("normal");
+
+	& > input {
+		@include fontSize("normal");
+		height: 14px;
+		width: 220px;
+		padding: 10px 0 0 8px;
+		margin: 8px 0 0 2px;
+		border: none;
+		outline: none;
+		background-color: #fafafa;
+	}
+
+	.signup_pwd {
+		@include fontSize("normal");
+		height: 14px;
+		width: 120px;
+		padding: 10px 0 0 8px;
+		margin: 8px 0 0 2px;
+		border: none;
+		outline: none;
+		background-color: #fafafa;
+	}
+
+	& > label {
+		display: flex;
+		justify-content: space-between;
+		@include fontSize("small");
+		position: absolute;
+		width: 180px;
+		height: 36px;
+		pointer-events: none;
+		// overflow: hidden;
+	}
+
+	// & > label::after {
+	// 	content: "";
+	// 	position: absolute;
+	// 	left: 0px;
+	// 	bottom: -1px;
+	// 	height: 100%;
+	// 	width: 100%;
+	// 	border-bottom: 3px solid blue;
+	// 	transition: all 0.3s ease;
+	// 	transform: translateX(-100%);
+	// }
+
+	.signup_label_name {
+		@include fontSize("normal");
+		left: 10px;
+		position: absolute;
+		bottom: 12px;
+		@include fontSize("normal");
+		// transition: all 0.3s ease;
+	}
+
+	.signup_check_box {
+		display: flex;
+		height: 30px;
+		width: 30px;
+		line-height: 45px;
+		margin-top: 5px;
+	}
+
+	.signup_check_box_userId {
+		display: flex;
+		box-sizing: border-box;
+		width: 80px;
+		height: 30px;
+		line-height: 40px;
+		margin-top: 5px;
+	}
+
+	.signup_check_box_pwd {
+		display: flex;
+		width: 160px;
+		height: 30px;
+		line-height: 40px;
+		& div {
+			width: 100px;
+		}
+	}
+
+	.signup_check {
+		width: auto;
+		right: 0px;
+		margin-right: 10px;
+		height: 22px;
+	}
+
+	.signup_check_pwd {
+		right: 0px;
+		margin-right: 5px;
+		height: 22px;
+		margin-top: 6px;
+	}
+
+	.signup_check_btn_userId {
+		background-color: #fafafa;
+		border: none;
+		height: 22px;
+	}
+
+	.signup_pwd_check {
+		@include fontSize("large");
+		border: none;
+		background-color: #fafafa;
+		font-weight: bold;
+		text-align: center;
+		width: auto;
+		cursor: pointer;
+	}
 }
 
-.signup_label_email_form > div {
-	display: flex;
-	height: 22px;
-	width: 38px;
-	margin-left: 7px;
-}
-
-.signup_label_email {
-	display: flex;
-	width: 228px;
-	height: 36px;
-}
-
-.signup_label_name_form > div {
-	display: flex;
-	height: 22px;
-	width: 38px;
-	margin-left: 7px;
-}
-
-.signup_label_name {
-	display: flex;
-	width: 228px;
-	height: 36px;
-}
-
-.signup_label_username_form > div {
-	display: flex;
-	height: 22px;
-	width: 38px;
-	margin-left: 7px;
-}
-
-.signup_label_username {
-	display: flex;
-	width: 200px;
-	height: 36px;
-}
-
-.signup_username_check_btn {
-	background-color: #fafafa;
-	border: none;
-	margin-left: 3px;
-}
-
-.signup_label_pwd_form > div {
-	display: flex;
-	height: 22px;
-	width: 133px;
-	margin-left: 7px;
-}
-
-.signup_label_pwd {
-	display: flex;
-	width: 127px;
-	height: 36px;
-}
-
-.signup_pwd_check {
-	border: none;
-	line-height: 25px;
-	background-color: #fafafa;
-	font-weight: bold;
-	@include fontSize("large");
-	color: #262626;
-	cursor: pointer;
-	padding-left: 10px;
-}
-
-.signup_signup > .signup_form > div > label > span {
-	height: 30px;
-	line-height: 20px;
-	margin-left: 10px;
+.signup_content_form input:focus + .signup_label .signup_label_name {
+	transform: translateY(-45%);
 	@include fontSize("small");
-	overflow: hidden;
-	pointer-events: none;
-	position: absolute;
 }
 
-.signup_signup > .signup_form > div > label > input {
-	background-color: #fafafa;
-	border: none;
-	outline: none;
-	width: 226px;
+// .signup_content_form input:focus + .signup_label_email::after,
+// .signup_content_form input:valid + .signup_label_email::after {
+// 	transform: translateX(0%);
+// }
+
+.signup_btn_active {
+	width: 271px;
 	height: 30px;
-	margin: 5px 0px 0px 5px;
+	margin-top: 10px;
+	color: #ffffff;
+	background-color: $instaBlue;
+	border: transparent;
+	border-radius: 5px;
+	font-weight: bold;
 }
 
-.signup_signup > .signup_form > button {
+.signup_btn_disabled {
 	width: 271px;
 	height: 30px;
 	margin-top: 10px;
@@ -214,28 +251,28 @@
 	@include fontSize("large");
 	color: #262626;
 	line-height: 63px;
-}
 
-.signup_login > .link > span {
-	color: $instaBlue;
-	font-weight: 400;
-	cursor: pointer;
+	.link > span {
+		color: $instaBlue;
+		font-weight: 400;
+		cursor: pointer;
+	}
 }
 
 .signup_download {
 	width: 350px;
 	height: 100px;
-}
 
-.signup_download > span > a > img {
-	width: 136px;
-	height: 40px;
-	margin-left: 10px;
-	cursor: pointer;
-}
+	& > span > a > img {
+		width: 136px;
+		height: 40px;
+		margin-left: 10px;
+		cursor: pointer;
+	}
 
-.signup_download > p {
-	@include fontSize("large");
-	color: #262626;
-	margin: 20px 0px 20px 0px;
+	& > p {
+		@include fontSize("large");
+		color: #262626;
+		margin: 20px 0px 20px 0px;
+	}
 }
