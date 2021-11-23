@@ -1,5 +1,6 @@
 import { login } from "./user";
 import { createSlice } from "@reduxjs/toolkit";
+import { Navigate } from "react-router-dom";
 
 const userSlice = createSlice({
 	name: "user",
@@ -7,17 +8,19 @@ const userSlice = createSlice({
 		isLogin: false,
 	},
 	reducers: {
-		loginCheck: (state, { payload: isLogin }) => {
-			state.isLogin = true;
+		loginCheck: (state, payload ) => {
+			state.isLogin = !state.isLogin;
 		},
 	},
 	extraReducers: {
 		[login.fulfilled]: (state, action) => {
 			state.isLogin = true;
 		},
+
+
 	},
 });
 
-export const userActions = userSlice.actions;
+export const {loginCheck} = userSlice.actions;
 
 export default userSlice;

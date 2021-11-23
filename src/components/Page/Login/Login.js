@@ -33,13 +33,11 @@ const Login = () => {
 	const loginClickHandler = () => {
 		console.log(email, password);
 		dispatch(
-			login({
-				email,
+			login({email,
 				password,
 			}),
 			[dispatch],
 		);
-		navigate("/");
 	};
 
 	const PasswordCheckClickHandler = () => {

@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
-import {useNavigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 
 export const singUp = createAsyncThunk(
   "user/signup",
@@ -31,6 +31,7 @@ export const login = createAsyncThunk(
       const response = await Api({
         url : "/auth/login",
         method: "POST",
+
         data: {
           id: data.email,
           password: data.password,
@@ -45,10 +46,9 @@ export const login = createAsyncThunk(
       })
       return response;
     }catch (e) {
-      const navigate = useNavigate();
+
       function loginError() {
         alert("로그인실패")
-        navigate(-1);
       }
       loginError();
       return false;
