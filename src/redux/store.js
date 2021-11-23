@@ -5,11 +5,11 @@ import modalSlice from "./modal/modalSlice";
 import postSlice from "./post/postSlice";
 
 
-
 export const store = configureStore({
   reducer: {
     router: connectRouter(history),
     modal : modalSlice,
     post: postSlice.reducer,
+
   },
 });
