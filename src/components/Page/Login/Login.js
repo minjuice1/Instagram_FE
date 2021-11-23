@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/user/user";
 
@@ -16,6 +16,7 @@ import {
 
 const Login = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [email, SetEmail] = useState();
 	const [password, SetPassword] = useState();
 
@@ -38,6 +39,7 @@ const Login = () => {
 			}),
 			[dispatch],
 		);
+		navigate("/");
 	};
 
 	const PasswordCheckClickHandler = () => {
