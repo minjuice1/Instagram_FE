@@ -23,7 +23,6 @@ const PostForm = () => {
   //FormData로 전해주기
   const postWriteClickHandler = () => {
     const AccessToken = localStorage.getItem("user");
-    console.log(AccessToken)
     const formData = new FormData();
     const post_data = {
       contents: text,

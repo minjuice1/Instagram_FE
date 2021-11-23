@@ -72,7 +72,7 @@ const PostCard = ({contents, createdAt, writer}) => {
             </div>
             <div className="post_content">
               <div>좋아요 1,200개</div>
-              <div>아이디 {contents} <span>더보기</span></div>
+              <div>{writer.userId} {contents} <span>더보기</span></div>
               <div>댓글 122개 모두 보기</div>
             </div>
             <div className="post_comment">
