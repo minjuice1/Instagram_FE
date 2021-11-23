@@ -4,9 +4,7 @@ const postDetail = () => {
 
   return(
     <>
-      <div>
 
-      </div>
     </>
   )
 }
