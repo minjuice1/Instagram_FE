@@ -22,6 +22,9 @@ const Home = () => {
   const post_data = useSelector(state => state.post.posts);
   console.log(post_data)
 
+  const a = useSelector(state => state);
+  console.log(a);
+
 
   return(
     <>

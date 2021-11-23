@@ -33,4 +33,4 @@ const PostDetail = () => {
 	);
 };
 
-export default PostDetail;
+export default postDetail;
