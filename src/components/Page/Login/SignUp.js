@@ -1,161 +1,292 @@
-import React, {useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Footer from "../Footer/Footer";
 import "./SignUp.scss";
-import {download1, download2, instagramlogo, facebook_white,} from "./LoginImage";
-import {BiXCircle, BiCheckCircle} from "react-icons/bi";
-import {FiRotateCw} from "react-icons/fi";
-import {singUp} from "../../../redux/user/user";
+import {
+	download1,
+	download2,
+	instagramlogo,
+	facebook_white,
+} from "./LoginImage";
+import { BiXCircle, BiCheckCircle } from "react-icons/bi";
+import { FiRotateCw } from "react-icons/fi";
+import { singUp } from "../../../redux/user/user";
 
 const SignUp = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [email, SetEmail] = useState();
-  const [name, SetName] = useState();
-  const [userId, SetUserId] = useState();
-  const [password, SetPassword] = useState();
-  const [checkEmail, SetCheckEmail] = useState(true);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const [email, SetEmail] = useState();
+	const [name, SetName] = useState();
+	const [userId, SetUserId] = useState();
+	const [password, SetPassword] = useState();
 
-  const SingUpClickHandler = () => {
+	// 유효성검사
+	const [IsEmail, SetIsEmail] = useState(true);
+	const [IsName, SetIsName] = useState(false);
+	const [ISUserId, SetIsUserId] = useState(true);
+	const [IsPassword, SetIsPassword] = useState(true);
 
-    console.log(email, name, userId, password);
-		dispatch(singUp({
-		email, name, userId, password
-		}), [dispatch])
-    navigate("/login");
-	}
+	// 비밀번호표시
+	const [checkPassword, SetCheckPassword] = useState(true);
+
+	const SingUpClickHandler = () => {
+		dispatch(
+			singUp({
+				email,
+				name,
+				userId,
+				password,
+			}),
+			[dispatch],
+		);
+		navigate("/login");
+	};
 
 	const EmailOnChange = (e) => {
-		SetEmail(e.target.value)};
+		SetEmail(e.target.value);
+	};
 	const NameOnChange = (e) => {
-		SetName(e.target.value)};
+		SetName(e.target.value);
+	};
 	const UserIdOnChange = (e) => {
-		SetUserId(e.target.value)};
+		SetUserId(e.target.value);
+	};
 	const PassWordOnChange = (e) => {
-    SetPassword(e.target.value)};
+		SetPassword(e.target.value);
+	};
 
+	// 유효성 검사
+	const EmailCheck = () => {
+		if (email.includes("@")) {
+			SetIsEmail(true);
+		} else {
+			SetIsEmail(false);
+		}
+	};
 
+	const NameCheck = () => {
+		if (name) {
+			SetIsName(true);
+		} else {
+			SetIsName(false);
+		}
+	};
 
-const emailCheck = () =>{
-  if (email.includes("@")){
-    SetCheckEmail(true);
-    console.log(checkEmail);
-  }else {
-    SetCheckEmail(false);
-  }
-}
+	const UserIdCheck = () => {
+		if (userId) {
+			SetIsUserId(true);
+		} else {
+			SetIsUserId(false);
+		}
+	};
 
+	// const PasswordCheck = () => {
+	// 	// console.log(password.length);
+	// 	if (password.legnth > 5) {
+	// 		SetIsPassword(false);
+	// 	} else {
+	// 		SetIsPassword(true);
+	// 	}
+	// };
 
-  return (
-    <>
+	const PasswordCheckClickHandler = () => {
+		SetCheckPassword(!checkPassword);
+	};
+
+	return (
+		<>
 			<div className="signup_main">
-        <div className="signup_content">
-          <div className="signup_signup">
-            <img src={instagramlogo} alt="instagram"/>
-            <div className="signup_header">
-              <span>친구들의 사진과 동영상을 보려면 가입하세요.</span>
-            </div>
-            <div className="signup_fb">
-              <button>
-                <img src={facebook_white} alt="fb_white"/>
-                <a href="https://www.facebook.com/login.php">
-                  Facebook으로 로그인
-                </a>
-              </button>
-            </div>
-            <div className="signup_bar">
-              <hr className="left"/>
-              <span>또는</span>
-              <hr className="right"/>
-            </div>
-            <div className="signup_form">
-              <div className="signup_label_email_form">
-                <label className="signup_label_email">
-                  <span>휴대폰 번호 또는 이메일 주소</span>
-                  <input
-                    className="signup_email"
-                    type="email" value={email} onChange={EmailOnChange}
-                  onKeyUp={emailCheck}/>
-                </label>
-                <div>
-                  {checkEmail? "":<span className="signup_email_check"> <BiXCircle color={"#F04756"} size={25}/></span> }
-                </div>
-              </div>
-              <div className="signup_label_name_form">
-                <label className="signup_label_name">
-                  <span>성명</span>
-                  <input
-                    className="signup_name"
-                    type="text" value={name} onChange={NameOnChange}/>
-                </label>
-                <div>
-                  <span className="signup_name_check"><BiCheckCircle color={"#c7c7c7"} size={25}/></span>
-                </div>
-              </div>
-              <div className="signup_label_username_form">
-                <label className="signup_label_username">
-                  <span>사용자 이름</span>
-                  <input
-                    className="signup_username"
-                    type="text" value={userId} onChange={UserIdOnChange}/>
-                </label>
-                <div>
-                  <span className="signup_username_check"><BiXCircle color={"#F04756"} size={25}/></span>
-                  <div>
-                    <button className="signup_username_check_btn"><FiRotateCw color={"#0095f6"} size={24}/></button>
-                  </div>
-                </div>
-              </div>
-              <div className="signup_label_pwd_form">
-                <label className="signup_label_pwd">
-                  <span>비밀번호</span>
-                  <input
-                    className="signup_pwd"
-                    type="password" value={password} onChange={PassWordOnChange}/>
-                </label>
-                <div className="signup_pwd_check_form">
-                  <span><BiCheckCircle color={"#c7c7c7"} size={25}/></span>
-                  <div>
-                    <button className="signup_pwd_check">비밀번호 표시</button>
-                  </div>
-                </div>
-              </div>
-              <button onClick={SingUpClickHandler}>가입</button>
-            </div>
-          </div>
-          <div className="signup_login">
-            계정이 있으신가요?
-            <Link className="link" to="/login">
-              <span> 로그인</span>
-            </Link>
-          </div>
-          <div className="signup_download">
-            <p>앱을 다운로드하세요.</p>
-            <span>
+				<div className="signup_content">
+					<div className="signup_signup">
+						<img src={instagramlogo} alt="instagram" />
+						<div className="signup_header">
+							<span>친구들의 사진과 동영상을 보려면 가입하세요.</span>
+						</div>
+						<div className="signup_fb">
+							<button>
+								<img src={facebook_white} alt="fb_white" />
+								<a href="https://www.facebook.com/login.php">
+									Facebook으로 로그인
+								</a>
+							</button>
+						</div>
+						<div className="signup_bar">
+							<hr className="left" />
+							<span>또는</span>
+							<hr className="right" />
+						</div>
+						<div className="signup_form">
+							<div className="signup_content_form">
+								<input
+									type="email"
+									value={email}
+									onChange={EmailOnChange}
+									onKeyUp={EmailCheck}
+								/>
+								<label className="signup_label">
+									<span className="signup_label_name">
+										휴대폰 번호 또는 이메일 주소
+									</span>
+								</label>
+								{IsEmail ? (
+									""
+								) : (
+									<div className="signup_check_box">
+										<span className="signup_check">
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>
+									</div>
+								)}
+							</div>
+							<div className="signup_content_form">
+								<input
+									type="text"
+									value={name}
+									onChange={NameOnChange}
+									onKeyUp={NameCheck}
+								/>
+								<label className="signup_label">
+									<span className="signup_label_name">성명</span>
+								</label>
+								{IsName ? (
+									<div className="signup_check_box">
+										<span className="signup_check">
+											<BiCheckCircle color={"#c7c7c7"} size={25} />
+										</span>
+									</div>
+								) : (
+									""
+								)}
+							</div>
+							<div className="signup_content_form">
+								<input
+									type="text"
+									value={userId}
+									onChange={UserIdOnChange}
+									onKeyUp={UserIdCheck}
+								/>
+								<label className="signup_label">
+									<span className="signup_label_name">사용자 이름</span>
+								</label>
+								{ISUserId ? (
+									""
+								) : (
+									<div className="signup_check_box_userId">
+										<span className="signup_check">
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>
+										<div>
+											<button className="signup_check_btn_userId">
+												<FiRotateCw color={"#0095f6"} size={22} />
+											</button>
+										</div>
+									</div>
+								)}
+							</div>
+							<div className="signup_content_form">
+								{checkPassword ? (
+									<input
+										className="signup_pwd"
+										type="password"
+										value={password}
+										onChange={PassWordOnChange}
+										// onKeyUp={PasswordCheck}
+									/>
+								) : (
+									<input
+										className="signup_pwd"
+										type="text"
+										value={password}
+										onChange={PassWordOnChange}
+										// onKeyUp={PasswordCheck}
+									/>
+								)}
+
+								<label className="signup_label">
+									<span className="signup_label_name">비밀번호</span>
+								</label>
+
+								<div className="signup_check_box_pwd">
+									{IsPassword ? (
+										""
+									) : (
+										<span className="signup_check_pwd">
+											<BiCheckCircle color={"#c7c7c7"} size={25} />
+										</span>
+									)}
+									{!password ? (
+										""
+									) : (
+										<div>
+											{password ? (
+												<button
+													onClick={PasswordCheckClickHandler}
+													className="signup_pwd_check"
+												>
+													비밀번호 표시
+												</button>
+											) : (
+												<button
+													onClick={PasswordCheckClickHandler}
+													className="signup_pwd_check"
+												>
+													숨기기
+												</button>
+											)}
+										</div>
+									)}
+								</div>
+							</div>
+							{email && password && userId && name ? (
+								<button
+									className="signup_btn_active"
+									onClick={SingUpClickHandler}
+								>
+									가입
+								</button>
+							) : (
+								<button
+									className="signup_btn_disabled"
+									onClick={SingUpClickHandler}
+								>
+									가입
+								</button>
+							)}
+						</div>
+					</div>
+					<div className="signup_login">
+						계정이 있으신가요?
+						<Link className="link" to="/login">
+							<span> 로그인</span>
+						</Link>
+					</div>
+					<div className="signup_download">
+						<p>앱을 다운로드하세요.</p>
+						<span>
 							<a
-                target="_blank"
-                rel="noreferrer"
-                href="https://apps.apple.com/app/instagram/id389801252?vt=lo"
-              >
-								<img src={download2} alt="download2"/>
+								target="_blank"
+								rel="noreferrer"
+								href="https://apps.apple.com/app/instagram/id389801252?vt=lo"
+							>
+								<img src={download2} alt="download2" />
 							</a>
 						</span>
-            <span>
+						<span>
 							<a
-                target="_blank"
-                rel="noreferrer"
-                href="https://play.google.com/store/apps/details?id=com.instagram.android"
-              >
-								<img src={download1} alt="download1"/>
+								target="_blank"
+								rel="noreferrer"
+								href="https://play.google.com/store/apps/details?id=com.instagram.android"
+							>
+								<img src={download1} alt="download1" />
 							</a>
 						</span>
-          </div>
-        </div>
-      </div>
-      <Footer/>
-    </>
-  );
+					</div>
+				</div>
+			</div>
+			<Footer />
+		</>
+	);
 };
 
 export default SignUp;

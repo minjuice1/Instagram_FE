@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import { Link } from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {login} from "../../../redux/user/user";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/user/user";
 
-import Carousel from "../Login/LoginCarousel"
+import Carousel from "../Login/LoginCarousel";
 import Footer from "../Footer/Footer";
 import "./Login.scss";
 import {
@@ -16,30 +16,42 @@ import {
 
 const Login = () => {
 	const dispatch = useDispatch();
-
+	const navigate = useNavigate();
 	const [email, SetEmail] = useState();
 	const [password, SetPassword] = useState();
 
+	// 비밀번호표시
+	const [checkPassword, SetCheckPassword] = useState(true);
+
 	const onChangeEmail = (e) => {
 		SetEmail(e.target.value);
-	}
+	};
 	const onChangePassword = (e) => {
 		SetPassword(e.target.value);
-	}
+	};
 
 	const loginClickHandler = () => {
-		console.log(email,password)
-		dispatch(login({
-			email, password
-		}),[dispatch])
-	}
+		console.log(email, password);
+		dispatch(
+			login({
+				email,
+				password,
+			}),
+			[dispatch],
+		);
+		navigate("/");
+	};
+
+	const PasswordCheckClickHandler = () => {
+		SetCheckPassword(!checkPassword);
+	};
 
 	return (
 		<>
 			<div className="login_all">
 				<div className="login_side_img">
 					<img className="login_pic1" src={login_pic1} alt="login_pic1" />
-					<Carousel className="carousel"/>
+					<Carousel className="carousel" />
 				</div>
 				<section className="login_main">
 					<div className="login_content">
@@ -50,28 +62,68 @@ const Login = () => {
 								autoComplete="off"
 								value={email}
 								onChange={onChangeEmail}
-								required/>
+								required
+							/>
 							<label className="login_label_username">
-									<span className="login_content_username">
+								<span className="login_content_username">
 									전화번호, 사용자 이름 또는 이메일
 								</span>
 							</label>
 						</div>
 						<div className="login_login_pwd">
-							<input
-								autoComplete="off"
-								required type="password"
-								value={password}
-								onChange={onChangePassword}/>
+							{checkPassword ? (
+								<input
+									className="login_login_input_pwd"
+									autoComplete="off"
+									required
+									type="password"
+									value={password}
+									onChange={onChangePassword}
+								/>
+							) : (
+								<input
+									className="login_login_input_pwd"
+									autoComplete="off"
+									required
+									type="text"
+									value={password}
+									onChange={onChangePassword}
+								/>
+							)}
+
 							<label className="login_label_pwd">
 								<span className="login_content_pwd">비밀번호</span>
 							</label>
-							<div className="login_check_pwd">
-								<button>비밀번호 표시</button>
-							</div>
+							{password && (
+								<div className="login_check_pwd">
+									{checkPassword ? (
+										<button onClick={PasswordCheckClickHandler}>
+											비밀번호 표시
+										</button>
+									) : (
+										<button onClick={PasswordCheckClickHandler}>숨기기</button>
+									)}
+								</div>
+							)}
 						</div>
 						<div className="login_login_btn">
-							<button type="submit" onClick={loginClickHandler}>로그인</button>
+							{email && password ? (
+								<button
+									className="login_btn_disabled"
+									type="submit"
+									onClick={loginClickHandler}
+								>
+									로그인
+								</button>
+							) : (
+								<button
+									className="login_btn_active"
+									type="submit"
+									onClick={loginClickHandler}
+								>
+									로그인
+								</button>
+							)}
 						</div>
 						<div className="login_bar">
 							<div className="left" />
