@@ -8,7 +8,7 @@ import FindPassword from "./components/Page/Login/FindPassword";
 import Recommendation from "./components/Page/Recommendation/Recommendation";
 import DirectMessage from "./components/Page/DirectMessage/DirectMessage";
 import PostForm from "./components/Home/Post/PostForm/PostForm";
-
+import PostDetail from "./components/Home/Post/PostDetail";
 
 function App() {
 	return (
@@ -16,13 +16,14 @@ function App() {
 			<BrowserRouter>
 				<Header />
 				<Routes>
-					<Route path={"/"} element={<Home />} />
+					<Route path={"/"} element={<PostDetail />} />
+					{/* <Route path={"/"} element={<Home />} /> */}
 					<Route path={"/login"} element={<Login />} />
 					<Route path={"/accounts/signup"} element={<SignUp />} />
 					<Route path={"/accounts/password"} element={<FindPassword />} />
-          <Route path={"/recom"} element={<Recommendation/>}/>
-          <Route path={"/message"} element={<DirectMessage/>}/>
-					<Route path={"/postform"} element={<PostForm/>}/>
+					<Route path={"/recom"} element={<Recommendation />} />
+					<Route path={"/message"} element={<DirectMessage />} />
+					<Route path={"/postform"} element={<PostForm />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
