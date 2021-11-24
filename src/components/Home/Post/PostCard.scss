@@ -5,22 +5,19 @@
  width: 615px;
  display: flex;
  background: $instaWhite;
+ @include fontSize('large');
 }
 
 .post_card{
  border: 1px solid $instaGray;
- width: 34vw;
+ width: 615px;
  min-width: 485px;
- max-width: 615px;
  display: flex;
 }
 
 .profile_img {
  display: flex;
- & > img{
-  width: 28px;
-  margin: 10px;
- }
+
  & > div {
   margin-top: 15px;
   @include fontSize('large');
@@ -28,9 +25,13 @@
   color: $instaMenuBlack;
  }
 }
+.post_user_image {
+ width: 28px;
+ margin: 10px;
+}
 .profile_img_dot{
  cursor: pointer;
- margin-left: 75%
+ margin-left: 82%
 }
 
 .profile_img_dot >img {
@@ -39,9 +40,6 @@
  margin-bottom: 2px;
 }
 
-.post_center> img {
-
-}
 .post_center > img{
  width: 100%;
  min-width: 485px;
@@ -67,4 +65,43 @@
 .footer_icon>img {
  margin-right: 10px;
  margin-top: 5px;
+}
+.post_content, .post_comment {
+ margin-left: 10px;
+}
+.post_content {
+ margin-top: 5px;
+
+ &> div:nth-child(2){
+ margin-top: 5px;
+  & > span {
+   color: $instaMenuGray;
+  }
+ }
+
+}
+
+
+.post_user_id {
+ @include fontSize('large');
+ font-weight: bold;
+ color: $instaMenuBlack;
+}
+.post_time{
+ @include fontSize('small');
+ margin: 5px 0 5px 0;
+}
+
+//반응형 사이즈
+@include tablet{
+ .post_cards{
+  width: 500px;
+ }
+}
+
+@include mobile{
+ .post_cards{
+  width: 480px;
+
+ }
 }

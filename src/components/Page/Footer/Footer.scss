@@ -1,7 +1,7 @@
 @import "./src/common/_variables.scss";
 
 .footer {
-	color: #8e8e8e;
+	color: $instaMenuGray;
 	background-color: #fafafa;
 	font-size: 12px;
 	text-align: center;
@@ -10,7 +10,7 @@
 }
 
 .footer_link {
-	color: #8e8e8e;
+	color: $instaMenuGray;
 	text-decoration: none;
 }
 

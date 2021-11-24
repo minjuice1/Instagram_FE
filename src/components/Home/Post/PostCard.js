@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 import "./PostCard.scss";
 
-import {heart, message, text, dot} from "../../../common/IconImage";
+import {heart, message, text, dot, post_save} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
 import {modal_check} from "../../../redux/modal/modalSlice";
 import {useDispatch, useSelector} from "react-redux";
 import PostModal from "./PostModal";
+
+
 
 const PostCard = ({contents, createdAt, writer}) => {
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const PostCard = ({contents, createdAt, writer}) => {
   const time = displayTime(createdAt);
 
 
-
+  console.log(writer)
 
   const is_modal = useSelector(state => state.modal.is_modal);
   return (
@@ -53,7 +55,7 @@ const PostCard = ({contents, createdAt, writer}) => {
         <div className="post_card">
           <div className="post_header">
             <div className="profile_img">
-              <img src={Profile_image}/>
+              <img className="post_user_image" src={Profile_image}/>
               <div>{writer.userId}</div>
               <div className="profile_img_dot" onClick={show_postModal}><img src={dot}/></div>
             </div>
@@ -67,18 +69,18 @@ const PostCard = ({contents, createdAt, writer}) => {
               <img src={message}/>
               </div>
               <div className="footer_collection">
-                <img src={message}/>
+                <img src={post_save}/>
               </div>
             </div>
             <div className="post_content">
-              <div>좋아요 1,200개</div>
-              <div>{writer.userId} {contents} <span>더보기</span></div>
+              <a className="post_user_id">좋아요 1,200개</a>
+              <div><a className="post_user_id">{writer.userId}</a> {contents} <span>더보기</span></div>
               <div>댓글 122개 모두 보기</div>
             </div>
             <div className="post_comment">
-              <div><a>hyemin085</a> 아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ <a>♡</a></div>
-              <div><a>hyemin085</a> 오ㅗㅗㅗㅗㅗㅗㅗ <a>♡</a></div>
-              <div className="post_time">{time}</div>
+              <div><a className="post_user_id"> hyemin085</a> 아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ <a>♡</a></div>
+              <div><a className="post_user_id">hyemin085</a> 오ㅗㅗㅗㅗㅗㅗㅗ <a>♡</a></div>
+              <div className= "post_time">{time}</div>
             </div>
             <div className="post_cmt">
               <input placeholder="댓글 달기.."/>

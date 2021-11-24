@@ -89,4 +89,8 @@
   width: 32px;
   margin-left: 5px;
 }
-
+@include tablet{
+  .side{
+    margin-left: -130px;
+  }
+}
