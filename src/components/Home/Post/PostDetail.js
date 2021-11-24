@@ -29,6 +29,7 @@ const PostDetail = () => {
 							</div>
 							<div className="postDetail_comment">
 								<div className="postDetail_comment_listBox">
+									{/* component로 뺄 예정 */}
 									<ui className="postDetail_comment_list">
 										<div className="postDetail_comment_list_mine"></div>
 										<ui className="postDetail_comments">
@@ -47,13 +48,20 @@ const PostDetail = () => {
 									<div className="postDetail_comment_Replyfunc"></div>
 									<div className="postDetail_comment_Bookmarkfunc"></div>
 								</div>
-								<div className="postDetail_comment_likeList"></div>
-								<div className="postDetail_comment_time"></div>
+								<div className="postDetail_comment_likeList">
+									<div className="postDetail_likeList_pic"></div>
+									<div className="postDetail_likeList_likeInfo"></div>
+								</div>
+								<div className="postDetail_comment_time">
+									<span>6시간 전</span>
+								</div>
 								<div className="postDetail_comment_writeBox">
 									<div className="postDetail_comment_write">
 										<div className="postDetail_comment_writeEmoji"></div>
 										<div className="postDetail_comment_writeInput"></div>
-										<div className="postDetail_comment_writeBtn"></div>
+										<div className="postDetail_comment_writeBtn">
+											<button>게시</button>
+										</div>
 									</div>
 								</div>
 							</div>

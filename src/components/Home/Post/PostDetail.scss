@@ -48,6 +48,7 @@
 				width: 40%;
 				height: 100%;
 				border: 1px solid $instaLightGray;
+				background-color: $instaWhite;
 
 				.postDetail_header {
 					display: flex;
@@ -109,65 +110,140 @@
 
 						.postDetail_comments {
 							display: flex;
-							height: 100%;
+							height: 15%;
 							width: 100%;
-							border: 1px solid blue;
+							border: 1px solid orange;
 
 							.postDetail_comment_pp {
-								height: 70%;
-								width: 100%;
+								height: 100%;
+								width: 20%;
 								border: 1px solid green;
 							}
 
 							.postDetail_comments_comment {
-								display: flex;
-								height: 50%;
-								width: 100%;
-								// border: 1px solid black;
+								height: 100%;
+								width: 70%;
+								border: 1px solid black;
 
 								.postDetail_comment_userId {
-									height: 7%;
+									height: 60%;
 									width: 100%;
-									// border: 1px solid green;
+									border: 1px solid blue;
 								}
 
 								.postDetail_comment_info {
-									height: 7%;
+									height: 40%;
 									width: 100%;
-									// border: 1px solid green;
+									border: 1px solid pink;
 								}
 							}
 
 							.postDetail_commentList_liked {
-								height: 7%;
-								width: 100%;
-								// border: 1px so
+								height: 100%;
+								width: 10%;
+								border: 1px solid gray;
 							}
 						}
 					}
 
 					.postDetail_comment_funcs {
+						display: flex;
 						height: 7%;
 						width: 100%;
 						border: 1px solid blue;
+
+						.postDetail_comment_Likefunc {
+							height: 100%;
+							width: 15%;
+							border: 1px solid red;
+						}
+
+						.postDetail_comment_Commentfunc {
+							height: 100%;
+							width: 15%;
+							border: 1px solid orange;
+						}
+
+						.postDetail_comment_Replyfunc {
+							height: 100%;
+							width: 55%;
+							border: 1px solid green;
+						}
+
+						.postDetail_comment_Bookmarkfunc {
+							height: 100%;
+							width: 15%;
+							border: 1px solid blue;
+						}
 					}
 
 					.postDetail_comment_likeList {
+						display: flex;
 						height: 5%;
 						width: 100%;
 						border: 1px solid red;
+
+						.postDetail_likeList_pic {
+							height: 100%;
+							width: 15%;
+							border: 1px solid green;
+						}
+
+						.postDetail_likeList_likeInfo {
+							height: 100%;
+							width: 85%;
+							border: 1px solid blue;
+						}
 					}
 
 					.postDetail_comment_time {
 						height: 4%;
 						width: 100%;
 						border: 1px solid purple;
+
+						& > span {
+							padding: 10px;
+							font-size: 10px;
+						}
 					}
 
 					.postDetail_comment_writeBox {
 						height: 8%;
 						width: 100%;
 						border: 1px solid black;
+
+						.postDetail_comment_write {
+							display: flex;
+							height: 100%;
+							width: 100%;
+							border: 1px solid black;
+
+							.postDetail_comment_writeEmoji {
+								height: 100%;
+								width: 15%;
+								border: 1px solid red;
+							}
+
+							.postDetail_comment_writeInput {
+								height: 100%;
+								width: 70%;
+								border: 1px solid red;
+							}
+
+							.postDetail_comment_writeBtn {
+								height: 100%;
+								width: 15%;
+								border: 1px solid blue;
+
+								& > button {
+									height: 100%;
+									width: 100%;
+									border: none;
+									color: #b2dffc;
+									background-color: $instaWhite;
+								}
+							}
+						}
 					}
 				}
 			}
