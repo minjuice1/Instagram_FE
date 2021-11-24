@@ -9,49 +9,50 @@
 	height: auto;
 }
 
-a {
+.footer_link {
 	color: #8e8e8e;
 	text-decoration: none;
 }
 
-a:visited {
+.footer_link:visited {
 	color: #8e8e8e;
 }
 
-.lst {
+.footer_top {
 	margin: 15px;
 }
 
-.lst > span {
+.footer_top > span {
 	margin: 15px 8px 15px 8px;
 }
 
-.sec {
+.footer_mid {
 	margin-bottom: 15px;
 }
 
-.sec > span {
+.footer_mid > span {
 	margin: 15px 8px 15px 8px;
 }
 
-.thd {
+.footer_bottom {
 	margin-bottom: 50px;
 	color: #8e8e8e;
 }
 
-.thd > span {
+.footer_bottom > span {
 	margin: 15px 8px 15px 8px;
 }
 
-.thd > select {
+.footer_bottom > select {
 	color: #8e8e8e;
 	border: none;
 	cursor: pointer;
 	outline: none;
 	font-size: 12px;
+	background-color: #fafafa;
 }
 
-.thd > select > option {
+.footer_bottom > select > option {
 	color: black;
 	background-color: #ffffff;
 }

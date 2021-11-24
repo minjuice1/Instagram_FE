@@ -27,7 +27,7 @@
 
 			.postDetail_imgBox {
 				display: flex;
-				width: 50%;
+				width: 60%;
 				height: 100%;
 				background-color: black;
 
@@ -35,15 +35,141 @@
 					margin: auto;
 					width: 100%;
 					height: 98%;
-					border: 1px solid gray;
+
+					& > img {
+						object-fit: cover;
+						height: 100%;
+						width: 100%;
+					}
 				}
 			}
 
 			.postDetail_commentBox {
-				display: flex;
-				width: 50%;
+				width: 40%;
 				height: 100%;
-				border: 1px solid orange;
+				border: 1px solid $instaLightGray;
+
+				.postDetail_header {
+					display: flex;
+					width: 100%;
+					height: 60px;
+					padding: 10px 0 0 0;
+					border-bottom: 1px solid $instaLightGray;
+
+					.postDetail_header_pic {
+						display: flex;
+						width: 90%;
+						height: 42px;
+
+						& > img {
+							margin-left: 15px;
+							justify-content: space-between;
+							width: 42px;
+							height: 42px;
+						}
+
+						.postDetail_header_userId {
+							justify-content: space-between;
+							width: 80%;
+							height: auto;
+							margin-left: 10px;
+							line-height: 35px;
+						}
+					}
+
+					.postDetail_header_btn {
+						display: flex;
+						width: 10%;
+						height: auto;
+						margin-top: 10px;
+					}
+				}
+
+				.postDetail_comment {
+					height: 90%;
+					width: 100%;
+					border: 1px solid blue;
+
+					.postDetail_comment_listBox {
+						height: 75%;
+						width: 100%;
+						border: 1px solid tomato;
+
+						// .postDetail_comment_list {
+						// 	width: 100%;
+						// 	height: 100%;
+						// 	border: 1px solid tomato;
+						// }
+
+						.postDetail_comment_list_mine {
+							height: 40%;
+							width: 100%;
+							border: 1px solid red;
+						}
+
+						.postDetail_comments {
+							display: flex;
+							height: 100%;
+							width: 100%;
+							border: 1px solid blue;
+
+							.postDetail_comment_pp {
+								height: 70%;
+								width: 100%;
+								border: 1px solid green;
+							}
+
+							.postDetail_comments_comment {
+								display: flex;
+								height: 50%;
+								width: 100%;
+								// border: 1px solid black;
+
+								.postDetail_comment_userId {
+									height: 7%;
+									width: 100%;
+									// border: 1px solid green;
+								}
+
+								.postDetail_comment_info {
+									height: 7%;
+									width: 100%;
+									// border: 1px solid green;
+								}
+							}
+
+							.postDetail_commentList_liked {
+								height: 7%;
+								width: 100%;
+								// border: 1px so
+							}
+						}
+					}
+
+					.postDetail_comment_funcs {
+						height: 7%;
+						width: 100%;
+						border: 1px solid blue;
+					}
+
+					.postDetail_comment_likeList {
+						height: 5%;
+						width: 100%;
+						border: 1px solid red;
+					}
+
+					.postDetail_comment_time {
+						height: 4%;
+						width: 100%;
+						border: 1px solid purple;
+					}
+
+					.postDetail_comment_writeBox {
+						height: 8%;
+						width: 100%;
+						border: 1px solid black;
+					}
+				}
 			}
 		}
 	}
