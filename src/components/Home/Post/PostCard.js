@@ -1,22 +1,31 @@
 import React, {useState} from "react";
 import "./PostCard.scss";
 
-import {heart, message, text, dot, post_save} from "../../../common/IconImage";
+import {heart, message, text, dot, post_save, comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
 import {modal_check} from "../../../redux/modal/modalSlice";
 import {useDispatch, useSelector} from "react-redux";
 import PostModal from "./PostModal";
+import PostComment from "./PostComment";
+
 
 
 
 const PostCard = ({contents, createdAt, writer}) => {
   const dispatch = useDispatch();
+
+  //댓글 좋아요
+  const [commentLike, SetCommentLike] = useState(false);
+
+  const commentLikeClickHandler = () => {
+    SetCommentLike(!commentLike)
+  }
+
   const show_postModal = () => {
     dispatch(modal_check());
   }
-
 
   //글쓴 시간 계산.
   function displayTime(value) {
@@ -50,7 +59,7 @@ const PostCard = ({contents, createdAt, writer}) => {
   const is_modal = useSelector(state => state.modal.is_modal);
   return (
     <>
-      {is_modal === true && <PostModal/>}
+      {is_modal && <PostModal/>}
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
@@ -78,13 +87,15 @@ const PostCard = ({contents, createdAt, writer}) => {
               <div>댓글 122개 모두 보기</div>
             </div>
             <div className="post_comment">
-              <div><a className="post_user_id"> hyemin085</a> 아ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ <a>♡</a></div>
-              <div><a className="post_user_id">hyemin085</a> 오ㅗㅗㅗㅗㅗㅗㅗ <a>♡</a></div>
+              <div className="post_one_comment"><a className="post_user_id"> hyemin085</a><div>아ㅏㅏㅏㅏㅏㅏㅏㅏㅏ</div>
+                {commentLike? <img src={comment_red_heart} onClick={commentLikeClickHandler}/> :  <img src={comment_heart} onClick={commentLikeClickHandler}/>}
+              </div>
+              {/*<div className="post_one_comment"><a className="post_user_id"> poseson92</a><div>오우ㅜㅜㅜㅜㅜㅜㅜㅜ</div>*/}
+              {/*  {commentLike? <img src={comment_red_heart} onClick={commentLikeClickHandler}/> :  <img src={comment_heart} onClick={commentLikeClickHandler}/>}*/}
+              {/*</div>*/}
               <div className= "post_time">{time}</div>
             </div>
-            <div className="post_cmt">
-              <input placeholder="댓글 달기.."/>
-            </div>
+            <PostComment/>
           </div>
         </div>
       </div>

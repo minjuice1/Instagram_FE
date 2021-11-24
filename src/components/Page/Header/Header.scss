@@ -3,20 +3,12 @@
 
 
 
-.img {
-  overflow: visible;
-
-}
-.nav_logo{
-  margin-left: 180px;
-}
 
 .nav_logo{
-  margin-left: 150px;
+  margin-left: 8vw;
 }
 
 .nav_header {
-  width: 100%;
   border-bottom: 1px solid $instaGray;
   color: $instaWhite;
 }
@@ -73,25 +65,14 @@
   .nav_header{
     background-color: $instaWhite;
   }
-  .nav_icon{
-    margin-right: 100px;
-  }
 }
 
-@include desktop{
-  .nav_header{
-    background-color: $instaWhite;
-  }
-  .nav_icon{
-    margin-right: 100px;
-  }
-}
 @include tablet{
   .nav_header{
     background-color: $instaWhite;
   }
   .nav_logo{
-    margin-left: -50px
+    margin-left: -10vw;
   }
   .nav_icon{
   }

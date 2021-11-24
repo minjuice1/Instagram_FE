@@ -16,7 +16,6 @@ import {
 
 const Login = () => {
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 	const [email, SetEmail] = useState();
 	const [password, SetPassword] = useState();
 
@@ -30,8 +29,9 @@ const Login = () => {
 		SetPassword(e.target.value);
 	};
 
+
+	//로그인 서버 요청
 	const loginClickHandler = () => {
-		console.log(email, password);
 		dispatch(
 			login({email,
 				password,
