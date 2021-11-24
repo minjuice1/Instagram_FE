@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Header = () => {
-	const user = useSelector((state) => state.user.isLogin);
-	console.log(user);
+	// const user = useSelector((state) => state.user.isLogin);
+	// console.log(user);
 	return (
 		<>
-			{user && (
+			{/*{user && (*/}
 				<div className="nav_header">
 					<div className="nav">
 						<div className="nav_logo">
@@ -28,7 +28,7 @@ const Header = () => {
 						</div>
 					</div>
 				</div>
-			)}
+
 		</>
 	);
 };
