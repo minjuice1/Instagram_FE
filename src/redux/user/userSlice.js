@@ -1,6 +1,6 @@
 import { login } from "./user";
 import { createSlice } from "@reduxjs/toolkit";
-import { Navigate } from "react-router-dom";
+
 
 const userSlice = createSlice({
 	name: "user",

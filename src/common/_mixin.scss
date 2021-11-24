@@ -21,6 +21,8 @@
 		font-size: 10px;
 	} @else if $size == "large" {
 		font-size: 14px;
+	}@else if $size == "biglarge"{
+		font-size: 15px;
 	} @else {
 		font-size: 12px;
 	}

@@ -20,23 +20,27 @@ const Home = () => {
 
 
   const post_data = useSelector(state => state.post.posts);
+  console.log(post_data)
 
 
 
   return(
     <>
+      <div className="container">
     <div className="Main">
+
       <div className="Main_post">
         <HomeStory/>
         {post_data.map((post) => (
           <PostCard contents={post.contents} createdAt={post.createdAt} writer={post.writer}/>
         ))}
-
       </div>
       <div className="Main_side">
       <HomeSide/>
       </div>
+
     </div>
+      </div>
     </>
   )
 }

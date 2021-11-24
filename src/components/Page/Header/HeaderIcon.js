@@ -99,8 +99,8 @@ const HeaderIcon = () => {
           }
         </div>
         <div className="profile_icons" ref={profileSideRef}>
-          {myProfile ? <img className="nav_profile" src={test} alt="nav_icon"  onClick={myProfileClickHandler}/> :
-            <img src={test} alt="nav_icon"  onClick={myProfileClickHandler}/>}
+          {myProfile ? <img className="nav_profile" src={heart} alt="nav_icon"  onClick={myProfileClickHandler}/> :
+            <img src={heart} alt="nav_icon"  onClick={myProfileClickHandler}/>}
           {myProfile &&
           <div className="myprofile">
             <div className="profile_menu">
