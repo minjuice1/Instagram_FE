@@ -6,80 +6,151 @@ const Footer = () => {
 	return (
 		<>
 			<div className="footer">
-				<div className="lst">
+				<div className="footer_top">
 					<span>
-						<a href="https://about.facebook.com/meta">Meta</a>
+						<a className="footer_link" href="https://about.facebook.com/meta">
+							Meta
+						</a>
 					</span>
 					<span>
-						<a href="https://about.instagram.com/">소개</a>
+						<a className="footer_link" href="https://about.instagram.com/">
+							소개
+						</a>
 					</span>
 					<span>
-						<a href="https://about.instagram.com/blog/">블로그</a>
+						<a className="footer_link" href="https://about.instagram.com/blog/">
+							블로그
+						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/about/jobs/">채용 정보</a>
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/about/jobs/"
+						>
+							채용 정보
+						</a>
 					</span>
 					<span>
-						<a href="https://help.instagram.com/">도움말</a>
+						<a className="footer_link" href="https://help.instagram.com/">
+							도움말
+						</a>
 					</span>
 					<span>
-						<a href="https://developers.facebook.com/docs/instagram">API</a>
+						<a
+							className="footer_link"
+							href="https://developers.facebook.com/docs/instagram"
+						>
+							API
+						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/legal/privacy/">
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/legal/privacy/"
+						>
 							개인정보처리방침
 						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/legal/terms/">약관</a>
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/legal/terms/"
+						>
+							약관
+						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/directory/profiles/">
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/directory/profiles/"
+						>
 							인기 계정
 						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/directory/hashtags/">해시태그</a>
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/directory/hashtags/"
+						>
+							해시태그
+						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/explore/locations/">위치</a>
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/explore/locations/"
+						>
+							위치
+						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/web/lite/">Instagram Lite</a>
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/web/lite/"
+						>
+							Instagram Lite
+						</a>
 					</span>
 				</div>
-				<div className="sec">
+				<div className="footer_mid">
 					<span>
-						<a href="https://www.instagram.com/topics/beauty/">뷰티</a>
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/topics/beauty/"
+						>
+							뷰티
+						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/topics/dance-and-performance/">
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/topics/dance-and-performance/"
+						>
 							댄스
 						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/topics/fitness/">피트니스</a>
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/topics/fitness/"
+						>
+							피트니스
+						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/topics/food-and-drink/">
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/topics/food-and-drink/"
+						>
 							식음료
 						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/topics/home-and-garden/">
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/topics/home-and-garden/"
+						>
 							집 및 정원
 						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/topics/music/">음악</a>
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/topics/music/"
+						>
+							음악
+						</a>
 					</span>
 					<span>
-						<a href="https://www.instagram.com/topics/visual-arts/">
+						<a
+							className="footer_link"
+							href="https://www.instagram.com/topics/visual-arts/"
+						>
 							시각 예술
 						</a>
 					</span>
 				</div>
-				<div className="thd">
+				<div className="footer_bottom">
 					<select>
 						<option value="한국어">한국어</option>
 						<option value="영어">English</option>
