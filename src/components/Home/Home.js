@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import PostCard from "./Post/PostCard";
+import PostCard from "../Post/PostCard/PostCard";
 import HomeSide from "./Side/HomeSide";
 
 import "./Home.scss";

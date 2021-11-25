@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import Footer from "../Footer/Footer";
 import "./FindPassword.scss";
-import { lock } from "./LoginImage";
+import { lock } from "../../../common/LoginImage";
 
 const FindPassword = () => {
 	return (

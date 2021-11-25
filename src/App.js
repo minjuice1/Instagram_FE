@@ -7,8 +7,8 @@ import SignUp from "./components/Page/Login/SignUp";
 import FindPassword from "./components/Page/Login/FindPassword";
 import Recommendation from "./components/Page/Recommendation/Recommendation";
 import DirectMessage from "./components/Page/DirectMessage/DirectMessage";
-import PostForm from "./components/Home/Post/PostForm/PostForm";
-import PostDetail from "./components/Home/Post/PostDetail";
+import AddPost from "./components/Post/PostWrite/AddPost";
+import PostDetail from "./components/Post/PostCard/PostDetail";
 
 import {useEffect} from "react";
 import {loginCheck} from "./redux/user/userSlice";
@@ -38,7 +38,7 @@ function App() {
 					<Route path="/accounts/signup" element={<RejectAuth redirectTo="/"> <SignUp /> </RejectAuth>}/>
 					<Route path ="/" element ={ <RequireAuth redirectTo="/login"> <Home /> </RequireAuth>}/>
 					<Route path ="/*" element ={ <RequireAuth redirectTo="/login"> <Home /> </RequireAuth>}/>
-					<Route path ="/postform" element ={ <RequireAuth redirectTo="/login"> <PostForm /> </RequireAuth>}/>
+					<Route path ="/postform" element ={ <RequireAuth redirectTo="/login"> <AddPost /> </RequireAuth>}/>
 					<Route path ="/message" element ={ <RequireAuth redirectTo="/login"> <DirectMessage /> </RequireAuth>}/>
 					<Route path ="/accounts/password" element ={ <RequireAuth redirectTo="/login"> <FindPassword /> </RequireAuth>}/>
 					<Route path ="/message" element ={ <RequireAuth redirectTo="/login"> <DirectMessage /> </RequireAuth>}/>

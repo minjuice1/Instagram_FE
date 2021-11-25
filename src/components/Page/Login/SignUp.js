@@ -8,7 +8,7 @@ import {
 	download2,
 	instagramlogo,
 	facebook_white,
-} from "./LoginImage";
+} from "../../../common/LoginImage";
 import { BiXCircle, BiCheckCircle } from "react-icons/bi";
 import { FiRotateCw } from "react-icons/fi";
 import { singUp } from "../../../redux/user/user";
