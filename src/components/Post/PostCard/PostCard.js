@@ -6,14 +6,16 @@ import {post_heart, post_red_heart, message, text, dot, post_save, comment_heart
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
 import {modal_check} from "../../../redux/modal/modalSlice";
-import {useDispatch, useSelector} from "react-redux";
-import PostModal from "../PostModal/PostModal";
+import {useDispatch, } from "react-redux";
 import PostComment from "./PostComment";
-
-
+import dompurify from "dompurify";
 
 
 const PostCard = ({contents, createdAt, writer}) => {
+  const sanitizer = dompurify.sanitize;
+  let content = contents.replace(/\n/g, '<br/>');
+
+  console.log(contents)
   const dispatch = useDispatch();
 
   //댓글 좋아요
@@ -32,10 +34,6 @@ const PostCard = ({contents, createdAt, writer}) => {
     dispatch(modal_check());
 
   }
-
-  const open_modal = useSelector(state => state.modal.is_modal);
-
-  console.log(open_modal);
 
 
   //글쓴 시간 계산.
@@ -66,9 +64,6 @@ const PostCard = ({contents, createdAt, writer}) => {
 
 
 
-
-
-
   return (
     <>
 
@@ -77,7 +72,7 @@ const PostCard = ({contents, createdAt, writer}) => {
           <div className="post_header">
             <div className="profile_img">
               <img className="post_user_image" src={Profile_image}/>
-              <div>{writer.userId}</div>
+              <div>{writer[0].userId}</div>
 
               <div className="profile_img_dot" onClick={show_postModal}><img src={dot}/></div>
             </div>
@@ -97,7 +92,9 @@ const PostCard = ({contents, createdAt, writer}) => {
             </div>
             <div className="post_content">
               <a className="post_user_id">좋아요 1,200개</a>
-              <div><a className="post_user_id">{writer.userId}</a> {contents} <span>더보기</span></div>
+              <div className="post_text"><a className="post_user_id">{writer[0].userId}</a>
+                <div className="post_text" dangerouslySetInnerHTML={{__html: sanitizer(content)}}/>
+                <span>더보기</span></div>
               <div>댓글 122개 모두 보기</div>
             </div>
             <div className="post_comment">
@@ -108,6 +105,8 @@ const PostCard = ({contents, createdAt, writer}) => {
               {/*  {commentLike? <img src={comment_red_heart} onClick={commentLikeClickHandler}/> :  <img src={comment_heart} onClick={commentLikeClickHandler}/>}*/}
               {/*</div>*/}
               <div className= "post_time">{time}</div>
+
+
             </div>
             <PostComment/>
           </div>
@@ -116,5 +115,6 @@ const PostCard = ({contents, createdAt, writer}) => {
     </>
   )
 }
+
 
 export default PostCard;

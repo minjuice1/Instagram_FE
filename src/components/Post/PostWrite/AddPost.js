@@ -1,9 +1,11 @@
 import {useDispatch} from "react-redux";
-import {useState} from "react";
+import React, {useState} from "react";
 import {addPost} from "../../../redux/post/post";
 
 
+
 const AddPost = () => {
+
   const dispatch = useDispatch();
 
   //인풋
