@@ -7,7 +7,7 @@ import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
 import {modal_check} from "../../../redux/modal/modalSlice";
 import {useDispatch, useSelector} from "react-redux";
-import PostModal from "./PostModal";
+import PostModal from "../PostModal/PostModal";
 import PostComment from "./PostComment";
 
 
