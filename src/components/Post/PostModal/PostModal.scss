@@ -10,7 +10,8 @@
   position: absolute;
   z-index: 100;
   background: $instaWhite;
-  margin-top: 100px;
+  cursor: pointer;
+
 
   & > div {
     border-bottom: 1px solid $instaGray;
@@ -30,12 +31,23 @@
 }
 
 .post_modal_container{
-margin-left: 15%;
+  left:0;
+  width: 80vw;
+  border-radius: 12px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 100;
+  position: absolute;
 }
 
 .overlay {
   box-sizing: border-box;
   position: fixed;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   left: 0;
   bottom: 0;
@@ -44,3 +56,21 @@ margin-left: 15%;
   z-index: 99;
 }
 
+@include desktop{
+  .post_modal_container{
+    top: 50%;
+  }
+}
+
+@include tablet{
+  .post_modal_container{
+    top: 65%;
+  }
+}
+
+@include mobile{
+  .post_modal_container{
+    left: 10%;
+    top: 65%;
+  }
+}

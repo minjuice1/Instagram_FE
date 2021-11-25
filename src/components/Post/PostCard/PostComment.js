@@ -12,7 +12,7 @@ const PostComment = () => {
     <>
       <form>
       <div className="post_cmt">
-        <InputEmoji
+        <InputEmoji className="react-emoji"
         borderColor="white"
         placeholder="댓글 달기.."
         value={postComment}

@@ -6,6 +6,7 @@ import "./Home.scss";
 import HomeStory from "./HomeStory/HomeStory";
 import {useDispatch, useSelector} from "react-redux";
 import {getPost} from "../../redux/post/post";
+import PostModal from "../Post/PostModal/PostModal";
 
 
 
@@ -19,6 +20,7 @@ const Home = () => {
   },[])
 
 
+  const is_modal = useSelector(state => state.modal.is_modal);
   const post_data = useSelector(state => state.post.posts);
   console.log(post_data)
 
@@ -31,10 +33,12 @@ const Home = () => {
 
       <div className="Main_post">
         <HomeStory/>
+
         {post_data.map((post) => (
           <PostCard contents={post.contents} createdAt={post.createdAt} writer={post.writer}/>
         ))}
       </div>
+      {is_modal&& <PostModal/>}
       <div className="Main_side">
       <HomeSide/>
       </div>
