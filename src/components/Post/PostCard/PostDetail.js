@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { bigModal_check } from "../../../redux/modal/bigModalSlice";
 import { modal_check } from "../../../redux/modal/modalSlice";
 
-import PostModal from "./PostModal";
+import PostModal from "../PostModal/PostModal";
 import "./PostDetail.scss";
 import detailpicture from "../../../image/detailpicture.png";
 import pp from "../../../image/profile.jpg";
@@ -14,12 +13,13 @@ import {
 	message,
 	text,
 	post_save,
+	post_saveActive,
 	comment_heart,
 	comment_red_heart,
 	menu_profile,
 } from "../../../common/IconImage";
 
-const PostDetail = () => {
+const PostDetail = ({ contents, createdAt, writer }) => {
 	const dispatch = useDispatch();
 
 	const is_modal = useSelector((state) => state.modal.is_modal);
@@ -31,18 +31,32 @@ const PostDetail = () => {
 		SetCommentLike(!commentLike);
 	};
 
-	const ExitClickHandler = () => {
-		dispatch(bigModal_check());
+	// 포스트 좋아요
+	const [postLike, SetPostLike] = useState(false);
+
+	const postLikeClickHandler = () => {
+		SetPostLike(!postLike);
+	};
+
+	// 북마크
+	const [postBookmark, SetPostBookmark] = useState(false);
+
+	const postBookmarkClickHandler = () => {
+		SetPostBookmark(!postBookmark);
 	};
 
 	const show_postModal = () => {
 		dispatch(modal_check());
 	};
 
+	const exitClickHandler = () => {
+		dispatch(modal_check());
+	};
+
 	return (
 		<>
 			{is_modal && <PostModal />}
-			<div className="postDetail_overlay" onClick={ExitClickHandler}>
+			<div className="postDetail_overlay" onClick={exitClickHandler}>
 				<div className="postDetail_content_all">
 					<div className="postDetail_content">
 						<div className="postDetail_Box">
@@ -129,7 +143,19 @@ const PostDetail = () => {
 									</div>
 									<div className="postDetail_comment_funcs">
 										<div className="postDetail_comment_Likefunc">
-											<img src={heart} alt="heart" />
+											{postLike ? (
+												<img
+													src={heart}
+													onClick={postLikeClickHandler}
+													alt="heart"
+												/>
+											) : (
+												<img
+													src={heart}
+													onClick={postLikeClickHandler}
+													alt="heart"
+												/>
+											)}
 										</div>
 										<div className="postDetail_comment_Commentfunc">
 											<img src={text} alt="text" />
@@ -138,7 +164,21 @@ const PostDetail = () => {
 											<img src={message} alt="message" />
 										</div>
 										<div className="postDetail_comment_Bookmarkfunc">
-											<img src={post_save} alt="post_save" />
+											{postBookmark ? (
+												<img
+													className="post_saveActive"
+													src={post_saveActive}
+													onClick={postBookmarkClickHandler}
+													alt="post_save"
+												/>
+											) : (
+												<img
+													className="post_save"
+													src={post_save}
+													onClick={postBookmarkClickHandler}
+													alt="post_save"
+												/>
+											)}
 										</div>
 									</div>
 									<div className="postDetail_comment_likeList">

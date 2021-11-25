@@ -47,20 +47,20 @@ const PostCard = ({contents, createdAt, writer}) => {
       return `${displayTime}분전`;
     }
 
-    const displayTimeHour = Math.floor(displayTime/ 60);
-    if (displayTimeHour < 24) {
-      return `${displayTimeHour}시간전`;
-    }
+		const displayTimeHour = Math.floor(displayTime / 60);
+		if (displayTimeHour < 24) {
+			return `${displayTimeHour}시간전`;
+		}
 
-    const displayTimeDay = Math.floor(displayTime / 60 / 24);
-    if (displayTimeDay < 365) {
-      return `${displayTimeDay}일전`;
-    }
+		const displayTimeDay = Math.floor(displayTime / 60 / 24);
+		if (displayTimeDay < 365) {
+			return `${displayTimeDay}일전`;
+		}
 
-    return `${Math.floor(displayTimeDay / 365)}년전`;
-  }
+		return `${Math.floor(displayTimeDay / 365)}년전`;
+	}
 
-  const time = displayTime(createdAt);
+	const time = displayTime(createdAt);
 
 
 
@@ -115,6 +115,5 @@ const PostCard = ({contents, createdAt, writer}) => {
     </>
   )
 }
-
 
 export default PostCard;
