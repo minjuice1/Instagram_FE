@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./PostCard.scss";
 
-import {heart, message, text, dot, post_save, comment_heart, comment_red_heart} from "../../../common/IconImage";
+import {post_heart, post_red_heart, message, text, dot, post_save, comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
@@ -18,14 +18,25 @@ const PostCard = ({contents, createdAt, writer}) => {
 
   //댓글 좋아요
   const [commentLike, SetCommentLike] = useState(false);
+  //포스트 좋아요
+  const [postLike, SetPostLike] = useState(false);
 
   const commentLikeClickHandler = () => {
     SetCommentLike(!commentLike)
   }
+  const postLikeClickHandler = () => {
+    SetPostLike(!postLike)
+  }
 
   const show_postModal = () => {
     dispatch(modal_check());
+
   }
+
+  const open_modal = useSelector(state => state.modal.is_modal);
+
+  console.log(open_modal);
+
 
   //글쓴 시간 계산.
   function displayTime(value) {
@@ -54,18 +65,20 @@ const PostCard = ({contents, createdAt, writer}) => {
   const time = displayTime(createdAt);
 
 
-  console.log(writer)
 
-  const is_modal = useSelector(state => state.modal.is_modal);
+
+
+
   return (
     <>
-      {is_modal && <PostModal/>}
+
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
             <div className="profile_img">
               <img className="post_user_image" src={Profile_image}/>
               <div>{writer.userId}</div>
+
               <div className="profile_img_dot" onClick={show_postModal}><img src={dot}/></div>
             </div>
             <div className="post_center">
@@ -73,7 +86,8 @@ const PostCard = ({contents, createdAt, writer}) => {
             </div>
             <div className="post_icon">
               <div className="footer_icon">
-              <img src={heart}/>
+                {postLike? <img src={post_red_heart} onClick={postLikeClickHandler}/> :
+                  <img src={post_heart} onClick={postLikeClickHandler}/>}
               <img src={text}/>
               <img src={message}/>
               </div>

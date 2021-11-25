@@ -7,9 +7,9 @@ const PostModal = () => {
   const dispatch = useDispatch();
 
   const cancleClickHandler = () => {
-
     dispatch(modal_check());
   }
+
 
   return(
     <>

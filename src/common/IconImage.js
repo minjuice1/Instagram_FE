@@ -24,8 +24,10 @@ import my_message from "../image/my_message.png";
 import emoji from "../image/icon/emoji.png";
 import comment_heart from "../image/icon/comment_heart.png";
 import comment_red_heart from "../image/icon/comment_red_heart.png";
+import post_heart from "../image/icon/post_heart.png";
+import post_red_heart from "../image/icon/post_red_heart.png";
 
 export {blackcompass, blackhome, blackmessage, blackwrite,
 compass, home, hovermark, hovertext, mark, message, text, my_message,
   heart, write, post_saveActive, post_save, blackheart, menu_save, menu_setting, menu_change,
-  menu_profile, dot, recomtest, emoji, comment_heart, comment_red_heart };
+  menu_profile, dot, recomtest, emoji, comment_heart, comment_red_heart, post_red_heart, post_heart };
