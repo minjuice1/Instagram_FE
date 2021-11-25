@@ -1,9 +1,9 @@
 import {useDispatch} from "react-redux";
 import {useState} from "react";
-import {addPost} from "../../../../redux/post/post";
+import {addPost} from "../../../redux/post/post";
 
 
-const PostForm = () => {
+const AddPost = () => {
   const dispatch = useDispatch();
 
   //인풋
@@ -48,4 +48,4 @@ const PostForm = () => {
     </>
   )
 }
-export default PostForm;
+export default AddPost;

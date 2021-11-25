@@ -10,7 +10,7 @@ import {
   login_pic4,
   login_pic5,
   login_pic6,
-} from "./LoginImage";
+} from "../../../common/LoginImage";
 
 
 const Fade = () => {

@@ -12,7 +12,7 @@ import {
 	download2,
 	instagramlogo,
 	facebook,
-} from "./LoginImage";
+} from "../../../common/LoginImage";
 
 const Login = () => {
 	const dispatch = useDispatch();
