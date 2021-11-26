@@ -32,7 +32,7 @@
 }
 .profile_img_dot{
  cursor: pointer;
- margin-left: 82%
+ margin-left: 75%
 }
 
 .profile_img_dot >img {
@@ -44,6 +44,16 @@
 .post_center > img{
  width: 100%;
  min-width: 485px;
+}
+
+.post_text{
+ display: flex;
+
+ .more_contents{
+  color: $instaMenuGray;
+  cursor: pointer;
+  margin-left: 3px;
+ }
 }
 
 .post_icon {
@@ -108,6 +118,7 @@
  @include fontSize('large');
  font-weight: bold;
  color: $instaMenuBlack;
+ margin-right: 5px;
 }
 
 .post_time{
