@@ -1,12 +1,12 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 export const modal_check = createAsyncThunk(
-	"modal/modal_check",
-	async (data, thunkAPI) => {},
-);
+  "modal/modal_check",
+  async (data, thunkAPI) => {
+  }
+)
 
 const modalSlice = createSlice({
-
   name: 'modal',
   initialState : {
     is_modal : false,
@@ -17,6 +17,8 @@ const modalSlice = createSlice({
     [modal_check.fulfilled]: (state, action) => {
       state.is_modal = !state.is_modal;
     }
+
+
   },
 });
 

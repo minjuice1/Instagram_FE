@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modal_check } from "../../../redux/modal/modalSlice";
-import { comment } from "../../../redux/comment/comment";
+import { comment } from "../../../redux/post/comment";
 
 import PostModal from "../PostModal/PostModal";
 import "./PostDetail.scss";

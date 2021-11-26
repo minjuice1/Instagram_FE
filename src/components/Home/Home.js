@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import PostCard from "../Post/PostCard/PostCard";
 import HomeSide from "./Side/HomeSide";
 
@@ -24,29 +24,27 @@ const Home = () => {
   const post_data = useSelector(state => state.post.posts);
 
 
-	return (
-		<>
-			<div className="container">
-				<div className="Main">
-					<div className="Main_post">
-						<HomeStory />
-						{post_data.map((post) => (
-							<PostCard
-								contents={post.contents}
-								createdAt={post.createdAt}
-								writer={post.writer}
-								postId={post._id}
-							/>
-						))}
-					</div>
-					<div className="Main_side">
-						<HomeSide />
-					</div>
-				</div>
-			</div>
-		</>
-	);
-};
+  return(
+    <>
+      <div className="container">
+    <div className="Main">
+
+      <div className="Main_post">
+        <HomeStory/>
+
+        {post_data.map((post) => (
+          <PostCard contents={post.contents} createdAt={post.createdAt} writer={post.writer} postId={post._id}/>
+        ))}
+      </div>
+      {is_modal&& <PostModal/>}
+      <div className="Main_side">
+      <HomeSide/>
+      </div>
+
+    </div>
+      </div>
+    </>
+  )
+}
 
 export default Home;
-

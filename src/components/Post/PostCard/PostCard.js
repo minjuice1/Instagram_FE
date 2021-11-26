@@ -14,60 +14,65 @@ import dompurify from "dompurify";
 
 const PostCard = ({ contents, createdAt, writer, postId }) => {
 
-	const sanitizer = dompurify.sanitize;
-	let content = contents.replace(/\n/g, '<br/>');
-
 	const dispatch = useDispatch();
+
+  const sanitizer = dompurify.sanitize;
+  let html_content = contents.replace(/\n/g, '<br/>');
+  let first_line = html_content.includes("<br/>");
+  let first_content = html_content.split("<br/>");
 
   //댓글 좋아요
   const [commentLike, SetCommentLike] = useState(false);
+
   //포스트 좋아요
   const [postLike, SetPostLike] = useState(false);
 
-  const commentLikeClickHandler = () => {
-    SetCommentLike(!commentLike)
+  //게시글 더보기
+  const [morePost, SetMorePost] = useState(false);
+
+  const morePostClickHandler = () => {
+    SetMorePost(!morePost);
   }
   const postLikeClickHandler = () => {
     SetPostLike(!postLike)
   }
 
-	const show_postModal = () => {
-		dispatch(modal_check());
-	};
+  const show_postModal = () => {
+    dispatch(modal_check());
 
-	//글쓴 시간 계산.
-	function displayTime(value) {
-		const today = new Date();
-		const nowTime = new Date(value);
+  }
 
-		const displayTime = Math.floor(
-			(today.getTime() - nowTime.getTime()) / 1000 / 60,
-		);
-		if (displayTime < 1) return "방금전";
-		if (displayTime < 60) {
-			return `${displayTime}분전`;
-		}
 
-		const displayTimeHour = Math.floor(displayTime / 60);
-		if (displayTimeHour < 24) {
-			return `${displayTimeHour}시간전`;
-		}
+  //글쓴 시간 계산.
+  function displayTime(value) {
+    const today = new Date();
+    const nowTime = new Date(value);
 
-		const displayTimeDay = Math.floor(displayTime / 60 / 24);
-		if (displayTimeDay < 365) {
-			return `${displayTimeDay}일전`;
-		}
+    const displayTime = Math.floor((today.getTime() - nowTime.getTime()) / 1000 / 60);
+    if (displayTime < 1) return '방금전';
+    if (displayTime < 60) {
+      return `${displayTime}분전`;
+    }
 
-		return `${Math.floor(displayTimeDay / 365)}년전`;
-	}
+    const displayTimeHour = Math.floor(displayTime/ 60);
+    if (displayTimeHour < 24) {
+      return `${displayTimeHour}시간전`;
+    }
 
-	const time = displayTime(createdAt);
+    const displayTimeDay = Math.floor(displayTime / 60 / 24);
+    if (displayTimeDay < 365) {
+      return `${displayTimeDay}일전`;
+    }
+
+    return `${Math.floor(displayTimeDay / 365)}년전`;
+  }
+
+  const time = displayTime(createdAt);
 
 
 
   return (
     <>
-
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
@@ -94,8 +99,14 @@ const PostCard = ({ contents, createdAt, writer, postId }) => {
             <div className="post_content">
               <a className="post_user_id">좋아요 1,200개</a>
               <div className="post_text"><a className="post_user_id">{writer[0].userId}</a>
-                <div className="post_text" dangerouslySetInnerHTML={{__html: sanitizer(content)}}/>
-                <span>더보기</span></div>
+                {morePost? <div className="post_text" dangerouslySetInnerHTML={{__html: sanitizer(html_content)}}/> :
+                  <div className="post_text"> {first_content[0]}
+                    {first_line &&
+                      <span onClick={morePostClickHandler}>더보기</span>}
+                  </div> }
+
+
+               </div>
               <div>댓글 122개 모두 보기</div>
             </div>
             <div className="post_comment">
@@ -109,7 +120,7 @@ const PostCard = ({ contents, createdAt, writer, postId }) => {
 
 
             </div>
-            <PostComment/>
+            <PostComment postId={postId} />
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-import { comment } from "./comment";
 import { createSlice } from "@reduxjs/toolkit";
 
 const commentSlice = createSlice({
@@ -15,6 +14,5 @@ const commentSlice = createSlice({
 	},
 });
 
-export const { postComment } = commentSlice.actions;
 
 export default commentSlice;

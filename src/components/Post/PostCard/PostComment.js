@@ -1,8 +1,7 @@
 import "./PostCard.scss";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { comment } from "../../../redux/comment/comment";
-
+import {comment} from "../../../redux/post/comment";
 import InputEmoji from "react-input-emoji";
 
 const PostComment = (postId) => {
@@ -33,6 +32,7 @@ const PostComment = (postId) => {
 			}),
 			[dispatch],
 		);
+		SetPostComment("")
 	};
 
 	return (

@@ -15,10 +15,13 @@ export const comment = createAsyncThunk(
 				headers: {
 					Authorization: `Bearer ${AccessToken}`,
 				},
+
 			}).then((response) => {
 				console.log(response);
 			});
+
 			return response;
+
 		} catch (e) {
 			return false;
 		}
