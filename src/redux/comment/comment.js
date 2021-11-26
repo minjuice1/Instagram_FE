@@ -3,15 +3,14 @@ import Api from "../../common/api/Api";
 
 export const comment = createAsyncThunk(
 	"commment/write",
-	async (data, AccessToken, thunkAPI) => {
+	async ({ postId, contents, AccessToken }) => {
 		try {
-			console.log(data);
 			const response = await Api({
 				url: `/comment`,
 				method: "POST",
 				data: {
-					postId: data.postId,
-					contents: data.postComment,
+					postId,
+					contents,
 				},
 				headers: {
 					Authorization: `Bearer ${AccessToken}`,
@@ -21,9 +20,7 @@ export const comment = createAsyncThunk(
 			});
 			return response;
 		} catch (e) {
-			return thunkAPI.rejectWithValue({
-				error: "댓글등록실패",
-			});
+			return false;
 		}
 	},
 );
