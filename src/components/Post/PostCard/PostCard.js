@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./PostCard.scss";
-
 import {post_heart, post_red_heart, message, text, dot, post_save, comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
+
 import {modal_check} from "../../../redux/modal/modalSlice";
 import {useDispatch, useSelector} from "react-redux";
+import { modal_check } from "../../../redux/modal/modalSlice";
+import { useDispatch, useSelector } from "react-redux";
+import PostModal from "../PostModal/PostModal";
 import PostComment from "./PostComment";
 import dompurify from "dompurify";
+
 
 
 const PostCard = ({ contents, createdAt, writer, postId }) => {

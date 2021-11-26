@@ -1,16 +1,14 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import PostCard from "../Post/PostCard/PostCard";
 import HomeSide from "./Side/HomeSide";
 
 import "./Home.scss";
 import HomeStory from "./HomeStory/HomeStory";
-import {useDispatch, useSelector} from "react-redux";
-import {getPost} from "../../redux/post/post";
-import PostModal from "../Post/PostModal/PostModal";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { getPost } from "../../redux/post/post";
 
 const Home = () => {
+	const dispatch = useDispatch();
 
   const dispatch = useDispatch();
 
@@ -48,3 +46,4 @@ const Home = () => {
 }
 
 export default Home;
+

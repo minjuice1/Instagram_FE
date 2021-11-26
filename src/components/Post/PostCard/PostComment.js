@@ -1,7 +1,9 @@
 import "./PostCard.scss";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+
 import {comment} from "../../../redux/post/comment";
+
 import InputEmoji from "react-input-emoji";
 
 const PostComment = (postId) => {
@@ -13,8 +15,8 @@ const PostComment = (postId) => {
 	const postId_ = postId.postId;
 
 
-	function handleOnEnter(postComment) {
 
+	function handleOnEnter(postComment) {
 		dispatch(
 			comment({
 				postId: postId_,
@@ -26,15 +28,15 @@ const PostComment = (postId) => {
 	}
 
 	const CommentClickHandler = () => {
-
-		dispatch(
-			comment({
-				postId: postId_,
-				contents: postComment,
-				AccessToken,
-			}),
+	dispatch(
+		comment({
+			postId: postId_,
+			contents: postComment,
+			AccessToken,
+		}),
 			[dispatch],
 		);
+
 		SetPostComment("")
 	};
 
