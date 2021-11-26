@@ -1,16 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./PostCard.scss";
-import {
-	post_heart,
-	post_red_heart,
-	message,
-	text,
-	dot,
-	post_save,
-	comment_heart,
-	comment_red_heart,
-} from "../../../common/IconImage";
+import {post_heart, post_red_heart, message, text, dot, post_save, comment_heart, comment_red_heart,} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
@@ -22,63 +13,62 @@ import PostComment from "./PostComment";
 import dompurify from "dompurify";
 
 const PostCard = ({ contents, createdAt, writer, postId }) => {
+
 	const dispatch = useDispatch();
 
-	const sanitizer = dompurify.sanitize;
-	let html_content = contents.replace(/\n/g, "<br/>");
-	let first_line = html_content.includes("<br/>");
-	let first_content = html_content.split("<br/>");
+  const sanitizer = dompurify.sanitize;
+  let html_content = contents.replace(/\n/g, '<br/>');
+  let first_line = html_content.includes("<br/>");
+  let first_content = html_content.split("<br/>");
 
-	//댓글 좋아요
-	const [commentLike, SetCommentLike] = useState(false);
+  //댓글 좋아요
+  const [commentLike, SetCommentLike] = useState(false);
 
-	//포스트 좋아요
-	const [postLike, SetPostLike] = useState(false);
+  //포스트 좋아요
+  const [postLike, SetPostLike] = useState(false);
 
-	//게시글 더보기
-	const [morePost, SetMorePost] = useState(false);
+  //게시글 더보기
+  const [morePost, SetMorePost] = useState(false);
 
-	const morePostClickHandler = () => {
-		SetMorePost(!morePost);
-	};
-	const postLikeClickHandler = () => {
-		SetPostLike(!postLike);
-	};
-	const commentLikeClickHandler = () => {
-		SetCommentLike(!commentLike);
-	};
+  const morePostClickHandler = () => {
+    SetMorePost(!morePost);
+  }
+  const postLikeClickHandler = () => {
+    SetPostLike(!postLike)
+  }
+  const commentLikeClickHandler = () => {
+    SetCommentLike(!commentLike)
+  }
 
 	const show_postModal = () => {
 		dispatch(modal_check());
 	};
 
-	//글쓴 시간 계산.
-	function displayTime(value) {
-		const today = new Date();
-		const nowTime = new Date(value);
+  //글쓴 시간 계산.
+  function displayTime(value) {
+    const today = new Date();
+    const nowTime = new Date(value);
 
-		const displayTime = Math.floor(
-			(today.getTime() - nowTime.getTime()) / 1000 / 60,
-		);
-		if (displayTime < 1) return "방금전";
-		if (displayTime < 60) {
-			return `${displayTime}분전`;
-		}
+    const displayTime = Math.floor((today.getTime() - nowTime.getTime()) / 1000 / 60);
+    if (displayTime < 1) return '방금전';
+    if (displayTime < 60) {
+      return `${displayTime}분전`;
+    }
 
-		const displayTimeHour = Math.floor(displayTime / 60);
-		if (displayTimeHour < 24) {
-			return `${displayTimeHour}시간전`;
-		}
+    const displayTimeHour = Math.floor(displayTime/ 60);
+    if (displayTimeHour < 24) {
+      return `${displayTimeHour}시간전`;
+    }
 
-		const displayTimeDay = Math.floor(displayTime / 60 / 24);
-		if (displayTimeDay < 365) {
-			return `${displayTimeDay}일전`;
-		}
+    const displayTimeDay = Math.floor(displayTime / 60 / 24);
+    if (displayTimeDay < 365) {
+      return `${displayTimeDay}일전`;
+    }
 
-		return `${Math.floor(displayTimeDay / 365)}년전`;
-	}
+    return `${Math.floor(displayTimeDay / 365)}년전`;
+  }
 
-	const time = displayTime(createdAt);
+  const time = displayTime(createdAt);
 
 	return (
 		<>

@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { addPost } from "../../../redux/post/post";
+import "./AddPost.scss";
 
 const AddPost = () => {
 	const dispatch = useDispatch();
@@ -40,7 +41,7 @@ const AddPost = () => {
 
 	return (
 		<>
-			<div>
+			<div className="add_post">
 				<textarea onChange={textOnChange} onKeyUp={hashTagCheck} />
 				<button onClick={postWriteClickHandler}>등록하기</button>
 			</div>
