@@ -4,30 +4,57 @@ import { useDispatch } from "react-redux";
 import { comment } from "../../../redux/comment/comment";
 
 import InputEmoji from "react-input-emoji";
+
 const PostComment = (postId) => {
 	const dispatch = useDispatch();
 
-  const [postComment, SetPostComment] = useState("");
+	const [postComment, SetPostComment] = useState();
 
-  function handleOnEnter(text) {
-    console.log("enter", text);
-  }
-  return(
-    <>
-      <form>
-      <div className="post_cmt">
-        <InputEmoji
-        borderColor="white"
-        placeholder="댓글 달기.."
-        value={postComment}
-        fontSize="14">
+	const AccessToken = localStorage.getItem("user");
+	const postId_ = postId.postId;
 
-        </InputEmoji>
-        <a className="comment_submit">게시</a>
-      </div>
-      </form>
-    </>
-  )
-}
+	function handleOnEnter(text) {
+		dispatch(
+			comment({
+				postId: postId_,
+				contents: postComment,
+				AccessToken,
+			}),
+			[dispatch],
+		);
+	}
+
+	const CommentClickHandler = () => {
+		dispatch(
+			comment({
+				postId: postId_,
+				contents: postComment,
+				AccessToken,
+			}),
+			[dispatch],
+		);
+	};
+
+	return (
+		<>
+			<form>
+				<div className="post_cmt">
+					<InputEmoji
+						borderColor="white"
+						placeholder="댓글 달기..."
+						fontSize="14"
+						value={postComment}
+						onChange={SetPostComment}
+						cleanOnEnter
+						onEnter={handleOnEnter}
+					/>
+					<div className="comment_submit" onClick={CommentClickHandler}>
+						게시
+					</div>
+				</div>
+			</form>
+		</>
+	);
+};
 
 export default PostComment;
