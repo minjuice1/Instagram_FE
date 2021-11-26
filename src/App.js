@@ -20,7 +20,6 @@ function App() {
 		const is_login = useSelector(state=> state.user.isLogin);
 		const token = localStorage.getItem("user");
 
-	console.log(is_login);
 		useEffect(() => {
 			if(token)
 			{dispatch(loginCheck());}
