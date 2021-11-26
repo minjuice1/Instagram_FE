@@ -12,7 +12,9 @@ const PostComment = (postId) => {
 	const AccessToken = localStorage.getItem("user");
 	const postId_ = postId.postId;
 
-	function handleOnEnter(text) {
+
+	function handleOnEnter(postComment) {
+
 		dispatch(
 			comment({
 				postId: postId_,
@@ -24,6 +26,7 @@ const PostComment = (postId) => {
 	}
 
 	const CommentClickHandler = () => {
+
 		dispatch(
 			comment({
 				postId: postId_,

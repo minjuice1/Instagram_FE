@@ -48,6 +48,12 @@
 
 .post_text{
  display: flex;
+
+ .more_contents{
+  color: $instaMenuGray;
+  cursor: pointer;
+  margin-left: 3px;
+ }
 }
 
 .post_icon {

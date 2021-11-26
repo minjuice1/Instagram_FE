@@ -36,6 +36,9 @@ const PostCard = ({ contents, createdAt, writer, postId }) => {
   const postLikeClickHandler = () => {
     SetPostLike(!postLike)
   }
+  const commentLikeClickHandler = () => {
+    SetCommentLike(!commentLike)
+  }
 
   const show_postModal = () => {
     dispatch(modal_check());
@@ -102,7 +105,7 @@ const PostCard = ({ contents, createdAt, writer, postId }) => {
                 {morePost? <div className="post_text" dangerouslySetInnerHTML={{__html: sanitizer(html_content)}}/> :
                   <div className="post_text"> {first_content[0]}
                     {first_line &&
-                      <span onClick={morePostClickHandler}>더보기</span>}
+                      <span className="more_contents" onClick={morePostClickHandler}>더 보기</span>}
                   </div> }
 
 
