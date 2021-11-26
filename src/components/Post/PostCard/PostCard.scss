@@ -32,7 +32,7 @@
 }
 .profile_img_dot{
  cursor: pointer;
- margin-left: 75%
+ margin-left: 82%
 }
 
 .profile_img_dot >img {
@@ -48,12 +48,6 @@
 
 .post_text{
  display: flex;
-
- .more_contents{
-  color: $instaMenuGray;
-  cursor: pointer;
-  margin-left: 3px;
- }
 }
 
 .post_icon {
@@ -98,7 +92,7 @@
  margin-top: 5px;
 
  &> div:nth-child(2){
- margin-top: 5px;
+  margin-top: 5px;
   & > span {
    color: $instaMenuGray;
   }
@@ -118,7 +112,6 @@
  @include fontSize('large');
  font-weight: bold;
  color: $instaMenuBlack;
- margin-right: 5px;
 }
 
 .post_time{
@@ -161,8 +154,8 @@
  .react-emoji > .react-emoji-picker--container{
   margin-left: -115px;
  }
-  .post_one_comment > div:nth-child(2){
-   margin-left: -220px;
+ .post_one_comment > div:nth-child(2){
+  margin-left: -220px;
  }
 
 }
