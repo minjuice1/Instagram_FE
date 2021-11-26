@@ -2,33 +2,37 @@ import "./PostCard.scss";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { comment } from "../../../redux/comment/comment";
-
 import InputEmoji from "react-input-emoji";
+
 const PostComment = (postId) => {
 	const dispatch = useDispatch();
 
-	const [postComment, SetPostComment] = useState("");
+	const [postComment, SetPostComment] = useState();
+
+	const AccessToken = localStorage.getItem("user");
+	const postId_ = postId.postId;
 
 	function handleOnEnter(text) {
-		console.log("enter", text);
+		dispatch(
+			comment({
+				postId: postId_,
+				contents: postComment,
+				AccessToken,
+			}),
+			[dispatch],
+		);
 	}
-
-	const onChangePostComment = (e) => {
-		SetPostComment(e.target);
-	};
 
 	const CommentClickHandler = () => {
 		dispatch(
 			comment({
-				postId,
-				postComment,
+				postId: postId_,
+				contents: postComment,
+				AccessToken,
 			}),
 			[dispatch],
 		);
 	};
-
-	console.log(postId);
-	console.log(postComment);
 
 	return (
 		<>
@@ -36,11 +40,13 @@ const PostComment = (postId) => {
 				<div className="post_cmt">
 					<InputEmoji
 						borderColor="white"
-						placeholder="댓글 달기.."
-						// value={postComment}
+						placeholder="댓글 달기..."
 						fontSize="14"
-						onChange={onChangePostComment}
-					></InputEmoji>
+						value={postComment}
+						onChange={SetPostComment}
+						cleanOnEnter
+						onEnter={handleOnEnter}
+					/>
 					<div className="comment_submit" onClick={CommentClickHandler}>
 						게시
 					</div>
