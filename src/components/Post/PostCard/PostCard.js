@@ -1,17 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./PostCard.scss";
-
 import {post_heart, post_red_heart, message, text, dot, post_save, comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
-import {modal_check} from "../../../redux/modal/modalSlice";
-import {useDispatch, useSelector} from "react-redux";
+import { modal_check } from "../../../redux/modal/modalSlice";
+import { useDispatch, useSelector } from "react-redux";
 import PostModal from "../PostModal/PostModal";
 import PostComment from "./PostComment";
-
-
-
 
 const PostCard = ({contents, createdAt, writer}) => {
   const dispatch = useDispatch();
@@ -30,13 +27,7 @@ const PostCard = ({contents, createdAt, writer}) => {
 
   const show_postModal = () => {
     dispatch(modal_check());
-
   }
-
-  const open_modal = useSelector(state => state.modal.is_modal);
-
-  console.log(open_modal);
-
 
   //글쓴 시간 계산.
   function displayTime(value) {
@@ -63,11 +54,6 @@ const PostCard = ({contents, createdAt, writer}) => {
   }
 
   const time = displayTime(createdAt);
-
-
-
-
-
 
   return (
     <>
