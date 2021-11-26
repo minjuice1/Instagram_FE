@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PostModal from "../PostModal/PostModal";
 import PostComment from "./PostComment";
 
-const PostCard = ({ contents, createdAt, writer }) => {
+const PostCard = ({ contents, createdAt, writer, postId }) => {
 	const dispatch = useDispatch();
 
 	//댓글 좋아요
@@ -61,9 +61,8 @@ const PostCard = ({ contents, createdAt, writer }) => {
 
 	const time = displayTime(createdAt);
 
-	console.log(writer);
-
 	const is_modal = useSelector((state) => state.modal.is_modal);
+
 	return (
 		<>
 			{is_modal && <PostModal />}
@@ -118,7 +117,7 @@ const PostCard = ({ contents, createdAt, writer }) => {
 							{/*</div>*/}
 							<div className="post_time">{time}</div>
 						</div>
-						<PostComment />
+						<PostComment postId={postId} />
 					</div>
 				</div>
 			</div>

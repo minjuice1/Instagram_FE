@@ -5,6 +5,7 @@ import modalSlice from "./modal/modalSlice";
 import bigModalSlice from "./modal/bigModalSlice";
 import postSlice from "./post/postSlice";
 import userSlice from "./user/userSlice";
+import commentSlice from "./comment/commentSlice";
 
 export const store = configureStore({
 	reducer: {
@@ -13,6 +14,6 @@ export const store = configureStore({
 		modal: modalSlice,
 		post: postSlice.reducer,
 		user: userSlice.reducer,
+		comment: commentSlice.reducer,
 	},
 });
-
