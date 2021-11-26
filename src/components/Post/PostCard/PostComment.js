@@ -1,7 +1,11 @@
 import "./PostCard.scss";
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { comment } from "../../../redux/comment/comment";
+
 import InputEmoji from "react-input-emoji";
-const PostComment = () => {
+const PostComment = (postId) => {
+	const dispatch = useDispatch();
 
   const [postComment, SetPostComment] = useState("");
 
@@ -12,7 +16,7 @@ const PostComment = () => {
     <>
       <form>
       <div className="post_cmt">
-        <InputEmoji className="react-emoji"
+        <InputEmoji
         borderColor="white"
         placeholder="댓글 달기.."
         value={postComment}

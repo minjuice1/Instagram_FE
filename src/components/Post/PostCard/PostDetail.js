@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modal_check } from "../../../redux/modal/modalSlice";
+import { comment } from "../../../redux/comment/comment";
 
 import PostModal from "../PostModal/PostModal";
 import "./PostDetail.scss";
@@ -23,6 +24,20 @@ const PostDetail = ({ contents, createdAt, writer }) => {
 	const dispatch = useDispatch();
 
 	const is_modal = useSelector((state) => state.modal.is_modal);
+
+	console.log(contents);
+	console.log(createdAt);
+	console.log(writer);
+
+	const CommentClickHandler = () => {
+		dispatch(
+			comment({
+				writer,
+				contents,
+			}),
+			[dispatch],
+		);
+	};
 
 	// 댓글 좋아요
 	const [commentLike, SetCommentLike] = useState(false);
@@ -203,7 +218,7 @@ const PostDetail = ({ contents, createdAt, writer }) => {
 												></InputEmoji>
 											</div>
 											<div className="postDetail_comment_writeBtn">
-												<button>게시</button>
+												<button onClick={CommentClickHandler}>게시</button>
 											</div>
 										</div>
 									</div>

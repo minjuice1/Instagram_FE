@@ -11,12 +11,12 @@ import PostComment from "./PostComment";
 import dompurify from "dompurify";
 
 
-const PostCard = ({contents, createdAt, writer}) => {
-  const sanitizer = dompurify.sanitize;
-  let content = contents.replace(/\n/g, '<br/>');
+const PostCard = ({ contents, createdAt, writer, postId }) => {
 
-  console.log(contents)
-  const dispatch = useDispatch();
+	const sanitizer = dompurify.sanitize;
+	let content = contents.replace(/\n/g, '<br/>');
+
+	const dispatch = useDispatch();
 
   //댓글 좋아요
   const [commentLike, SetCommentLike] = useState(false);
@@ -108,7 +108,7 @@ const PostCard = ({contents, createdAt, writer}) => {
 
 
             </div>
-            <PostComment/>
+						<PostComment postId={postId} />
           </div>
         </div>
       </div>
