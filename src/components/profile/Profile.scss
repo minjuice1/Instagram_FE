@@ -6,7 +6,7 @@
 
 	.profile_content {
 		display: flex;
-		width: 40vw;
+		width: 80vw;
 		margin: auto;
 
 		.profile_profileBox {
@@ -15,25 +15,28 @@
 			padding: 30px 20px 0 20px;
 
 			.profile_header {
+				justify-content: center;
 				display: flex;
-				width: 100%;
+				width: 80%;
 				height: 15%;
+				margin: auto;
 
 				.profile_header_pp {
-					width: 38%;
-					height: 100%;
+					justify-content: center;
+					text-align: center;
+					width: 25%;
+					// text-align: center;
 
 					& > img {
 						width: 150px;
 						height: 150px;
-						margin: 10px 0 0 25%;
 						cursor: pointer;
 					}
 				}
 
 				.profile_header_main {
-					width: 70%;
-					height: 100%;
+					justify-content: center;
+					width: 45%;
 
 					.profile_header_top {
 						display: flex;
@@ -57,7 +60,7 @@
 							margin-right: 20px;
 							margin-top: 6px;
 							cursor: pointer;
-							font-size: 14px;
+							@include fontSize("biglarge");
 							line-height: 30px;
 						}
 
@@ -79,7 +82,7 @@
 							margin-right: 40px;
 
 							& > span {
-								font-weight: bold;
+								@include fontSize("normal");
 							}
 						}
 
@@ -95,83 +98,99 @@
 					.profile_header_bottom {
 						width: 100%;
 						height: auto;
-						font-size: 12px;
+						@include fontSize("normal");
 						font-weight: 600;
 					}
 				}
 			}
 
-			.profile_stories {
+			.profile_storiesBox {
 				display: flex;
+				width: 80%;
+				height: 10%;
+				justify-content: center;
 				margin: auto;
-				width: 90%;
-				height: 15%;
-				margin-bottom: 40px;
 
-				.profile_story {
-					width: 11%;
-					height: 100%;
-					margin: 20px 20px 20px 0;
+				.profile_stories {
+					text-align: center;
+					display: flex;
+					width: 70%;
+					height: 15%;
+					margin-bottom: 40px;
+					margin-right: 35px;
 
-					.profile_storyBox {
-						margin: 20px 0 0 10px;
-						width: 80px;
-						height: 50%;
-						cursor: pointer;
-						& > img {
-							width: 77px;
-							height: 77px;
+					.profile_story {
+						height: 100%;
+						margin: 30px 30px 20px 0;
+
+						.profile_storyBox {
+							margin: auto;
+							width: 80px;
+							height: 50%;
+							cursor: pointer;
+
+							& > img {
+								width: 77px;
+								height: 77px;
+							}
 						}
-					}
 
-					.profile_storyName {
-						margin-top: 5px;
-						text-align: center;
-						width: 100%;
-						height: auto;
-						color: #262626;
-						font-weight: 600;
-						overflow: hidden;
-						text-overflow: ellipsis;
-						white-space: nowrap;
-						cursor: pointer;
+						.profile_storyName {
+							margin-top: 5px;
+							text-align: center;
+							width: 100%;
+							height: auto;
+							color: #262626;
+							font-weight: 600;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							cursor: pointer;
+						}
 					}
 				}
 			}
 
 			.profile_post_dir {
 				display: flex;
-				width: 50%;
-				height: 4%;
+				width: 100%;
+				text-align: center;
 				align-items: center;
-				margin: auto;
+				justify-content: center;
+				border-top: 1px solid $instaGray;
 
 				& > a {
-					align-items: center;
-					margin: auto;
+					display: flex;
+					width: 65px;
+					height: 52px;
 					line-height: 48px;
-					width: 13%;
-					height: 100%;
+					margin-right: 65px;
 					color: $instaMenuGray;
-					text-decoration: none;
-					font-size: 13px;
-					letter-spacing: 0.5px;
+					@include fontSize("normal");
 					font-weight: 550;
+					text-decoration: none;
+					text-align: center;
+					letter-spacing: 0.5px;
 					cursor: pointer;
+					align-items: center;
+					justify-content: center;
+					border-top: 1px solid $instaMenuGray;
 				}
 			}
 
 			.profile_postsBox {
-				position: fixed;
-				left: 31.5%;
+				width: 100%;
 
 				.profile_postList {
 					display: grid;
 					grid-template-columns: repeat(3, minmax(20px, max-content));
 					grid-template-rows: repeat(8, 1fr);
 					gap: 25px;
+					justify-content: center;
+
 					.profile_post {
-						background-color: $backgroundGray;
+						display: block;
+						overflow: hidden;
 					}
 				}
 			}

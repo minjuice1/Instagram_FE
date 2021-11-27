@@ -44,37 +44,40 @@ const Profile = () => {
 								<div className="profile_header_bottom">상태메세지</div>
 							</section>
 						</div>
-						<div className="profile_stories">
-							<div className="profile_story">
-								<div className="profile_storyBox">
-									<img src={pp} alt="profile"></img>
+						<div className="profile_storiesBox">
+							<div className="profile_stories">
+								<div className="profile_story">
+									<div className="profile_storyBox">
+										<img src={pp} alt="profile"></img>
+									</div>
+									<div className="profile_storyName">스토리</div>
 								</div>
-								<div className="profile_storyName">스토리</div>
-							</div>
-							<div className="profile_story">
-								<div className="profile_storyBox">
-									<img src={pp} alt="profile"></img>
+								<div className="profile_story">
+									<div className="profile_storyBox">
+										<img src={pp} alt="profile"></img>
+									</div>
+									<div className="profile_storyName">스토리</div>
 								</div>
-								<div className="profile_storyName">스토리</div>
 							</div>
 						</div>
-						<div className="profile_post_dir">
-							<a href="/profile/posts">
+
+						<div className="profile_post_dir" role="tablist">
+							<a href="/profile/" role="tab" tabindex="0">
 								<span className="profile_post_posts" value={posts}>
 									<MdGridOn /> 게시물
 								</span>
 							</a>
-							<a href="/profile/video">
+							<a href="/profile/channel" role="tab" tabindex="0">
 								<span className="profile_post_video" value={video}>
 									<FiPlayCircle /> 동영상
 								</span>
 							</a>
-							<a href="/profile/saved">
+							<a href="/profile/saved" role="tab" tabindex="0">
 								<span className="profile_post_saved" value={saved}>
 									<BiBookmark /> 저장됨
 								</span>
 							</a>
-							<a href="/profile/tagged">
+							<a href="/profile/tagged" role="tab" tabindex="0">
 								<span className="profile_post_tagged" value={tagged}>
 									<RiAccountBoxLine /> 태그됨
 								</span>

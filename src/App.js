@@ -10,6 +10,7 @@ import DirectMessage from "./components/Page/DirectMessage/DirectMessage";
 import AddPost from "./components/Post/PostWrite/AddPost";
 import PostDetail from "./components/Post/PostCard/PostDetail";
 import Profile from "./components/profile/Profile";
+import Test from "./components/profile/Test";
 
 import { useEffect } from "react";
 import { loginCheck } from "./redux/user/userSlice";
@@ -128,6 +129,15 @@ function App() {
 							<RequireAuth redirectTo="/login">
 								{" "}
 								<Profile />{" "}
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/test"
+						element={
+							<RequireAuth redirectTo="/login">
+								{" "}
+								<Test />{" "}
 							</RequireAuth>
 						}
 					/>
