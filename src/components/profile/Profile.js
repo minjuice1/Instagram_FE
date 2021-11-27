@@ -1,7 +1,11 @@
 import { React, useState } from "react";
-import "./Profile.scss";
+import { useDispatch, useSelector } from "react-redux";
 
+import "./Profile.scss";
+import ProfileModal from "../profile/ProfileModal/ProfileModal";
+import { modal_check } from "../../redux/modal/modalSlice";
 import pp from "../../image/profile.jpg";
+
 import { recomtest } from "../../common/IconImage";
 import { FiSettings, FiPlayCircle } from "react-icons/fi";
 import { BiBookmark } from "react-icons/bi";
@@ -9,13 +13,22 @@ import { RiAccountBoxLine } from "react-icons/ri";
 import { MdGridOn } from "react-icons/md";
 
 const Profile = () => {
+	const dispatch = useDispatch();
+
 	const [posts, SetPosts] = useState();
 	const [video, SetVideo] = useState();
 	const [saved, SetSaved] = useState();
 	const [tagged, SetTagged] = useState();
 
+	const is_modal = useSelector((state) => state.modal.is_modal);
+
+	const show_postModal = () => {
+		dispatch(modal_check());
+	};
+
 	return (
 		<>
+			{is_modal && <ProfileModal />}
 			<div className="profile_all">
 				<div className="profile_content">
 					<div className="profile_profileBox">
@@ -27,8 +40,10 @@ const Profile = () => {
 								<div className="profile_header_top">
 									<span>testtest</span>
 									<span>프로필 편집</span>
-
-									<FiSettings className="profile_settings" />
+									<FiSettings
+										onClick={show_postModal}
+										className="profile_settings"
+									/>
 								</div>
 								<ul className="profile_header_mid">
 									<span>
