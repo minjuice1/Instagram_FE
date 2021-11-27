@@ -1,3 +1,157 @@
 @import "../../../common/variables";
 @import "../../../common/mixin";
 
+
+//모달 밖에 overlay
+.add_overlay {
+  box-sizing: border-box;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+
+}
+
+.post_add_container {
+  width: 660px;
+  height: 760px;
+  border-radius: 15px;
+  background-color: $instaWhite;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  margin-left: 31%;
+
+  .add_post_image {
+    margin-top: 120px;
+    height: auto;
+
+    & > div {
+      font-size: 22px;
+      font-weight: 100;
+      margin-bottom: 25px;
+    }
+
+    & > button {
+      width: 120px;
+      height: 30px;
+      background: $instaBlue;
+      border: none;
+      color: white;
+      border-radius: 5px;
+    }
+  }
+}
+
+//active와 active전에 같이 들어가야 하기 때문에 밖으로 빼줌
+.add_post_title {
+  height: 40px;
+  border-bottom: 1px solid $instaGray;
+  font-weight: 600;
+  line-height: 40px;
+  color: $instaMenuBlack;
+
+  .write_end{
+    cursor: pointer;
+  }
+}
+
+.post_add_container_active {
+  width: 1040px;
+  height: 760px;
+  border: 1px solid blue;
+  border-radius: 15px;
+  background-color: $instaWhite;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  z-index: 100;
+  position: fixed;
+  margin-left: 22%;
+
+  .img_preview_after {
+    width: 720px;
+    height: 718px;
+    position: absolute;
+    overflow: hidden;
+    max-width: 1024px;
+    border-bottom-left-radius: 15px;
+  }
+
+  .add_post_image_after {
+    display: grid;
+    grid-template-columns: repeat(2, 720px 320px);
+    height: 718px;
+
+    .add_text_Post {
+      border-left: 1px solid $instaGray;
+
+      .add_post_input {
+        height: 80px;
+        width: 300px;
+        overflow-y: auto;
+      }
+
+      .add_post_menu {
+        height: 45px;
+        border-bottom: 1px solid $instaGray;
+        line-height: 45px;
+        text-align: left;
+        padding-left: 15px;
+
+      }
+
+      }
+    }
+}
+.add_post_menu:first-child{
+  color: blue;
+}
+.thump {
+  display: inline-flex;
+  border-radius: 2px;
+  border: 1px solid #eaeaea;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  width: 100px;
+  height: 100px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.img_preview {
+  position: absolute;
+  width: 660px;
+  height: 720px;
+  max-width: 1024px;
+  overflow: hidden;
+  max-height: 720px;
+  margin-top: -120px;
+  border-radius: 15px;
+}
+
+.thumbsContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.add_image {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px 0 20px;
+}
+.post_center{
+  & > img {
+    width: 613px;
+
+  }
+}
+
+

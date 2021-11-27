@@ -12,9 +12,13 @@ import PostModal from "../PostModal/PostModal";
 import PostComment from "./PostComment";
 import dompurify from "dompurify";
 
-const PostCard = ({ contents, createdAt, writer, postId }) => {
+const PostCard = ({ contents, createdAt, writer, postId, postImage }) => {
 
 	const dispatch = useDispatch();
+
+	console.log(postImage)
+
+
 
   const sanitizer = dompurify.sanitize;
   let html_content = contents.replace(/\n/g, '<br/>');
@@ -70,6 +74,10 @@ const PostCard = ({ contents, createdAt, writer, postId }) => {
 
   const time = displayTime(createdAt);
 
+	const a = `"${postImage}"`;
+
+
+
 	return (
 		<>
 			<div className="post_cards">
@@ -84,7 +92,8 @@ const PostCard = ({ contents, createdAt, writer, postId }) => {
 							</div>
 						</div>
 						<div className="post_center">
-							<img src={Picture} />
+							<img src={postImage}/>
+
 						</div>
 						<div className="post_icon">
 							<div className="footer_icon">

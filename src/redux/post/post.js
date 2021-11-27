@@ -1,10 +1,11 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
+import {useNavigate} from "react-router";
 
 export const addPost = createAsyncThunk(
   "post/write",
-  async({formData, AccessToken}, thunkAPI) => {
-
+  async({formData}, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
         url: `/post`,
@@ -26,13 +27,20 @@ export const addPost = createAsyncThunk(
 export const getPost = createAsyncThunk(
   "post/getPost",
   async(data, thunkAPU) => {
+    const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
         url: `/post`,
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
       })
       return response.data;
     }catch(e){
+
+      alert("로그인을 다시해주세요")
+
       return false;
     }
   }

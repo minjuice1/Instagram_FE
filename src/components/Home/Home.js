@@ -7,6 +7,7 @@ import HomeStory from "./HomeStory/HomeStory";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../../redux/post/post";
 import PostModal from "../Post/PostModal/PostModal";
+import AddPost from "../Post/PostWrite/AddPost";
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -20,17 +21,21 @@ const Home = () => {
 
 	return (
 		<>
+
+
+
 			<div className="container">
 				<div className="Main">
 					<div className="Main_post">
 						<HomeStory />
 
-						{post_data.map((post) => (
+						{post_data && post_data.map((post) => (
 							<PostCard
 								contents={post.contents}
 								createdAt={post.createdAt}
 								writer={post.writer}
 								postId={post._id}
+								postImage={post.imageUrl}
 							/>
 						))}
 					</div>

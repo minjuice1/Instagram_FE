@@ -55,3 +55,11 @@ export const login = createAsyncThunk(
     }
   }
 )
+
+export const logout = createAsyncThunk(
+  "user/logout",
+  async (data, thunkAPI) => {
+    localStorage.removeItem("user");
+  }
+
+);
