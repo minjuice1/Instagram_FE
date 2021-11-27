@@ -16,10 +16,7 @@ const PostCard = ({ contents, createdAt, writer, postId, postImage }) => {
 
 	const dispatch = useDispatch();
 
-	console.log(postImage)
-
-
-
+	
   const sanitizer = dompurify.sanitize;
   let html_content = contents.replace(/\n/g, '<br/>');
   let first_line = html_content.includes("<br/>");
@@ -73,9 +70,6 @@ const PostCard = ({ contents, createdAt, writer, postId, postImage }) => {
   }
 
   const time = displayTime(createdAt);
-
-	const a = `"${postImage}"`;
-
 
 
 	return (
