@@ -1,16 +1,21 @@
 @import "../../../common/variables";
 @import "../../../common/mixin";
 
+
+
 .post_modal {
   width: 400px;
   height: 335px;
   border: 1px solid $instaGray;
   border-radius: 15px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  position: absolute;
+  position: fixed;
   z-index: 100;
   background: $instaWhite;
   cursor: pointer;
+  margin-left: -300px;
+  margin-top: 200px;
+
 
 
   & > div {
@@ -34,13 +39,8 @@
   left:0;
   width: 80vw;
   border-radius: 12px;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 100;
-  position: fixed;
+
+
 }
 
 .overlay {
@@ -53,6 +53,7 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 99;
+
 
 }
 
