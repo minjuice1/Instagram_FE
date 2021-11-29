@@ -17,10 +17,15 @@ import OtherProfileSettingModal from "./OtherProfileModal/OtherProfileSettingMod
 import "./OtherProfile.scss";
 import pp from "../../../image/profile.jpg";
 import { recomtest } from "../../../common/IconImage";
-import { FiSettings, FiPlayCircle, FiChevronDown } from "react-icons/fi";
+import {
+	FiSettings,
+	FiPlayCircle,
+	FiChevronDown,
+	FiChevronUp,
+} from "react-icons/fi";
 import { BiBookmark, BiDotsHorizontalRounded } from "react-icons/bi";
 import { RiAccountBoxLine } from "react-icons/ri";
-import { FaUserCheck } from "react-icons/fa";
+import { FaUserCheck, FaChevronCircleRight } from "react-icons/fa";
 import { MdGridOn } from "react-icons/md";
 
 const OtherProfile = () => {
@@ -39,6 +44,7 @@ const OtherProfile = () => {
 		(state) => state.modal.similarAccount_modal,
 	);
 	const [Isfollowing, SetIsFollowing] = useState(false);
+	const [recomAccountbtn, SetRecomAccountbtn] = useState(false);
 
 	const show_postModal = () => {
 		dispatch(modal_check());
@@ -54,6 +60,10 @@ const OtherProfile = () => {
 
 	const show_similarAccount_modal = () => {
 		dispatch(similarAccount_modal_check());
+	};
+
+	const show_recomAccountbtn = () => {
+		SetRecomAccountbtn(!recomAccountbtn);
 	};
 
 	return (
@@ -77,12 +87,26 @@ const OtherProfile = () => {
 										<span className="otherProfile_header_sengMsg">
 											메세지 보내기
 										</span>
+
 										<span className="otherProfile_header_askFollowing">
 											<FaUserCheck />
 										</span>
-										<span className="otherProfile_header_moreBtn">
-											<FiChevronDown />
-										</span>
+										{recomAccountbtn ? (
+											<span
+												className="otherProfile_header_moreBtnOn"
+												onClick={show_recomAccountbtn}
+											>
+												<FiChevronUp />
+											</span>
+										) : (
+											<span
+												className="otherProfile_header_moreBtnOff"
+												onClick={show_recomAccountbtn}
+											>
+												<FiChevronDown />
+											</span>
+										)}
+
 										<BiDotsHorizontalRounded
 											onClick={show_postModal}
 											className="otherProfile_settings"
@@ -94,9 +118,21 @@ const OtherProfile = () => {
 										<span className="otherProfile_header_following">
 											팔로우
 										</span>
-										<span className="otherProfile_header_moreBtn">
-											<FiChevronDown />
-										</span>
+										{recomAccountbtn ? (
+											<span
+												className="otherProfile_header_moreBtnOn"
+												onClick={show_recomAccountbtn}
+											>
+												<FiChevronUp />
+											</span>
+										) : (
+											<span
+												className="otherProfile_header_moreBtnOff"
+												onClick={show_recomAccountbtn}
+											>
+												<FiChevronDown />
+											</span>
+										)}
 										<BiDotsHorizontalRounded
 											onClick={show_postModal}
 											className="otherProfile_settings"
@@ -146,99 +182,91 @@ const OtherProfile = () => {
 							</div>
 						</div>
 
-						<div className="otherProfile_header_hiddenBox">
-							<div className="otherProfile_recomBox">
-								<span className="otherProfile_recomBox_title">추천 계정</span>
-								<a
-									className="otherProfile_recomBox_allBtn"
-									onClick={show_similarAccount_modal}
-								>
-									모두 보기
-								</a>
-							</div>
-							<div className="otherProfile_recomBox_eachBox">
-								<div className="otherProfile_recomBox_each">
-									<ul>
-										<li>
-											<div className="otherProfile_recomBox_exit">
-												<button>X</button>
-												<div className="otherProfile_recomBox_userBox">
-													<div className="otherProfile_recomBox_pp">
-														<img src={pp} alt="profile"></img>
-													</div>
-													<div className="otherProfile_recomBox_Id">
-														testtest
-													</div>
-													<div className="otherProfile_recomBox_name">
-														nickname
-													</div>
-													<button className="otherProfile_recomBox_btn">
-														팔로우
+						{recomAccountbtn && (
+							<div className="otherProfile_header_hiddenBox">
+								<div className="otherProfile_recomBox">
+									<span className="otherProfile_recomBox_title">추천 계정</span>
+									<a
+										className="otherProfile_recomBox_allBtn"
+										onClick={show_similarAccount_modal}
+									>
+										모두 보기
+									</a>
+								</div>
+								<div className="otherProfile_recomBox_eachBox">
+									<div className="otherProfile_recomBox_each">
+										<ul>
+											<li>
+												<div className="otherProfile_recomBox_exit">
+													<button className="otherProfile_recomBox_removeBtn">
+														X
 													</button>
+													<div className="otherProfile_recomBox_userBox">
+														<div className="otherProfile_recomBox_pp">
+															<img src={pp} alt="profile"></img>
+														</div>
+														<div className="otherProfile_recomBox_Id">
+															testtest
+														</div>
+														<div className="otherProfile_recomBox_name">
+															nickname
+														</div>
+														<button className="otherProfile_recomBox_btn">
+															팔로우
+														</button>
+													</div>
 												</div>
-											</div>
-										</li>
-										<li>
-											<div className="otherProfile_recomBox_exit">
-												<button>X</button>
-												<div className="otherProfile_recomBox_userBox">
-													<div className="otherProfile_recomBox_pp">
-														<img src={pp} alt="profile"></img>
-													</div>
-													<div className="otherProfile_recomBox_Id">
-														testtest
-													</div>
-													<div className="otherProfile_recomBox_name">
-														nickname
-													</div>
-													<button className="otherProfile_recomBox_btn">
-														팔로우
+											</li>
+											<li>
+												<div className="otherProfile_recomBox_exit">
+													<button className="otherProfile_recomBox_removeBtn">
+														X
 													</button>
+													<div className="otherProfile_recomBox_userBox">
+														<div className="otherProfile_recomBox_pp">
+															<img src={pp} alt="profile"></img>
+														</div>
+														<div className="otherProfile_recomBox_Id">
+															testtest
+														</div>
+														<div className="otherProfile_recomBox_name">
+															nickname
+														</div>
+														<button className="otherProfile_recomBox_btn">
+															팔로우
+														</button>
+													</div>
 												</div>
-											</div>
-										</li>
-										<li>
-											<div className="otherProfile_recomBox_exit">
-												<button>X</button>
-												<div className="otherProfile_recomBox_userBox">
-													<div className="otherProfile_recomBox_pp">
-														<img src={pp} alt="profile"></img>
-													</div>
-													<div className="otherProfile_recomBox_Id">
-														testtest
-													</div>
-													<div className="otherProfile_recomBox_name">
-														nickname
-													</div>
-													<button className="otherProfile_recomBox_btn">
-														팔로우
+											</li>
+											<li>
+												<div className="otherProfile_recomBox_exit">
+													<button className="otherProfile_recomBox_removeBtn">
+														X
 													</button>
+													<div className="otherProfile_recomBox_userBox">
+														<div className="otherProfile_recomBox_pp">
+															<img src={pp} alt="profile"></img>
+														</div>
+														<div className="otherProfile_recomBox_Id">
+															testtest
+														</div>
+														<div className="otherProfile_recomBox_name">
+															nickname
+														</div>
+														<button className="otherProfile_recomBox_btn">
+															팔로우
+														</button>
+													</div>
 												</div>
-											</div>
-										</li>
-										<li>
-											<div className="otherProfile_recomBox_exit">
-												<button>X</button>
-												<div className="otherProfile_recomBox_userBox">
-													<div className="otherProfile_recomBox_pp">
-														<img src={pp} alt="profile"></img>
-													</div>
-													<div className="otherProfile_recomBox_Id">
-														testtest
-													</div>
-													<div className="otherProfile_recomBox_name">
-														nickname
-													</div>
-													<button className="otherProfile_recomBox_btn">
-														팔로우
-													</button>
-												</div>
-											</div>
-										</li>
-									</ul>
+											</li>
+										</ul>
+									</div>
+									<button className="otherProfile_recomBox_moreBtn">
+										<FaChevronCircleRight size={23} />
+									</button>
 								</div>
 							</div>
-						</div>
+						)}
 
 						<div className="otherProfile_post_dir" role="tablist">
 							<a href="/profile/" role="tab" tabindex="0">

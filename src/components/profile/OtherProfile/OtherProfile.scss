@@ -15,17 +15,18 @@
 			padding: 30px 20px 0 20px;
 
 			.otherProfile_header {
-				justify-content: center;
+				justify-content: left;
 				display: flex;
-				width: 80%;
+				width: 882px;
 				height: 15%;
 				margin: auto;
+				margin-bottom: 20px;
 
 				.otherProfile_header_pp {
 					justify-content: center;
 					text-align: center;
-					width: 25%;
-					// text-align: center;
+					width: 23%;
+					margin-right: 35px;
 
 					& > img {
 						width: 150px;
@@ -36,7 +37,7 @@
 
 				.otherProfile_header_main {
 					justify-content: center;
-					width: 45%;
+					width: 55%;
 
 					.otherProfile_header_top {
 						display: flex;
@@ -97,7 +98,24 @@
 							line-height: 30px;
 						}
 
-						.otherProfile_header_moreBtn {
+						.otherProfile_header_moreBtnOn {
+							height: 30px;
+							width: 40px;
+							color: $instaGray;
+							font-weight: bold;
+							text-align: center;
+							border: 1px solid #c7c7c7;
+							background-color: $instaBlue;
+							border-radius: 3px;
+							margin-right: 20px;
+							margin-top: 6px;
+							cursor: pointer;
+							@include fontSize("large");
+							line-height: 35px;
+							opacity: 0.7;
+						}
+
+						.otherProfile_header_moreBtnOff {
 							height: 30px;
 							width: 40px;
 							color: $instaGray;
@@ -164,9 +182,10 @@
 
 			.otherProfile_storiesBox {
 				display: flex;
-				width: 80%;
 				height: 10%;
-				justify-content: center;
+				width: 882px;
+				justify-content: left;
+				padding: 0 10px;
 				margin: auto;
 
 				.otherProfile_stories {
@@ -174,12 +193,12 @@
 					display: flex;
 					width: 70%;
 					height: 15%;
-					margin-bottom: 40px;
+					margin-bottom: 30px;
 					margin-right: 35px;
 
 					.otherProfile_story {
 						height: 100%;
-						margin: 30px 30px 20px 0;
+						margin: 30px 40px 20px 0;
 
 						.otherProfile_storyBox {
 							margin: auto;
@@ -211,9 +230,10 @@
 
 			.otherProfile_header_hiddenBox {
 				width: 882px;
-				height: 245px;
-				margin: 30px auto;
+				height: 235px;
+				margin: 10px auto 30px auto;
 				padding: 20px;
+				background-color: $instaWhite;
 				border: 1px solid $instaGray;
 				border-radius: 4px;
 
@@ -257,7 +277,7 @@
 									border: 1px solid $instaGray;
 									border-radius: 4px;
 
-									& > button {
+									.otherProfile_recomBox_removeBtn {
 										width: 20px;
 										height: 35px;
 										background: 0 0;
@@ -307,15 +327,24 @@
 							}
 						}
 					}
+					.otherProfile_recomBox_moreBtn {
+						display: block;
+						background: 0;
+						overflow: hidden;
+						padding: 16px 8px;
+						border: none;
+						cursor: pointer;
+						right: 0;
+						color: $instaMenuGray;
+					}
 				}
 			}
 
 			.otherProfile_post_dir {
 				display: flex;
-				width: 100%;
-				text-align: center;
-				align-items: center;
+				width: 920px;
 				justify-content: center;
+				margin: auto;
 				border-top: 1px solid $instaGray;
 
 				& > a {
