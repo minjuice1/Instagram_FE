@@ -1,5 +1,10 @@
 import { React, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import ProfileVideo from "../CommonProfile/ProfileVideo";
+import ProfilePosts from "../CommonProfile/ProfilePosts";
+import ProfileTagged from "../CommonProfile/ProfileTagged";
 
 // 모달
 import {
@@ -29,12 +34,15 @@ import { FaUserCheck, FaChevronCircleRight } from "react-icons/fa";
 import { MdGridOn } from "react-icons/md";
 
 const OtherProfile = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	const [posts, SetPosts] = useState();
-	const [video, SetVideo] = useState();
-	const [saved, SetSaved] = useState();
-	const [tagged, SetTagged] = useState();
+	const [ClickedPosts, setClickedPosts] = useState();
+	const [ClickedVideo, setClickedVideo] = useState();
+	const [ClickedTagged, setClickedTagged] = useState();
+	const [posts, SetPosts] = useState(true);
+	const [video, SetVideo] = useState(true);
+	const [tagged, SetTagged] = useState(true);
 
 	// 프로필 편집, 팔로워, 팔로우 모달
 	const is_modal = useSelector((state) => state.modal.is_modal);
@@ -44,7 +52,6 @@ const OtherProfile = () => {
 		(state) => state.modal.similarAccount_modal,
 	);
 	const [Isfollowing, SetIsFollowing] = useState(false);
-	const [recomAccountbtn, SetRecomAccountbtn] = useState(false);
 
 	const show_postModal = () => {
 		dispatch(modal_check());
@@ -62,8 +69,33 @@ const OtherProfile = () => {
 		dispatch(similarAccount_modal_check());
 	};
 
+	// 추천 계정
+	const [recomAccountbtn, SetRecomAccountbtn] = useState(false);
+
 	const show_recomAccountbtn = () => {
 		SetRecomAccountbtn(!recomAccountbtn);
+	};
+
+	// 게시물, 동영상, 태그됨
+	const postsClickHandler = (event) => {
+		SetPosts(true);
+		setClickedPosts(!ClickedPosts);
+		setClickedVideo(false);
+		setClickedTagged(false);
+	};
+
+	const videoClickHandler = (event) => {
+		SetVideo(true);
+		setClickedVideo(!ClickedVideo);
+		setClickedPosts(false);
+		setClickedTagged(false);
+	};
+
+	const taggedClickHandler = (event) => {
+		SetTagged(true);
+		setClickedTagged(!ClickedTagged);
+		setClickedPosts(false);
+		setClickedVideo(false);
 	};
 
 	return (
@@ -269,49 +301,123 @@ const OtherProfile = () => {
 						)}
 
 						<div className="otherProfile_post_dir" role="tablist">
-							<a href="/profile/" role="tab" tabindex="0">
-								<span className="otherProfile_post_posts" value={posts}>
-									<MdGridOn /> 게시물
-								</span>
-							</a>
-							<a href="/profile/channel" role="tab" tabindex="0">
-								<span className="otherProfile_post_video" value={video}>
-									<FiPlayCircle /> 동영상
-								</span>
-							</a>
-							<a href="/profile/saved" role="tab" tabindex="0">
-								<span className="otherProfile_post_saved" value={saved}>
-									<BiBookmark /> 저장됨
-								</span>
-							</a>
-							<a href="/profile/tagged" role="tab" tabindex="0">
-								<span className="otherProfile_post_tagged" value={tagged}>
-									<RiAccountBoxLine /> 태그됨
-								</span>
-							</a>
+							{ClickedPosts ? (
+								<a
+									className="otherProfile_post_clicked"
+									role="tab"
+									tabindex="0"
+								>
+									<span value={posts}>
+										<Link
+											to={"/otherprofile/"}
+											className="otherProfile_post_clickOn"
+											onClick={postsClickHandler}
+										>
+											<MdGridOn /> 게시물
+										</Link>
+									</span>
+								</a>
+							) : (
+								<a
+									className="otherProfile_post_unclicked"
+									role="tab"
+									tabindex="0"
+								>
+									<span value={posts}>
+										<Link
+											to={"/otherprofile/"}
+											className="otherProfile_post_clickOff"
+											onClick={postsClickHandler}
+										>
+											<MdGridOn /> 게시물
+										</Link>
+									</span>
+								</a>
+							)}
+
+							{ClickedVideo ? (
+								<a
+									className="otherProfile_post_clicked"
+									role="tab"
+									tabindex="0"
+								>
+									<span value={video}>
+										<Link
+											to={"/otherprofile/channel"}
+											className="otherProfile_post_clickOn"
+											onClick={videoClickHandler}
+										>
+											<FiPlayCircle /> 동영상
+										</Link>
+									</span>
+								</a>
+							) : (
+								<a
+									className="otherProfile_post_unclicked"
+									role="tab"
+									tabindex="0"
+								>
+									<span value={video}>
+										<Link
+											to={"/otherprofile/channel"}
+											className="otherProfile_post_clickOff"
+											onClick={videoClickHandler}
+										>
+											<FiPlayCircle /> 동영상
+										</Link>
+									</span>
+								</a>
+							)}
+
+							{ClickedTagged ? (
+								<a
+									className="otherProfile_post_clicked"
+									role="tab"
+									tabindex="0"
+								>
+									<span value={tagged}>
+										<Link
+											to={"/otherprofile/tagged"}
+											className="otherProfile_post_clickOn"
+											onClick={taggedClickHandler}
+										>
+											<RiAccountBoxLine /> 태그됨
+										</Link>
+									</span>
+								</a>
+							) : (
+								<a
+									className="otherProfile_post_unclicked"
+									role="tab"
+									tabindex="0"
+								>
+									<span value={tagged}>
+										<Link
+											to={"/otherprofile/tagged"}
+											className="otherProfile_post_clickOff"
+											onClick={taggedClickHandler}
+										>
+											<RiAccountBoxLine /> 태그됨
+										</Link>
+									</span>
+								</a>
+							)}
 						</div>
-						<div className="otherProfile_postsBox">
-							<div className="otherProfile_postList">
-								<div className="otherProfile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="otherProfile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="otherProfile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="otherProfile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="otherProfile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="otherProfile_post">
-									<img src={recomtest} />
-								</div>
+						{video && (
+							<div className="otherProfile_postsBox">
+								<ProfileVideo />
 							</div>
-						</div>
+						)}
+						{posts && (
+							<div className="otherProfile_postsBox">
+								<ProfilePosts />
+							</div>
+						)}
+						{tagged && (
+							<div className="otherProfile_postsBox">
+								<ProfileTagged />
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

@@ -14,6 +14,10 @@ import PostDetail from "./components/Post/PostCard/PostDetail";
 import Profile from "./components/profile/Myprofile/Profile";
 import OtherProfile from "./components/profile/OtherProfile/OtherProfile";
 import { useDispatch, useSelector } from "react-redux";
+import Profilevideo from "./components/profile/CommonProfile/ProfileVideo";
+import ProfileTagged from "./components/profile/CommonProfile/ProfileTagged";
+import ProfilePosts from "./components/profile/CommonProfile/ProfilePosts";
+import ProfileVideo from "./components/profile/CommonProfile/ProfileVideo";
 
 function App() {
 	const dispatch = useDispatch();
@@ -130,6 +134,24 @@ function App() {
 					/>
 					<Route
 						path="/otherprofile"
+						element={
+							<RequireAuth redirectTo="/login">
+								{" "}
+								<OtherProfile />{" "}
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/otherprofile/channel"
+						element={
+							<RequireAuth redirectTo="/login">
+								{" "}
+								<OtherProfile />{" "}
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/otherprofile/tagged"
 						element={
 							<RequireAuth redirectTo="/login">
 								{" "}

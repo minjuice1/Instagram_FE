@@ -347,7 +347,25 @@
 				margin: auto;
 				border-top: 1px solid $instaGray;
 
-				& > a {
+				.otherProfile_post_clicked {
+					display: flex;
+					width: 65px;
+					height: 52px;
+					line-height: 48px;
+					margin-right: 65px;
+					color: $instaMenuBlack;
+					@include fontSize("normal");
+					font-weight: 550;
+					text-decoration: none;
+					text-align: center;
+					letter-spacing: 0.5px;
+					cursor: pointer;
+					align-items: center;
+					justify-content: center;
+					border-top: 1px solid $instaMenuGray;
+				}
+
+				.otherProfile_post_unclicked {
 					display: flex;
 					width: 65px;
 					height: 52px;
@@ -362,7 +380,17 @@
 					cursor: pointer;
 					align-items: center;
 					justify-content: center;
-					border-top: 1px solid $instaMenuGray;
+					border-top: 1px solid $instaGray;
+				}
+
+				.otherProfile_post_clickOn {
+					color: $instaMenuBlack;
+					text-decoration: none;
+				}
+
+				.otherProfile_post_clickOff {
+					color: $instaMenuGray;
+					text-decoration: none;
 				}
 			}
 
