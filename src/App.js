@@ -18,17 +18,12 @@ import {useDispatch, useSelector} from "react-redux";
 
 function App() {
 	const dispatch = useDispatch();
-		const is_login = useSelector(state=> state.user.isLogin);
+
 		const token = localStorage.getItem("user");
-
-
-
-
-		// useEffect(() => {
-		// 	if(token)
-		// 	{dispatch(loginCheck());}
-		// },[token]);
 	const write_modal = useSelector(state => state.modal.add_modal);
+	const a = useSelector(state=>state);
+	console.log(a);
+
 
 
 		

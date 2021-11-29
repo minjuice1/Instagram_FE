@@ -36,13 +36,15 @@ const Home = () => {
 								writer={post.writer}
 								postId={post._id}
 								postImage={post.imageUrl}
+								isLike={post.isLike}
 							/>
 						))}
 					</div>
-					{is_modal && <PostModal />}
+
 					<div className="Main_side">
 						<HomeSide />
 					</div>
+					{is_modal && <PostModal />}
 				</div>
 			</div>
 		</>
