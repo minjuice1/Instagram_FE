@@ -11,6 +11,7 @@ import Recommendation from "./components/Page/Recommendation/Recommendation";
 import DirectMessage from "./components/Page/DirectMessage/DirectMessage";
 import AddPost from "./components/Post/PostWrite/AddPost";
 import PostDetail from "./components/Post/PostCard/PostDetail";
+import Profile from "./components/profile/Myprofile/Profile";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
@@ -122,7 +123,7 @@ function App() {
 						element={
 							<RequireAuth redirectTo="/login">
 								{" "}
-								<DirectMessage />{" "}
+								<Profile />{" "}
 							</RequireAuth>
 						}
 					/>
