@@ -1,6 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
-import {Navigate} from "react-router-dom";
+import {history} from "../../history";
+
+
+
 
 export const singUp = createAsyncThunk(
   "user/signup",
@@ -39,10 +42,9 @@ export const login = createAsyncThunk(
       }).then(response => {
         const accessToken = response.data.token;
         localStorage.setItem("user", accessToken);
-        // if(response.data.ok){
-        //   const navigate = useNavigate();
-        //   navigate("/")
-        // }
+        if(response.data.ok){
+          history.push({ pathname: '/home'});
+        }
       })
       return response;
     }catch (e) {
@@ -60,6 +62,7 @@ export const logout = createAsyncThunk(
   "user/logout",
   async (data, thunkAPI) => {
     localStorage.removeItem("user");
+    history.push({ pathname: '/login'});
   }
 
 );

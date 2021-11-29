@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { modal_check } from "../../../redux/modal/modalSlice";
+import { modal_check } from "../../redux/modal/modalSlice";
 
-import {addComment} from "../../../redux/post/comment";
+import {addComment} from "../../redux/post/comment";
 
-import PostModal from "../PostModal/PostModal";
+import PostModal from "./PostModal/PostModal";
 import "./PostDetail.scss";
-import detailpicture from "../../../image/detailpicture.png";
-import pp from "../../../image/profile.jpg";
+import detailpicture from "../../image/detailpicture.png";
+import pp from "../../image/profile.jpg";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import InputEmoji from "react-input-emoji";
-import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
+import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../common/IconImage";
 
 const PostDetail = ({ contents, createdAt, writer }) => {
 	const dispatch = useDispatch();

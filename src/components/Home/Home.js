@@ -5,12 +5,12 @@ import HomeSide from "./Side/HomeSide";
 import "./Home.scss";
 import HomeStory from "./HomeStory/HomeStory";
 import { useDispatch, useSelector } from "react-redux";
-import { getPost } from "../../redux/post/post";
 import PostModal from "../Post/PostModal/PostModal";
-import AddPost from "../Post/PostWrite/AddPost";
+import { getPost } from "../../redux/post/post";
 
 const Home = () => {
 	const dispatch = useDispatch();
+
 
 	useEffect(() => {
 		dispatch(getPost());
@@ -19,11 +19,11 @@ const Home = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const post_data = useSelector((state) => state.post.posts);
 
+	console.log(post_data)
+
+
 	return (
 		<>
-
-
-
 			<div className="container">
 				<div className="Main">
 					<div className="Main_post">
@@ -37,6 +37,8 @@ const Home = () => {
 								postId={post._id}
 								postImage={post.imageUrl}
 								isLike={post.isLike}
+								comments={post.comments}
+								commentIsAllowed={post.commentIsAllowed}
 							/>
 						))}
 					</div>

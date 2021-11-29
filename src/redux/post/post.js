@@ -1,6 +1,8 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
-import {useNavigate} from "react-router";
+import {history} from "../../history";
+
+
 
 export const addPost = createAsyncThunk(
   "post/write",
@@ -11,6 +13,7 @@ export const addPost = createAsyncThunk(
         url: `/post`,
         method: "POST",
         data: formData,
+
         headers: {
           Authorization: `Bearer ${AccessToken}`,
         }
@@ -41,7 +44,6 @@ export const getPost = createAsyncThunk(
     } catch (e) {
 
       alert("로그인을 다시해주세요")
-
       return false;
     }
   }
@@ -49,24 +51,29 @@ export const getPost = createAsyncThunk(
 
 export const deletePost = createAsyncThunk(
   "post/deletePost",
-  async(data, thunkAPI) => {
+  async({postId}, thunkAPI) => {
     const AccessToken = localStorage.getItem("user")
-    console.log(AccessToken);
     try {
       const response = await Api({
-        url: `/post/:postId`,
+        url: `/post/${postId}`,
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${AccessToken}`,
         }
       })
-      console.log(response)
+      if(response.data.ok){
+        history.push({ pathname: '/home'});
+        return postId;
+      }
+
       return response;
     }catch (e){
       console.log("삭제에러")
     }
   }
 )
+
+
 
 //좋아요
 export const likePost = createAsyncThunk(
