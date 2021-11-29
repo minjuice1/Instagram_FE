@@ -18,7 +18,6 @@
 
 .profile_img {
  display: flex;
-
  & > div {
   margin-top: 15px;
   @include fontSize('large');
@@ -26,23 +25,30 @@
   color: $instaMenuBlack;
  }
 }
+
+//포스트 아이디 댓글 아이디 모두 글씨style적용
+.post_user_id {
+ @include fontSize('large');
+ font-weight: bold;
+ color: $instaMenuBlack;
+}
+
 .post_user_image {
  width: 28px;
  margin: 10px;
 }
 .profile_img_dot{
  cursor: pointer;
- margin-left: 82%
+ margin-left: 82%;
+ & >img {
+  width: 13px;
+
+  margin-bottom: 2px;
+ }
 }
 
-.profile_img_dot >img {
- width: 13px;
-
- margin-bottom: 2px;
-}
-
-.post_center > img{
- width: 100%;
+.post_center_image{
+ width: 10%;
  min-width: 485px;
 }
 
@@ -75,12 +81,14 @@
  margin-left: 10px;
 }
 
+//postGetComment 부분
 .post_one_comment{
  display: flex;
  justify-content: space-between;
-
- & > div:nth-child(2){
-  margin-left: -340px;
+ & > div >a:first-child{
+  @include fontSize('large');
+  font-weight: bold;
+  color: $instaMenuBlack;
  }
  & > img {
   margin-right: 10px;
@@ -108,15 +116,11 @@
  display: flex;
 }
 
-.post_user_id {
- @include fontSize('large');
- font-weight: bold;
- color: $instaMenuBlack;
-}
+
 
 .post_time{
  @include fontSize('small');
- margin: 5px 0 15px 0;
+ margin: 5px 0 15px 10px;
  color: $instaMenuGray;
 }
 
@@ -157,6 +161,10 @@
  .post_one_comment > div:nth-child(2){
   margin-left: -220px;
  }
+ .post_center_image{
+  max-width: 498px;
+ }
+
 
 }
 
@@ -164,10 +172,14 @@
  .post_cards{
   width: 480px;
  }
+
  .react-emoji > .react-emoji-picker--container{
   margin-left: -103px;
  }
  .post_one_comment > div:nth-child(2){
   margin-left: -220px;
+ }
+ .post_center_image{
+  max-width: 480px;
  }
 }

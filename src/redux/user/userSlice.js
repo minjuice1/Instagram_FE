@@ -1,21 +1,23 @@
-import { login } from "./user";
+import { login, logout } from "./user";
 import { createSlice } from "@reduxjs/toolkit";
+import {history} from "../../history";
 
 
 const userSlice = createSlice({
 	name: "user",
 	initialState: {
-		isLogin: "",
+		isLogin: false,
 	},
 	reducers: {
-		loginCheck: (state, payload ) => {
-			state.isLogin = !state.isLogin;
-		},
+
 	},
 	extraReducers: {
 		[login.fulfilled]: (state, action) => {
 			state.isLogin = true;
 		},
+		[logout.fulfilled]: (state, action) => {
+			state.isLogin = false;
+		}
 
 
 	},

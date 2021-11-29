@@ -8,25 +8,23 @@ import {
   text,
   dot,
   post_save,
-  comment_heart,
-  comment_red_heart,
 } from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
-import Picture from "../../../image/picture.png";
 
 import {modal_check} from "../../../redux/modal/modalSlice";
-import {useDispatch, useSelector} from "react-redux";
-import PostModal from "../PostModal/PostModal";
+import {useDispatch} from "react-redux";
 import PostComment from "./PostComment";
 import dompurify from "dompurify";
-import {addPost, likePost} from "../../../redux/post/post";
-import {post_like} from "../../../redux/post/postSlice";
+import {likePost, deletePost} from "../../../redux/post/post";
+import PostGetComment from "./PostGetComment";
 
 
-const PostCard = ({contents, createdAt, writer, postId, postImage, isLike}) => {
+const PostCard = ({contents, createdAt, writer, postId,
+                    postImage, isLike, comments, commentIsAllowed}) => {
 
   const dispatch = useDispatch();
+
 
 
   const sanitizer = dompurify.sanitize;
@@ -34,20 +32,10 @@ const PostCard = ({contents, createdAt, writer, postId, postImage, isLike}) => {
   let first_line = html_content.includes("<br/>");
   let first_content = html_content.split("<br/>");
 
-  //댓글 좋아요
-  const [commentLike, SetCommentLike] = useState(false);
-
 
   //포스트 좋아요
   const likes = isLike
   const [postLike, SetPostLike] = useState(likes);
-
-  //게시글 더보기
-  const [morePost, SetMorePost] = useState(false);
-
-  const morePostClickHandler = () => {
-    SetMorePost(!morePost);
-  }
 
   const postLikeClickHandler = () => {
     SetPostLike(!postLike);
@@ -58,19 +46,19 @@ const PostCard = ({contents, createdAt, writer, postId, postImage, isLike}) => {
 
   };
 
-  const post_like = useSelector(state => state.post_like);
-  console.log(post_like);
+  //게시글 더보기
+  const [morePost, SetMorePost] = useState(false);
 
-
-  const commentLikeClickHandler = () => {
-    SetCommentLike(!commentLike)
+  const morePostClickHandler = () => {
+    SetMorePost(!morePost);
   }
 
-  const show_postModal = () => {
-    dispatch(modal_check());
-  };
 
-  //글쓴 시간 계산.
+  // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
+  const get_comments = comments.slice(0-2);
+
+
+  //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
     const today = new Date();
     const nowTime = new Date(value);
@@ -96,19 +84,35 @@ const PostCard = ({contents, createdAt, writer, postId, postImage, isLike}) => {
 
   const time = displayTime(createdAt);
 
-  return (<>
+
+  const show_postModal = () => {
+    dispatch(modal_check());
+  };
+
+  const deleteClickHandler = () => {
+    dispatch(
+     deletePost({
+        postId,
+      }))
+  };
+
+
+  return (
+    <>
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
             <div className="profile_img">
               <img className="post_user_image" src={Profile_image}/>
-              <div>{writer[0].userId}</div>
+              <div className="post_user_id">{writer[0].userId}</div>
+              {/*임시 삭제버튼*/}
+              <div onClick={deleteClickHandler}>삭제</div>
               <div className="profile_img_dot" onClick={show_postModal}>
-                <img src={dot}/>
+               <img src={dot}/>
               </div>
             </div>
             <div className="post_center">
-              <img src={postImage}/>
+              <img className="post_center_image" src={postImage}/>
             </div>
             <div className="post_icon">
               <div className="footer_icon">
@@ -136,27 +140,20 @@ const PostCard = ({contents, createdAt, writer, postId, postImage, isLike}) => {
                     {" "}
                     {first_content[0]}
                     {first_line && (
-                      <span className="more_contents" onClick={morePostClickHandler}>
-												더 보기
-											</span>)}
+                      <span className="more_contents" onClick={morePostClickHandler}>더 보기</span>)}
                   </div>)}
               </div>
               <div>댓글 122개 모두 보기</div>
             </div>
-            <div className="post_comment">
-              <div className="post_one_comment">
-                <a className="post_user_id"> hyemin085</a>
-                <div>아ㅏㅏㅏㅏㅏㅏㅏㅏㅏ</div>
-                {commentLike ? (
-                    <img src={comment_red_heart} onClick={commentLikeClickHandler}/>) :
-                  (<img src={comment_heart} onClick={commentLikeClickHandler}/>)}
-              </div>
-              {/*<div className="post_one_comment"><a className="post_user_id"> poseson92</a><div>오우ㅜㅜㅜㅜㅜㅜㅜㅜ</div>*/}
-              {/*  {commentLike? <img src={comment_red_heart} onClick={commentLikeClickHandler}/> :  <img src={comment_heart} onClick={commentLikeClickHandler}/>}*/}
-              {/*</div>*/}
-              <div className="post_time">{time}</div>
-            </div>
-            <PostComment postId={postId}/>
+            {get_comments && get_comments.map((comment) => (
+              <PostGetComment contents ={comment.contents}
+                              postId={comment.postId}
+                              writer={comment.writer}/>
+             ))}
+            <div className="post_time">{time}</div>
+            {commentIsAllowed ? <PostComment postId={postId}/>:
+              <div>이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
+
           </div>
         </div>
       </div>
