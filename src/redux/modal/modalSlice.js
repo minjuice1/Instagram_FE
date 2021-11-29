@@ -15,12 +15,18 @@ export const followers_modal_check = createAsyncThunk(
 	async (data, thunkAPI) => {},
 );
 
+export const add_modal = createAsyncThunk(
+	"modal/add_modal",
+	async (data, thunkAPI) => {},
+);
+
 const modalSlice = createSlice({
 	name: "modal",
 	initialState: {
 		is_modal: false,
 		following_modal: false,
 		followers_modal: false,
+		add_modal: false,
 	},
 	reducers: {},
 	extraReducers: {
@@ -32,6 +38,9 @@ const modalSlice = createSlice({
 		},
 		[followers_modal_check.fulfilled]: (state, action) => {
 			state.followers_modal = !state.followers_modal;
+		},
+		[add_modal.fulfilled]: (state) => {
+			state.add_modal = !state.add_modal;
 		},
 	},
 });

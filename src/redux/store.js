@@ -12,6 +12,5 @@ export const store = configureStore({
 		modal: modalSlice,
 		post: postSlice.reducer,
 		user: userSlice.reducer,
-		comment: commentSlice.reducer,
 	},
 });

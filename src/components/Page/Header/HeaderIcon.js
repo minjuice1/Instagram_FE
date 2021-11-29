@@ -7,9 +7,13 @@ import {home, message, write, compass, heart, test, blackheart,
   blackhome, menu_setting, menu_save, menu_change, menu_profile,
 blackcompass}
   from "../../../common/IconImage";
+import {logout} from "../../../redux/user/user";
+import {useDispatch, useSelector} from "react-redux";
+import {add_modal} from "../../../redux/modal/modalSlice";
 
 const HeaderIcon = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [like, SetLike] = useState(false);
   const [myProfile, SetMyProfile] = useState(false);
@@ -77,6 +81,15 @@ const HeaderIcon = () => {
     navigate("/recom");
   }
 
+  const postWriteClickHandler = () => {
+    dispatch(add_modal());
+  }
+
+
+  const userLogoutClickHandler = () => {
+    dispatch(logout());
+  }
+
   return (
     <>
       <div className="header_icon">
@@ -85,7 +98,7 @@ const HeaderIcon = () => {
         <Link to = {"/message"}>
         <div className="nav_icon"><img src={message} alt="nav_icon"/></div>
         </Link>
-        <div className="nav_icon"><img src={write} alt="nav_icon"/></div>
+        <div className="nav_icon"><img src={write} alt="nav_icon" onClick={postWriteClickHandler}/></div>
         {compassIcon?  <div className="nav_icon"><img src={blackcompass} alt="nav_icon" onClick={recommendClickHandler}/></div> :
           <div className="nav_icon"><img src={compass} alt="nav_icon" onClick={recommendClickHandler}/></div>}
 
@@ -120,7 +133,7 @@ const HeaderIcon = () => {
               <div>계정전환</div>
             </div>
             <div className="profile_menu">
-              <div className="profile_logout">로그아웃</div>
+              <div className="profile_logout" onClick={userLogoutClickHandler}>로그아웃</div>
             </div>
           </div>}
         </div>
