@@ -12,6 +12,7 @@ import DirectMessage from "./components/Page/DirectMessage/DirectMessage";
 import AddPost from "./components/Post/PostWrite/AddPost";
 import PostDetail from "./components/Post/PostCard/PostDetail";
 import Profile from "./components/profile/Myprofile/Profile";
+import OtherProfile from "./components/profile/OtherProfile/OtherProfile";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
@@ -124,6 +125,15 @@ function App() {
 							<RequireAuth redirectTo="/login">
 								{" "}
 								<Profile />{" "}
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/otherprofile"
+						element={
+							<RequireAuth redirectTo="/login">
+								{" "}
+								<OtherProfile />{" "}
 							</RequireAuth>
 						}
 					/>

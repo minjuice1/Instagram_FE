@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { following_modal_check } from "../../../redux/modal/modalSlice";
-import "./FollowingModal.scss";
+import "./CommonFollowingModal.scss";
 import profile from "../../../image/profile.jpg";
 
 const FollowingModal = () => {

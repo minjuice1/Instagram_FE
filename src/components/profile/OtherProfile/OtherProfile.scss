@@ -1,0 +1,298 @@
+@import "./src/common/variables.scss";
+@import "./src/common/mixin";
+
+.otherProfile_all {
+	background-color: $backgroundGray;
+
+	.otherProfile_content {
+		display: flex;
+		width: 80vw;
+		margin: auto;
+
+		.otherProfile_profileBox {
+			height: 100%;
+			width: 100%;
+			padding: 30px 20px 0 20px;
+
+			.otherProfile_header {
+				justify-content: center;
+				display: flex;
+				width: 80%;
+				height: 15%;
+				margin: auto;
+
+				.otherProfile_header_pp {
+					justify-content: center;
+					text-align: center;
+					width: 25%;
+					// text-align: center;
+
+					& > img {
+						width: 150px;
+						height: 150px;
+						cursor: pointer;
+					}
+				}
+
+				.otherProfile_header_main {
+					justify-content: center;
+					width: 45%;
+
+					.otherProfile_header_top {
+						display: flex;
+						height: 25%;
+						margin-top: 10px;
+
+						& > span:first-child {
+							font-size: 28px;
+							font-weight: 300;
+							margin-right: 20px;
+							cursor: pointer;
+						}
+
+						.otherProfile_header_sengMsg {
+							height: 30px;
+							width: 125px;
+							font-weight: bold;
+							text-align: center;
+							border: 1px solid #c7c7c7;
+							background-color: #ffffff;
+							border-radius: 4px;
+							margin-right: 10px;
+							margin-top: 6px;
+							cursor: pointer;
+							@include fontSize("large");
+							line-height: 30px;
+						}
+
+						.otherProfile_header_askFollowing {
+							height: 30px;
+							width: 74px;
+							color: $instaWhite;
+							font-weight: bold;
+							text-align: center;
+							border: 1px solid #c7c7c7;
+							background-color: $instaWhite;
+							border-radius: 3px;
+							margin-right: 10px;
+							margin-top: 6px;
+							cursor: pointer;
+							@include fontSize("large");
+							line-height: 30px;
+						}
+
+						.otherProfile_header_following {
+							height: 30px;
+							width: 92px;
+							color: $instaWhite;
+							font-weight: bold;
+							text-align: center;
+							border: 1px solid #c7c7c7;
+							background-color: $instaBlue;
+							border-radius: 3px;
+							margin-right: 10px;
+							margin-top: 6px;
+							cursor: pointer;
+							@include fontSize("large");
+							line-height: 30px;
+						}
+
+						.otherProfile_header_moreBtn {
+							height: 30px;
+							width: 40px;
+							color: $instaGray;
+							font-weight: bold;
+							text-align: center;
+							border: 1px solid #c7c7c7;
+							background-color: $instaBlue;
+							border-radius: 3px;
+							margin-right: 20px;
+							margin-top: 6px;
+							cursor: pointer;
+							@include fontSize("large");
+							line-height: 35px;
+						}
+
+						.otherProfile_settings {
+							width: 30px;
+							height: 30px;
+							margin-top: 5px;
+							cursor: pointer;
+						}
+					}
+
+					.otherProfile_header_mid {
+						width: 100%;
+						height: 30%;
+						margin: 5px 0;
+
+						& > span {
+							line-height: 50px;
+							margin-right: 40px;
+
+							& > span {
+								@include fontSize("biglarge");
+								font-weight: bold;
+							}
+						}
+
+						& > span:nth-child(2) {
+							cursor: pointer;
+						}
+
+						& > span:nth-child(3) {
+							cursor: pointer;
+						}
+					}
+
+					.otherProfile_header_bottom {
+						width: 100%;
+						height: auto;
+						@include fontSize("normal");
+						font-weight: 600;
+					}
+				}
+			}
+
+			.otherProfile_storiesBox {
+				display: flex;
+				width: 80%;
+				height: 10%;
+				justify-content: center;
+				margin: auto;
+
+				.otherProfile_stories {
+					text-align: center;
+					display: flex;
+					width: 70%;
+					height: 15%;
+					margin-bottom: 40px;
+					margin-right: 35px;
+
+					.otherProfile_story {
+						height: 100%;
+						margin: 30px 30px 20px 0;
+
+						.otherProfile_storyBox {
+							margin: auto;
+							width: 80px;
+							height: 50%;
+							cursor: pointer;
+
+							& > img {
+								width: 77px;
+								height: 77px;
+							}
+						}
+
+						.otherProfile_storyName {
+							margin-top: 5px;
+							text-align: center;
+							width: 100%;
+							height: auto;
+							color: #262626;
+							font-weight: 600;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							white-space: nowrap;
+							cursor: pointer;
+						}
+					}
+				}
+			}
+
+			.otherProfile_header_hiddenBox {
+				width: 882px;
+				height: 245px;
+				margin: 30px auto;
+				padding: 20px;
+				border: 1px solid blue;
+
+				.otherProfile_recomBox {
+					display: flex;
+					@include fontSize("large");
+					font-weight: 600;
+					margin-bottom: 12px;
+					.otherProfile_recomBox_title {
+						width: 90%;
+						color: $instaMenuGray;
+					}
+					.otherProfile_recomBox_allBtn {
+						width: 10%;
+						color: $instaBlue;
+						text-align: right;
+					}
+				}
+
+				.otherProfile_recomBox_eachBox {
+					display: flex;
+					height: 208px;
+					border: 1px solid black;
+					.otherProfile_recomBox_each {
+						height: 100%;
+						width: 100%;
+						overflow-y: auto;
+						overflow-x: hidden;
+						.otherProfile_recomBox_exit {
+							.otherProfile_recomBox_userBox {
+								.otherProfile_recomBox_userInfo {
+									.otherProfile_recomBox_Id {
+									}
+
+									.otherProfile_recomBox_name {
+									}
+								}
+								.otherProfile_recomBox_btn {
+								}
+							}
+						}
+					}
+				}
+			}
+
+			.otherProfile_post_dir {
+				display: flex;
+				width: 100%;
+				text-align: center;
+				align-items: center;
+				justify-content: center;
+				border-top: 1px solid $instaGray;
+
+				& > a {
+					display: flex;
+					width: 65px;
+					height: 52px;
+					line-height: 48px;
+					margin-right: 65px;
+					color: $instaMenuGray;
+					@include fontSize("normal");
+					font-weight: 550;
+					text-decoration: none;
+					text-align: center;
+					letter-spacing: 0.5px;
+					cursor: pointer;
+					align-items: center;
+					justify-content: center;
+					border-top: 1px solid $instaMenuGray;
+				}
+			}
+
+			.otherProfile_postsBox {
+				width: 100%;
+
+				.otherProfile_postList {
+					display: grid;
+					grid-template-columns: repeat(3, minmax(20px, max-content));
+					grid-template-rows: repeat(8, 1fr);
+					gap: 25px;
+					justify-content: center;
+
+					.otherProfile_post {
+						display: block;
+						overflow: hidden;
+					}
+				}
+			}
+		}
+	}
+}
