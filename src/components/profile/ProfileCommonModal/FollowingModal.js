@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { following_modal_check } from "../../../../redux/modal/modalSlice";
+import { following_modal_check } from "../../../redux/modal/modalSlice";
 import "./FollowingModal.scss";
+import profile from "../../../image/profile.jpg";
 
-const ProfileModal = () => {
+const FollowingModal = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -69,39 +70,10 @@ const ProfileModal = () => {
 							<ul>
 								<div>
 									<li>
-										<div className="following_pp"></div>
-										<div className="following_userInfo">
-											<div className="following_userId">testtest</div>
-											<div className="following_status">상태메세지</div>
+										<div className="following_pp">
+											<img src={profile} alt="pp"></img>
+											<div className="commonProfile_modal"></div>
 										</div>
-										<button className="following_button">팔로잉</button>
-									</li>
-									<li>
-										<div className="following_pp"></div>
-										<div className="following_userInfo">
-											<div className="following_userId">testtest</div>
-											<div className="following_status">상태메세지</div>
-										</div>
-										<button className="following_button">팔로잉</button>
-									</li>
-									<li>
-										<div className="following_pp"></div>
-										<div className="following_userInfo">
-											<div className="following_userId">testtest</div>
-											<div className="following_status">상태메세지</div>
-										</div>
-										<button className="following_button">팔로잉</button>
-									</li>
-									<li>
-										<div className="following_pp"></div>
-										<div className="following_userInfo">
-											<div className="following_userId">testtest</div>
-											<div className="following_status">상태메세지</div>
-										</div>
-										<button className="following_button">팔로잉</button>
-									</li>
-									<li>
-										<div className="following_pp"></div>
 										<div className="following_userInfo">
 											<div className="following_userId">testtest</div>
 											<div className="following_status">상태메세지</div>
@@ -119,4 +91,4 @@ const ProfileModal = () => {
 	);
 };
 
-export default ProfileModal;
+export default FollowingModal;

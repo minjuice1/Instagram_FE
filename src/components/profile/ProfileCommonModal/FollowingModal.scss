@@ -1,5 +1,5 @@
-@import "../../../../common/variables";
-@import "../../../../common/mixin";
+@import "../../../common/variables";
+@import "../../../common/mixin";
 
 .following_modalBox {
 	width: 400px;
@@ -11,7 +11,7 @@
 	position: absolute;
 	background: $instaWhite;
 	margin: 20px;
-	overflow: hidden;
+	// overflow: hidden;
 
 	.following_modal {
 		max-height: 100%;
@@ -152,6 +152,18 @@
 	right: 0;
 	background-color: rgba(0, 0, 0, 0.6);
 	z-index: 99;
+}
+.commonProfile_modal {
+	width: 400px;
+	max-height: 400px;
+	min-height: 200px;
+	border: 1px solid $instaGray;
+	border-radius: 15px;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+	position: absolute;
+	background: $instaWhite;
+	margin: 20px;
+	overflow: hidden;
 }
 
 @include desktop {

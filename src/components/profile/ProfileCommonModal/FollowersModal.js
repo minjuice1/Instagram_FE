@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { followers_modal_check } from "../../../../redux/modal/modalSlice";
+import { followers_modal_check } from "../../../redux/modal/modalSlice";
 import "./FollowingModal.scss";
+import profile from "../../../image/profile.jpg";
 
-const ProfileModal = () => {
+const FollowersModal = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -27,7 +28,9 @@ const ProfileModal = () => {
 							<ul>
 								<div>
 									<li>
-										<div className="following_pp"></div>
+										<div className="following_pp">
+											<img src={profile} alt="pp" />
+										</div>
 										<div className="following_userInfo">
 											<div className="following_userId">testtest</div>
 											<div className="following_status">상태메세지</div>
@@ -35,7 +38,9 @@ const ProfileModal = () => {
 										<button className="following_button">삭제</button>
 									</li>
 									<li>
-										<div className="following_pp"></div>
+										<div className="following_pp">
+											<img src={profile} alt="pp" />
+										</div>
 										<div className="following_userInfo">
 											<div className="following_userId">testtest</div>
 											<div className="following_status">상태메세지</div>
@@ -43,7 +48,9 @@ const ProfileModal = () => {
 										<button className="following_button">삭제</button>
 									</li>
 									<li>
-										<div className="following_pp"></div>
+										<div className="following_pp">
+											<img src={profile} alt="pp" />
+										</div>
 										<div className="following_userInfo">
 											<div className="following_userId">testtest</div>
 											<div className="following_status">상태메세지</div>
@@ -51,7 +58,9 @@ const ProfileModal = () => {
 										<button className="following_button">삭제</button>
 									</li>
 									<li>
-										<div className="following_pp"></div>
+										<div className="following_pp">
+											<img src={profile} alt="pp" />
+										</div>
 										<div className="following_userInfo">
 											<div className="following_userId">testtest</div>
 											<div className="following_status">상태메세지</div>
@@ -59,7 +68,9 @@ const ProfileModal = () => {
 										<button className="following_button">삭제</button>
 									</li>
 									<li>
-										<div className="following_pp"></div>
+										<div className="following_pp">
+											<img src={profile} alt="pp" />
+										</div>
 										<div className="following_userInfo">
 											<div className="following_userId">testtest</div>
 											<div className="following_status">상태메세지</div>
@@ -77,4 +88,4 @@ const ProfileModal = () => {
 	);
 };
 
-export default ProfileModal;
+export default FollowersModal;

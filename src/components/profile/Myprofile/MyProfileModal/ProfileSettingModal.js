@@ -18,7 +18,7 @@ const ProfileModal = () => {
 	return (
 		<>
 			<div className="profile_modal_container">
-				<div className="profile_modal">
+				<div className="profile_setting_modal">
 					<div>비밀번호 변경</div>
 					<div>네임 태그</div>
 					<div>앱 및 웹사이트</div>

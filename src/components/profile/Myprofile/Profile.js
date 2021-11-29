@@ -8,8 +8,8 @@ import {
 	followers_modal_check,
 } from "../../../redux/modal/modalSlice";
 import ProfileSettingModal from "./MyProfileModal/ProfileSettingModal";
-import FollowingModal from "./MyProfileModal/FollowingModal";
-import FollowersModal from "./MyProfileModal/FollowersModal";
+import FollowingModal from "../ProfileCommonModal/FollowingModal";
+import FollowersModal from "../ProfileCommonModal/FollowersModal";
 
 // scss, icon, img
 import "./Profile.scss";
