@@ -121,6 +121,9 @@ const OtherProfile = () => {
 										팔로우 <span>999</span>
 									</span>
 								</ul>
+								<div className="otherProfile_header_name">
+									다른 사람 프로필 이름
+								</div>
 								<div className="otherProfile_header_bottom">
 									다른 사람 상태메세지
 								</div>
@@ -158,13 +161,77 @@ const OtherProfile = () => {
 									<ul>
 										<li>
 											<div className="otherProfile_recomBox_exit">
+												<button>X</button>
 												<div className="otherProfile_recomBox_userBox">
-													<div className="otherProfile_recomBox_userInfo">
-														<img></img>
-														<div className="otherProfile_recomBox_Id"></div>
-														<div className="otherProfile_recomBox_name"></div>
+													<div className="otherProfile_recomBox_pp">
+														<img src={pp} alt="profile"></img>
 													</div>
-													<div className="otherProfile_recomBox_btn"></div>
+													<div className="otherProfile_recomBox_Id">
+														testtest
+													</div>
+													<div className="otherProfile_recomBox_name">
+														nickname
+													</div>
+													<button className="otherProfile_recomBox_btn">
+														팔로우
+													</button>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div className="otherProfile_recomBox_exit">
+												<button>X</button>
+												<div className="otherProfile_recomBox_userBox">
+													<div className="otherProfile_recomBox_pp">
+														<img src={pp} alt="profile"></img>
+													</div>
+													<div className="otherProfile_recomBox_Id">
+														testtest
+													</div>
+													<div className="otherProfile_recomBox_name">
+														nickname
+													</div>
+													<button className="otherProfile_recomBox_btn">
+														팔로우
+													</button>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div className="otherProfile_recomBox_exit">
+												<button>X</button>
+												<div className="otherProfile_recomBox_userBox">
+													<div className="otherProfile_recomBox_pp">
+														<img src={pp} alt="profile"></img>
+													</div>
+													<div className="otherProfile_recomBox_Id">
+														testtest
+													</div>
+													<div className="otherProfile_recomBox_name">
+														nickname
+													</div>
+													<button className="otherProfile_recomBox_btn">
+														팔로우
+													</button>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div className="otherProfile_recomBox_exit">
+												<button>X</button>
+												<div className="otherProfile_recomBox_userBox">
+													<div className="otherProfile_recomBox_pp">
+														<img src={pp} alt="profile"></img>
+													</div>
+													<div className="otherProfile_recomBox_Id">
+														testtest
+													</div>
+													<div className="otherProfile_recomBox_name">
+														nickname
+													</div>
+													<button className="otherProfile_recomBox_btn">
+														팔로우
+													</button>
 												</div>
 											</div>
 										</li>
