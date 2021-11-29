@@ -1,13 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import "./PostCard.scss";
-import {post_heart, post_red_heart, message, text, dot, post_save, comment_heart, comment_red_heart,} from "../../../common/IconImage";
+import {
+  post_heart,
+  post_red_heart,
+  message,
+  text,
+  dot,
+  post_save,
+  comment_heart,
+  comment_red_heart,
+} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 import Picture from "../../../image/picture.png";
 
-import { modal_check } from "../../../redux/modal/modalSlice";
-import { useDispatch, useSelector } from "react-redux";
+import {modal_check} from "../../../redux/modal/modalSlice";
+import {useDispatch, useSelector} from "react-redux";
 import PostModal from "../PostModal/PostModal";
 import PostComment from "./PostComment";
 import dompurify from "dompurify";
@@ -15,11 +24,11 @@ import {addPost, likePost} from "../../../redux/post/post";
 import {post_like} from "../../../redux/post/postSlice";
 
 
-const PostCard = ({ contents, createdAt, writer, postId, postImage, isLike }) => {
+const PostCard = ({contents, createdAt, writer, postId, postImage, isLike}) => {
 
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	
+
   const sanitizer = dompurify.sanitize;
   let html_content = contents.replace(/\n/g, '<br/>');
   let first_line = html_content.includes("<br/>");
@@ -30,8 +39,8 @@ const PostCard = ({ contents, createdAt, writer, postId, postImage, isLike }) =>
 
 
   //포스트 좋아요
-	const likes = isLike
-	const [postLike, SetPostLike] = useState(likes);
+  const likes = isLike
+  const [postLike, SetPostLike] = useState(likes);
 
   //게시글 더보기
   const [morePost, SetMorePost] = useState(false);
@@ -41,25 +50,25 @@ const PostCard = ({ contents, createdAt, writer, postId, postImage, isLike }) =>
   }
 
   const postLikeClickHandler = () => {
-		SetPostLike(!postLike);
-		dispatch(
-			likePost({
-				postId,
-			}))
+    SetPostLike(!postLike);
+    dispatch(
+      likePost({
+        postId,
+      }))
 
-	};
+  };
 
-const post_like = useSelector(state=> state.post_like);
-console.log(post_like);
+  const post_like = useSelector(state => state.post_like);
+  console.log(post_like);
 
 
   const commentLikeClickHandler = () => {
     SetCommentLike(!commentLike)
   }
 
-	const show_postModal = () => {
-		dispatch(modal_check());
-	};
+  const show_postModal = () => {
+    dispatch(modal_check());
+  };
 
   //글쓴 시간 계산.
   function displayTime(value) {
@@ -72,7 +81,7 @@ console.log(post_like);
       return `${displayTime}분전`;
     }
 
-    const displayTimeHour = Math.floor(displayTime/ 60);
+    const displayTimeHour = Math.floor(displayTime / 60);
     if (displayTimeHour < 24) {
       return `${displayTimeHour}시간전`;
     }
@@ -87,90 +96,72 @@ console.log(post_like);
 
   const time = displayTime(createdAt);
 
-
-	return (
-		<>
+	return (<>
 			<div className="post_cards">
-				<div className="post_card">
-					<div className="post_header">
-						<div className="profile_img">
-							<img className="post_user_image" src={Profile_image} />
-							<div>{writer[0].userId}</div>
-
-							<div className="profile_img_dot" onClick={show_postModal}>
-								<img src={dot} />
-							</div>
+			<div className="post_card">
+				<div className="post_header">
+					<div className="profile_img">
+						<img className="post_user_image" src={Profile_image}/>
+						<div>{writer[0].userId}</div>
+						<div className="profile_img_dot" onClick={show_postModal}>
+							<img src={dot}/>
 						</div>
-						<div className="post_center">
-							<img src={postImage}/>
-
+            </div>
+					<div className="post_center">
+						<img src={postImage}/>
+					</div>
+					<div className="post_icon">
+						<div className="footer_icon">
+							{postLike ? (
+								<img src={post_red_heart} onClick={postLikeClickHandler}/>) :
+								(<img src={post_heart} onClick={postLikeClickHandler}/>)}
+							<img src={text}/>
+							<img src={message}/>
 						</div>
-						<div className="post_icon">
-							<div className="footer_icon">
-								{postLike ? (
-									<img src={post_red_heart} onClick={postLikeClickHandler} />
-								) : (
-									<img src={post_heart} onClick={postLikeClickHandler} />
-								)}
-								<img src={text} />
-								<img src={message} />
-							</div>
-							<div className="footer_collection">
-								<img src={post_save} />
-							</div>
+						<div className="footer_collection">
+							<img src={post_save}/>
 						</div>
-						<div className="post_content">
-							<a className="post_user_id">좋아요 1,200개</a>
-							<div className="post_text">
-								<a className="post_user_id">{writer[0].userId}</a>
-								{morePost ? (
-									<div
-										className="post_text"
-										dangerouslySetInnerHTML={{
-											__html: sanitizer(html_content),
-										}}
-									/>
-								) : (
-									<div className="post_text">
+					</div>
+					<div className="post_content">
+						<a className="post_user_id">좋아요 1,200개</a>
+						<div className="post_text">
+							<a className="post_user_id">{writer[0].userId}</a>
+							{morePost ? (
+								<div
+									className="post_text"
+									dangerouslySetInnerHTML={{
+										__html: sanitizer(html_content),
+									}}/>) :
+								(<div className="post_text">
 										{" "}
 										{first_content[0]}
 										{first_line && (
-											<span
-												className="more_contents"
-												onClick={morePostClickHandler}
-											>
+											<span className="more_contents" onClick={morePostClickHandler}>
 												더 보기
-											</span>
-										)}
-									</div>
-								)}
-							</div>
-							<div>댓글 122개 모두 보기</div>
+											</span>)}
+                    </div>)}
 						</div>
-						<div className="post_comment">
-							<div className="post_one_comment">
-								<a className="post_user_id"> hyemin085</a>
-								<div>아ㅏㅏㅏㅏㅏㅏㅏㅏㅏ</div>
-								{commentLike ? (
-									<img
-										src={comment_red_heart}
-										onClick={commentLikeClickHandler}
-									/>
-								) : (
-									<img src={comment_heart} onClick={commentLikeClickHandler} />
-								)}
-							</div>
-							{/*<div className="post_one_comment"><a className="post_user_id"> poseson92</a><div>오우ㅜㅜㅜㅜㅜㅜㅜㅜ</div>*/}
-							{/*  {commentLike? <img src={comment_red_heart} onClick={commentLikeClickHandler}/> :  <img src={comment_heart} onClick={commentLikeClickHandler}/>}*/}
-							{/*</div>*/}
-							<div className="post_time">{time}</div>
-						</div>
-						<PostComment postId={postId} />
+						<div>댓글 122개 모두 보기</div>
 					</div>
+					<div className="post_comment">
+						<div className="post_one_comment">
+							<a className="post_user_id"> hyemin085</a>
+							<div>아ㅏㅏㅏㅏㅏㅏㅏㅏㅏ</div>
+							{commentLike ? (
+								<img src={comment_red_heart} onClick={commentLikeClickHandler}/>) :
+								(<img src={comment_heart} onClick={commentLikeClickHandler}/>)}
+              </div>
+              {/*<div className="post_one_comment"><a className="post_user_id"> poseson92</a><div>오우ㅜㅜㅜㅜㅜㅜㅜㅜ</div>*/}
+              {/*  {commentLike? <img src={comment_red_heart} onClick={commentLikeClickHandler}/> :  <img src={comment_heart} onClick={commentLikeClickHandler}/>}*/}
+              {/*</div>*/}
+              <div className="post_time">{time}</div>
+					</div>
+					<PostComment postId={postId}/>
 				</div>
 			</div>
-		</>
-	);
+			</div>
+    </>
+  );
 };
 
 export default PostCard;
