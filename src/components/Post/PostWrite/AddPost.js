@@ -30,16 +30,12 @@ const AddPost = () => {
   const [addNext, SetAddNext] = useState(false);
 
 
-
   const ImageClickHandler = () => {
     SetNoneImage(true);
   }
   const addNextClickHandler = () => {
     SetAddNext(true);
   }
-
-
-
 
   const {getRootProps, getInputProps, open, acceptedFiles} = useDropzone({
     accept: 'image/*',

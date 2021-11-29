@@ -4,7 +4,7 @@ import {useNavigate} from "react-router";
 
 export const addPost = createAsyncThunk(
   "post/write",
-  async({formData}, thunkAPI) => {
+  async ({formData}, thunkAPI) => {
     const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
@@ -18,7 +18,7 @@ export const addPost = createAsyncThunk(
         console.log(response)
       })
       return response;
-    }catch(e){
+    } catch (e) {
       return false;
     }
   }
@@ -26,7 +26,7 @@ export const addPost = createAsyncThunk(
 
 export const getPost = createAsyncThunk(
   "post/getPost",
-  async(data, thunkAPU) => {
+  async (data, thunkAPI) => {
     const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
@@ -36,8 +36,9 @@ export const getPost = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
+      console.log(response)
       return response.data;
-    }catch(e){
+    } catch (e) {
 
       alert("로그인을 다시해주세요")
 
@@ -45,3 +46,45 @@ export const getPost = createAsyncThunk(
     }
   }
 )
+
+export const deletePost = createAsyncThunk(
+  "post/deletePost",
+  async(data, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
+    console.log(AccessToken);
+    try {
+      const response = await Api({
+        url: `/post/:postId`,
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      console.log(response)
+      return response;
+    }catch (e){
+      console.log("삭제에러")
+    }
+  }
+)
+
+//좋아요
+export const likePost = createAsyncThunk(
+  "post/likePost",
+  async ({postId}, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
+    try {
+      const response = await Api({
+        url: `/post/${postId}/like`,
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      return response;
+    } catch (e) {
+      return false;
+    }
+  }
+)
+

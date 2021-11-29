@@ -11,8 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import PostModal from "../PostModal/PostModal";
 import PostComment from "./PostComment";
 import dompurify from "dompurify";
+import {addPost, likePost} from "../../../redux/post/post";
+import {post_like} from "../../../redux/post/postSlice";
 
-const PostCard = ({ contents, createdAt, writer, postId, postImage }) => {
+
+const PostCard = ({ contents, createdAt, writer, postId, postImage, isLike }) => {
 
 	const dispatch = useDispatch();
 
@@ -25,8 +28,10 @@ const PostCard = ({ contents, createdAt, writer, postId, postImage }) => {
   //댓글 좋아요
   const [commentLike, SetCommentLike] = useState(false);
 
+
   //포스트 좋아요
-  const [postLike, SetPostLike] = useState(false);
+	const likes = isLike
+	const [postLike, SetPostLike] = useState(likes);
 
   //게시글 더보기
   const [morePost, SetMorePost] = useState(false);
@@ -34,9 +39,20 @@ const PostCard = ({ contents, createdAt, writer, postId, postImage }) => {
   const morePostClickHandler = () => {
     SetMorePost(!morePost);
   }
+
   const postLikeClickHandler = () => {
-    SetPostLike(!postLike)
-  }
+		SetPostLike(!postLike);
+		dispatch(
+			likePost({
+				postId,
+			}))
+
+	};
+
+const post_like = useSelector(state=> state.post_like);
+console.log(post_like);
+
+
   const commentLikeClickHandler = () => {
     SetCommentLike(!commentLike)
   }
