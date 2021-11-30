@@ -1,5 +1,5 @@
 import "./Recommendation.scss";
-import {recomtest} from "../../../common/IconImage";
+import {recomtest} from "../../../../common/IconImage";
 
 const Recommendation = () => {
 

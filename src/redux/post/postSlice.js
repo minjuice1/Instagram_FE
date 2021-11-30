@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {deletePost, getPost} from "./post";
+import {addPost, deletePost, getPost} from "./post";
+
 
 
 const postSlice = createSlice({
@@ -15,11 +16,14 @@ const postSlice = createSlice({
   extraReducers: {
     [getPost.fulfilled]: (state, action) => {
       state.posts = action.payload.posts;
+
     },
     [deletePost.fulfilled]: (state, {payload}) => {
      const post_list = state.posts.filter(
        post=> post._id !== payload );
      state.posts = post_list;
+    },
+    [addPost.pending]: (state, action) =>{
     }
   },
 });

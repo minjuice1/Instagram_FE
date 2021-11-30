@@ -14,7 +14,7 @@ const Home = () => {
 
 	useEffect(() => {
 		dispatch(getPost());
-	}, []);
+	}, [dispatch]);
 
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const post_data = useSelector((state) => state.post.posts);
@@ -28,7 +28,6 @@ const Home = () => {
 				<div className="Main">
 					<div className="Main_post">
 						<HomeStory />
-
 						{post_data && post_data.map((post) => (
 							<PostCard
 								contents={post.contents}
