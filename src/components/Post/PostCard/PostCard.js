@@ -46,12 +46,12 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   };
 
-  //게시글 더보기
-  const [morePost, SetMorePost] = useState(false);
+	//게시글 더보기
+	const [morePost, SetMorePost] = useState(false);
 
-  const morePostClickHandler = () => {
-    SetMorePost(!morePost);
-  }
+	const morePostClickHandler = () => {
+		SetMorePost(!morePost);
+	};
 
 
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
@@ -63,27 +63,28 @@ const PostCard = ({contents, createdAt, writer, postId,
     const today = new Date();
     const nowTime = new Date(value);
 
-    const displayTime = Math.floor((today.getTime() - nowTime.getTime()) / 1000 / 60);
-    if (displayTime < 1) return '방금전';
-    if (displayTime < 60) {
-      return `${displayTime}분전`;
-    }
+		const displayTime = Math.floor(
+			(today.getTime() - nowTime.getTime()) / 1000 / 60,
+		);
+		if (displayTime < 1) return "방금전";
+		if (displayTime < 60) {
+			return `${displayTime}분전`;
+		}
 
     const displayTimeHour = Math.floor(displayTime / 60);
     if (displayTimeHour < 24) {
       return `${displayTimeHour}시간전`;
     }
 
-    const displayTimeDay = Math.floor(displayTime / 60 / 24);
-    if (displayTimeDay < 365) {
-      return `${displayTimeDay}일전`;
-    }
+		const displayTimeDay = Math.floor(displayTime / 60 / 24);
+		if (displayTimeDay < 365) {
+			return `${displayTimeDay}일전`;
+		}
 
-    return `${Math.floor(displayTimeDay / 365)}년전`;
-  }
+		return `${Math.floor(displayTimeDay / 365)}년전`;
+	}
 
-  const time = displayTime(createdAt);
-
+	const time = displayTime(createdAt);
 
   const show_postModal = () => {
     dispatch(modal_check());

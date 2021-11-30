@@ -1,4 +1,4 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
 import {history} from "../../history";
 
@@ -6,34 +6,32 @@ import {history} from "../../history";
 
 
 export const singUp = createAsyncThunk(
-  "user/signup",
-async(data, thunkAPI) => {
-    try {
-      const response = await Api({
-        url: `/auth/signup`,
-        method: "POST",
-        data: {
-          email: data.email,
-          name: data.name,
-          userId: data.userId,
-          password: data.password,
-        },
-      });
-    } catch(e) {
-      return thunkAPI.rejectWithValue({
-        error: "회원가입실패"
-      });
-    }
-  }
+	"user/signup",
+	async (data, thunkAPI) => {
+		try {
+			const response = await Api({
+				url: `/auth/signup`,
+				method: "POST",
+				data: {
+					email: data.email,
+					name: data.name,
+					userId: data.userId,
+					password: data.password,
+				},
+			});
+		} catch (e) {
+			return thunkAPI.rejectWithValue({
+				error: "회원가입실패",
+			});
+		}
+	},
 );
 
-export const login = createAsyncThunk(
-  "user/login",
-  async(data, thunkAPI) => {
-    try {
-      const response = await Api({
-        url : "/auth/login",
-        method: "POST",
+export const login = createAsyncThunk("user/login", async (data, thunkAPI) => {
+	try {
+		const response = await Api({
+			url: "/auth/login",
+			method: "POST",
 
         data: {
           id: data.email,

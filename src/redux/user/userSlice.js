@@ -2,7 +2,6 @@ import {getProfile, login, logout} from "./user";
 import { createSlice } from "@reduxjs/toolkit";
 import {history} from "../../history";
 
-
 const userSlice = createSlice({
 	name: "user",
 	initialState: {
@@ -10,7 +9,6 @@ const userSlice = createSlice({
 		isLogin: false,
 	},
 	reducers: {
-
 	},
 	extraReducers: {
 		[login.fulfilled]: (state, action) => {
@@ -21,12 +19,11 @@ const userSlice = createSlice({
 		},
 		[getProfile.fulfilled]: (state,action) => {
 			state.user = action.payload.data.user;
-		}
-
 
 	},
+}
 });
 
-export const {loginCheck} = userSlice.actions;
+export const { loginCheck } = userSlice.actions;
 
 export default userSlice;
