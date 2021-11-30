@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Footer from "../Footer/Footer";
+import Footer from "../../Page/Footer/Footer";
 import "./SignUp.scss";
 import {
 	download1,

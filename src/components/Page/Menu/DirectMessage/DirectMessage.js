@@ -1,13 +1,13 @@
 import "./DirectMessage.scss";
-import {my_message} from "../../../common/IconImage";
+import {my_message} from "../../../../common/IconImage";
 import DirectMessageUser from "./DirectMessageUser";
 
 const DirectMessage = () => {
 
   return(
     <>
-      <div className="direct_message">
-        <div>
+      <div className="insta_layout">
+        <div className="direct_message">
           <div>hyemin085</div>
           <div>
             <DirectMessageUser/>

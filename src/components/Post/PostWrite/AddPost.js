@@ -117,14 +117,11 @@ const AddPost = () => {
     };
 		formData.append("imageFile",(image_file));
     formData.append("data", JSON.stringify(post_data));
-
     dispatch(
       addPost({
         formData,
         AccessToken,
-
       }),
-      [dispatch],
     );
   };
 

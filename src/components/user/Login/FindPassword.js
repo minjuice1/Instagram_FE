@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Footer from "../Footer/Footer";
+import Footer from "../../Page/Footer/Footer";
 import "./FindPassword.scss";
 import { lock } from "../../../common/LoginImage";
 

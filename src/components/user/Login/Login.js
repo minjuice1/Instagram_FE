@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/user/user";
 
-import Carousel from "../Login/LoginCarousel";
-import Footer from "../Footer/Footer";
+import Carousel from "./LoginCarousel";
+import Footer from "../../Page/Footer/Footer";
 import "./Login.scss";
 import {
 	login_pic1,

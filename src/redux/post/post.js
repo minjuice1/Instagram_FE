@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
 import {history} from "../../history";
-
+import {add_modal} from "../modal/modalSlice";
 
 
 export const addPost = createAsyncThunk(
@@ -17,9 +17,10 @@ export const addPost = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${AccessToken}`,
         }
-      }).then(response => {
-        console.log(response)
       })
+      if(response.data.ok){
+        thunkAPI.dispatch(add_modal());
+      }
       return response;
     } catch (e) {
       return false;

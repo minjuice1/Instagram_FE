@@ -1,4 +1,4 @@
-import { login, logout } from "./user";
+import {getProfile, login, logout} from "./user";
 import { createSlice } from "@reduxjs/toolkit";
 import {history} from "../../history";
 
@@ -6,6 +6,7 @@ import {history} from "../../history";
 const userSlice = createSlice({
 	name: "user",
 	initialState: {
+		user: [],
 		isLogin: false,
 	},
 	reducers: {
@@ -17,6 +18,9 @@ const userSlice = createSlice({
 		},
 		[logout.fulfilled]: (state, action) => {
 			state.isLogin = false;
+		},
+		[getProfile.fulfilled]: (state,action) => {
+			state.user = action.payload.data.user;
 		}
 
 

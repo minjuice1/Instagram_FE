@@ -66,3 +66,23 @@ export const logout = createAsyncThunk(
   }
 
 );
+
+export const getProfile = createAsyncThunk(
+  "user/getProfile",
+  async(data, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
+    try{
+      const response = await Api({
+        url: `/accounts/edit`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      console.log(response);
+      return response;
+    }catch (e) {
+      return false;
+    }
+  }
+)
