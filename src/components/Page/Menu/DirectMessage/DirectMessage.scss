@@ -1,7 +1,7 @@
-@import "../../../common/variables";
-@import "../../../common/mixin";
+@import "../../../../common/variables";
+@import "../../../../common/mixin";
 
-.direct_message {
+.insta_layout {
   margin: 20px auto;
   width: 935px;
   height: 90vh;
@@ -10,7 +10,7 @@
   border: 1px solid $instaGray;
   background-color: $instaWhite;
 
-  & > div:first-child{
+  .direct_message:first-child{
     border-right: 1px solid $instaGray;
     text-align: center;
     & > div:first-child{

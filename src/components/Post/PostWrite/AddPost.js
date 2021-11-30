@@ -29,6 +29,13 @@ const AddPost = () => {
   const [noneImage, SetNoneImage] = useState(false);
   const [addNext, SetAddNext] = useState(false);
 
+  //댓글기능 해제
+  const [hideComment, SetHideComment] = useState(true);
+
+  const hideCommentClickHandler = () => {
+    SetHideComment(!hideComment)
+  }
+
 
   const ImageClickHandler = () => {
     SetNoneImage(true);
@@ -101,20 +108,20 @@ const AddPost = () => {
   //FormData로 전해주기
   const postWriteClickHandler = () => {
     const AccessToken = localStorage.getItem("user");
+    //임시로 지정해줌 댓글기능 해제
     const formData = new FormData();
     const post_data = {
       contents: text,
       hashtags: hash,
+      commentIsAllowed: hideComment,
     };
 		formData.append("imageFile",(image_file));
     formData.append("data", JSON.stringify(post_data));
-
     dispatch(
       addPost({
         formData,
         AccessToken,
       }),
-      [dispatch],
     );
   };
 
@@ -147,9 +154,10 @@ const AddPost = () => {
                         onKeyUp={hashTagCheck}/>
               <div className="add_post_menu">위치 추가</div>
               <div className="add_post_menu">접근성</div>
-              <div className="add_post_menu">고급 설정</div>
+              <div className="add_post_menu">고급 설정
+              </div>
               <div>
-                <a>댓글 기능 해제</a>
+                <button onClick={hideCommentClickHandler}>댓글 기능 해제</button>
                 <a>나중에 게시물 상단의 메뉴(...)에서 이 설정을 변경할 수 있습니다.</a>
               </div>
               {/*<button >등록하기</button>*/}

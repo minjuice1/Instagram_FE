@@ -10,6 +10,8 @@ blackcompass}
 import {logout} from "../../../redux/user/user";
 import {useDispatch, useSelector} from "react-redux";
 import {add_modal} from "../../../redux/modal/modalSlice";
+import HeaderUser from "./HeaderUser";
+
 
 const HeaderIcon = () => {
   const navigate = useNavigate();
@@ -86,9 +88,6 @@ const HeaderIcon = () => {
   }
 
 
-  const userLogoutClickHandler = () => {
-    dispatch(logout());
-  }
 
   return (
     <>
@@ -114,28 +113,7 @@ const HeaderIcon = () => {
         <div className="profile_icons" ref={profileSideRef}>
           {myProfile ? <img className="nav_profile" src={heart} alt="nav_icon"  onClick={myProfileClickHandler}/> :
             <img src={heart} alt="nav_icon"  onClick={myProfileClickHandler}/>}
-          {myProfile &&
-          <div className="myprofile">
-            <div className="profile_menu">
-              <img src={menu_profile}/>
-              <div>프로필</div>
-            </div>
-            <div className="profile_menu">
-              <img src={menu_save}/>
-              <div>저장됨</div>
-            </div>
-            <div className="profile_menu">
-              <img src={menu_setting}/>
-              <div>설정</div>
-            </div>
-            <div className="profile_menu">
-              <img src={menu_change}/>
-              <div>계정전환</div>
-            </div>
-            <div className="profile_menu">
-              <div className="profile_logout" onClick={userLogoutClickHandler}>로그아웃</div>
-            </div>
-          </div>}
+          {myProfile && <HeaderUser/>}
         </div>
       </div>
     </>
