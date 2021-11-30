@@ -123,15 +123,7 @@ function App() {
 							</RequireAuth>
 						}
 					/>
-					<Route
-						path="/profile"
-						element={
-							<RequireAuth redirectTo="/login">
-								{" "}
-								<Profile />{" "}
-							</RequireAuth>
-						}
-					/>
+
 					<Route
 						path="/otherprofile"
 						element={
@@ -156,6 +148,42 @@ function App() {
 							<RequireAuth redirectTo="/login">
 								{" "}
 								<OtherProfile />{" "}
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/profile/"
+						element={
+							<RequireAuth redirectTo="/login">
+								{" "}
+								<Profile />{" "}
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/profile/channel"
+						element={
+							<RequireAuth redirectTo="/login">
+								{" "}
+								<Profile />{" "}
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/profile/saved"
+						element={
+							<RequireAuth redirectTo="/login">
+								{" "}
+								<Profile />{" "}
+							</RequireAuth>
+						}
+					/>
+					<Route
+						path="/profile/tagged"
+						element={
+							<RequireAuth redirectTo="/login">
+								{" "}
+								<Profile />{" "}
 							</RequireAuth>
 						}
 					/>

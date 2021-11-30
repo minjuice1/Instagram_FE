@@ -1,5 +1,11 @@
 import { React, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import ProfileVideo from "../CommonProfile/ProfileVideo";
+import ProfilePosts from "../CommonProfile/ProfilePosts";
+import ProfileTagged from "../CommonProfile/ProfileTagged";
+import ProfileSaved from "../CommonProfile/ProfileSaved";
 
 // 모달
 import { modal_check } from "../../../redux/modal/modalSlice";
@@ -13,20 +19,59 @@ import FollowersModal from "../ProfileModal/FollowersModal";
 
 // scss, icon, img
 import "./Profile.scss";
+import "../OtherProfile/OtherProfile.scss";
 import pp from "../../../image/profile.jpg";
-import { recomtest } from "../../../common/IconImage";
 import { FiSettings, FiPlayCircle } from "react-icons/fi";
 import { BiBookmark } from "react-icons/bi";
 import { RiAccountBoxLine } from "react-icons/ri";
 import { MdGridOn } from "react-icons/md";
 
 const Profile = () => {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
-	const [posts, SetPosts] = useState();
-	const [video, SetVideo] = useState();
-	const [saved, SetSaved] = useState();
-	const [tagged, SetTagged] = useState();
+	// 	// 게시물, 동영상, 저장됨, 태그됨
+	const [ClickedPosts, setClickedPosts] = useState();
+	const [ClickedVideo, setClickedVideo] = useState();
+	const [ClickedSaved, setClickedSaved] = useState();
+	const [ClickedTagged, setClickedTagged] = useState();
+	const [posts, SetPosts] = useState(true);
+	const [video, SetVideo] = useState(true);
+	const [saved, SetSaved] = useState(true);
+	const [tagged, SetTagged] = useState(true);
+
+	// 게시물, 동영상, 태그됨
+	const postsClickHandler = (event) => {
+		SetPosts(true);
+		setClickedPosts(!ClickedPosts);
+		setClickedVideo(false);
+		setClickedSaved(false);
+		setClickedTagged(false);
+	};
+
+	const videoClickHandler = (event) => {
+		SetVideo(true);
+		setClickedVideo(!ClickedVideo);
+		setClickedPosts(false);
+		setClickedSaved(false);
+		setClickedTagged(false);
+	};
+
+	const savedClickHandler = (event) => {
+		SetSaved(true);
+		setClickedSaved(!ClickedSaved);
+		setClickedVideo(false);
+		setClickedPosts(false);
+		setClickedTagged(false);
+	};
+
+	const taggedClickHandler = (event) => {
+		SetTagged(true);
+		setClickedTagged(!ClickedTagged);
+		setClickedPosts(false);
+		setClickedVideo(false);
+		setClickedSaved(false);
+	};
 
 	// 프로필 편집, 팔로워, 팔로우 모달
 	const is_modal = useSelector((state) => state.modal.is_modal);
@@ -84,6 +129,7 @@ const Profile = () => {
 										팔로우 <span>999</span>
 									</span>
 								</ul>
+								<div className="profile_header_name">내 프로필 이름</div>
 								<div className="profile_header_bottom">상태메세지</div>
 							</section>
 						</div>
@@ -103,51 +149,130 @@ const Profile = () => {
 								</div>
 							</div>
 						</div>
-
 						<div className="profile_post_dir" role="tablist">
-							<a href="/profile/" role="tab" tabindex="0">
-								<span className="profile_post_posts" value={posts}>
-									<MdGridOn /> 게시물
-								</span>
-							</a>
-							<a href="/profile/channel" role="tab" tabindex="0">
-								<span className="profile_post_video" value={video}>
-									<FiPlayCircle /> 동영상
-								</span>
-							</a>
-							<a href="/profile/saved" role="tab" tabindex="0">
-								<span className="profile_post_saved" value={saved}>
-									<BiBookmark /> 저장됨
-								</span>
-							</a>
-							<a href="/profile/tagged" role="tab" tabindex="0">
-								<span className="profile_post_tagged" value={tagged}>
-									<RiAccountBoxLine /> 태그됨
-								</span>
-							</a>
+							{ClickedPosts ? (
+								<a className="profile_post_clicked">
+									<span value={posts}>
+										<Link
+											to={"/profile/"}
+											className="profile_post_clickOn"
+											onClick={postsClickHandler}
+										>
+											<MdGridOn /> 게시물
+										</Link>
+									</span>
+								</a>
+							) : (
+								<a className="profile_post_unclicked">
+									<span value={posts}>
+										<Link
+											to={"/profile/"}
+											className="profile_post_clickOff"
+											onClick={postsClickHandler}
+										>
+											<MdGridOn /> 게시물
+										</Link>
+									</span>
+								</a>
+							)}
+
+							{ClickedVideo ? (
+								<a className="profile_post_clicked">
+									<span value={video}>
+										<Link
+											to={"/profile/channel"}
+											className="profile_post_clickOn"
+											onClick={videoClickHandler}
+										>
+											<FiPlayCircle /> 동영상
+										</Link>
+									</span>
+								</a>
+							) : (
+								<a className="profile_post_unclicked">
+									<span value={video}>
+										<Link
+											to={"/profile/channel"}
+											className="profile_post_clickOff"
+											onClick={videoClickHandler}
+										>
+											<FiPlayCircle /> 동영상
+										</Link>
+									</span>
+								</a>
+							)}
+
+							{ClickedSaved ? (
+								<a className="profile_post_clicked">
+									<span value={saved}>
+										<Link
+											to={"/profile/saved"}
+											className="profile_post_clickOn"
+											onClick={savedClickHandler}
+										>
+											<BiBookmark /> 저장됨
+										</Link>
+									</span>
+								</a>
+							) : (
+								<a className="profile_post_unclicked">
+									<span value={saved}>
+										<Link
+											to={"/profile/saved"}
+											className="profile_post_clickOff"
+											onClick={savedClickHandler}
+										>
+											<BiBookmark /> 저장됨
+										</Link>
+									</span>
+								</a>
+							)}
+							{ClickedTagged ? (
+								<a className="profile_post_clicked">
+									<span value={tagged}>
+										<Link
+											to={"/profile/tagged"}
+											className="profile_post_clickOn"
+											onClick={taggedClickHandler}
+										>
+											<RiAccountBoxLine /> 태그됨
+										</Link>
+									</span>
+								</a>
+							) : (
+								<a className="profile_post_unclicked">
+									<span value={tagged}>
+										<Link
+											to={"/profile/tagged"}
+											className="profile_post_clickOff"
+											onClick={taggedClickHandler}
+										>
+											<RiAccountBoxLine /> 태그됨
+										</Link>
+									</span>
+								</a>
+							)}
 						</div>
-						<div className="profile_postsBox">
-							<div className="profile_postList">
-								<div className="profile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="profile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="profile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="profile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="profile_post">
-									<img src={recomtest} />
-								</div>
-								<div className="profile_post">
-									<img src={recomtest} />
-								</div>
+						{posts && (
+							<div className="OtherProfile_postsBox">
+								<ProfilePosts />
 							</div>
-						</div>
+						)}
+						{video && (
+							<div className="OtherProfile_postsBox">
+								<ProfileVideo />
+							</div>
+						)}
+						{saved && (
+							<div className="OtherProfile_postsBox">
+								<ProfileSaved />
+							</div>
+						)}
+						{tagged && (
+							<div className="OtherProfile_postsBox">
+								<ProfileTagged />
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

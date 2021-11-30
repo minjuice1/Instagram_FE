@@ -1,6 +1,5 @@
 import React from "react";
 
-import "../OtherProfile/OtherProfile.scss";
 import { recomtest } from "../../../common/IconImage";
 
 const ProfileTagged = () => {

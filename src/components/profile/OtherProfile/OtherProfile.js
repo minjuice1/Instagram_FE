@@ -21,7 +21,6 @@ import OtherProfileSettingModal from "./OtherProfileModal/OtherProfileSettingMod
 // scss, icon, img
 import "./OtherProfile.scss";
 import pp from "../../../image/profile.jpg";
-import { recomtest } from "../../../common/IconImage";
 import {
 	FiSettings,
 	FiPlayCircle,
@@ -37,12 +36,34 @@ const OtherProfile = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
+	// 게시물, 동영상, 태그됨
 	const [ClickedPosts, setClickedPosts] = useState();
 	const [ClickedVideo, setClickedVideo] = useState();
 	const [ClickedTagged, setClickedTagged] = useState();
 	const [posts, SetPosts] = useState(true);
 	const [video, SetVideo] = useState(true);
 	const [tagged, SetTagged] = useState(true);
+
+	const postsClickHandler = (event) => {
+		SetPosts(true);
+		setClickedPosts(!ClickedPosts);
+		setClickedVideo(false);
+		setClickedTagged(false);
+	};
+
+	const videoClickHandler = (event) => {
+		SetVideo(true);
+		setClickedVideo(!ClickedVideo);
+		setClickedPosts(false);
+		setClickedTagged(false);
+	};
+
+	const taggedClickHandler = (event) => {
+		SetTagged(true);
+		setClickedTagged(!ClickedTagged);
+		setClickedPosts(false);
+		setClickedVideo(false);
+	};
 
 	// 프로필 편집, 팔로워, 팔로우 모달
 	const is_modal = useSelector((state) => state.modal.is_modal);
@@ -74,28 +95,6 @@ const OtherProfile = () => {
 
 	const show_recomAccountbtn = () => {
 		SetRecomAccountbtn(!recomAccountbtn);
-	};
-
-	// 게시물, 동영상, 태그됨
-	const postsClickHandler = (event) => {
-		SetPosts(true);
-		setClickedPosts(!ClickedPosts);
-		setClickedVideo(false);
-		setClickedTagged(false);
-	};
-
-	const videoClickHandler = (event) => {
-		SetVideo(true);
-		setClickedVideo(!ClickedVideo);
-		setClickedPosts(false);
-		setClickedTagged(false);
-	};
-
-	const taggedClickHandler = (event) => {
-		SetTagged(true);
-		setClickedTagged(!ClickedTagged);
-		setClickedPosts(false);
-		setClickedVideo(false);
 	};
 
 	return (
@@ -302,11 +301,7 @@ const OtherProfile = () => {
 
 						<div className="otherProfile_post_dir" role="tablist">
 							{ClickedPosts ? (
-								<a
-									className="otherProfile_post_clicked"
-									role="tab"
-									tabindex="0"
-								>
+								<a className="otherProfile_post_clicked">
 									<span value={posts}>
 										<Link
 											to={"/otherprofile/"}
@@ -318,11 +313,7 @@ const OtherProfile = () => {
 									</span>
 								</a>
 							) : (
-								<a
-									className="otherProfile_post_unclicked"
-									role="tab"
-									tabindex="0"
-								>
+								<a className="otherProfile_post_unclicked">
 									<span value={posts}>
 										<Link
 											to={"/otherprofile/"}
@@ -336,11 +327,7 @@ const OtherProfile = () => {
 							)}
 
 							{ClickedVideo ? (
-								<a
-									className="otherProfile_post_clicked"
-									role="tab"
-									tabindex="0"
-								>
+								<a className="otherProfile_post_clicked">
 									<span value={video}>
 										<Link
 											to={"/otherprofile/channel"}
@@ -352,11 +339,7 @@ const OtherProfile = () => {
 									</span>
 								</a>
 							) : (
-								<a
-									className="otherProfile_post_unclicked"
-									role="tab"
-									tabindex="0"
-								>
+								<a className="otherProfile_post_unclicked">
 									<span value={video}>
 										<Link
 											to={"/otherprofile/channel"}
@@ -370,11 +353,7 @@ const OtherProfile = () => {
 							)}
 
 							{ClickedTagged ? (
-								<a
-									className="otherProfile_post_clicked"
-									role="tab"
-									tabindex="0"
-								>
+								<a className="otherProfile_post_clicked">
 									<span value={tagged}>
 										<Link
 											to={"/otherprofile/tagged"}
@@ -386,11 +365,7 @@ const OtherProfile = () => {
 									</span>
 								</a>
 							) : (
-								<a
-									className="otherProfile_post_unclicked"
-									role="tab"
-									tabindex="0"
-								>
+								<a className="otherProfile_post_unclicked">
 									<span value={tagged}>
 										<Link
 											to={"/otherprofile/tagged"}
@@ -403,14 +378,14 @@ const OtherProfile = () => {
 								</a>
 							)}
 						</div>
-						{video && (
-							<div className="otherProfile_postsBox">
-								<ProfileVideo />
-							</div>
-						)}
 						{posts && (
 							<div className="otherProfile_postsBox">
 								<ProfilePosts />
+							</div>
+						)}
+						{video && (
+							<div className="otherProfile_postsBox">
+								<ProfileVideo />
 							</div>
 						)}
 						{tagged && (

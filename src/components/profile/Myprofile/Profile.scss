@@ -15,17 +15,17 @@
 			padding: 30px 20px 0 20px;
 
 			.profile_header {
-				justify-content: center;
+				justify-content: left;
 				display: flex;
-				width: 80%;
+				width: 882px;
 				height: 15%;
 				margin: auto;
 
 				.profile_header_pp {
 					justify-content: center;
 					text-align: center;
-					width: 25%;
-					// text-align: center;
+					width: 23%;
+					margin-right: 35px;
 
 					& > img {
 						width: 150px;
@@ -36,7 +36,7 @@
 
 				.profile_header_main {
 					justify-content: center;
-					width: 45%;
+					width: 55%;
 
 					.profile_header_top {
 						display: flex;
@@ -97,20 +97,29 @@
 						}
 					}
 
+					.profile_header_name {
+						width: 100%;
+						height: auto;
+						@include fontSize("large");
+						font-weight: 600;
+						margin-bottom: 10px;
+					}
+
 					.profile_header_bottom {
 						width: 100%;
 						height: auto;
-						@include fontSize("normal");
-						font-weight: 600;
+						@include fontSize("large");
+						font-weight: 500;
 					}
 				}
 			}
 
 			.profile_storiesBox {
 				display: flex;
-				width: 80%;
 				height: 10%;
-				justify-content: center;
+				width: 882px;
+				justify-content: left;
+				padding: 0 10px;
 				margin: auto;
 
 				.profile_stories {
@@ -118,7 +127,7 @@
 					display: flex;
 					width: 70%;
 					height: 15%;
-					margin-bottom: 40px;
+					margin-bottom: 30px;
 					margin-right: 35px;
 
 					.profile_story {
@@ -155,13 +164,30 @@
 
 			.profile_post_dir {
 				display: flex;
-				width: 100%;
-				text-align: center;
-				align-items: center;
+				width: 920px;
 				justify-content: center;
+				margin: auto;
 				border-top: 1px solid $instaGray;
 
-				& > a {
+				.profile_post_clicked {
+					display: flex;
+					width: 65px;
+					height: 52px;
+					line-height: 48px;
+					margin-right: 65px;
+					color: $instaMenuBlack;
+					@include fontSize("normal");
+					font-weight: 550;
+					text-decoration: none;
+					text-align: center;
+					letter-spacing: 0.5px;
+					cursor: pointer;
+					align-items: center;
+					justify-content: center;
+					border-top: 1px solid $instaMenuGray;
+				}
+
+				.profile_post_unclicked {
 					display: flex;
 					width: 65px;
 					height: 52px;
@@ -176,26 +202,37 @@
 					cursor: pointer;
 					align-items: center;
 					justify-content: center;
-					border-top: 1px solid $instaMenuGray;
+					border-top: 1px solid $instaGray;
+				}
+
+				.profile_post_clickOn {
+					color: $instaMenuBlack;
+					text-decoration: none;
+				}
+
+				.profile_post_clickOff {
+					color: $instaMenuGray;
+					text-decoration: none;
 				}
 			}
 
-			.profile_postsBox {
-				width: 100%;
+			// .otherProfile_postsBox {
+			// 	width: 100%;
+			// 	border: 1px solid black;
 
-				.profile_postList {
-					display: grid;
-					grid-template-columns: repeat(3, minmax(20px, max-content));
-					grid-template-rows: repeat(8, 1fr);
-					gap: 25px;
-					justify-content: center;
+			// 	.otherProfile_postList {
+			// 		display: grid;
+			// 		grid-template-columns: repeat(3, minmax(20px, max-content));
+			// 		grid-template-rows: repeat(8, 1fr);
+			// 		gap: 25px;
+			// 		justify-content: center;
 
-					.profile_post {
-						display: block;
-						overflow: hidden;
-					}
-				}
-			}
+			// 		.otherProfile_post {
+			// 			display: block;
+			// 			overflow: hidden;
+			// 		}
+			// 	}
+			// }
 		}
 	}
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 import { recomtest } from "../../../common/IconImage";
 
-const ProfilePosts = () => {
+const ProfileSaved = () => {
 	return (
 		<>
 			<div className="otherProfile_postList">
@@ -29,4 +29,4 @@ const ProfilePosts = () => {
 	);
 };
 
-export default ProfilePosts;
+export default ProfileSaved;
