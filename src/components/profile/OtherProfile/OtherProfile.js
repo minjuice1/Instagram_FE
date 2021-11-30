@@ -37,7 +37,7 @@ const OtherProfile = () => {
 	const dispatch = useDispatch();
 
 	// 게시물, 동영상, 태그됨
-	const [ClickedPosts, setClickedPosts] = useState();
+	const [ClickedPosts, setClickedPosts] = useState(true);
 	const [ClickedVideo, setClickedVideo] = useState();
 	const [ClickedTagged, setClickedTagged] = useState();
 	const [posts, SetPosts] = useState(true);

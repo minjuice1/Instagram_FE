@@ -31,7 +31,7 @@ const Profile = () => {
 	const dispatch = useDispatch();
 
 	// 	// 게시물, 동영상, 저장됨, 태그됨
-	const [ClickedPosts, setClickedPosts] = useState();
+	const [ClickedPosts, setClickedPosts] = useState(true);
 	const [ClickedVideo, setClickedVideo] = useState();
 	const [ClickedSaved, setClickedSaved] = useState();
 	const [ClickedTagged, setClickedTagged] = useState();
