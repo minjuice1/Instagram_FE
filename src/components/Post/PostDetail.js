@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import { modal_check } from "../../redux/modal/modalSlice";
 
 import {addComment} from "../../redux/post/comment";
-
+import {getPostDetail} from "../../redux/post/post";
 import PostModal from "./PostModal/PostModal";
 import "./PostDetail.scss";
 import detailpicture from "../../image/detailpicture.png";
@@ -12,20 +13,31 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import InputEmoji from "react-input-emoji";
 import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../common/IconImage";
 
-const PostDetail = ({ contents, createdAt, writer }) => {
+const PostDetail = () => {	
+	const {postId} = useParams();
 	const dispatch = useDispatch();
 
+	const AccessToken = localStorage.getItem("user");
 	const is_modal = useSelector((state) => state.modal.is_modal);
+	const postDetail = useSelector((state) => state.post.postDetail[0]);
+	const postDetail_ = useSelector((state) => state.post.postDetail);
+	// const writer = postDetail.writer[0];
 
-	console.log(contents);
-	console.log(createdAt);
-	console.log(writer);
+	useEffect(() => {
+    dispatch(getPostDetail(postId));
+  }, [getPostDetail]);
+
+	
+	console.log(postDetail_);
+	console.log(postDetail);
+	// console.log(postDetail.writer[0].userId);
 
 	const CommentClickHandler = () => {
 		dispatch(
 			addComment({
-				writer,
-				contents,
+				postId: postId,
+				contents: postDetail.contents,
+				AccessToken,
 			}),
 			[dispatch],
 		);
@@ -49,7 +61,7 @@ const PostDetail = ({ contents, createdAt, writer }) => {
 	const [postBookmark, SetPostBookmark] = useState(false);
 
 	const postBookmarkClickHandler = () => {
-		SetPostBookmark(!postBookmark);
+		SetPostBookmark((postBookmark) => !postBookmark);
 	};
 
 	const show_postModal = () => {
@@ -59,13 +71,13 @@ const PostDetail = ({ contents, createdAt, writer }) => {
 	return (
 		<>
 			{is_modal && <PostModal />}
-
+			{postDetail && 
 			<div className="postDetail_content_all">
 				<div className="postDetail_content">
 					<div className="postDetail_Box">
 						<div className="postDetail_imgBox">
 							<div className="postDetail_img">
-								<img src={detailpicture} alt="postImg" />
+								<img src={postDetail.imageUrl} alt="postImg" />
 							</div>
 						</div>
 						<div className="postDetail_commentBox">
@@ -73,7 +85,7 @@ const PostDetail = ({ contents, createdAt, writer }) => {
 								<div className="postDetail_header_pic">
 									<img src={pp} alt="pp" />
 									<div className="postDetail_header_userId">
-										<span>test_id</span> * <span> 팔로잉</span>
+										<span>{postDetail.writer[0].userId}</span> * <span> 팔로잉</span>
 									</div>
 								</div>
 								<div className="postDetail_header_btn" onClick={show_postModal}>
@@ -89,13 +101,12 @@ const PostDetail = ({ contents, createdAt, writer }) => {
 											</div>
 											<div className="postDetail_comment_mycommentBox">
 												<div className="postDetail_comment_mycomment">
-													<span>testtest</span>{" "}
+													<span>ss</span>{" "}
 													<span>
-														안녕하세요 테스트입니다
-														오예오예오예오예오예오예오예오예오예오예오예오예
+														{/* {postDetail.contents} */}
 													</span>
 												</div>
-												<div className="postDetail_comment_myTime">1일</div>
+												<div className="postDetail_comment_myTime">ss</div>
 											</div>
 										</div>
 										{/* component로 뺄 예정 */}
@@ -191,7 +202,7 @@ const PostDetail = ({ contents, createdAt, writer }) => {
 									</div>
 								</div>
 								<div className="postDetail_comment_time">
-									<span>6시간 전</span>
+									<span>ss</span>
 								</div>
 								<div className="postDetail_comment_writeBox">
 									<div className="postDetail_comment_write">
@@ -212,6 +223,7 @@ const PostDetail = ({ contents, createdAt, writer }) => {
 					</div>
 				</div>
 			</div>
+}
 		</>
 	);
 };
