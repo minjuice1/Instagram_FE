@@ -1,5 +1,5 @@
-@import "../../common/variables";
-@import "../../common/mixin";
+@import "../../../common/variables";
+@import "../../../common/mixin";
 
 .postDetail_content_all {
 	margin: auto;
@@ -96,7 +96,7 @@
 				}
 
 				.postDetail_comment {
-					height: 90%;
+					height: 80%;
 					width: 100%;
 
 					.postDetail_comment_listBox {
@@ -219,7 +219,7 @@
 
 					.postDetail_comment_funcs {
 						display: flex;
-						height: 7%;
+						height: 11%;
 						width: 100%;
 
 						.postDetail_comment_Likefunc {
@@ -287,7 +287,7 @@
 
 					.postDetail_comment_likeList {
 						display: flex;
-						height: 5%;
+						height: 7%;
 						width: 100%;
 
 						.postDetail_likeList_pic {
@@ -315,7 +315,7 @@
 					}
 
 					.postDetail_comment_time {
-						height: 4%;
+						height: 3%;
 						width: 100%;
 						line-height: 0px;
 
@@ -324,46 +324,33 @@
 							@include fontSize("small");
 						}
 					}
-
-					.postDetail_comment_writeBox {
-						height: 8%;
-						width: 100%;
-
-						.postDetail_comment_write {
-							display: flex;
-							height: 100%;
-							width: 100%;
-							margin-top: 5px;
-							border-top: 1px solid $instaLightGray;
-
-							.postDetail_comment_writeInput {
-								height: 100%;
-								width: 90%;
-								margin-top: 5px;
-							}
-
-							.postDetail_comment_writeBtn {
-								height: 90%;
-								width: 15%;
-								margin-top: 5px;
-
-								& > button {
-									height: 100%;
-									width: 100%;
-									border: none;
-									color: #b2dffc;
-									background-color: $instaWhite;
-									@include fontSize("biglarge");
-									cursor: pointer;
-								}
-							}
-						}
-					}
 				}
 			}
 		}
 	}
 }
+
+// InputEmoji
+.postDetail_cmt {
+	display: flex;
+	border-top: 1px solid $instaGray;
+ }
+	.postDetail_cmt>input{
+	height: 40px;
+	width: 80%;
+	border: none;
+	&:focus{
+	 outline: none;
+	}
+ }
+ .postDetail_submit {
+	width: 50px;
+	line-height: 50px;
+	color: $instaBlue;
+	font-weight: 600;
+ }
+
+
 
 .postDetail_overlay {
 	box-sizing: border-box;

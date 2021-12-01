@@ -9,7 +9,7 @@ const ProfileSaved = () => {
 				<div className="otherProfile_post">
 					<img src={recomtest} />
 				</div>
-				<div className="otherProfile_post">
+				{/* <div className="otherProfile_post">
 					<img src={recomtest} />
 				</div>
 				<div className="otherProfile_post">
@@ -23,7 +23,7 @@ const ProfileSaved = () => {
 				</div>
 				<div className="otherProfile_post">
 					<img src={recomtest} />
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

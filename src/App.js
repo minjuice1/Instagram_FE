@@ -13,7 +13,7 @@ import FindPassword from "./components/user/Login/FindPassword";
 import Recommendation from "./components/Page/Menu/Recommendation/Recommendation";
 import DirectMessage from "./components/Page/Menu/DirectMessage/DirectMessage";
 import AddPost from "./components/Post/PostWrite/AddPost";
-import PostDetail from "./components/Post/PostDetail";
+import PostDetail from "./components/Post/PostDetail/PostDetail";
 import Profile from "./components/profile/Myprofile/Profile";
 import OtherProfile from "./components/profile/OtherProfile/OtherProfile";
 import EditUser from "./components/user/EditUser/EditUser";

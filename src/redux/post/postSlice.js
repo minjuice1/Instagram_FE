@@ -10,6 +10,7 @@ const postSlice = createSlice({
     posts: [],
     isFetching: false,
     postDetail: [],
+    comment: [],
   },
   reducers: {
 
@@ -27,6 +28,7 @@ const postSlice = createSlice({
     },
     [getPostDetail.fulfilled]: (state, action) => {
       state.postDetail = action.payload.post;
+      state.comment = action.payload.comment;
     },
   },
 });

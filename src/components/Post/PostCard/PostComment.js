@@ -1,9 +1,8 @@
-import "./PostCard.scss";
+import "../PostDetail/PostDetail.scss";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import {addComment} from "../../../redux/post/comment";
-
 import InputEmoji from "react-input-emoji";
 
 const PostComment = (postId) => {
@@ -12,9 +11,6 @@ const PostComment = (postId) => {
 	const [postComment, SetPostComment] = useState();
 	const AccessToken = localStorage.getItem("user");
 	const _postId = postId.postId;
-
-
-
 
 	function handleOnEnter(postComment) {
 		dispatch(
@@ -43,7 +39,7 @@ const PostComment = (postId) => {
 	return (
 		<>
 			<form>
-				<div className="post_cmt">
+				<div className="postDetail_cmt">
 					<InputEmoji
 						borderColor="white"
 						placeholder="댓글 달기..."
@@ -53,7 +49,7 @@ const PostComment = (postId) => {
 						cleanOnEnter
 						onEnter={handleOnEnter}
 					/>
-					<div className="comment_submit" onClick={CommentClickHandler}>
+					<div className="postDetail_submit" onClick={CommentClickHandler}>
 						게시
 					</div>
 				</div>

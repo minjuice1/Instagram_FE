@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { modal_check } from "../../redux/modal/modalSlice";
+import { modal_check } from "../../../redux/modal/modalSlice";
 
-import {addComment} from "../../redux/post/comment";
-import {getPostDetail} from "../../redux/post/post";
-import PostModal from "./PostModal/PostModal";
+import {addComment} from "../../../redux/post/comment";
+import {getPostDetail} from "../../../redux/post/post";
+import PostModal from "../PostModal/PostModal";
 import "./PostDetail.scss";
-import detailpicture from "../../image/detailpicture.png";
-import pp from "../../image/profile.jpg";
+import detailpicture from "../../../image/detailpicture.png";
+import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import InputEmoji from "react-input-emoji";
-import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../common/IconImage";
+import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
+import PostDetailComment from './PostDetailComment';
+import PostComment from '../PostCard/PostComment';
 
 const PostDetail = () => {	
 	const {postId} = useParams();
@@ -20,28 +22,11 @@ const PostDetail = () => {
 	const AccessToken = localStorage.getItem("user");
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
-	const postDetail_ = useSelector((state) => state.post.postDetail);
-	// const writer = postDetail.writer[0];
+	const comments = useSelector((state) => state.post.comment);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
   }, [getPostDetail]);
-
-	
-	console.log(postDetail_);
-	console.log(postDetail);
-	// console.log(postDetail.writer[0].userId);
-
-	const CommentClickHandler = () => {
-		dispatch(
-			addComment({
-				postId: postId,
-				contents: postDetail.contents,
-				AccessToken,
-			}),
-			[dispatch],
-		);
-	};
 
 	// 댓글 좋아요
 	const [commentLike, SetCommentLike] = useState(false);
@@ -101,12 +86,12 @@ const PostDetail = () => {
 											</div>
 											<div className="postDetail_comment_mycommentBox">
 												<div className="postDetail_comment_mycomment">
-													<span>ss</span>{" "}
+													<span>{postDetail.writer[0].userId}</span>{" "}
 													<span>
-														{/* {postDetail.contents} */}
+														{postDetail.contents}
 													</span>
 												</div>
-												<div className="postDetail_comment_myTime">ss</div>
+												<div className="postDetail_comment_myTime">{postDetail.createdAt}</div>
 											</div>
 										</div>
 										{/* component로 뺄 예정 */}
@@ -115,23 +100,11 @@ const PostDetail = () => {
 												<img src={pp} alt="pp" />
 											</div>
 											<div className="postDetail_comments_comment">
-												<div className="postDetail_comment_userId">
-													<span>testtest</span>
-													<span>
-														안녕하세요 테스트입니다안녕하세요
-														테스트입니다안녕하세요 테스트입니다안녕하세요
-														테스트입니다안녕하세요 테스트입니다안녕하세요
-														테스트입니다안녕하세요 테스트입니다안녕하세요
-														테스트입니다안녕하세요 테스트입니다
-													</span>
-												</div>
-												<div className="postDetail_comment_info">
-													<span>2일</span>
-													<span>
-														좋아요 <span>5</span>개
-													</span>
-													<span>답글 달기</span>
-												</div>
+												{comments && comments.map((comment) => (
+													<PostDetailComment contents = {comment.contents}
+													writer={comment.writer} like={comment.like} date={comment.createdAt}/>
+												))}
+												
 											</div>
 
 											<div className="postDetail_commentList_liked">
@@ -202,22 +175,9 @@ const PostDetail = () => {
 									</div>
 								</div>
 								<div className="postDetail_comment_time">
-									<span>ss</span>
+									<span>{postDetail.createdAt}</span>
 								</div>
-								<div className="postDetail_comment_writeBox">
-									<div className="postDetail_comment_write">
-										<div className="postDetail_comment_writeInput">
-											<InputEmoji
-												borderColor="#ffffff"
-												placeholder="댓글 달기.."
-												fontSize="14"
-											></InputEmoji>
-										</div>
-										<div className="postDetail_comment_writeBtn">
-											<button onClick={CommentClickHandler}>게시</button>
-										</div>
-									</div>
-								</div>
+									<PostComment postId={postId}/>
 							</div>
 						</div>
 					</div>
