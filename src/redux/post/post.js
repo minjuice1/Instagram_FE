@@ -66,10 +66,32 @@ export const deletePost = createAsyncThunk(
         history.push({ pathname: '/home'});
         return postId;
       }
-
       return response;
     }catch (e){
       console.log("삭제에러")
+    }
+  }
+)
+
+// 개별 페이지 불러오기
+export const getPostDetail = createAsyncThunk(
+  "post/getPostDetail",
+  async (postId, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
+    try {
+      const response = await Api({
+        url: `/post/${postId}`,
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      console.log(response)
+      return response.data;
+    } catch (e) {
+      
+      alert("로그인을 다시해주세요")
+      return false;
     }
   }
 )

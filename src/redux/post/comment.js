@@ -16,14 +16,14 @@ export const addComment = createAsyncThunk(
 				},
 
 			}).then((response) => {
-
+				console.log(response);
+			
 			});
-
 			return response;
-
 		} catch (e) {
 
 			return false;
 		}
 	},
 );
+
