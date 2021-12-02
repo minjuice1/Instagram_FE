@@ -44,7 +44,6 @@ const modalSlice = createSlice({
 		add_modal: false,
 		similarAccount_modal: false,
 		postDetailComment_modal: false,
-		postDetail_modal: false,
 	},
 	reducers: {},
 	extraReducers: {
@@ -65,9 +64,6 @@ const modalSlice = createSlice({
 		},
 		[postDetailComment_modal.fulfilled]: (state, action) => {
 			state.postDetailComment_modal = !state.postDetailComment_modal;
-		},
-		[postDetail_modal.fulfilled]: (state, action) => {
-			state.postDetail_modal = !state.postDetail_modal;
 		},
 	},
 });

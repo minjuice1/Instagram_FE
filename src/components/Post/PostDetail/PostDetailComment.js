@@ -10,6 +10,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 // modal
 import PostDetailCommentModal from "./PostDetailCommentModal";
 import { postDetailComment_modal } from "../../../redux/modal/modalSlice";
+import { replyReducer } from '../../../redux/post/commentSlice';
 
 const PostDetailComment = ({postId, commentId, contents, date, like, writer}) => {
 
@@ -17,7 +18,7 @@ const PostDetailComment = ({postId, commentId, contents, date, like, writer}) =>
 
   // posetDetailComment 모달
   const is_modal = useSelector((state) => state.modal.postDetailComment_modal);
-
+  
   const show_postModal = () => {
 		dispatch(postDetailComment_modal());
 	};
@@ -36,6 +37,9 @@ const PostDetailComment = ({postId, commentId, contents, date, like, writer}) =>
     setClickReply(!clickReply);
   }
 
+  const replyHandler = () => {
+    dispatch(replyReducer(writer));
+  }
 
   return(
     <>
@@ -56,7 +60,7 @@ const PostDetailComment = ({postId, commentId, contents, date, like, writer}) =>
         {like.length !== 0 && (<span>
           좋아요 <span>{like}</span>개
         </span>)}
-        <span>답글 달기</span>
+        <span onClick={replyHandler}>답글 달기</span>
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
       </div>
       

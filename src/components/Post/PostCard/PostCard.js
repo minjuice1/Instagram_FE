@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "./PostCard.scss";
 import {
@@ -19,6 +19,7 @@ import PostComment from "./PostComment";
 import dompurify from "dompurify";
 import {likePost, deletePost} from "../../../redux/post/post";
 import PostGetComment from "./PostGetComment";
+import { replyReducer } from '../../../redux/post/commentSlice';
 
 
 const PostCard = ({contents, createdAt, writer, postId,
@@ -101,6 +102,9 @@ const PostCard = ({contents, createdAt, writer, postId,
       }))
   };
 
+  useEffect(() => {
+    dispatch(replyReducer(""))
+  }, [])
 
   return (
     <>
@@ -150,12 +154,11 @@ const PostCard = ({contents, createdAt, writer, postId,
                   </div>)}
               </div>
               <div>
-                <Link to={`/postdetail/${postId}`} onClick={show_postDetailModal}>
+                {comments.length > 2 && (
+                  <Link to={`/postdetail/${postId}`} >
                   댓글 <span>{comments.length}</span>개 모두 보기
                 </Link>
-                {/* <div onClick={show_postDetailModal} postId={postId}>
-                댓글 <span>{comments.length}</span>개 모두 보기
-                </div> */}
+                )}
               </div>
             </div>
             {get_comments && get_comments.map((comment) => (

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
+import { history } from '../../history';
 
 export const addComment = createAsyncThunk(
 	"commment/addComment",
@@ -38,11 +39,16 @@ export const deleteComment = createAsyncThunk(
 					Authorization: `Bearer ${AccessToken}`,
 				},
 
-			}).then((response) => {
-				console.log(response);
+			// }).then((response) => {
+			// 	console.log(response);
 			
-			});
+			})
+			if(response.data.ok){
+				// history.push({pathname:`/postdetail/${postId}`});
+				return commentId;
+			}
 			return response;
+
 		} catch (e) {
 
 			return false;

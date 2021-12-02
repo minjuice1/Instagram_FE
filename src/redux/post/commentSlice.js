@@ -5,19 +5,26 @@ const commentSlice = createSlice({
 	name: "comment",
 	initialState: {
 		comment: [],
+		reply: "",
 	},
 	reducers: {
-
+		replyReducer : (state, action) => {
+			state.reply = action.payload;
+			console.log("호출됨");
+		}
   },
 	extraReducers: {
-		[deleteComment.fulfilled]: (state, action) => {
+		[deleteComment.fulfilled]: (state, {payload}) => {
+			console.log(payload);
 			const comment_list = state.comment.filter(
-				comment=> comment._id !== action.payload );
-			state.posts = comment_list;
+				comment=> comment._id !== payload );
+			state.comment = comment_list;
+			console.log(state.comment);
 		 },
+		 
 	},
 });
 
-export const {delete_comment} = commentSlice.actions;
+export const {delete_comment, replyReducer} = commentSlice.actions;
 
 export default commentSlice;

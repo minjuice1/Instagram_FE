@@ -1,19 +1,37 @@
 import "../PostDetail/PostDetail.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import {addComment} from "../../../redux/post/comment";
+import {addComment, addReplyComment} from "../../../redux/post/comment";
 import InputEmoji from "react-input-emoji";
+import { replyReducer } from '../../../redux/post/commentSlice';
 
-const PostComment = (postId) => {
+const PostComment = (postId, commentId) => {
 	const dispatch = useDispatch();
 
-	const comments = useSelector((state) => state.post.comment);
+	// console.log(commentId);
+	const replyUserId = useSelector(state => state.comment.reply);
+	
 
-	const [postComment, SetPostComment] = useState();
+	const [postComment, SetPostComment] = useState("");
+	const [replyComment, SetReplyComment] = useState();
 	const AccessToken = localStorage.getItem("user");
 	const _postId = postId.postId;
 
+	console.log(replyUserId);
+	console.log(postComment);
+
+	useEffect(() => {
+		dispatch(replyReducer(""))
+	}, [])
+
+	useEffect(() => {
+		if(replyUserId !== ""){
+			SetPostComment("@"+replyUserId);
+		}
+	}, [replyUserId])
+	
+	
 	function handleOnEnter(postComment) {
 		dispatch(
 			addComment({
@@ -22,10 +40,11 @@ const PostComment = (postId) => {
 				AccessToken,
 			}),
 			[dispatch],
-		);
+		); 
 	}
 
-	const CommentClickHandler = () => {
+	const CommentClickHandler = (event) => {
+		event.preventDefault();
 	dispatch(
 		addComment({
 			postId: _postId,
@@ -38,18 +57,19 @@ const PostComment = (postId) => {
 		SetPostComment("")
 	};
 
-	const ReplyCommentClickHandler = () => {
-		dispatch(
-			addComment({
-				postId: _postId,
-				contents: postComment,
-				AccessToken,
-			}),
-				[dispatch],
-			);
+	// const ReplyCommentClickHandler = () => {
+	// 	dispatch(
+	// 		addReplyComment({
+	// 			postId: _postId,
+	// 			commentId: commentId,
+	// 			contents: postComment,
+	// 			AccessToken,
+	// 		}),
+	// 			[dispatch],
+	// 		);
 	
-			SetPostComment("")
-		};
+	// 		SetReplyComment("")
+	// 	};
 
 	return (
 		<>
@@ -64,9 +84,14 @@ const PostComment = (postId) => {
 						cleanOnEnter
 						onEnter={handleOnEnter}
 					/>
-					<div className="postDetail_submit" onClick={CommentClickHandler}>
+					
+					{postComment ? (<button className="postDetail_submit"
+					onClick={CommentClickHandler} >
 						게시
-					</div>
+					</button>) : (<button className="postDetail_submitOff"
+					onClick={CommentClickHandler} >
+						게시
+					</button>)}
 				</div>
 			</form>
 		</>
