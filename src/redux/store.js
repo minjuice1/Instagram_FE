@@ -4,6 +4,7 @@ import { history } from "../history";
 import modalSlice from "./modal/modalSlice";
 import postSlice from "./post/postSlice";
 import userSlice from "./user/userSlice";
+import commentSlice from './post/commentSlice';
 
 export const store = configureStore({
 	reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
 		modal: modalSlice,
 		post: postSlice.reducer,
 		user: userSlice.reducer,
+		comment: commentSlice.reducer,
 	},
 	//A non-serializable value was detected in an action, in the path 오류 없애기
 	middleware: (getDefaultMiddleware) =>

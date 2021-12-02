@@ -27,3 +27,26 @@ export const addComment = createAsyncThunk(
 	},
 );
 
+export const deleteComment = createAsyncThunk(
+	"commment/deleteComment",
+	async ({ postId, commentId, AccessToken }) => {
+		try {
+			const response = await Api({
+				url: `/comment/${postId}/${commentId}`,
+				method: "DELETE",
+				headers: {
+					Authorization: `Bearer ${AccessToken}`,
+				},
+
+			}).then((response) => {
+				console.log(response);
+			
+			});
+			return response;
+		} catch (e) {
+
+			return false;
+		}
+	},
+);
+

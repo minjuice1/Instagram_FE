@@ -1,39 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { modal_check } from "../../../redux/modal/modalSlice";
 
-import {addComment} from "../../../redux/post/comment";
 import {getPostDetail} from "../../../redux/post/post";
-import PostModal from "../PostModal/PostModal";
-import "./PostDetail.scss";
-import detailpicture from "../../../image/detailpicture.png";
-import pp from "../../../image/profile.jpg";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
-import InputEmoji from "react-input-emoji";
-import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
 import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
+
+// modal
+import { modal_check } from "../../../redux/modal/modalSlice";
+import PostModal from "../PostModal/PostModal";
+import {postDetail_modal} from "../../../redux/modal/modalSlice";
+
+// css
+import "./PostDetail.scss";
+import pp from "../../../image/profile.jpg";
+import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
+import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
 
 const PostDetail = () => {	
 	const {postId} = useParams();
 	const dispatch = useDispatch();
 
-	const AccessToken = localStorage.getItem("user");
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
+	// console.log(postDetail);
+	console.log(comments);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
   }, [getPostDetail]);
-
-	// 댓글 좋아요
-	const [commentLike, SetCommentLike] = useState(false);
-
-	const commentLikeClickHandler = () => {
-		SetCommentLike(!commentLike);
-	};
 
 	// 포스트 좋아요
 	const [postLike, SetPostLike] = useState(false);
@@ -49,8 +45,13 @@ const PostDetail = () => {
 		SetPostBookmark((postBookmark) => !postBookmark);
 	};
 
+	// modal
 	const show_postModal = () => {
 		dispatch(modal_check());
+	};
+
+	const cancleClickHandler = () => {
+		dispatch(postDetail_modal());
 	};
 
 	return (
@@ -58,7 +59,9 @@ const PostDetail = () => {
 			{is_modal && <PostModal />}
 			{postDetail && 
 			<div className="postDetail_content_all">
+				<div className="postDetail_exit"><BiX size={40} onClick={cancleClickHandler}/></div>
 				<div className="postDetail_content">
+				
 					<div className="postDetail_Box">
 						<div className="postDetail_imgBox">
 							<div className="postDetail_img">
@@ -79,7 +82,6 @@ const PostDetail = () => {
 							</div>
 							<div className="postDetail_comment">
 								<div className="postDetail_comment_listBox">
-									<ui className="postDetail_comment_list">
 										<div className="postDetail_comment_list_mine">
 											<div className="postDetail_comment_myPP">
 												<img src={pp} alt="pp" />
@@ -94,36 +96,13 @@ const PostDetail = () => {
 												<div className="postDetail_comment_myTime">{postDetail.createdAt}</div>
 											</div>
 										</div>
-										{/* component로 뺄 예정 */}
-										<ui className="postDetail_comments">
-											<div className="postDetail_comment_pp">
-												<img src={pp} alt="pp" />
-											</div>
-											<div className="postDetail_comments_comment">
+										<div className="postDetail_comment_list">
+										{/* 댓글리스트 */}
 												{comments && comments.map((comment) => (
-													<PostDetailComment contents = {comment.contents}
+													<PostDetailComment postId={postId} commentId={comment._id} contents = {comment.contents}
 													writer={comment.writer} like={comment.like} date={comment.createdAt}/>
 												))}
-												
-											</div>
-
-											<div className="postDetail_commentList_liked">
-												{commentLike ? (
-													<img
-														src={comment_red_heart}
-														onClick={commentLikeClickHandler}
-														alt="comment_red_heart"
-													/>
-												) : (
-													<img
-														src={comment_heart}
-														onClick={commentLikeClickHandler}
-														alt="comment_heart"
-													/>
-												)}
-											</div>
-										</ui>
-									</ui>
+									</div>
 								</div>
 								<div className="postDetail_comment_funcs">
 									<div className="postDetail_comment_Likefunc">
@@ -182,8 +161,9 @@ const PostDetail = () => {
 						</div>
 					</div>
 				</div>
-			</div>
-}
+			</div>	
+		}
+		<div className="postDetail_overlay" onClick={cancleClickHandler}></div>
 		</>
 	);
 };

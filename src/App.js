@@ -51,7 +51,6 @@ function App() {
     <div className="App">
       <CustomRouter history={history}>
         {show_header &&  <Header/>}
-
         {write_modal && <AddPost/>}
         <Routes>
           <Route path="/login" element={<RejectAuth redirectTo="/"> <Login/> </RejectAuth>}/>

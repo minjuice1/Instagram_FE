@@ -12,8 +12,9 @@ import {
 
 import Profile_image from "../../../image/profile.jpg";
 
-import {modal_check} from "../../../redux/modal/modalSlice";
-import {useDispatch} from "react-redux";
+import {modal_check, postDetail_modal} from "../../../redux/modal/modalSlice";
+import PostDetail from '../PostDetail/PostDetail';
+import {useDispatch, useSelector} from "react-redux";
 import PostComment from "./PostComment";
 import dompurify from "dompurify";
 import {likePost, deletePost} from "../../../redux/post/post";
@@ -85,9 +86,15 @@ const PostCard = ({contents, createdAt, writer, postId,
 
 	const time = displayTime(createdAt);
 
+  // modal
+  const is_postDetailmodal = useSelector((state) => state.modal.postDetail_modal);
   const show_postModal = () => {
     dispatch(modal_check());
   };
+
+  const show_postDetailModal = () => {
+		dispatch(postDetail_modal());
+	};
 
   const deleteClickHandler = () => {
     dispatch(
@@ -99,6 +106,7 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   return (
     <>
+    {is_postDetailmodal && <PostDetail/>}
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
@@ -144,9 +152,12 @@ const PostCard = ({contents, createdAt, writer, postId,
                   </div>)}
               </div>
               <div>
-                <Link to={`/postdetail/${postId}`}>
+                <Link to={`/postdetail/${postId}`} onClick={show_postDetailModal}>
                   댓글 <span>{comments.length}</span>개 모두 보기
                 </Link>
+                {/* <div onClick={show_postDetailModal} postId={postId}>
+                댓글 <span>{comments.length}</span>개 모두 보기
+                </div> */}
               </div>
             </div>
             {get_comments && get_comments.map((comment) => (
