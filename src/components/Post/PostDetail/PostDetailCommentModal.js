@@ -11,7 +11,7 @@ const PostDetailModal = ({postId, commentId}) => {
 		dispatch(postDetailComment_modal());
 	};
 
-	console.log(postId);
+	// console.log(postId);
 	
 	const deleteClickHandler = () => {
     dispatch(
@@ -21,7 +21,7 @@ const PostDetailModal = ({postId, commentId}) => {
 				AccessToken,
       }))
   };
-	console.log(commentId);
+	// console.log(commentId);
 
 	return (
 		<>

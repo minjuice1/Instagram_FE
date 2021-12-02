@@ -1,12 +1,14 @@
 import "../PostDetail/PostDetail.scss";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {addComment} from "../../../redux/post/comment";
 import InputEmoji from "react-input-emoji";
 
 const PostComment = (postId) => {
 	const dispatch = useDispatch();
+
+	const comments = useSelector((state) => state.post.comment);
 
 	const [postComment, SetPostComment] = useState();
 	const AccessToken = localStorage.getItem("user");
@@ -35,6 +37,19 @@ const PostComment = (postId) => {
 
 		SetPostComment("")
 	};
+
+	const ReplyCommentClickHandler = () => {
+		dispatch(
+			addComment({
+				postId: _postId,
+				contents: postComment,
+				AccessToken,
+			}),
+				[dispatch],
+			);
+	
+			SetPostComment("")
+		};
 
 	return (
 		<>

@@ -29,6 +29,14 @@ const PostDetailComment = ({postId, commentId, contents, date, like, writer}) =>
 		SetCommentLike(!commentLike);
 	};
 
+  // 대댓글
+  const [clickReply, setClickReply] = useState(false);
+
+  const ReplyClickHandler = () => {
+    setClickReply(!clickReply);
+  }
+
+
   return(
     <>
     {is_modal && <PostDetailCommentModal postId={postId} commentId={commentId}/>}
@@ -37,20 +45,49 @@ const PostDetailComment = ({postId, commentId, contents, date, like, writer}) =>
       <img src={pp} alt="pp" />
     </div>
     <div className="postDetail_comments_comment">
-    <div className="postDetail_comment_userId">
-      <span>{writer}</span>
-      <span>
-        {contents}
-      </span>
-    </div>
-    <div className="postDetail_comment_info">
-      <span>{date}</span>
-      {like.length !== 0 && (<span>
-        좋아요 <span>{like}</span>개
-      </span>)}
-      <span>답글 달기</span>
-      <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
-    </div>
+      <div className="postDetail_comment_userId">
+        <span>{writer}</span>
+        <span className="postDetail_comment_contents">
+          {contents}
+        </span>
+      </div>
+      <div className="postDetail_comment_info">
+        <span>{date}</span>
+        {like.length !== 0 && (<span>
+          좋아요 <span>{like}</span>개
+        </span>)}
+        <span>답글 달기</span>
+        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
+      </div>
+      
+      {clickReply ? (<div  onClick={ReplyClickHandler}>
+        <div className="postDetail_replycomment"> ㅡ 답글 숨기기 </div>
+        <div className="postDetail_comments">
+          <div className="postDetail_comment_pp">
+            <img src={pp} alt="pp" />
+          </div>
+          <div className="postDetail_comments_comment">
+            <div className="postDetail_comment_userId">
+              <span>writer</span>
+              <span className="postDetail_comment_contents">
+                contents
+              </span>
+            </div>
+            <div className="postDetail_comment_info">
+              <span>date</span>
+              {like.length !== 0 && (<span>
+                좋아요 <span>{like}</span>개
+              </span>)}
+              <span>답글 달기</span>
+              <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
+            </div>
+          </div>
+        </div>
+      </div>) 
+      : (<div  onClick={ReplyClickHandler}>
+        <div className="postDetail_replycomment"> ㅡ 답글보기 (<span>3</span>개)
+        </div>
+        </div>)}
     </div>
     <div className="postDetail_commentList_liked">
       {commentLike ? (

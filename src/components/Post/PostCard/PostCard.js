@@ -31,8 +31,6 @@ const PostCard = ({contents, createdAt, writer, postId,
   let first_line = html_content.includes("<br/>");
   let first_content = html_content.split("<br/>");
 
-  console.log(comments);
-
   //포스트 좋아요
   const likes = isLike
   const [postLike, SetPostLike] = useState(likes);
