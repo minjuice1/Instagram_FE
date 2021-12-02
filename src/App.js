@@ -1,5 +1,5 @@
 import React, {useLayoutEffect, useState} from "react";
-import {Routes, Route, BrowserRouter, Navigate, useNavigate, Router} from "react-router-dom";
+import {Routes, Route, Navigate, Router} from "react-router-dom";
 import "./App.scss";
 import {useSelector} from "react-redux";
 import {history} from "./history";
@@ -17,6 +17,7 @@ import PostDetail from "./components/Post/PostDetail";
 import Profile from "./components/profile/Myprofile/Profile";
 import OtherProfile from "./components/profile/OtherProfile/OtherProfile";
 import EditUser from "./components/user/EditUser/EditUser";
+
 
 
 const CustomRouter = ({history, ...props}) => {
@@ -65,9 +66,8 @@ function App() {
           <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
           <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser/> </RequireAuth>}/>
-					<Route path="/otherprofile"	element={<RequireAuth redirectTo="/login"> <OtherProfile /> </RequireAuth>}>
-            <Route path="channel" element={<RequireAuth redirectTo="/login"> <OtherProfile /> </RequireAuth>}/>
-          </Route>
+					<Route path="/otherprofile"	element={<RequireAuth redirectTo="/login"> <OtherProfile /> </RequireAuth>}/>
+            {/*<Route path="channel" element={<RequireAuth redirectTo="/login"> <OtherProfile /> </RequireAuth>}/>*/}
 					<Route path="/otherprofile/tagged"	element={<RequireAuth redirectTo="/login"> <OtherProfile />	</RequireAuth>}/>
 					<Route path="/profile/"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>

@@ -394,22 +394,22 @@
 				}
 			}
 
-			.otherProfile_postsBox {
-				width: 100%;
-
-				.otherProfile_postList {
-					display: grid;
-					grid-template-columns: repeat(3, minmax(20px, max-content));
-					grid-template-rows: repeat(8, 1fr);
-					gap: 25px;
-					justify-content: center;
-
-					.otherProfile_post {
-						display: block;
-						overflow: hidden;
-					}
-				}
-			}
+			//.otherProfile_postsBox {
+			//	width: 100%;
+			//
+			//	.otherProfile_postList {
+			//		display: grid;
+			//		grid-template-columns: repeat(3, minmax(20px, max-content));
+			//		grid-template-rows: repeat(8, 1fr);
+			//		gap: 25px;
+			//		justify-content: center;
+			//
+			//		.otherProfile_post {
+			//			display: block;
+			//			overflow: hidden;
+			//		}
+			//	}
+			//}
 		}
 	}
 }

@@ -234,7 +234,7 @@ const OtherProfile = () => {
 													</button>
 													<div className="otherProfile_recomBox_userBox">
 														<div className="otherProfile_recomBox_pp">
-															<img src={pp} alt="profile"></img>
+															<img src={pp} alt="profile"/>
 														</div>
 														<div className="otherProfile_recomBox_Id">
 															testtest
@@ -255,7 +255,7 @@ const OtherProfile = () => {
 													</button>
 													<div className="otherProfile_recomBox_userBox">
 														<div className="otherProfile_recomBox_pp">
-															<img src={pp} alt="profile"></img>
+															<img src={pp} alt="profile"/>
 														</div>
 														<div className="otherProfile_recomBox_Id">
 															testtest

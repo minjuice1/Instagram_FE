@@ -9,21 +9,6 @@ const ProfileVideo = () => {
 				<div className="otherProfile_post">
 					<img src={recomtest} />
 				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
 			</div>
 		</>
 	);

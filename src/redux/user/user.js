@@ -1,37 +1,39 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
 import {history} from "../../history";
 
 
-
-
+//회원가입
 export const singUp = createAsyncThunk(
-	"user/signup",
-	async (data, thunkAPI) => {
-		try {
-			const response = await Api({
-				url: `/auth/signup`,
-				method: "POST",
-				data: {
-					email: data.email,
-					name: data.name,
-					userId: data.userId,
-					password: data.password,
-				},
-			});
-		} catch (e) {
-			return thunkAPI.rejectWithValue({
-				error: "회원가입실패",
-			});
-		}
-	},
+  "user/signup",
+  async (data, thunkAPI) => {
+    try {
+      const response = await Api({
+        url: `/auth/signup`,
+        method: "POST",
+        data: {
+          email: data.email,
+          name: data.name,
+          userId: data.userId,
+          password: data.password,
+        },
+      });
+    } catch (e) {
+      return thunkAPI.rejectWithValue({
+        error: "회원가입실패",
+      });
+    }
+  },
 );
 
-export const login = createAsyncThunk("user/login", async (data, thunkAPI) => {
-	try {
-		const response = await Api({
-			url: "/auth/login",
-			method: "POST",
+//로그인
+export const login = createAsyncThunk(
+  "user/login",
+  async (data, thunkAPI) => {
+    try {
+      const response = await Api({
+        url: "/auth/login",
+        method: "POST",
 
         data: {
           id: data.email,
@@ -40,36 +42,38 @@ export const login = createAsyncThunk("user/login", async (data, thunkAPI) => {
       }).then(response => {
         const accessToken = response.data.token;
         localStorage.setItem("user", accessToken);
-        if(response.data.ok){
-          history.push({ pathname: '/home'});
+        if (response.data.ok) {
+          history.push({pathname: '/home'});
         }
       })
       return response;
-    }catch (e) {
+    } catch (e) {
 
       function loginError() {
         alert("로그인실패")
       }
+
       loginError();
       return false;
     }
   }
 )
 
+//로그아웃
 export const logout = createAsyncThunk(
   "user/logout",
   async (data, thunkAPI) => {
     localStorage.removeItem("user");
-    history.push({ pathname: '/login'});
+    history.push({pathname: '/login'});
   }
-
 );
 
+//프로필편집 정보 불러오기
 export const getProfile = createAsyncThunk(
   "user/getProfile",
-  async(data, thunkAPI) => {
+  async (data, thunkAPI) => {
     const AccessToken = localStorage.getItem("user")
-    try{
+    try {
       const response = await Api({
         url: `/accounts/edit`,
         method: 'GET',
@@ -77,9 +81,66 @@ export const getProfile = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
+      return response;
+    } catch (e) {
+      return false;
+    }
+  }
+)
+
+//프로필 편집 유저정보 수정
+export const editProfile = createAsyncThunk(
+  "user/editProfile",
+  async (data, thunkAPI) => {
+    console.log(data);
+    const AccessToken = localStorage.getItem("user")
+    try {
+      const response = await Api({
+        url: `/accounts/edit`,
+        method: 'PUT',
+        data: {
+          name: data.userName,
+          userId: data.userId,
+          introdution: data.userIntroduce,
+          website: data.userWebSite,
+          email: data.userEmail,
+          phoneNum: data.userNumber,
+          gender: data.userGender,
+        },
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
       console.log(response);
       return response;
-    }catch (e) {
+    } catch (e) {
+      return false;
+    }
+  }
+)
+
+//비밀번호 변경
+export const changePassword = createAsyncThunk(
+  "accounts/password",
+  async (data, thunkAPI) => {
+    console.log("데이터",data);
+    const AccessToken = localStorage.getItem("user");
+    try {
+      const response = await Api({
+        url: `/accounts/password`,
+        method: 'PUT',
+        data: {
+          prevPwd: data.beforePwd,
+          newPwd: data.newPwd,
+          newPwdCheck: data.checkNewPwd,
+        },
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      console.log(response);
+      return response;
+    } catch (e) {
       return false;
     }
   }

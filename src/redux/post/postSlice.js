@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {addPost, deletePost, getPost, getPostDetail} from "./post";
+import {deletePost, getPost, getPostDetail} from "./post";
 
 
 
@@ -10,6 +10,7 @@ const postSlice = createSlice({
     posts: [],
     isFetching: false,
     postDetail: [],
+    comment: [],
   },
   reducers: {
 
@@ -23,10 +24,9 @@ const postSlice = createSlice({
        post=> post._id !== payload );
      state.posts = post_list;
     },
-    [addPost.pending]: (state, action) =>{
-    },
     [getPostDetail.fulfilled]: (state, action) => {
       state.postDetail = action.payload.post;
+      state.comment = action.payload.comment;
     },
   },
 });
