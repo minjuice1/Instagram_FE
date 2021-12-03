@@ -1,29 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteComment, likedComment } from './comment';
+import { addComment, deleteComment, likedComment } from './comment';
 
 const commentSlice = createSlice({
 	name: "comment",
 	initialState: {
 		comments: [],
 		replyTag: "",
-		liked: [],
 	},
 	reducers: {
 		replyReducer : (state, action) => {
 			state.replyTag = action.payload;
 			console.log("replyTag 호출됨");
-		}
+		},
   },
 	extraReducers: {
+		[addComment.fulfilled] : (state, action) => {
+			state.comments = action.payload;
+			console.log(state.comments);
+    },
 		[deleteComment.fulfilled]: (state, {payload}) => {
 			const comment_list = state.comments.filter(
 				(cnt) => cnt._id !== payload );
 			state.comments = comment_list;
 		 },
 		 [likedComment.fulfilled]: (state, action) => {
-			 state.liked = action. payload;
-			 console.log(action);
-		 }
+			const idx = state.comments.findIndex(
+				(cnt) => cnt._id == action.payload)
+				console.log(state.comments);
+		 },
 	// 	[deleteComment.fulfilled]: (state, {payload}) => {
 	// 		console.log(payload);
 	// 		const comment_list = state.comments.filter((cnt) => {
@@ -36,6 +40,6 @@ const commentSlice = createSlice({
 	},
 });
 
-export const {delete_comment, replyReducer, liked_Comment} = commentSlice.actions;
+export const commentActions = commentSlice.actions;
 
 export default commentSlice;

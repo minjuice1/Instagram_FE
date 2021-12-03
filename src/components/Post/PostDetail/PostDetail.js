@@ -25,12 +25,12 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	const co = useSelector((state) => state.comment);
-	console.log(comments);
+	const comment_list = useSelector((state) => state.comment.comments);
+	console.log(comment_list);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
-  }, [getPostDetail]);
+  }, [comment_list]);
 
 	// 포스트 좋아요
 	const [postLike, SetPostLike] = useState(false);
@@ -130,7 +130,7 @@ const PostDetail = () => {
 								</div>
 									{comments && comments.map((comment) => (
 										<PostDetailComment postId={postId} commentId={comment._id} contents = {comment.contents}
-										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like.length} date={postDetail.createdAt}/>
+										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like.length} date={comment.createdAt}/>
 									))}
 							</div>
 						

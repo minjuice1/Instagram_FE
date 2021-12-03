@@ -19,7 +19,7 @@ import PostComment from "./PostComment";
 import dompurify from "dompurify";
 import {likePost, deletePost} from "../../../redux/post/post";
 import PostGetComment from "./PostGetComment";
-import { replyReducer } from '../../../redux/post/commentSlice';
+import { commentActions } from '../../../redux/post/commentSlice';
 
 
 const PostCard = ({contents, createdAt, writer, postId,
@@ -103,7 +103,7 @@ const PostCard = ({contents, createdAt, writer, postId,
   };
 
   useEffect(() => {
-    dispatch(replyReducer(""))
+    dispatch(commentActions.replyReducer(""))
   }, [])
 
   return (

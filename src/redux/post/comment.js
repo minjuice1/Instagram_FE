@@ -15,11 +15,8 @@ export const addComment = createAsyncThunk(
 				headers: {
 					Authorization: `Bearer ${AccessToken}`,
 				},
-
-			}).then((response) => {
-				console.log(response);
-			
-			});
+			})
+			// console.log(response);
 			return response;
 		} catch (e) {
 
@@ -90,11 +87,11 @@ export const likedComment = createAsyncThunk(
 				headers: {
 					Authorization: `Bearer ${AccessToken}`,
 				},
-
-			}).then((response) => {
-				console.log(response);
-			
-			});
+			})
+			if(response.data.ok){
+        return commentId;
+				console.log(commentId);
+      }
 			return response;
 		} catch (e) {
 

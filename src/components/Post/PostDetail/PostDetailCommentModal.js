@@ -11,16 +11,17 @@ const PostDetailModal = ({postId, commentId}) => {
 		dispatch(postDetailComment_modal());
 	};
 
-	console.log(commentId);
 	
-	const deleteClickHandler = () => {
+	const deleteClickHandler = (event) => {
     dispatch(
 			deleteComment({
 				postId,
         commentId,
 				AccessToken,
       }))
+			cancleClickHandler();
 			console.log(commentId);
+			
   };
 
 	return (

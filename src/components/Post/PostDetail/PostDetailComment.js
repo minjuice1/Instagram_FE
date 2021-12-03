@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 import { likedComment } from '../../../redux/post/comment';
-import { liked_Comment } from '../../../redux/post/commentSlice';
 
 // postDetail과 css공유
 import "./PostDetail.scss";
@@ -12,22 +11,21 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 // modal
 import PostDetailCommentModal from "./PostDetailCommentModal";
 import { postDetailComment_modal } from "../../../redux/modal/modalSlice";
-import { replyReducer } from '../../../redux/post/commentSlice';
+import { commentActions } from '../../../redux/post/commentSlice';
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer}) => {
 
   const dispatch = useDispatch();
-
-  // posetDetailComment 모달
   const is_modal = useSelector((state) => state.modal.postDetailComment_modal);
-  
+
+  // posetDetailComment 모달  
   const show_postModal = () => {
 		dispatch(postDetailComment_modal());
 	};
 
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
-
+  const [liked, setLiked] = useState();
   const LikedCommentHandler = () => {
     dispatch(
       likedComment({
@@ -46,7 +44,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   }
 
   const replyHandler = () => {
-    dispatch(replyReducer(writer));
+    dispatch(commentActions.replyReducer(writer));
   }
 
   return(
