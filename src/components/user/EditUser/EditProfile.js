@@ -9,11 +9,6 @@ const EditProfile = () => {
   const dispatch = useDispatch();
 
 
-  useEffect(() => {
-   dispatch(getProfile());
-   }, [dispatch]);
-
-
   const userInfo = useSelector(state=>state.user.user);
 
 

@@ -2,245 +2,223 @@
 @import "./src/common/mixin";
 
 .profile_all {
-	background-color: $backgroundGray;
+  background-color: $backgroundGray;
 
-	.profile_content {
-		display: flex;
-		width: 80vw;
-		margin: auto;
+  .profile_content {
+    display: flex;
+    width: 80vw;
+    margin: auto;
 
-		.profile_profileBox {
-			height: 100%;
-			width: 100%;
-			padding: 30px 20px 0 20px;
 
-			.profile_header {
-				justify-content: left;
-				display: flex;
-				width: 882px;
-				height: 15%;
-				margin: auto;
+    .profile_profileBox {
+      height: 100%;
+      width: 100%;
+		padding: 30px 20px 0 20px;
+      .profile_header {
+        justify-content: left;
+        display: flex;
+        width: 882px;
+        height: 15%;
+        margin: auto;
 
-				.profile_header_pp {
-					justify-content: center;
-					text-align: center;
-					width: 23%;
-					margin-right: 35px;
+        .profile_header_image {
+          justify-content: center;
+          text-align: center;
+          width: 23%;
+          margin-right: 35px;
 
-					& > img {
-						width: 150px;
-						height: 150px;
-						cursor: pointer;
-					}
-				}
+          & > img {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+          }
+        }
 
-				.profile_header_main {
-					justify-content: center;
-					width: 55%;
+        .profile_header_main {
+          justify-content: center;
+          width: 55%;
 
-					.profile_header_top {
-						display: flex;
-						height: 25%;
-						margin-top: 10px;
+          .profile_header_top {
+            display: flex;
+            height: 25%;
+            margin-top: 10px;
 
-						& > span:first-child {
-							font-size: 28px;
-							font-weight: 300;
-							margin-right: 20px;
-							cursor: pointer;
-						}
+            & > span:first-child {
+              font-size: 28px;
+              font-weight: 300;
+              margin-right: 20px;
+              cursor: pointer;
+            }
 
-						& > span:nth-child(2) {
-							height: 30px;
-							width: 93px;
-							font-weight: bold;
-							text-align: center;
-							border: 1px solid #c7c7c7;
-							background-color: #ffffff;
-							border-radius: 4px;
-							margin-right: 20px;
-							margin-top: 6px;
-							cursor: pointer;
-							@include fontSize("biglarge");
-							line-height: 30px;
-						}
+            & > span:nth-child(2) {
+              height: 30px;
+              width: 93px;
+              font-weight: bold;
+              text-align: center;
+              border: 1px solid #c7c7c7;
+              background-color: #ffffff;
+              border-radius: 4px;
+              margin-right: 20px;
+              margin-top: 6px;
+              cursor: pointer;
+              @include fontSize("biglarge");
+              line-height: 30px;
+            }
 
-						.profile_settings {
-							width: 30px;
-							height: 30px;
-							margin-top: 5px;
-							cursor: pointer;
-						}
-					}
+            .profile_settings {
+              width: 30px;
+              height: 30px;
+              margin-top: 5px;
+              cursor: pointer;
+            }
+          }
 
-					.profile_header_mid {
-						width: 100%;
-						height: 30%;
-						margin: 5px 0;
+          .profile_header_mid {
+            width: 100%;
+            height: 30%;
+            margin: 5px 0;
+			  cursor: pointer;
 
-						& > span {
-							line-height: 50px;
-							margin-right: 40px;
+            & > span {
+              line-height: 50px;
+              margin-right: 40px;
 
-							& > span {
-								@include fontSize("biglarge");
-								font-weight: bold;
-							}
-						}
+              & > span {
+                @include fontSize("biglarge");
+                font-weight: bold;
+              }
+            }
+          }
 
-						& > span:nth-child(2) {
-							cursor: pointer;
-						}
+          .profile_header_name {
+            width: 100%;
+            height: auto;
+            @include fontSize("large");
+            font-weight: 600;
+            margin-bottom: 10px;
+          }
 
-						& > span:nth-child(3) {
-							cursor: pointer;
-						}
-					}
+          .profile_header_bottom {
+            width: 100%;
+            height: auto;
+            @include fontSize("large");
+            font-weight: 500;
+          }
+        }
+      }
 
-					.profile_header_name {
-						width: 100%;
-						height: auto;
-						@include fontSize("large");
-						font-weight: 600;
-						margin-bottom: 10px;
-					}
+      .profile_storiesBox {
+        display: flex;
+        height: 10%;
+        width: 882px;
+        justify-content: left;
+        padding: 0 10px;
+        margin: auto;
 
-					.profile_header_bottom {
-						width: 100%;
-						height: auto;
-						@include fontSize("large");
-						font-weight: 500;
-					}
-				}
-			}
+        .profile_stories {
+          text-align: center;
+          display: flex;
+          width: 70%;
+          height: 15%;
+          margin-bottom: 30px;
+          margin-right: 35px;
 
-			.profile_storiesBox {
-				display: flex;
-				height: 10%;
-				width: 882px;
-				justify-content: left;
-				padding: 0 10px;
-				margin: auto;
+          .profile_story {
+            height: 100%;
+            margin: 30px 30px 20px 0;
 
-				.profile_stories {
-					text-align: center;
-					display: flex;
-					width: 70%;
-					height: 15%;
-					margin-bottom: 30px;
-					margin-right: 35px;
+            .profile_storyBox {
+              margin: auto;
+              width: 80px;
+              height: 50%;
+              cursor: pointer;
 
-					.profile_story {
-						height: 100%;
-						margin: 30px 30px 20px 0;
+              & > img {
+                width: 77px;
+                height: 77px;
+              }
+            }
 
-						.profile_storyBox {
-							margin: auto;
-							width: 80px;
-							height: 50%;
-							cursor: pointer;
+            .profile_storyName {
+              margin-top: 5px;
+              text-align: center;
+              width: 100%;
+              height: auto;
+              color: #262626;
+              font-weight: 600;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              cursor: pointer;
+            }
+          }
+        }
+      }
 
-							& > img {
-								width: 77px;
-								height: 77px;
-							}
-						}
+      .profile_post_dir {
+        display: flex;
+        width: 920px;
+        justify-content: center;
+        margin: auto;
+        border-top: 1px solid $instaGray;
 
-						.profile_storyName {
-							margin-top: 5px;
-							text-align: center;
-							width: 100%;
-							height: auto;
-							color: #262626;
-							font-weight: 600;
-							overflow: hidden;
-							text-overflow: ellipsis;
-							white-space: nowrap;
-							cursor: pointer;
-						}
-					}
-				}
-			}
+        .profile_post_clicked {
+          display: flex;
+          width: 65px;
+          height: 52px;
+          line-height: 48px;
+          margin-right: 65px;
+          color: $instaMenuBlack;
+          @include fontSize("normal");
+          font-weight: 550;
+          text-decoration: none;
+          text-align: center;
+          letter-spacing: 0.5px;
+          cursor: pointer;
+          align-items: center;
+          justify-content: center;
+          border-top: 1px solid $instaMenuGray;
+        }
 
-			.profile_post_dir {
-				display: flex;
-				width: 920px;
-				justify-content: center;
-				margin: auto;
-				border-top: 1px solid $instaGray;
+        .profile_post_unclicked {
+          display: flex;
+          width: 65px;
+          height: 52px;
+          line-height: 48px;
+          margin-right: 65px;
+          color: $instaMenuGray;
+          @include fontSize("normal");
+          font-weight: 550;
+          text-decoration: none;
+          text-align: center;
+          letter-spacing: 0.5px;
+          cursor: pointer;
+          align-items: center;
+          justify-content: center;
+          border-top: 1px solid $instaGray;
+        }
 
-				.profile_post_clicked {
-					display: flex;
-					width: 65px;
-					height: 52px;
-					line-height: 48px;
-					margin-right: 65px;
-					color: $instaMenuBlack;
-					@include fontSize("normal");
-					font-weight: 550;
-					text-decoration: none;
-					text-align: center;
-					letter-spacing: 0.5px;
-					cursor: pointer;
-					align-items: center;
-					justify-content: center;
-					border-top: 1px solid $instaMenuGray;
-				}
+        .profile_post_clickOn {
+          color: $instaMenuBlack;
+          text-decoration: none;
+        }
 
-				.profile_post_unclicked {
-					display: flex;
-					width: 65px;
-					height: 52px;
-					line-height: 48px;
-					margin-right: 65px;
-					color: $instaMenuGray;
-					@include fontSize("normal");
-					font-weight: 550;
-					text-decoration: none;
-					text-align: center;
-					letter-spacing: 0.5px;
-					cursor: pointer;
-					align-items: center;
-					justify-content: center;
-					border-top: 1px solid $instaGray;
-				}
+        .profile_post_clickOff {
+          color: $instaMenuGray;
+          text-decoration: none;
+        }
+      }
 
-				.profile_post_clickOn {
-					color: $instaMenuBlack;
-					text-decoration: none;
-				}
 
-				.profile_post_clickOff {
-					color: $instaMenuGray;
-					text-decoration: none;
-				}
-			}
-
-			// .otherProfile_postsBox {
-			// 	width: 100%;
-			// 	border: 1px solid black;
-
-			// 	.otherProfile_postList {
-			// 		display: grid;
-			// 		grid-template-columns: repeat(3, minmax(20px, max-content));
-			// 		grid-template-rows: repeat(8, 1fr);
-			// 		gap: 25px;
-			// 		justify-content: center;
-
-			// 		.otherProfile_post {
-			// 			display: block;
-			// 			overflow: hidden;
-			// 		}
-			// 	}
-			// }
-		}
-	}
+    }
+  }
 }
-.OtherProfile_postsBox{
-	position: absolute;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	margin-top: 50px;
-	gap: 15px;
+
+.OtherProfile_postsBox {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 50px;
+  gap: 15px;
 
 }

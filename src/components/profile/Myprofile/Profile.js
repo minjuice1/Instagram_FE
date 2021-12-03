@@ -1,4 +1,4 @@
-import {React, useState} from "react";
+import {React, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 
@@ -26,9 +26,34 @@ import {BiBookmark} from "react-icons/bi";
 import {RiAccountBoxLine} from "react-icons/ri";
 import {MdGridOn} from "react-icons/md";
 import ProfileStory from "./ProfileStory";
+import ProfileInfo from "./ProfileInfo";
+import {useParams} from "react-router";
+import {getProfile} from "../../../redux/user/user";
+import {getPost, getUserPost} from "../../../redux/post/post";
 
 const Profile = () => {
+
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  //개인 데이터 불러오기
+  const {id} = useParams();
+  const user_id = useParams(id).user_Id;
+
+  //userpost를 가져오면서 본인이 맞는지 아닌지 확인
+  //자신인지 아닌지 확인
+  const [myProfile, SetMyProfile] = useState(false);
+  const myId = useSelector(state=>state.user.user.userId);
+
+  useEffect(() => {
+    dispatch(getUserPost(user_id));
+    if(myId === user_id){
+      SetMyProfile(true);
+    }
+  }, [dispatch]);
+
+  console.log(myProfile);
 
   // 	// 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
@@ -36,13 +61,15 @@ const Profile = () => {
   const [ClickedSaved, setClickedSaved] = useState(false);
   const [ClickedTagged, setClickedTagged] = useState(false);
 
+
+
   // 게시물, 동영상, 태그됨
   const postsClickHandler = () => {
     setClickedPosts(true);
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
-		// navigate("/profile");
+    // navigate("/profile");
   };
 
   const videoClickHandler = () => {
@@ -50,7 +77,7 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedSaved(false);
     setClickedTagged(false);
-		// navigate("/profile/channel");
+    // navigate("/profile/channel");
   };
 
   const savedClickHandler = (event) => {
@@ -68,22 +95,15 @@ const Profile = () => {
   };
 
   // 프로필 편집, 팔로워, 팔로우 모달
+
   const is_modal = useSelector((state) => state.modal.is_modal);
   const following_modal = useSelector((state) => state.modal.following_modal);
   const followers_modal = useSelector((state) => state.modal.followers_modal);
 
-  const show_postModal = () => {
-    dispatch(modal_check());
-  };
 
-  const show_following_modal = () => {
-    dispatch(following_modal_check());
-  };
 
-  const show_followers_modal = () => {
-    dispatch(followers_modal_check());
-  };
 
+ 
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
@@ -93,52 +113,19 @@ const Profile = () => {
       <div className="profile_all">
         <div className="profile_content">
           <div className="profile_profileBox">
-            <div className="profile_header">
-              <div className="profile_header_pp">
-                <img src={pp} alt={"profile"}/>
-              </div>
+            {myProfile &&  <ProfileInfo/>}
 
-              <section className="profile_header_main">
-                <div className="profile_header_top">
-                  <span>testtest</span>
-                  <span>프로필 편집</span>
-                  <FiSettings
-                    onClick={show_postModal}
-                    className="profile_settings"
-                  />
-                </div>
-                <ul className="profile_header_mid">
-									<span>
-										게시물 <span>10</span>
-									</span>
-                  <span
-                    onClick={show_followers_modal}
-                    className="profile_followers_modal"
-                  >
-										팔로워 <span>555</span>
-									</span>
-                  <span
-                    onClick={show_following_modal}
-                    className="profile_following_modal"
-                  >
-										팔로우 <span>999</span>
-									</span>
-                </ul>
-                <div className="profile_header_name">내 프로필 이름</div>
-                <div className="profile_header_bottom">상태메세지</div>
-              </section>
-            </div>
             <ProfileStory/>
             <div className="profile_post_dir" role="tablist">
               {ClickedPosts ? (
                   <a className="profile_post_clicked">
 									<span className="profile_post_clickOn"
-                      onClick={postsClickHandler}>
+                        onClick={postsClickHandler}>
 											<MdGridOn/> 게시물
 									</span>
                   </a>)
                 : (
-									<a className="profile_post_unclicked">
+                  <a className="profile_post_unclicked">
 									<span onClick={postsClickHandler}>
 											<MdGridOn/> 게시물
 									</span>
@@ -159,12 +146,12 @@ const Profile = () => {
 									</span>
                 </a>
               )}
-							{ClickedVideo && (
-								<div className="OtherProfile_postsBox">
-									<ProfileVideo/>
+              {ClickedVideo && (
+                <div className="OtherProfile_postsBox">
+                  <ProfileVideo/>
 
-								</div>
-							)}
+                </div>
+              )}
 
               {ClickedSaved ? (
                 <a className="profile_post_clicked">
