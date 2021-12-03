@@ -14,6 +14,7 @@ import { postDetailComment_modal } from "../../../redux/modal/modalSlice";
 import { commentActions } from '../../../redux/post/commentSlice';
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer}) => {
+  // console.log(commentId);
 
   const dispatch = useDispatch();
   const is_modal = useSelector((state) => state.modal.postDetailComment_modal);
@@ -25,15 +26,14 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
-  const [liked, setLiked] = useState();
+  const [commentLiked, setCommentLiked] = useState();
   const LikedCommentHandler = () => {
+    setCommentLiked(!commentLiked);
     dispatch(
       likedComment({
         commentId,
         AccessToken,
-      }),
-      [dispatch],
-    );
+      }));
   };
 
   // 대댓글
@@ -100,7 +100,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         </div>)}
     </div>
     <div className="postDetail_commentList_liked">
-      {isLike ? (
+      {commentLiked ? (
         <img
           src={comment_red_heart}
           onClick={LikedCommentHandler}

@@ -10,36 +10,31 @@ const commentSlice = createSlice({
 	reducers: {
 		replyReducer : (state, action) => {
 			state.replyTag = action.payload;
-			console.log("replyTag 호출됨");
+			// console.log("replyTag 호출됨");
 		},
+		getComment : (state, action) => {
+			state.comments = action.payload;
+			// console.log(action.payload);
+		}
   },
 	extraReducers: {
 		[addComment.fulfilled] : (state, action) => {
-			state.comments = action.payload;
-			console.log(state.comments);
+			state.comments = action.payload.comment;
+			// console.log(action.payload);
     },
-		[deleteComment.fulfilled]: (state, {payload}) => {
+		[deleteComment.fulfilled]: (state, action) => {
+			// console.log(action.payload);
 			const comment_list = state.comments.filter(
-				(cnt) => cnt._id !== payload );
-			state.comments = comment_list;
+				(cnt) => cnt._id !== action.payload );
+			state.comments = comment_list;			
 		 },
 		 [likedComment.fulfilled]: (state, action) => {
-			const idx = state.comments.findIndex(
-				(cnt) => cnt._id == action.payload)
-				console.log(state.comments);
+			//  console.log(action);
+			// const idx = state.comments.findIndex((cnt) => cnt._id === action.payload);
+      // state.comments[idx].like = !state.comments[idx].like;
 		 },
-	// 	[deleteComment.fulfilled]: (state, {payload}) => {
-	// 		console.log(payload);
-	// 		const comment_list = state.comments.filter((cnt) => {
-	// 			if(cnt._id !== payload)
-	// 			{return cnt
-	// 			}
-	// 		})
-	// 		state.comments = comment_list;
-	// },
 	},
 });
 
 export const commentActions = commentSlice.actions;
-
 export default commentSlice;

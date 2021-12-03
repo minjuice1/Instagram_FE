@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux";
 import { postDetailComment_modal } from "../../../redux/modal/modalSlice";
-import { deleteComment } from '../../../redux/post/comment';
+import { deleteComment } from '../../../redux/post';
 import "./PostDetailCommentModal.scss";
 
 const PostDetailModal = ({postId, commentId}) => {
+	// console.log(commentId);
 	const dispatch = useDispatch();
 	const AccessToken = localStorage.getItem("user");
 
@@ -12,16 +13,15 @@ const PostDetailModal = ({postId, commentId}) => {
 	};
 
 	
-	const deleteClickHandler = (event) => {
+	const deleteClickHandler = () => {
     dispatch(
 			deleteComment({
 				postId,
         commentId,
 				AccessToken,
       }))
-			cancleClickHandler();
 			console.log(commentId);
-			
+			cancleClickHandler();			
   };
 
 	return (

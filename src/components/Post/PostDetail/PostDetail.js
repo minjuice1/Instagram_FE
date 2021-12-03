@@ -26,7 +26,8 @@ const PostDetail = () => {
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
 	const comment_list = useSelector((state) => state.comment.comments);
-	console.log(comment_list);
+	// console.log(comments);
+	// console.log(comment_list);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));

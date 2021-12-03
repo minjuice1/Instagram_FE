@@ -17,6 +17,11 @@ export const addComment = createAsyncThunk(
 				},
 			})
 			// console.log(response);
+			if(response.data.ok){
+				console.log(response);
+				// history.push({pathname:`/postdetail/${postId}`});
+				return response.data;
+			}
 			return response;
 		} catch (e) {
 

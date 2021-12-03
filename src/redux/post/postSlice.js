@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {addPost, deletePost, getPost, getPostDetail} from "./post";
-
+import { addComment, deleteComment, likedComment } from './comment';
 
 
 const postSlice = createSlice({
@@ -30,6 +30,15 @@ const postSlice = createSlice({
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
     },
+    [addComment.fulfilled] : (state, action) => {
+			state.comment.push(action.payload.comment);
+			console.log(action.payload);
+    },
+    [deleteComment.fulfilled]: (state, action) => {			
+			state.comment = state.comment.filter(
+				(cnt) => cnt._id !== action.payload );
+      console.log(state.comment);		
+		 },
   },
 });
 export const {delete_post} = postSlice.actions;
