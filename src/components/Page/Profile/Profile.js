@@ -46,6 +46,8 @@ const Profile = () => {
   //userpost를 가져오면서 본인이 맞는지 아닌지 확인
   const [myProfile, SetMyProfile] = useState(false);
   const myId = useSelector(state=>state.user.user.userId);
+
+  console.log(myId)
   useEffect(() => {
     if(myId === user_id){
       SetMyProfile(true);
@@ -100,13 +102,14 @@ const Profile = () => {
 const post_list = useSelector(state=>state.post.post);
 
 
-const post_count = post_list && post_list.length;
+const user_info = useSelector(state=> state.post.user);
+const user_data = user_info && user_info[0];
 
-console.log(post_count);
+console.log(user_data);
 
 
 
-console.log(user_id);
+
 
  
   return (
@@ -119,11 +122,23 @@ console.log(user_id);
       <div className="profile_all">
         <div className="profile_content">
           <div className="profile_profileBox">
-            {myProfile?
+            {myProfile && user_data &&
               <MyProfileInfo
                 userId = {user_id}
-                post_count = {post_count}
-              />: <UserProfileInfo/>}
+                name = {user_data.name}
+                totalFollow = {user_data.totalFollow}
+                totalFollower = {user_data.totalFollower}
+                totalPost = {user_data.totalPost}
+                introdution = {user_data.introdution}
+              />}
+            {!myProfile && user_data &&
+              <UserProfileInfo
+                userId = {user_id}
+                name = {user_data.name}
+                totalFollow = {user_data.totalFollow}
+                totalFollower = {user_data.totalFollower}
+                totalPost = {user_data.totalPost}
+                introdution = {user_data.introdution}/>}
             {/*<ProfileStory/>*/}
             <div className="profile_post_dir" role="tablist">
               {ClickedPosts ? (

@@ -12,19 +12,15 @@ import OtherProfileSettingModal from "./OtherProfile/OtherProfileModal/OtherProf
 // scss, icon, img
 import "./Profile.scss";
 import pp from "../../../image/profile.jpg"
-import {
-  FiSettings,
-  FiPlayCircle,
-  FiChevronDown,
-  FiChevronUp,
-} from "react-icons/fi";
+import {FiSettings, FiPlayCircle, FiChevronDown, FiChevronUp,} from "react-icons/fi";
 import { BiBookmark, BiDotsHorizontalRounded } from "react-icons/bi";
 import { FaUserCheck, FaChevronCircleRight } from "react-icons/fa";
 
 
-const OtherProfile = () => {
+const OtherProfile = ({userId, name, totalFollow, totalFollower, totalPost, introdution}) => {
   const dispatch = useDispatch();
 
+  console.log(userId)
 
   // 프로필 편집, 팔로워, 팔로우 모달
   const is_modal = useSelector((state) => state.modal.is_modal);
@@ -69,12 +65,12 @@ const OtherProfile = () => {
           <div className="otherProfile_profileBox">
             <div className="otherProfile_header">
               <div className="otherProfile_header_pp">
-                <img src={pp} alt="profile"></img>
+                <img src={pp} alt="profile"/>
               </div>
               <section className="otherProfile_header_main">
                 {Isfollowing ? (
                   <div className="otherProfile_header_top">
-                    <span>testtest</span>
+                    <span>{userId}</span>
                     <span className="otherProfile_header_sengMsg">
 											메세지 보내기
 										</span>
@@ -85,11 +81,10 @@ const OtherProfile = () => {
                     {recomAccountbtn ? (
                       <span
                         className="otherProfile_header_moreBtnOn"
-                        onClick={show_recomAccountbtn}
-                      >
+                        onClick={show_recomAccountbtn}>
 												<FiChevronUp />
-											</span>
-                    ) : (
+											</span>)
+                      : (
                       <span
                         className="otherProfile_header_moreBtnOff"
                         onClick={show_recomAccountbtn}
@@ -105,7 +100,7 @@ const OtherProfile = () => {
                   </div>
                 ) : (
                   <div className="otherProfile_header_top">
-                    <span>testtest</span>
+                    <span>{userId}</span>
                     <span className="otherProfile_header_following">
 											팔로우
 										</span>
@@ -133,26 +128,26 @@ const OtherProfile = () => {
 
                 <ul className="otherProfile_header_mid">
 									<span>
-										게시물 <span>10</span>
+										게시물 <span>{totalPost}</span>
 									</span>
                   <span
                     onClick={show_followers_modal}
                     className="otherProfile_followers_modal"
                   >
-										팔로워 <span>555</span>
+										팔로워 <span>{totalFollower}</span>
 									</span>
                   <span
                     onClick={show_following_modal}
                     className="otherProfile_following_modal"
                   >
-										팔로우 <span>999</span>
+										팔로우 <span>{totalFollow}</span>
 									</span>
                 </ul>
                 <div className="otherProfile_header_name">
-                  다른 사람 프로필 이름
+                  {name}
                 </div>
                 <div className="otherProfile_header_bottom">
-                  다른 사람 상태메세지
+                  {introdution}
                 </div>
               </section>
             </div>

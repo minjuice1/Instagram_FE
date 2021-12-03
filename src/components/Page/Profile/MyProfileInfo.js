@@ -5,14 +5,14 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import pp from "../../../image/profile.jpg";
 
-const MyProfileInfo = ({userId, post_count}) => {
+const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, introdution}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
   const show_postModal = () => {
     dispatch(modal_check());
   };
+
+  console.log(name);
 
   const show_following_modal = () => {
     dispatch(following_modal_check());
@@ -41,23 +41,23 @@ const MyProfileInfo = ({userId, post_count}) => {
         </div>
         <ul className="profile_header_mid">
 									<span>
-										게시물 <span>{post_count}</span>
+										게시물 <span>{totalPost}</span>
 									</span>
           <span
             onClick={show_followers_modal}
             className="profile_followers_modal"
           >
-										팔로워 <span>555</span>
+										팔로워 <span>{totalFollower}</span>
 									</span>
           <span
             onClick={show_following_modal}
             className="profile_following_modal"
           >
-										팔로우 <span>999</span>
+										팔로우 <span>{totalFollow}</span>
 									</span>
         </ul>
-        <div className="profile_header_name">내 프로필 이름</div>
-        <div className="profile_header_bottom">상태메세지</div>
+        <div className="profile_header_name">{name}</div>
+        <div className="profile_header_bottom">{introdution}</div>
       </section>
 
     </div>
