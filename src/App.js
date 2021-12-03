@@ -5,19 +5,21 @@ import {useDispatch, useSelector} from "react-redux";
 import {history} from "./history";
 
 //주소
-import Home from "./components/Home/Home";
+import Home from "./components/Main/Main";
 import Header from "./components/Page/Header/Header";
-import Login from "./components/user/Login/Login";
-import SignUp from "./components/user/Login/SignUp";
-import FindPassword from "./components/user/Login/FindPassword";
+import Login from "./components/Page/User/Login/Login";
+import SignUp from "./components/Page/User/Login/SignUp";
+import FindPassword from "./components/Page/User/Login/FindPassword";
 import Recommendation from "./components/Page/Menu/Recommendation/Recommendation";
 import DirectMessage from "./components/Page/Menu/DirectMessage/DirectMessage";
 import AddPost from "./components/Post/PostWrite/AddPost";
 import PostDetail from "./components/Post/PostDetail";
-import Profile from "./components/profile/Myprofile/Profile";
-import OtherProfile from "./components/profile/OtherProfile/OtherProfile";
-import EditUser from "./components/user/EditUser/EditUser";
+import Profile from "./components/Page/Profile/Profile";
+
+import EditUser from "./components/Page/User/EditUser/EditUser";
 import {getProfile} from "./redux/user/user";
+import {getUserPost} from "./redux/post/post";
+
 
 
 
@@ -51,8 +53,8 @@ function App() {
     dispatch(getProfile());
   }, [dispatch]);
 
-
-
+const a = useSelector(state => state);
+console.log(a);
   //헤더 띄우기용
   const show_header = is_login || token ;
 
@@ -76,9 +78,6 @@ function App() {
           <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
           <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser/> </RequireAuth>}/>
-					<Route path="/otherprofile"	element={<RequireAuth redirectTo="/login"> <OtherProfile /> </RequireAuth>}/>
-            {/*<Route path="channel" element={<RequireAuth redirectTo="/login"> <OtherProfile /> </RequireAuth>}/>*/}
-					<Route path="/otherprofile/tagged"	element={<RequireAuth redirectTo="/login"> <OtherProfile />	</RequireAuth>}/>
 					<Route path="/profile/"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>

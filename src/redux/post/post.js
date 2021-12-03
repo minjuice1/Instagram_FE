@@ -133,6 +133,9 @@ export const getUserPost = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
+      if(response.data.ok){
+        return response;
+      }
       console.log(response)
       return response;
     }catch (e){

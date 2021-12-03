@@ -22,6 +22,7 @@ const postSlice = createSlice({
       state.posts = action.payload.posts;
     },
     [getUserPost.fulfilled] : (state, action) => {
+      // console.log(action.payload)
       state.post = action.payload.data.post;
       state.user = action.payload.data.user;
       state.savedPost = action.payload.data.savedPost;
@@ -35,6 +36,8 @@ const postSlice = createSlice({
     [getPostDetail.fulfilled]: (state, action) => {
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
+
+
     },
   },
 });

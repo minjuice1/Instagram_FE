@@ -21,6 +21,8 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 
+	console.log(postDetail)
+
 	// const writer = postDetail.writer[0];
 
 	useEffect(() => {
@@ -85,7 +87,7 @@ const PostDetail = () => {
 								<div className="postDetail_header_pic">
 									<img src={pp} alt="pp" />
 									<div className="postDetail_header_userId">
-										<span>{postDetail.writer[0].userId}</span> * <span> 팔로잉</span>
+										<span>{postDetail.writer.userId}</span> * <span> 팔로잉</span>
 									</div>
 								</div>
 								<div className="postDetail_header_btn" onClick={show_postModal}>

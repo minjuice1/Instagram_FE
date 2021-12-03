@@ -1,6 +1,7 @@
 import {getProfile, login, logout} from "./user";
 import { createSlice } from "@reduxjs/toolkit";
 import {history} from "../../history";
+import {getUserPost} from "../post/post";
 
 const userSlice = createSlice({
 	name: "user",
@@ -9,6 +10,7 @@ const userSlice = createSlice({
 		isLogin: false,
 	},
 	reducers: {
+
 	},
 	extraReducers: {
 		[login.fulfilled]: (state, action) => {
@@ -19,8 +21,10 @@ const userSlice = createSlice({
 		},
 		[getProfile.fulfilled]: (state,action) => {
 			state.user = action.payload.data.user;
-
 	},
+		[getUserPost.fulfilled]: (state,action) => {
+			console.log(action.payload);
+		}
 }
 });
 

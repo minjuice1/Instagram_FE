@@ -3,6 +3,7 @@ import React from "react";
 import {logout} from "../../../redux/user/user";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
+import {history} from "../../../history";
 
 
 const HeaderUser = () => {
@@ -14,7 +15,9 @@ const HeaderUser = () => {
 
   const id = useSelector(state=>state.user.user.userId);
   const editUserClickHandler = () => {
-    navigate(`/profile/${id}`)
+
+    history.push(`/profile/${id}`)
+
   }
 
   return(

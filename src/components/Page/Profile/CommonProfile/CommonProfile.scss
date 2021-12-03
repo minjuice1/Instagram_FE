@@ -1,0 +1,11 @@
+@import "./src/common/variables";
+@import "./src/common/mixin";
+
+.otherProfile_post{
+
+  & > img {
+    width: 290px;
+    height: 290px;
+  }
+
+}
