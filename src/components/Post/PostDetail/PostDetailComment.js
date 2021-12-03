@@ -1,6 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {comment_heart, comment_red_heart} from "../../../common/IconImage";
+import { likedComment } from '../../../redux/post/comment';
+import { liked_Comment } from '../../../redux/post/commentSlice';
 
 // postDetail과 css공유
 import "./PostDetail.scss";
@@ -12,7 +14,7 @@ import PostDetailCommentModal from "./PostDetailCommentModal";
 import { postDetailComment_modal } from "../../../redux/modal/modalSlice";
 import { replyReducer } from '../../../redux/post/commentSlice';
 
-const PostDetailComment = ({postId, commentId, contents, date, like, writer}) => {
+const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer}) => {
 
   const dispatch = useDispatch();
 
@@ -24,11 +26,17 @@ const PostDetailComment = ({postId, commentId, contents, date, like, writer}) =>
 	};
 
   // 댓글 좋아요
-	const [commentLike, SetCommentLike] = useState(false);
+  const AccessToken = localStorage.getItem("user");
 
-	const commentLikeClickHandler = () => {
-		SetCommentLike(!commentLike);
-	};
+  const LikedCommentHandler = () => {
+    dispatch(
+      likedComment({
+        commentId,
+        AccessToken,
+      }),
+      [dispatch],
+    );
+  };
 
   // 대댓글
   const [clickReply, setClickReply] = useState(false);
@@ -43,7 +51,7 @@ const PostDetailComment = ({postId, commentId, contents, date, like, writer}) =>
 
   return(
     <>
-    {is_modal && <PostDetailCommentModal postId={postId} commentId={commentId}/>}
+    {is_modal && <PostDetailCommentModal contents={contents} postId={postId} commentId={commentId}/>}
     <div className="postDetail_comments">
     <div className="postDetail_comment_pp">
       <img src={pp} alt="pp" />
@@ -94,16 +102,16 @@ const PostDetailComment = ({postId, commentId, contents, date, like, writer}) =>
         </div>)}
     </div>
     <div className="postDetail_commentList_liked">
-      {commentLike ? (
+      {isLike ? (
         <img
           src={comment_red_heart}
-          onClick={commentLikeClickHandler}
+          onClick={LikedCommentHandler}
           alt="comment_red_heart"
         />
       ) : (
         <img
           src={comment_heart}
-          onClick={commentLikeClickHandler}
+          onClick={LikedCommentHandler}
           alt="comment_heart"
         />
       )}

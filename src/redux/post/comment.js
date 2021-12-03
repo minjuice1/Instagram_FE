@@ -38,12 +38,10 @@ export const deleteComment = createAsyncThunk(
 				headers: {
 					Authorization: `Bearer ${AccessToken}`,
 				},
-
 			// }).then((response) => {
-			// 	console.log(response);
-			
 			})
 			if(response.data.ok){
+				console.log(response);
 				// history.push({pathname:`/postdetail/${postId}`});
 				return commentId;
 			}
@@ -66,6 +64,29 @@ export const addReplyComment = createAsyncThunk(
 				data: {
 					contents,
 				},
+				headers: {
+					Authorization: `Bearer ${AccessToken}`,
+				},
+
+			}).then((response) => {
+				console.log(response);
+			
+			});
+			return response;
+		} catch (e) {
+
+			return false;
+		}
+	},
+);
+
+export const likedComment = createAsyncThunk(
+	"commment/likedComment",
+	async ({ commentId, AccessToken }) => {
+		try {
+			const response = await Api({
+				url: `/comment/${commentId}/like`,
+				method: "PUT",
 				headers: {
 					Authorization: `Bearer ${AccessToken}`,
 				},

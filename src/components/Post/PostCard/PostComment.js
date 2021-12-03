@@ -10,16 +10,13 @@ const PostComment = (postId, commentId) => {
 	const dispatch = useDispatch();
 
 	// console.log(commentId);
-	const replyUserId = useSelector(state => state.comment.reply);
+	const replyUserId = useSelector(state => state.comment.replyTag);
 	
 
 	const [postComment, SetPostComment] = useState("");
 	const [replyComment, SetReplyComment] = useState();
 	const AccessToken = localStorage.getItem("user");
 	const _postId = postId.postId;
-
-	console.log(replyUserId);
-	console.log(postComment);
 
 	useEffect(() => {
 		dispatch(replyReducer(""))

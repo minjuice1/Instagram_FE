@@ -25,6 +25,7 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
+	const co = useSelector((state) => state.comment);
 	console.log(comments);
 
 	useEffect(() => {
@@ -101,7 +102,7 @@ const PostDetail = () => {
 									<img src={pp} alt="pp" />
 							</div>
 							<div className="postDetail_header_userId">
-								<span>{postDetail.writer[0].userId}</span> * <span> 팔로잉</span>
+								<span>{postDetail.writer.userId}</span> * <span> 팔로잉</span>
 							</div>
 							<div className="postDetail_header_btn" onClick={show_postModal}>
 								<BiDotsHorizontalRounded size={25} />
@@ -117,7 +118,7 @@ const PostDetail = () => {
 									</div>
 									<div className="postDetail_comments_comment">
 										<div className="postDetail_comment_userId">
-											<span>{postDetail.writer[0].userId}</span>
+											<span>{postDetail.writer.userId}</span>
 											<span className="postDetail_comment_contents">
 												{postDetail.contents}
 											</span>
@@ -129,7 +130,7 @@ const PostDetail = () => {
 								</div>
 									{comments && comments.map((comment) => (
 										<PostDetailComment postId={postId} commentId={comment._id} contents = {comment.contents}
-										writer={comment.writer} like={comment.like} date={postDetail.createdAt}/>
+										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like.length} date={postDetail.createdAt}/>
 									))}
 							</div>
 						
