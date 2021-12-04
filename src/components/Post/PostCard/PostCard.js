@@ -114,7 +114,7 @@ const PostCard = ({contents, createdAt, writer, postId,
           <div className="post_header">
             <div className="profile_img">
               <img className="post_user_image" src={Profile_image}/>
-              <div className="post_user_id">{writer[0].userId}</div>
+              <div className="post_user_id">writer</div>
               {/*임시 삭제버튼*/}
               <div onClick={deleteClickHandler}>삭제</div>
               <div className="profile_img_dot" onClick={show_postModal}>
@@ -139,7 +139,7 @@ const PostCard = ({contents, createdAt, writer, postId,
             <div className="post_content">
               <a className="post_user_id">좋아요 1,200개</a>
               <div className="post_text">
-                <a className="post_user_id">{writer[0].userId}</a>
+                <a className="post_user_id">writer</a>
                 {morePost ? (
                     <div
                       className="post_text"

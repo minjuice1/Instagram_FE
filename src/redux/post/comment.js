@@ -16,10 +16,8 @@ export const addComment = createAsyncThunk(
 					Authorization: `Bearer ${AccessToken}`,
 				},
 			})
-			// console.log(response);
 			if(response.data.ok){
-				console.log(response);
-				// history.push({pathname:`/postdetail/${postId}`});
+				// console.log(response);
 				return response.data;
 			}
 			return response;
@@ -34,7 +32,6 @@ export const deleteComment = createAsyncThunk(
 	"commment/deleteComment",
 	async ({ postId, commentId, AccessToken }) => {
 		try {
-			console.log(commentId);
 			const response = await Api({
 				url: `/comment/${postId}/${commentId}`,
 				method: "DELETE",
@@ -45,8 +42,6 @@ export const deleteComment = createAsyncThunk(
 			})
 			if(response.data.ok){
 				console.log(response);
-				// history.push({pathname:`/postdetail/${postId}`});
-				console.log(commentId);
 				return commentId;
 			}
 			return response;
@@ -95,11 +90,12 @@ export const likedComment = createAsyncThunk(
 					Authorization: `Bearer ${AccessToken}`,
 				},
 			})
-			if(response.data.ok){
-        return commentId;
-				console.log(commentId);
-      }
-			return response;
+			// if(response.data.ok){
+      //   return commentId;
+			// 	console.log(commentId);
+      // }
+			console.log(response);
+			return response.data;
 		} catch (e) {
 
 			return false;

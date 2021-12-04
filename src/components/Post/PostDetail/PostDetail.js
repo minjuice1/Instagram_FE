@@ -25,10 +25,9 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	// const comment_list = useSelector((state) => state.comment.comments);
-	// console.log(comments);
-	// console.log(comment_list);
-	console.log(comments);
+
+	const detailPage = useSelector((state) => state.post.postDetail);
+	const post_data = useSelector((state) => state.post.posts);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -132,7 +131,7 @@ const PostDetail = () => {
 								</div>
 									{comments && comments.map((comment) => (
 										<PostDetailComment postId={postId} commentId={comment._id} contents = {comment.contents}
-										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like.length} date={comment.createdAt}/>
+										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like} date={comment.createdAt}/>
 									))}
 							</div>
 						

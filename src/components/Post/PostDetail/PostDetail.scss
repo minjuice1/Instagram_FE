@@ -32,6 +32,7 @@
 		.postDetail_leftsideBox {
 			width: 55%;
 			height: 100%;
+			
 
 				& > img {
 					object-fit: cover;
@@ -46,6 +47,7 @@
 			width: 45%;
 			height: 100%;
 			background-color: $instaWhite;
+			border-left: 1px solid $instaLightGray;
 
 			.postDetail_header {
 				display: flex;
@@ -180,8 +182,7 @@
 
 			.postDetail_bottom{
 				margin-left: 5px;
-				// border-top: 1px solid $instaLightGray;
-				border: 1px solid blue;
+				border-top: 1px solid $instaLightGray;
 
 				.postDetail_comment_funcs {
 							display: flex;

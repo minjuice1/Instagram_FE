@@ -10,7 +10,11 @@ const postSlice = createSlice({
     posts: [],
     isFetching: false,
     postDetail: [],
-    comment: [],
+    comment: {
+      isLiked: false,
+      like: [],
+    },
+    
   },
   reducers: {
 
@@ -30,15 +34,22 @@ const postSlice = createSlice({
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
     },
+
+    //comment
     [addComment.fulfilled] : (state, action) => {
 			state.comment.push(action.payload.comment);
-			console.log(action.payload);
     },
     [deleteComment.fulfilled]: (state, action) => {			
 			state.comment = state.comment.filter(
 				(cnt) => cnt._id !== action.payload );
-      console.log(state.comment);		
 		 },
+     [likedComment.fulfilled]: (state, action) => {
+      console.log(action);
+      console.log(action.meta.arg.commentId);
+       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
+       state.comment[idx].isLike = !state.comment[idx].isLike;
+       state.comment[idx].like.length = !state.comment[idx].like.length;
+     },
   },
 });
 export const {delete_post} = postSlice.actions;

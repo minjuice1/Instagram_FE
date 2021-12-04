@@ -4,7 +4,6 @@ import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 import { likedComment } from '../../../redux/post/comment';
 
 // postDetail과 css공유
-import "./PostDetail.scss";
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 
@@ -23,13 +22,13 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
-  const [commentLiked, setCommentLiked] = useState();
   const LikedCommentHandler = () => {
-    setCommentLiked(!commentLiked);
     dispatch(
       likedComment({
         commentId,
         AccessToken,
+        isLike,
+        like,
       }));
   };
 
@@ -60,8 +59,8 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       </div>
       <div className="postDetail_comment_info">
         <span>{date}</span>
-        {like.length !== 0 && (<span>
-          좋아요 <span>{like}</span>개
+        {like !== 0 && (<span>
+          좋아요 <span>{like.length}</span>개
         </span>)}
         {/* <span onClick={replyHandler}>답글 달기</span> */}
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
@@ -82,8 +81,8 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
             </div>
             <div className="postDetail_comment_info">
               <span>date</span>
-              {like.length !== 0 && (<span>
-                좋아요 <span>{like}</span>개
+              {like !== 0 && (<span>
+                좋아요 <span>{like.length}</span>개
               </span>)}
               <span>답글 달기</span>
               <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
@@ -97,7 +96,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         </div>)}
     </div>
     <div className="postDetail_commentList_liked">
-      {commentLiked ? (
+      {isLike ? (
         <img
           src={comment_red_heart}
           onClick={LikedCommentHandler}

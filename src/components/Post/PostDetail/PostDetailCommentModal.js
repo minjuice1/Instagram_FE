@@ -17,7 +17,6 @@ const PostDetailModal = ({postId, commentId, setOpenModal}) => {
         commentId,
 				AccessToken,
       }))
-			console.log(commentId);
 			cancleClickHandler();			
   };
 
