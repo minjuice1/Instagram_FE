@@ -5,29 +5,28 @@ import { useDispatch, useSelector } from "react-redux";
 import {addComment, addReplyComment} from "../../../redux/post/comment";
 import InputEmoji from "react-input-emoji";
 import { commentActions } from '../../../redux/post/commentSlice';
+import { replyReducer } from '../../../redux/post/postSlice';
 
 const PostComment = (postId, commentId, writer) => {
 	const dispatch = useDispatch();
 
 	// console.log(commentId);
-	// const replyUserId = useSelector(state => state.comment.replyTag);
-	
+	const replyUserId = useSelector(state => state.post.replyTag);
 
 	const [postComment, SetPostComment] = useState("");
 	const [replyComment, SetReplyComment] = useState();
 	const AccessToken = localStorage.getItem("user");
 	const _postId = postId.postId;
 
-	// useEffect(() => {
-	// 	dispatch(commentActions.replyReducer(""))
-	// }, [])
+	useEffect(() => {
+		dispatch(replyReducer(""))
+	}, [replyReducer()]);
 
-	// useEffect(() => {
-	// 	if(replyUserId !== ""){
-	// 		SetPostComment("@"+replyUserId);
-	// 	}
-	// }, [replyUserId])
-	
+	useEffect(() => {
+		if(replyUserId !== ""){
+			SetPostComment("@"+replyUserId);
+		}
+	}, [replyUserId])
 	
 	function handleOnEnter(postComment) {
 		dispatch(

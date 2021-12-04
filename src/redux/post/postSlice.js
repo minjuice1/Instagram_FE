@@ -14,9 +14,14 @@ const postSlice = createSlice({
       isLiked: false,
       like: [],
     },
+    replyTag: "",
     
   },
   reducers: {
+    replyReducer : (state, action) => {
+      state.replyTag = action.payload;
+      // console.log("replyTag 호출됨", state.replyTag);
+    },
 
   },
   extraReducers: {
@@ -44,15 +49,12 @@ const postSlice = createSlice({
 				(cnt) => cnt._id !== action.payload );
 		 },
      [likedComment.fulfilled]: (state, action) => {
-      console.log(action);
-      console.log(action.meta.arg.commentId);
        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
        state.comment[idx].isLike = !state.comment[idx].isLike;
        state.comment[idx].like.length = !state.comment[idx].like.length;
      },
   },
 });
-export const {delete_post} = postSlice.actions;
-
+export const {delete_post, replyReducer} = postSlice.actions;
 
 export default postSlice;
