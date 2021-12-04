@@ -1,18 +1,15 @@
 import { useDispatch } from "react-redux";
-import { postDetailComment_modal } from "../../../redux/modal/modalSlice";
-import { deleteComment } from '../../../redux/post';
+import { deleteComment } from '../../../redux/post/comment';
 import "./PostDetailCommentModal.scss";
 
-const PostDetailModal = ({postId, commentId}) => {
-	// console.log(commentId);
+const PostDetailModal = ({postId, commentId, setOpenModal}) => {
 	const dispatch = useDispatch();
 	const AccessToken = localStorage.getItem("user");
 
 	const cancleClickHandler = () => {
-		dispatch(postDetailComment_modal());
+		setOpenModal(false);
 	};
 
-	
 	const deleteClickHandler = () => {
     dispatch(
 			deleteComment({

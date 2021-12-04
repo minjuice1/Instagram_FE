@@ -34,6 +34,7 @@ export const deleteComment = createAsyncThunk(
 	"commment/deleteComment",
 	async ({ postId, commentId, AccessToken }) => {
 		try {
+			console.log(commentId);
 			const response = await Api({
 				url: `/comment/${postId}/${commentId}`,
 				method: "DELETE",
@@ -45,6 +46,7 @@ export const deleteComment = createAsyncThunk(
 			if(response.data.ok){
 				console.log(response);
 				// history.push({pathname:`/postdetail/${postId}`});
+				console.log(commentId);
 				return commentId;
 			}
 			return response;

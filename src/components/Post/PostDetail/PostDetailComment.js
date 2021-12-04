@@ -10,18 +10,15 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 
 // modal
 import PostDetailCommentModal from "./PostDetailCommentModal";
-import { postDetailComment_modal } from "../../../redux/modal/modalSlice";
-import { commentActions } from '../../../redux/post/commentSlice';
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer}) => {
-  // console.log(commentId);
 
   const dispatch = useDispatch();
-  const is_modal = useSelector((state) => state.modal.postDetailComment_modal);
 
-  // posetDetailComment 모달  
+  // modal
+  const [openModal, setOpenModal] = useState(false); 
   const show_postModal = () => {
-		dispatch(postDetailComment_modal());
+		setOpenModal(true);
 	};
 
   // 댓글 좋아요
@@ -43,13 +40,13 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
     setClickReply(!clickReply);
   }
 
-  const replyHandler = () => {
-    dispatch(commentActions.replyReducer(writer));
-  }
+  // const replyHandler = () => {
+  //   dispatch(commentActions.replyReducer(writer));
+  // }
 
   return(
     <>
-    {is_modal && <PostDetailCommentModal contents={contents} postId={postId} commentId={commentId}/>}
+    {openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
     <div className="postDetail_comments">
     <div className="postDetail_comment_pp">
       <img src={pp} alt="pp" />
@@ -66,7 +63,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         {like.length !== 0 && (<span>
           좋아요 <span>{like}</span>개
         </span>)}
-        <span onClick={replyHandler}>답글 달기</span>
+        {/* <span onClick={replyHandler}>답글 달기</span> */}
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
       </div>
       
