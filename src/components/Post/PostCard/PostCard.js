@@ -103,9 +103,9 @@ const PostCard = ({contents, createdAt, writer, postId,
       }))
   };
 
-  useEffect(() => {
-    dispatch(replyReducer(""))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(replyReducer(""))
+  // }, [])
 
   return (
     <>

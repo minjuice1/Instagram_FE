@@ -13,9 +13,9 @@ import { replyReducer } from '../../../redux/post/postSlice';
 import PostReplyComment from './PostReplyComment';
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer}) => {
-
+  console.log(commentId);
   const dispatch = useDispatch();
-
+  
   // modal
   const [openModal, setOpenModal] = useState(false); 
   const show_postModal = () => {
@@ -37,8 +37,10 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   // 답글 달기
   
   const replyHandler = () => {
-    dispatch(replyReducer(writer));
+    const replyInfo = {writer: writer, commentId: commentId}
+    dispatch(replyReducer(replyInfo));
   }
+   
 
   return(
     <>
@@ -81,6 +83,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       )}
     </div>
     </div>
+
   </>
   )
 }

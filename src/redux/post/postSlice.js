@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {addPost, deletePost, getPost, getPostDetail} from "./post";
-import { addComment, deleteComment, likedComment } from './comment';
+import { addComment, deleteComment, likedComment, addReplyComment } from './comment';
 
 
 const postSlice = createSlice({
@@ -19,6 +19,7 @@ const postSlice = createSlice({
   },
   reducers: {
     replyReducer : (state, action) => {
+      console.log(action.payload);
       state.replyTag = action.payload;
       // console.log("replyTag 호출됨", state.replyTag);
     },
@@ -42,6 +43,7 @@ const postSlice = createSlice({
 
     //comment
     [addComment.fulfilled] : (state, action) => {
+      console.log(action);
 			state.comment.push(action.payload.comment);
     },
     [deleteComment.fulfilled]: (state, action) => {			
@@ -53,6 +55,13 @@ const postSlice = createSlice({
        state.comment[idx].isLike = !state.comment[idx].isLike;
        state.comment[idx].like.length = !state.comment[idx].like.length;
      },
+
+     //replyComment
+     [addReplyComment.fulfilled] : (state, action) => {
+      console.log(action);
+			// state.replyComment.push(action.payload.comment);
+      // console.log(action.payload.comment);
+    },
   },
 });
 export const {delete_post, replyReducer} = postSlice.actions;

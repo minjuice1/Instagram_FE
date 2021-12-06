@@ -6,9 +6,6 @@ import { replyReducer } from '../../../redux/post/postSlice';
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 
-
-
-
 const PostReplyComment = ({like, writer}) => {
 
   const dispatch = useDispatch();
