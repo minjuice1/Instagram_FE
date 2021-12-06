@@ -12,10 +12,11 @@ import PostDetailCommentModal from "./PostDetailCommentModal";
 import { replyReducer } from '../../../redux/post/postSlice';
 import PostReplyComment from './PostReplyComment';
 
-const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer}) => {
-  console.log(commentId);
+const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer,
+  childComments}) => {
   const dispatch = useDispatch();
-  
+  console.log(childComments);
+
   // modal
   const [openModal, setOpenModal] = useState(false); 
   const show_postModal = () => {
@@ -40,6 +41,13 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
     const replyInfo = {writer: writer, commentId: commentId}
     dispatch(replyReducer(replyInfo));
   }
+
+    // 대댓글
+    const [clickReply, setClickReply] = useState(false);
+
+    const ReplyClickHandler = () => {
+      setClickReply(!clickReply);
+    }
    
 
   return(
@@ -64,10 +72,20 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         <span onClick={replyHandler}>답글 달기</span>
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
       </div>
-      <PostReplyComment like={like} writer={writer}/>
-      
+      {clickReply ?
+    (<div  onClick={ReplyClickHandler}>
+      <div className="postDetail_replycomment"> ㅡ 답글 숨기기 </div>
+      {childComments && childComments.map((reply) => (
+      <PostReplyComment contents={reply.contents} createdAt={reply.createdAt} like={reply.like} writer={reply.writer.userId} />
+      ))}
+      </div>)
+    : (<div  onClick={ReplyClickHandler}>
+        <div className="postDetail_replycomment"> ㅡ 답글보기 (<span>3</span>개)
+        </div>
+      </div>)}
     </div>
     <div className="postDetail_commentList_liked">
+
       {isLike ? (
         <img
           src={comment_red_heart}
@@ -83,7 +101,6 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       )}
     </div>
     </div>
-
   </>
   )
 }

@@ -13,7 +13,9 @@ const postSlice = createSlice({
     comment: {
       isLiked: false,
       like: [],
+      childComments: [],
     },
+    
     replyTag: "",
     
   },
@@ -37,8 +39,11 @@ const postSlice = createSlice({
     [addPost.pending]: (state, action) =>{
     },
     [getPostDetail.fulfilled]: (state, action) => {
+      // console.log(action.payload);
+      // console.log(action.payload.comment);
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
+      
     },
 
     //comment
@@ -59,8 +64,8 @@ const postSlice = createSlice({
      //replyComment
      [addReplyComment.fulfilled] : (state, action) => {
       console.log(action);
-			// state.replyComment.push(action.payload.comment);
-      // console.log(action.payload.comment);
+			state.comment.childComments.push(action.payload.reComment);
+      console.log(state.replyComment);
     },
   },
 });

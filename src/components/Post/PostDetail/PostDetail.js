@@ -19,15 +19,14 @@ import {heart, message, text, post_save, post_saveActive, comment_heart, comment
 import { history } from '../../../history';
 
 const PostDetail = () => {	
-	const {postId} = useParams();
+
 	const dispatch = useDispatch();
+	const {postId} = useParams();
 
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-
-	const detailPage = useSelector((state) => state.post.postDetail);
-	const post_data = useSelector((state) => state.post.posts);
+	console.log(comments);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -89,7 +88,7 @@ const PostDetail = () => {
 	return (
 		<>
 			{is_modal && <PostModal />}
-			{postDetail && 
+			{postDetail && comments &&
 			<div className="postDetail_background">
 				<div className="postDetail_overlay" onClick={cancleClickHandler}/>
 				<div className="postDetail_exit"><BiX size={40} onClick={cancleClickHandler}/></div>
@@ -131,7 +130,9 @@ const PostDetail = () => {
 								</div>
 									{comments && comments.map((comment) => (
 										<PostDetailComment postId={postId} commentId={comment._id} contents = {comment.contents}
-										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like} date={comment.createdAt}/>
+										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like} date={comment.createdAt}
+										childComments={comment.childComments}
+										/>
 									))}
 							</div>
 						

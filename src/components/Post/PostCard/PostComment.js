@@ -11,9 +11,9 @@ const PostComment = (postId, commentId, writer) => {
 	const dispatch = useDispatch();
 	// console.log(commentId);
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
-	console.log(replyUserId);
+	// console.log(replyUserId);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
-	console.log(replyCommentId);
+	// console.log(replyCommentId);
 
 	const [postComment, SetPostComment] = useState("");
 	// const [replyComment, SetReplyComment] = useState();
@@ -26,7 +26,7 @@ const PostComment = (postId, commentId, writer) => {
 
 	useEffect(() => {
 		if(replyUserId !== "" && replyUserId !== undefined){
-			SetPostComment("#"+replyUserId+"");
+			SetPostComment("※"+replyUserId+" ");
 		}
 	}, [replyUserId])
 
@@ -91,7 +91,7 @@ const PostComment = (postId, commentId, writer) => {
 		<>
 			<form>
 				<div className="postDetail_cmt">
-					{postComment.includes("#") ? (<InputEmoji
+					{postComment.includes("※") ? (<InputEmoji
 						borderColor="white"
 						placeholder="댓글 달기..."
 						fontSize="14"
@@ -109,7 +109,7 @@ const PostComment = (postId, commentId, writer) => {
 						onEnter={CommentOnEnter}
 					/>)}
 
-					{postComment ? postComment.includes("#") ? 
+					{postComment ? postComment.includes("※") ? 
 					(<button className="postDetail_submit"
 					onClick={ReplyCommentClickHandler} >
 						게시
