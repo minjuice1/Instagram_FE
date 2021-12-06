@@ -12,8 +12,7 @@ import PostDetailCommentModal from "./PostDetailCommentModal";
 import { replyReducer } from '../../../redux/post/postSlice';
 import PostReplyComment from './PostReplyComment';
 
-const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer,
-  childComments}) => {
+const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments}) => {
   const dispatch = useDispatch();
   console.log(childComments);
 
@@ -73,10 +72,13 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
       </div>
       {clickReply ?
-    (<div  onClick={ReplyClickHandler}>
-      <div className="postDetail_replycomment"> ㅡ 답글 숨기기 </div>
+    (<div>
+      <div onClick={ReplyClickHandler} className="postDetail_replycomment"> ㅡ 답글 숨기기 </div>
       {childComments && childComments.map((reply) => (
-      <PostReplyComment contents={reply.contents} createdAt={reply.createdAt} like={reply.like} writer={reply.writer.userId} />
+      <PostReplyComment
+      Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.like}
+       Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId}
+       />
       ))}
       </div>)
     : (<div  onClick={ReplyClickHandler}>

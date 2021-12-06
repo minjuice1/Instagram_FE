@@ -101,3 +101,28 @@ export const addReplyComment = createAsyncThunk(
 		}
 	},
 );
+
+export const deleteReplyComment = createAsyncThunk(
+	"commment/deleteReplyComment",
+	async ({ postId, commentId, AccessToken }) => {
+		try {
+			const response = await Api({
+				url: `/comment/${postId}/${commentId}?isReply=true`,
+				method: "DELETE",
+				headers: {
+					Authorization: `Bearer ${AccessToken}`,
+				},
+			// }).then((response) => {
+			})
+			if(response.data.ok){
+				console.log(response);
+				return response;
+			}
+			return response;
+
+		} catch (e) {
+
+			return false;
+		}
+	},
+);

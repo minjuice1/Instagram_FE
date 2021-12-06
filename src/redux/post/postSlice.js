@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {addPost, deletePost, getPost, getPostDetail} from "./post";
-import { addComment, deleteComment, likedComment, addReplyComment } from './comment';
+import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment } from './comment';
 
 
 const postSlice = createSlice({
@@ -64,9 +64,15 @@ const postSlice = createSlice({
      //replyComment
      [addReplyComment.fulfilled] : (state, action) => {
       console.log(action);
-			state.comment.childComments.push(action.payload.reComment);
-      console.log(state.replyComment);
+      // const idx = state.comment.childComments.findIndex((c) => c._id === action.payload.reComment);
+      // console.log(idx);
+			// state.comment.childComments.push(action.payload.reComment);
+      // console.log(state.replyComment);
     },
+    [deleteReplyComment.fulfilled]: (state, action) => {			
+			// state.comment.childComments = state.comment.childComments.filter(
+				// (cnt) => cnt._id !== action.payload.reComment );
+		 },
   },
 });
 export const {delete_post, replyReducer} = postSlice.actions;
