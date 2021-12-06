@@ -4,7 +4,12 @@ import {followers_modal_check, following_modal_check, modal_check} from "../../.
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import pp from "../../../image/profile.jpg";
+import UserFollower from "./Follow/UserFollower";
+import {React} from "react";
+import {profile_setting} from "../../../common/IconImage";
 
+
+//프로필이 자기일 때 보여주는 화면
 const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, introdution}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -12,7 +17,6 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
     dispatch(modal_check());
   };
 
-  console.log(name);
 
   const show_following_modal = () => {
     dispatch(following_modal_check());
@@ -34,21 +38,16 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
         <div className="profile_header_top">
           <span>{userId}</span>
           <span onClick={editProfileClickHandler}>프로필 편집</span>
-          <FiSettings
-            onClick={show_postModal}
-            className="profile_settings"
-          />
+          <img className="profile_settings" src={profile_setting}  onClick={show_postModal}/>
+
         </div>
         <ul className="profile_header_mid">
 									<span>
 										게시물 <span>{totalPost}</span>
 									</span>
-          <span
-            onClick={show_followers_modal}
-            className="profile_followers_modal"
-          >
-										팔로워 <span>{totalFollower}</span>
-									</span>
+
+            <UserFollower totalFollower={totalFollower}/>
+
           <span
             onClick={show_following_modal}
             className="profile_following_modal"

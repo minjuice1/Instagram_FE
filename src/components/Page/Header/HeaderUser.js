@@ -15,9 +15,8 @@ const HeaderUser = () => {
 
   const id = useSelector(state=>state.user.user.userId);
   const editUserClickHandler = () => {
-
-    history.push(`/profile/${id}`)
-
+    navigate(`/myprofile/${id}`, {replace: true})
+    // history.replace(`/myprofile/${id}`, {replace: true});
   }
 
   return(

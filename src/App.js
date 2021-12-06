@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState, Suspense} from "react";
 import {Routes, Route, Navigate, Router} from "react-router-dom";
 import "./App.scss";
 import {useDispatch, useSelector} from "react-redux";
@@ -18,7 +18,6 @@ import Profile from "./components/Page/Profile/Profile";
 
 import EditUser from "./components/Page/User/EditUser/EditUser";
 import {getProfile} from "./redux/user/user";
-import {getUserPost} from "./redux/post/post";
 
 
 
@@ -41,6 +40,8 @@ const CustomRouter = ({history, ...props}) => {
 	);
 };
 
+
+
 function App() {
   const dispatch = useDispatch();
 	const is_login = useSelector(state=>state.user.isLogin);
@@ -50,11 +51,12 @@ function App() {
 
   //내정보 불러오기
   useEffect(() => {
-    dispatch(getProfile());
+    if(token){
+      dispatch(getProfile());
+    }
   }, [dispatch]);
 
-const a = useSelector(state => state);
-console.log(a);
+
   //헤더 띄우기용
   const show_header = is_login || token ;
 
@@ -62,6 +64,7 @@ console.log(a);
   return (
 
     <div className="App">
+      <Suspense fallback={<div>Loading</div>}>
       <CustomRouter history={history}>
         {show_header &&  <Header/>}
 
@@ -78,8 +81,9 @@ console.log(a);
           <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
           <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser/> </RequireAuth>}/>
-					<Route path="/profile/"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+					<Route path="/profile/"	element={<RequireAuth redirectTo="/login"> <Profile/></RequireAuth>}/>
 					<Route path="/profile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+					<Route path="/myprofile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/tagged"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
@@ -87,6 +91,7 @@ console.log(a);
         </Routes>
 
       </CustomRouter>
+    </Suspense>
     </div>
 
   );

@@ -1,11 +1,11 @@
-import { React, useState } from "react";
+import {React, useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // 모달
 import {modal_check, followers_modal_check, following_modal_check, similarAccount_modal_check} from "../../../redux/modal/modalSlice";
 
 import FollowingModal from "./ProfileModal/FollowingModal";
-import FollowersModal from "./ProfileModal/FollowersModal";
+
 import SimilarAccountModal from "./OtherProfile/OtherProfileModal/SimilarAccountModal";
 import OtherProfileSettingModal from "./OtherProfile/OtherProfileModal/OtherProfileSettingModal";
 
@@ -15,21 +15,22 @@ import pp from "../../../image/profile.jpg"
 import {FiSettings, FiPlayCircle, FiChevronDown, FiChevronUp,} from "react-icons/fi";
 import { BiBookmark, BiDotsHorizontalRounded } from "react-icons/bi";
 import { FaUserCheck, FaChevronCircleRight } from "react-icons/fa";
+import {getFollower, userFollow} from "../../../redux/user/user";
+import UserFollower from "./Follow/UserFollower";
+import UserFollow from "./Follow/UserFollow";
 
 
-const OtherProfile = ({userId, name, totalFollow, totalFollower, totalPost, introdution}) => {
+const OtherProfile = ({userId, name, totalFollow, totalFollower,
+                        totalPost, introdution, Id, profileImage}) => {
   const dispatch = useDispatch();
 
-  console.log(userId)
 
   // 프로필 편집, 팔로워, 팔로우 모달
   const is_modal = useSelector((state) => state.modal.is_modal);
   const following_modal = useSelector((state) => state.modal.following_modal);
-  const followers_modal = useSelector((state) => state.modal.followers_modal);
   const SimilarAccount_Modal = useSelector(
     (state) => state.modal.similarAccount_modal,
   );
-  const [Isfollowing, SetIsFollowing] = useState(false);
 
   const show_postModal = () => {
     dispatch(modal_check());
@@ -39,9 +40,7 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower, totalPost, intr
     dispatch(following_modal_check());
   };
 
-  const show_followers_modal = () => {
-    dispatch(followers_modal_check());
-  };
+
 
   const show_similarAccount_modal = () => {
     dispatch(similarAccount_modal_check());
@@ -54,21 +53,50 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower, totalPost, intr
     SetRecomAccountbtn(!recomAccountbtn);
   };
 
+  //팔로우or언팔로우 하기
+  const followClickHandler = () => {
+    dispatch(userFollow({
+      Id,
+    }))
+  }
+  const [Isfollowing, SetIsFollowing] = useState(false);
+
+  const followButtonClickHandler = () => {
+    SetIsFollowing(!Isfollowing);
+  }
+  const followerList = useSelector(state=>state.user.FollowerList);
+  const myInfo = useSelector(state=>state.user.user._id);
+
+
+  const follower = followerList.map((user) => user._id)
+  const followerInfo = follower.includes(myInfo);
+
+  useEffect(() => {
+    dispatch(getFollower({
+      Id: Id,
+    }))
+    if(followerInfo){
+      SetIsFollowing(true)
+    }
+  },[dispatch, followerInfo])
+
+
   return (
     <>
-      {is_modal && <OtherProfileSettingModal />}
+
       {following_modal && <FollowingModal />}
-      {followers_modal && <FollowersModal />}
       {SimilarAccount_Modal && <SimilarAccountModal />}
 
 
           <div className="otherProfile_profileBox">
             <div className="otherProfile_header">
               <div className="otherProfile_header_pp">
-                <img src={pp} alt="profile"/>
+                {profileImage?  <img src={profileImage} alt="profile"/> :
+                  <img src={pp} alt="profile"/>}
+
               </div>
               <section className="otherProfile_header_main">
-                {Isfollowing ? (
+                {Isfollowing? (
                   <div className="otherProfile_header_top">
                     <span>{userId}</span>
                     <span className="otherProfile_header_sengMsg">
@@ -76,7 +104,7 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower, totalPost, intr
 										</span>
 
                     <span className="otherProfile_header_askFollowing">
-											<FaUserCheck />
+											<FaUserCheck/>
 										</span>
                     {recomAccountbtn ? (
                       <span
@@ -101,8 +129,8 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower, totalPost, intr
                 ) : (
                   <div className="otherProfile_header_top">
                     <span>{userId}</span>
-                    <span className="otherProfile_header_following">
-											팔로우
+                    <span className="otherProfile_header_following" onClick={followClickHandler}>
+											<a onClick={followButtonClickHandler}>팔로우</a>
 										</span>
                     {recomAccountbtn ? (
                       <span
@@ -130,18 +158,9 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower, totalPost, intr
 									<span>
 										게시물 <span>{totalPost}</span>
 									</span>
-                  <span
-                    onClick={show_followers_modal}
-                    className="otherProfile_followers_modal"
-                  >
-										팔로워 <span>{totalFollower}</span>
-									</span>
-                  <span
-                    onClick={show_following_modal}
-                    className="otherProfile_following_modal"
-                  >
-										팔로우 <span>{totalFollow}</span>
-									</span>
+                  {/*팔로워*/}
+                  <UserFollower totalFollower={totalFollower}/>
+                  <UserFollow totalFollow={totalFollow}/>
                 </ul>
                 <div className="otherProfile_header_name">
                   {name}

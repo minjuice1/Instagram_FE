@@ -1,4 +1,4 @@
-import {getProfile, login, logout} from "./user";
+import {getFollower, getProfile, login, logout} from "./user";
 import { createSlice } from "@reduxjs/toolkit";
 import {history} from "../../history";
 import {getUserPost} from "../post/post";
@@ -8,6 +8,7 @@ const userSlice = createSlice({
 	initialState: {
 		user: [],
 		isLogin: false,
+		FollowerList: [],
 	},
 	reducers: {
 
@@ -24,6 +25,9 @@ const userSlice = createSlice({
 	},
 		[getUserPost.fulfilled]: (state,action) => {
 			console.log(action.payload);
+		},
+		[getFollower.fulfilled]: (state, action) => {
+			state.FollowerList = action.payload.data.user;
 		}
 }
 });

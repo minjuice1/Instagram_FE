@@ -21,7 +21,7 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 
-	console.log(postDetail)
+
 
 	// const writer = postDetail.writer[0];
 
@@ -31,8 +31,6 @@ const PostDetail = () => {
 
 	
 
-	console.log(postDetail);
-	// console.log(postDetail.writer[0].userId);
 
 	const CommentClickHandler = () => {
 		dispatch(

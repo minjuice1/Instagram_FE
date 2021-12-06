@@ -32,59 +32,60 @@ const FollowingModal = () => {
 	return (
 		<>
 			<div className="following_modal_container">
-				<div className="following_modalBox">
-					<div className="following_modal">
-						<div className="following_header">
-							<div>팔로잉</div>
-							<button onClick={cancleClickHandler}>X</button>
-						</div>
-						<div className="following_category">
-							{following ? (
-								<div
-									value={following}
-									className="following_clicked"
-									onClick={followingClickHandler}
-								>
-									사람
-								</div>
-							) : (
-								<div value={following} onClick={followingClickHandler}>
-									사람
-								</div>
-							)}
-							{hashtag ? (
-								<div
-									value={following}
-									className="following_clicked"
-									onClick={hashtagClickHandler}
-								>
-									해시태그
-								</div>
-							) : (
-								<div value={following} onClick={hashtagClickHandler}>
-									해시태그
-								</div>
-							)}
-						</div>
-						<div className="following_listBox">
-							<ul>
-								<div>
-									<li>
-										<div className="following_pp">
-											<img src={profile} alt="pp"></img>
-											<div className="commonProfile_modal"></div>
-										</div>
-										<div className="following_userInfo">
-											<div className="following_userId">testtest</div>
-											<div className="following_status">상태메세지</div>
-										</div>
-										<button className="following_button">팔로잉</button>
-									</li>
-								</div>
-							</ul>
-						</div>
-					</div>
-				</div>
+			{/*	<div className="following_modalBox">*/}
+			{/*		<div className="following_modal">*/}
+			{/*			<div className="following_header">*/}
+			{/*				<div>팔로잉</div>*/}
+			{/*				<button onClick={cancleClickHandler}>X</button>*/}
+			{/*			</div>*/}
+			{/*			<div className="following_category">*/}
+			{/*				{following ? (*/}
+			{/*					<div*/}
+			{/*						value={following}*/}
+			{/*						className="following_clicked"*/}
+			{/*						onClick={followingClickHandler}*/}
+			{/*					>*/}
+			{/*						사람*/}
+			{/*					</div>*/}
+			{/*				) : (*/}
+			{/*					<div value={following} onClick={followingClickHandler}>*/}
+			{/*						사람*/}
+			{/*					</div>*/}
+			{/*				)}*/}
+			{/*				{hashtag ? (*/}
+			{/*					<div*/}
+			{/*						value={following}*/}
+			{/*						className="following_clicked"*/}
+			{/*						onClick={hashtagClickHandler}*/}
+			{/*					>*/}
+			{/*						해시태그*/}
+			{/*					</div>*/}
+			{/*				) : (*/}
+			{/*					<div value={following} onClick={hashtagClickHandler}>*/}
+			{/*						해시태그*/}
+			{/*					</div>*/}
+			{/*				)}*/}
+			{/*			</div>*/}
+			{/*			<div className="following_listBox">*/}
+			{/*				<ul>*/}
+			{/*					<div>*/}
+			{/*						<li>*/}
+			{/*							<div className="following_pp">*/}
+			{/*								<img src={profile} alt="pp"></img>*/}
+			{/*								<div className="commonProfile_modal"></div>*/}
+			{/*							</div>*/}
+			{/*							<div className="following_userInfo">*/}
+			{/*								<div className="following_userId">testtest</div>*/}
+			{/*								<div className="following_status">상태메세지</div>*/}
+			{/*							</div>*/}
+			{/*							<button className="following_button">팔로잉</button>*/}
+			{/*						</li>*/}
+			{/*					</div>*/}
+			{/*				</ul>*/}
+			{/*			</div>*/}
+			{/*		</div>*/}
+			{/*	</div>*/}
+			{/*</div>*/}
 			</div>
 			<div className="overlay" onClick={cancleClickHandler}></div>
 		</>

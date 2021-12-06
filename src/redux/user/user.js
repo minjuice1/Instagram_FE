@@ -82,7 +82,9 @@ export const getProfile = createAsyncThunk(
         }
       })
       return response;
+
     } catch (e) {
+      alert(e.response.data.message);
       return false;
     }
   }
@@ -112,8 +114,10 @@ export const editProfile = createAsyncThunk(
         }
       })
       console.log(response);
+      alert("프로필 정보 수정완료");
       return response;
     } catch (e) {
+      console.log(e.response);
       return false;
     }
   }
@@ -123,7 +127,6 @@ export const editProfile = createAsyncThunk(
 export const changePassword = createAsyncThunk(
   "accounts/password",
   async (data, thunkAPI) => {
-    console.log("데이터",data);
     const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
@@ -138,6 +141,7 @@ export const changePassword = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
+      alert("비밀번호 변경 완료");
       console.log(response);
       return response;
     } catch (e) {
@@ -146,3 +150,43 @@ export const changePassword = createAsyncThunk(
   }
 )
 
+//팔로우 기능
+export const userFollow = createAsyncThunk(
+  "user/follow",
+  async(data, thunkAPI) => {
+    console.log(data.Id)
+    const AccessToken = localStorage.getItem("user");
+    try {
+      const response = await Api({
+        url: `/user/follow/${data.Id}`,
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      console.log(response);
+      return response;
+    }catch (e) {
+      console.log(e.response)
+      return false
+    }
+  }
+)
+//팔로워 보기
+export const getFollower = createAsyncThunk(
+  "user/getFollower",
+  async(data, thunkAPI) => {
+    console.log(data);
+    try {
+      const response = await Api({
+        url: `/user/followers/${data.Id}`,
+        method: 'GET',
+      })
+      console.log(response);
+      return response;
+    }catch (e) {
+      console.log(e.response)
+      return false
+    }
+  }
+)

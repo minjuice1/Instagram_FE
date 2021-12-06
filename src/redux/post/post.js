@@ -139,7 +139,7 @@ export const getUserPost = createAsyncThunk(
       console.log(response)
       return response;
     }catch (e){
-      console.log(e);
+      console.log(e.response);
     }
   }
 )

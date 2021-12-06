@@ -3,10 +3,6 @@
 
 
 //EditUser style
-.edit_profile {
-  width: 230px;
-  border-right: 1px solid $instaGray;
-}
 
 .edit_menu {
   height: 50px;
@@ -31,29 +27,7 @@
 
 
 //프로필편집
-.editProfile{
-  //border: 1px solid blue;
-  width: 500px;
-  .edit_user_info{
-    display: flex;
-    margin-top: 15px;
-    & > img {
-      width: 35px;
-      height: 35px;
-      margin: 3px 15px 0 15px;
-    }
-    & > div> div:first-child {
-      font-size: 20px;
-      margin-top: -5px;
-    }
-    & > div> div:last-child {
-      color: $instaBlue;
-      @include fontSize('large');
-      font-weight: 600;
-      margin-top: -5px;
-    }
-  }
-}
+
 .edit_form{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -65,6 +39,21 @@
   }
 }
 
+//아이디, 프로필 사진 바꾸기 css
+.edit_forms:nth-child(2){
+
+  .edit_user_info > div:first-child{
+    font-size: 20px;
+    margin-bottom: 3px;
+  }
+  .edit_user_info > div:nth-child(2){
+    color: $instaBlue;
+    @include fontSize('large');
+    font-weight: 600;
+    margin-top: -5px;
+  }
+}
+
 .editInput{
   width: 350px;
   height: 25px;
@@ -73,10 +62,18 @@
 
 }
 
+.edit_user_info{
+  margin-top: 15px;
+  & > img {
+    width: 35px;
+    height: 35px;
+    margin: 3px 15px 0 15px;
+  }
+}
 .edit_forms > div {
   height: 50px;
 }
-.edit_forms > div:first-child {
+.edit_forms > div:nth-child(2) {
   height: 130px;
 
   & > a {

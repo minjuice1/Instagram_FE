@@ -19,6 +19,7 @@ import dompurify from "dompurify";
 import {likePost, deletePost} from "../../../redux/post/post";
 import PostGetComment from "./PostGetComment";
 import {useNavigate, useParams} from "react-router";
+import {replace} from "connected-react-router";
 
 
 const PostCard = ({contents, createdAt, writer, postId,
@@ -104,7 +105,7 @@ const PostCard = ({contents, createdAt, writer, postId,
   //유저 정보 클릭
  const UserProfileClickHandler = () => {
    const id = writer[0].userId
-   navigate(`/profile/${id}`)
+   navigate(`/profile/${id}`, {replace: true})
   }
 
 

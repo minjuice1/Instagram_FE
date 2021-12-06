@@ -8,12 +8,8 @@ import ProfileTagged from "./CommonProfile/ProfileTagged";
 import ProfileSaved from "./CommonProfile/ProfileSaved";
 
 // 모달
-import {modal_check} from "../../../redux/modal/modalSlice";
-import {followers_modal_check, following_modal_check} from "../../../redux/modal/modalSlice";
 import ProfileSettingModal from "./Myprofile/MyProfileModal/ProfileSettingModal";
 import FollowingModal from "./ProfileModal/FollowingModal";
-import FollowersModal from "./ProfileModal/FollowersModal";
-
 // scss, icon, img
 import "./Profile.scss";
 import pp from "../../../image/profile.jpg";
@@ -32,27 +28,32 @@ import UserProfileInfo from "./UserProfileInfo";
 const Profile = () => {
 
 
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   //개인 데이터 불러오기
   const {id} = useParams();
   const user_id = useParams(id).user_Id;
-  useEffect(() => {
-    dispatch(getUserPost(user_id));
-  }, [dispatch]);
-
 
   //userpost를 가져오면서 본인이 맞는지 아닌지 확인
   const [myProfile, SetMyProfile] = useState(false);
   const myId = useSelector(state=>state.user.user.userId);
 
-  console.log(myId)
-  useEffect(() => {
+
+  const post_list = useSelector(state=>state.post.post);
+  useEffect((e) => {
+
+    if(!myProfile){
+      dispatch(getUserPost(user_id));
+    }else{
+      dispatch(getUserPost(myId));
+    }
     if(myId === user_id){
       SetMyProfile(true);
     }
-  })
+  }, [dispatch, myProfile, myId, user_id]);
+
 
   // 	// 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
@@ -99,24 +100,20 @@ const Profile = () => {
   const followers_modal = useSelector((state) => state.modal.followers_modal);
 
 
-const post_list = useSelector(state=>state.post.post);
+
 
 
 const user_info = useSelector(state=> state.post.user);
+
+console.log("aaaaaaaaaaaaaa",user_info);
 const user_data = user_info && user_info[0];
-
-console.log(user_data);
-
-
-
-
 
  
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
       {following_modal && <FollowingModal/>}
-      {followers_modal && <FollowersModal/>}
+
 
 
       <div className="profile_all">
@@ -134,11 +131,13 @@ console.log(user_data);
             {!myProfile && user_data &&
               <UserProfileInfo
                 userId = {user_id}
+                Id = {user_data._id}
                 name = {user_data.name}
                 totalFollow = {user_data.totalFollow}
                 totalFollower = {user_data.totalFollower}
                 totalPost = {user_data.totalPost}
-                introdution = {user_data.introdution}/>}
+                introdution = {user_data.introdution}
+                profileImage={user_data.profileImage}/>}
             {/*<ProfileStory/>*/}
             <div className="profile_post_dir" role="tablist">
               {ClickedPosts ? (

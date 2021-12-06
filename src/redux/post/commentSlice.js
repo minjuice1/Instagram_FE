@@ -6,11 +6,7 @@ const commentSlice = createSlice({
 
 	},
 	reducers: {
-		// postComment: (state, action) => {
-		// 	console.log(action);
-		// 	console.log(state);
-		// 	state.comment = action.payload.comment;
-		// },
+
 	},
 });
 

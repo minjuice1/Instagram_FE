@@ -55,17 +55,14 @@ const EditProfile = () => {
  return(
     <>
       <div className="editProfile">
-        <div className="edit_user_info">
-          <img src={profile_img} alt={profile_img}/>
-          <div>
-            <div>{userInfo.userId}</div>
-            <div>프로필 사진 바꾸기</div>
-          </div>
+
 
         </div>
         <div className="edit_form">
-
         <div className="edit_forms">
+          <div className="edit_user_info">
+            <img src={profile_img} alt={profile_img}/>
+          </div>
         <div className="editName">이름</div>
         <div className="edituserId">사용자 이름</div>
         <div className="editWebSite">웹사이트</div>
@@ -75,10 +72,14 @@ const EditProfile = () => {
         <div className="editGender">성별</div>
         </div>
         <div className="edit_forms">
+          <div className="edit_user_info">
+            <div>{userInfo.userId}</div>
+            <div>프로필 사진 바꾸기</div>
+          </div>
           <div className="editName">
             <label><input className="editInput" value={userName} onChange={onChangeUserName}/></label>
             <a>사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.
-              <br/>이름은 14일 안에 두 번만 변경할 수 있습니다.</a>
+              <br/><br/>이름은 14일 안에 두 번만 변경할 수 있습니다.</a>
           </div>
           <div className="edituserId">
             <label> <input className="editInput" value={userId} onChange={onChangeUserId} /></label>
@@ -103,7 +104,6 @@ const EditProfile = () => {
         </div>
 
         </div>
-      </div>
     </>
   )
 }
