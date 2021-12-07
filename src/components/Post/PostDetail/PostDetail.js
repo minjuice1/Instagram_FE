@@ -26,7 +26,7 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	console.log(comments);
+	console.log(comments.like);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));

@@ -14,7 +14,8 @@ import PostReplyComment from './PostReplyComment';
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments}) => {
   const dispatch = useDispatch();
-  console.log(childComments);
+  console.log(like);
+  // console.log(childComments);
 
   // modal
   const [openModal, setOpenModal] = useState(false); 
@@ -65,9 +66,15 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       </div>
       <div className="postDetail_comment_info">
         <span>{date}</span>
-        {like !== 0 && (<span>
+        {isLike ? (
+          <span>
+          좋아요 <span>{(like.length)+1}</span>개
+        </span>
+        ) : (
+          <span>
           좋아요 <span>{like.length}</span>개
-        </span>)}
+        </span>
+        )}
         <span onClick={replyHandler}>답글 달기</span>
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
       </div>

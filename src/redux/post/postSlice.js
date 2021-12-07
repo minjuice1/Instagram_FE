@@ -22,7 +22,7 @@ const postSlice = createSlice({
   },
   reducers: {
     replyReducer : (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.replyTag = action.payload;
       // console.log("replyTag 호출됨", state.replyTag);
     },
@@ -60,19 +60,20 @@ const postSlice = createSlice({
 				(cnt) => cnt._id !== action.payload );
 		 },
      [likedComment.fulfilled]: (state, action) => {
-       console.log(action);
        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
        state.comment[idx].isLike = !state.comment[idx].isLike;
-       state.comment[idx].like.length = !state.comment[idx].like.length;
+       state.comment[idx].like = action.meta.arg.like;
+       console.log(action.meta.arg.like);
+       console.log(state.comment[idx].like);
      },
 
      //replyComment
      [addReplyComment.fulfilled] : (state, action) => {
-      console.log(action);
+      // console.log(action);
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
       const re = state.comment[idx].childComments.findIndex((r) => r._id === action.payload.reComment._id);
-      console.log(idx);
-      console.log(re);
+      // console.log(idx);
+      // console.log(re);
 			// state.comment[idx].childComments[re].push(action.payload.reComment);
       // console.log(state.replyComment);
     },
