@@ -1,9 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {deletePost, getPost, getPostDetail, getUserPost} from "./post";
-
-
-
+import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment } from './comment';
 
 
 const postSlice = createSlice({
@@ -13,10 +11,21 @@ const postSlice = createSlice({
     savedPost: [],
     posts: [],
     postDetail: [],
-    comment: [],
-
+    comment: {
+      isLiked: false,
+      like: [],
+      childComments: [],
+    },
+    
+    replyTag: "",
+    
   },
   reducers: {
+    replyReducer : (state, action) => {
+      console.log(action.payload);
+      state.replyTag = action.payload;
+      // console.log("replyTag 호출됨", state.replyTag);
+    },
 
   },
   extraReducers: {
@@ -34,13 +43,45 @@ const postSlice = createSlice({
      state.posts = post_list;
     },
     [getPostDetail.fulfilled]: (state, action) => {
+      // console.log(action.payload);
+      // console.log(action.payload.comment);
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
+      
     },
 
+    //comment
+    [addComment.fulfilled] : (state, action) => {
+      console.log(action);
+			state.comment.push(action.payload.comment);
+    },
+    [deleteComment.fulfilled]: (state, action) => {			
+			state.comment = state.comment.filter(
+				(cnt) => cnt._id !== action.payload );
+		 },
+     [likedComment.fulfilled]: (state, action) => {
+       console.log(action);
+       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
+       state.comment[idx].isLike = !state.comment[idx].isLike;
+       state.comment[idx].like.length = !state.comment[idx].like.length;
+     },
+
+     //replyComment
+     [addReplyComment.fulfilled] : (state, action) => {
+      console.log(action);
+      const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
+      const re = state.comment[idx].childComments.findIndex((r) => r._id === action.payload.reComment._id);
+      console.log(idx);
+      console.log(re);
+			// state.comment[idx].childComments[re].push(action.payload.reComment);
+      // console.log(state.replyComment);
+    },
+    [deleteReplyComment.fulfilled]: (state, action) => {			
+			// state.comment.childComments = state.comment.childComments.filter(
+				// (cnt) => cnt._id !== action.payload.reComment );
+		 },
   },
 });
-export const {delete_post} = postSlice.actions;
-
+export const {delete_post, replyReducer} = postSlice.actions;
 
 export default postSlice;

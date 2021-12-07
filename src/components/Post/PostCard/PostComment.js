@@ -1,38 +1,55 @@
-import "./PostCard.scss";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import "../PostDetail/PostDetail.scss";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import {addComment} from "../../../redux/post/comment";
-
+import {addComment, addReplyComment} from "../../../redux/post/comment";
 import InputEmoji from "react-input-emoji";
+import { replyReducer } from '../../../redux/post/postSlice';
 
-const PostComment = (postId) => {
+const PostComment = (postId, commentId, writer) => {
 	const dispatch = useDispatch();
+	// console.log(commentId);
+	const replyUserId = useSelector(state => state.post.replyTag?.writer);
+	// console.log(replyUserId);
+	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
+	// console.log(replyCommentId);
 
-	const [postComment, SetPostComment] = useState();
+	const [postComment, SetPostComment] = useState("");
+	// const [replyComment, SetReplyComment] = useState();
 	const AccessToken = localStorage.getItem("user");
 	const _postId = postId.postId;
 
+	useEffect(() => {
+		dispatch(replyReducer(""))
+	}, []);
 
+	useEffect(() => {
+		if(replyUserId !== "" && replyUserId !== undefined){
+			SetPostComment("※"+replyUserId+" ");
+		}
+	}, [replyUserId])
 
-
-	function handleOnEnter(postComment) {
+	// 댓글
+	function CommentOnEnter(postComment) {
 		dispatch(
 			addComment({
 				postId: _postId,
 				contents: postComment,
 				AccessToken,
+				writer,
 			}),
 			[dispatch],
-		);
+		); 
 	}
 
-	const CommentClickHandler = () => {
+	const CommentClickHandler = (event) => {
+		event.preventDefault();
 	dispatch(
 		addComment({
 			postId: _postId,
 			contents: postComment,
 			AccessToken,
+			writer,
 		}),
 			[dispatch],
 		);
@@ -40,22 +57,70 @@ const PostComment = (postId) => {
 		SetPostComment("")
 	};
 
+	// 대댓글
+
+	function ReplyCommentOnEnter(postComment) {
+		dispatch(
+			addReplyComment({
+				postId: _postId,
+				commentId: replyCommentId,
+				contents: postComment,
+				AccessToken,
+			}),
+			[dispatch],
+		); 
+	}
+
+	const ReplyCommentClickHandler = (event) => {
+		event.preventDefault();
+		dispatch(
+			addReplyComment({
+				postId: _postId,
+				commentId: replyCommentId,
+				contents: postComment,
+				AccessToken,
+			}),
+				[dispatch],
+			);
+	
+			SetPostComment("")
+		};
+
 	return (
 		<>
 			<form>
-				<div className="post_cmt">
-					<InputEmoji
+				<div className="postDetail_cmt">
+					{postComment.includes("※") ? (<InputEmoji
 						borderColor="white"
 						placeholder="댓글 달기..."
 						fontSize="14"
 						value={postComment}
 						onChange={SetPostComment}
 						cleanOnEnter
-						onEnter={handleOnEnter}
-					/>
-					<div className="comment_submit" onClick={CommentClickHandler}>
+						onEnter={ReplyCommentOnEnter}
+					/>):(<InputEmoji
+						borderColor="white"
+						placeholder="댓글 달기..."
+						fontSize="14"
+						value={postComment}
+						onChange={SetPostComment}
+						cleanOnEnter
+						onEnter={CommentOnEnter}
+					/>)}
+
+					{postComment ? postComment.includes("※") ? 
+					(<button className="postDetail_submit"
+					onClick={ReplyCommentClickHandler} >
 						게시
-					</div>
+					</button>) : 
+					(<button className="postDetail_submit"
+					onClick={CommentClickHandler} >
+						게시
+					</button>) : 
+					(<button className="postDetail_submitOff"
+					disabled='disabled' >
+						게시
+					</button>)}
 				</div>
 			</form>
 		</>

@@ -1,8 +1,8 @@
 import React from "react";
 
-import { recomtest } from "../../../../common/IconImage";
+import { recomtest } from "../../../common/IconImage";
 
-const ProfileSaved = () => {
+const ProfilePosts = () => {
 	return (
 		<>
 			<div className="otherProfile_postList">
@@ -29,4 +29,4 @@ const ProfileSaved = () => {
 	);
 };
 
-export default ProfileSaved;
+export default ProfilePosts;

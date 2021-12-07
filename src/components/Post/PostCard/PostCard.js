@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "./PostCard.scss";
 import {
@@ -13,7 +13,8 @@ import {
 import Profile_image from "../../../image/profile.jpg";
 
 import {modal_check} from "../../../redux/modal/modalSlice";
-import {useDispatch} from "react-redux";
+import PostDetail from '../PostDetail/PostDetail';
+import {useDispatch, useSelector} from "react-redux";
 import PostComment from "./PostComment";
 import dompurify from "dompurify";
 import {likePost, deletePost} from "../../../redux/post/post";
@@ -87,14 +88,12 @@ const PostCard = ({contents, createdAt, writer, postId,
 
 	const time = displayTime(createdAt);
 
-
   //모달 리덕스에서 관리
+  const is_postDetailmodal = useSelector((state) => state.modal.postDetail_modal);
   const show_postModal = () => {
     dispatch(modal_check());
   };
 
-
-  //post삭제
   const deleteClickHandler = () => {
     dispatch(
      deletePost({
@@ -102,15 +101,19 @@ const PostCard = ({contents, createdAt, writer, postId,
       }))
   };
 
+  // useEffect(() => {
+  //   dispatch(replyReducer(""))
+  // }, [])
+
   //유저 정보 클릭
  const UserProfileClickHandler = () => {
    const id = writer[0].userId
    navigate(`/profile/${id}`, {replace: true})
   }
 
-
   return (
     <>
+    {is_postDetailmodal && <PostDetail/>}
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
@@ -141,7 +144,7 @@ const PostCard = ({contents, createdAt, writer, postId,
             <div className="post_content">
               <a className="post_user_id">좋아요 1,200개</a>
               <div className="post_text">
-                <a className="post_user_id">{writer[0].userId}</a>
+                <a className="post_user_id">writer</a>
                 {morePost ? (
                     <div
                       className="post_text"
@@ -156,9 +159,11 @@ const PostCard = ({contents, createdAt, writer, postId,
                   </div>)}
               </div>
               <div>
-                <Link to={`/postdetail/${postId}`}>
+                {comments.length > 2 && (
+                  <Link to={`/postdetail/${postId}`} >
                   댓글 <span>{comments.length}</span>개 모두 보기
                 </Link>
+                )}
               </div>
             </div>
             {get_comments && get_comments.map((comment) => (

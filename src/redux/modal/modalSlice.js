@@ -25,6 +25,16 @@ export const similarAccount_modal_check = createAsyncThunk(
 	async (data, thunkAPI) => {},
 );
 
+export const postDetailComment_modal = createAsyncThunk(
+	"modal/postDetailComment_modal",
+	async (data, thunkAPI) => {},
+);
+
+export const postDetail_modal = createAsyncThunk(
+	"modal/postDetail_modal",
+	async (data, thunkAPI) => {},
+);
+
 const modalSlice = createSlice({
 	name: "modal",
 	initialState: {
@@ -33,6 +43,7 @@ const modalSlice = createSlice({
 		followers_modal: false,
 		add_modal: false,
 		similarAccount_modal: false,
+		postDetailComment_modal: false,
 	},
 	reducers: {},
 	extraReducers: {
@@ -50,6 +61,9 @@ const modalSlice = createSlice({
 		},
 		[similarAccount_modal_check.fulfilled]: (state, action) => {
 			state.similarAccount_modal = !state.similarAccount_modal;
+		},
+		[postDetailComment_modal.fulfilled]: (state, action) => {
+			state.postDetailComment_modal = !state.postDetailComment_modal;
 		},
 	},
 });

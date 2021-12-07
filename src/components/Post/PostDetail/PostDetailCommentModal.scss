@@ -1,0 +1,79 @@
+@import "../../../common/variables";
+@import "../../../common/mixin";
+
+.profile_modal_container {
+	left: 0;
+	width: 97vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	z-index: 100;
+	position: fixed;
+
+	.postDetailComment_modal_modal {
+		width: 260px;
+		height: 90px;
+		border: 1px solid $instaGray;
+		border-radius: 10px;
+		position: absolute;
+		z-index: 100;
+		background-color: $instaWhite;
+		cursor: pointer;
+
+		& > div {
+			border-bottom: 1px solid $instaGray;
+			height: 30px;
+			text-align: center;
+			line-height: 25px;
+			@include fontSize("small");
+			color: $instaMenuBlack;
+		}
+    & > div:nth-child(1) {
+			color: $instaRed;
+			font-weight: bold;
+		}
+
+		& > div:nth-child(2) {
+			color: $instaRed;
+			font-weight: bold;
+		}
+
+		& > div:last-child {
+			border: none;
+		}	
+	}
+
+}
+
+.postDetailComment_modal_overlay {
+	box-sizing: border-box;
+	position: fixed;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.1);
+  z-index: 99;
+}
+
+@include desktop {
+	.profile_modal_container {
+		top: 50%;
+	}
+}
+
+@include tablet {
+	.profile_modal_container {
+		top: 65%;
+	}
+}
+
+@include mobile {
+	.profile_modal_container {
+		left: 10%;
+		top: 65%;
+	}
+}
