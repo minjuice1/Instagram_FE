@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {addComment, addReplyComment} from "../../../redux/post/comment";
 import InputEmoji from "react-input-emoji";
-import { commentActions } from '../../../redux/post/commentSlice';
 import { replyReducer } from '../../../redux/post/postSlice';
 
 const PostComment = (postId, commentId, writer) => {

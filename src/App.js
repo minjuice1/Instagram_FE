@@ -13,9 +13,8 @@ import FindPassword from "./components/Page/User/Login/FindPassword";
 import Recommendation from "./components/Page/Menu/Recommendation/Recommendation";
 import DirectMessage from "./components/Page/Menu/DirectMessage/DirectMessage";
 import AddPost from "./components/Post/PostWrite/AddPost";
-import PostDetail from "./components/Post/PostDetail";
+import PostDetail from "./components/Post/PostDetail/PostDetail";
 import Profile from "./components/Page/Profile/Profile";
-
 import EditUser from "./components/Page/User/EditUser/EditUser";
 import {getProfile} from "./redux/user/user";
 

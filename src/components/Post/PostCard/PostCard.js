@@ -12,7 +12,7 @@ import {
 
 import Profile_image from "../../../image/profile.jpg";
 
-import {modal_check, postDetail_modal} from "../../../redux/modal/modalSlice";
+import {modal_check} from "../../../redux/modal/modalSlice";
 import PostDetail from '../PostDetail/PostDetail';
 import {useDispatch, useSelector} from "react-redux";
 import PostComment from "./PostComment";
@@ -88,8 +88,8 @@ const PostCard = ({contents, createdAt, writer, postId,
 
 	const time = displayTime(createdAt);
 
-
   //모달 리덕스에서 관리
+  const is_postDetailmodal = useSelector((state) => state.modal.postDetail_modal);
   const show_postModal = () => {
     dispatch(modal_check());
   };
