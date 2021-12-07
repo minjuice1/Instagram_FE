@@ -56,6 +56,7 @@ const postSlice = createSlice({
 				(cnt) => cnt._id !== action.payload );
 		 },
      [likedComment.fulfilled]: (state, action) => {
+       console.log(action);
        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
        state.comment[idx].isLike = !state.comment[idx].isLike;
        state.comment[idx].like.length = !state.comment[idx].like.length;
@@ -64,9 +65,11 @@ const postSlice = createSlice({
      //replyComment
      [addReplyComment.fulfilled] : (state, action) => {
       console.log(action);
-      // const idx = state.comment.childComments.findIndex((c) => c._id === action.payload.reComment);
-      // console.log(idx);
-			// state.comment.childComments.push(action.payload.reComment);
+      const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
+      const re = state.comment[idx].childComments.findIndex((r) => r._id === action.payload.reComment._id);
+      console.log(idx);
+      console.log(re);
+			// state.comment[idx].childComments[re].push(action.payload.reComment);
       // console.log(state.replyComment);
     },
     [deleteReplyComment.fulfilled]: (state, action) => {			
