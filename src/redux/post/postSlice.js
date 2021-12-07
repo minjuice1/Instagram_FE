@@ -63,23 +63,21 @@ const postSlice = createSlice({
        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
        state.comment[idx].isLike = !state.comment[idx].isLike;
        state.comment[idx].like = action.meta.arg.like;
-       console.log(action.meta.arg.like);
-       console.log(state.comment[idx].like);
      },
 
      //replyComment
      [addReplyComment.fulfilled] : (state, action) => {
-      // console.log(action);
+      console.log(action);
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
-      const re = state.comment[idx].childComments.findIndex((r) => r._id === action.payload.reComment._id);
-      // console.log(idx);
-      // console.log(re);
+      const re = state.comment[idx].childComments.push(action.payload.reComment);
+      console.log(idx);
+      console.log(re);
 			// state.comment[idx].childComments[re].push(action.payload.reComment);
       // console.log(state.replyComment);
     },
     [deleteReplyComment.fulfilled]: (state, action) => {			
 			// state.comment.childComments = state.comment.childComments.filter(
-				// (cnt) => cnt._id !== action.payload.reComment );
+			// 	(cnt) => cnt._id !== action.payload.reComment );
 		 },
   },
 });

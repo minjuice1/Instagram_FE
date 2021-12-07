@@ -14,8 +14,6 @@ import PostReplyComment from './PostReplyComment';
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments}) => {
   const dispatch = useDispatch();
-  console.log(like);
-  // console.log(childComments);
 
   // modal
   const [openModal, setOpenModal] = useState(false); 
@@ -89,7 +87,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       ))}
       </div>)
     : (<div  onClick={ReplyClickHandler}>
-        <div className="postDetail_replycomment"> ㅡ 답글보기 (<span>3</span>개)
+        <div className="postDetail_replycomment"> ㅡ 답글보기 (<span>{childComments.length}</span>개)
         </div>
       </div>)}
     </div>
