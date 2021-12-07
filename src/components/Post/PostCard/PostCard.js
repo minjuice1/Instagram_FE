@@ -19,15 +19,18 @@ import PostComment from "./PostComment";
 import dompurify from "dompurify";
 import {likePost, deletePost} from "../../../redux/post/post";
 import PostGetComment from "./PostGetComment";
-import { commentActions } from '../../../redux/post/commentSlice';
-import { replyReducer } from '../../../redux/post/postSlice';
+import {useNavigate, useParams} from "react-router";
+import {replace} from "connected-react-router";
 
 
 const PostCard = ({contents, createdAt, writer, postId,
                     postImage, isLike, comments, commentIsAllowed}) => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+
+  // 게시글에 \n으로 되어있는 부분을 html코드인 <br/>로 변경해서 줄바꿈 표시함.
   const sanitizer = dompurify.sanitize;
   let html_content = contents.replace(/\n/g, '<br/>');
   let first_line = html_content.includes("<br/>");
@@ -56,7 +59,6 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
   const get_comments = comments.slice(0-2);
-  // console.log(get_comments)
 
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
@@ -86,15 +88,11 @@ const PostCard = ({contents, createdAt, writer, postId,
 
 	const time = displayTime(createdAt);
 
-  // modal
-  const is_postDetailmodal = useSelector((state) => state.modal.postDetail_modal);
+
+  //모달 리덕스에서 관리
   const show_postModal = () => {
     dispatch(modal_check());
   };
-
-  const show_postDetailModal = () => {
-		dispatch(postDetail_modal());
-	};
 
   const deleteClickHandler = () => {
     dispatch(
@@ -107,6 +105,12 @@ const PostCard = ({contents, createdAt, writer, postId,
   //   dispatch(replyReducer(""))
   // }, [])
 
+  //유저 정보 클릭
+ const UserProfileClickHandler = () => {
+   const id = writer[0].userId
+   navigate(`/profile/${id}`, {replace: true})
+  }
+
   return (
     <>
     {is_postDetailmodal && <PostDetail/>}
@@ -115,7 +119,7 @@ const PostCard = ({contents, createdAt, writer, postId,
           <div className="post_header">
             <div className="profile_img">
               <img className="post_user_image" src={Profile_image}/>
-              <div className="post_user_id">writer</div>
+              <div className="post_user_id"  onClick={UserProfileClickHandler} >{writer[0].userId}</div>
               {/*임시 삭제버튼*/}
               <div onClick={deleteClickHandler}>삭제</div>
               <div className="profile_img_dot" onClick={show_postModal}>

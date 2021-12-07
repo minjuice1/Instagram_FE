@@ -1,14 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {addPost, deletePost, getPost, getPostDetail} from "./post";
+import {deletePost, getPost, getPostDetail, getUserPost} from "./post";
 import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment } from './comment';
 
 
 const postSlice = createSlice({
   name: 'post',
   initialState: {
+    user: [],
+    savedPost: [],
     posts: [],
-    isFetching: false,
     postDetail: [],
     comment: {
       isLiked: false,
@@ -31,12 +32,15 @@ const postSlice = createSlice({
     [getPost.fulfilled]: (state, action) => {
       state.posts = action.payload.posts;
     },
+    [getUserPost.fulfilled] : (state, action) => {
+      state.post = action.payload.data.post;
+      state.user = action.payload.data.user;
+      state.savedPost = action.payload.data.savedPost;
+    },
     [deletePost.fulfilled]: (state, {payload}) => {
      const post_list = state.posts.filter(
        post=> post._id !== payload );
      state.posts = post_list;
-    },
-    [addPost.pending]: (state, action) =>{
     },
     [getPostDetail.fulfilled]: (state, action) => {
       // console.log(action.payload);

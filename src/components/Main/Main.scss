@@ -1,0 +1,45 @@
+@import "./src/common/variables.scss";
+@import "./src/common/mixin";
+
+.container {
+  background-color: $backgroundGray;
+}
+.Main {
+  display: grid;
+  grid-template-columns: repeat(24, 500px 300px );
+  width: 1000px;
+  margin: auto;
+  .Main_post {
+
+  }
+  .Main_side {
+   margin-left: 150px;
+  }
+
+}
+
+
+@include desktop{
+
+}
+@include tablet{
+  .Main{
+    width: 800px;
+  }
+  .Main_side{
+    margin-left: 100px;
+  }
+}
+
+@include mobile {
+  .Main {
+    width: 500px;
+    margin: auto;
+  }
+  .Main_post{
+    width: 100%;
+  }
+  .Main_side {
+    display: none;
+  }
+}
