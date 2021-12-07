@@ -82,7 +82,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       {childComments && childComments.map((reply) => (
       <PostReplyComment
       Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.like}
-       Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId}
+       Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId}
        />
       ))}
       </div>)

@@ -75,9 +75,11 @@ const postSlice = createSlice({
 			// state.comment[idx].childComments[re].push(action.payload.reComment);
       // console.log(state.replyComment);
     },
-    [deleteReplyComment.fulfilled]: (state, action) => {			
-			// state.comment.childComments = state.comment.childComments.filter(
-			// 	(cnt) => cnt._id !== action.payload.reComment );
+    [deleteReplyComment.fulfilled]: (state, action) => {		
+      const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
+      console.log(idx);
+			state.comment[idx].childComments = state.comment[idx].childComments.filter(
+				(re) => re._id !== action.meta.arg.commentId );
 		 },
   },
 });

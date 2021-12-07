@@ -8,7 +8,7 @@ import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 
 
-const PostReplyComment = ({Recontents, RecreatedAt, Relike, Rewriter, ReCommentId, postId}) => {  
+const PostReplyComment = ({Recontents, RecreatedAt, Relike, Rewriter, ReCommentId, postId, Id}) => {  
 
   // modal
   const [openModal, setOpenModal] = useState(false); 
@@ -19,7 +19,7 @@ const PostReplyComment = ({Recontents, RecreatedAt, Relike, Rewriter, ReCommentI
 
   return(
   <>
-  {openModal && <PostDetailReplyCommentModal setOpenModal={setOpenModal} Recontents={Recontents} postId={postId} RecommentId={ReCommentId}/>}
+  {openModal && <PostDetailReplyCommentModal Id={Id} setOpenModal={setOpenModal} Recontents={Recontents} postId={postId} RecommentId={ReCommentId}/>}
   {Recontents && 
   <div className="postDetail_comments">
     <div className="postDetail_comment_pp">
