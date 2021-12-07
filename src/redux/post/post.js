@@ -98,7 +98,7 @@ export const getPostDetail = createAsyncThunk(
 
 
 
-//좋아요
+//게시글 좋아요
 export const likePost = createAsyncThunk(
   "post/likePost",
   async ({postId}, thunkAPI) => {
@@ -114,6 +114,32 @@ export const likePost = createAsyncThunk(
       return response;
     } catch (e) {
       return false;
+    }
+  }
+)
+
+
+//개인 포스트 가져오기
+export const getUserPost = createAsyncThunk(
+  "post/getUserPost",
+  async(data, thunkAPI) => {
+
+    const AccessToken = localStorage.getItem("user")
+    try{
+      const response = await Api({
+        url: `user/${data}`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      if(response.data.ok){
+        return response;
+      }
+      console.log(response)
+      return response;
+    }catch (e){
+      console.log(e.response);
     }
   }
 )

@@ -26,7 +26,7 @@
  }
 }
 
-//포스트 아이디 댓글 아이디 모두 글씨style적용
+//포스트 아이디 댓글 아이디 모두 글씨 style적용
 .post_user_id {
  @include fontSize('large');
  font-weight: bold;
