@@ -47,6 +47,7 @@ function App() {
   const token = localStorage.getItem("user")
   const write_modal = useSelector(state => state.modal.add_modal);
 
+  const userInfo = useSelector(state => state.user.user);
 
   //내정보 불러오기
   useEffect(() => {
@@ -54,6 +55,8 @@ function App() {
       dispatch(getProfile());
     }
   }, [dispatch]);
+
+
 
 
   //헤더 띄우기용
@@ -78,8 +81,8 @@ function App() {
           <Route path="/*" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
           <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
-          <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser/> </RequireAuth>}/>
-					<Route path="/profile/"	element={<RequireAuth redirectTo="/login"> <Profile/></RequireAuth>}/>
+          <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser /> </RequireAuth>}/>
+					<Route path="/profile/"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}/>
 					<Route path="/profile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/myprofile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>

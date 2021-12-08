@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // 모달
 import {modal_check, followers_modal_check, following_modal_check, similarAccount_modal_check} from "../../../redux/modal/modalSlice";
 
-import FollowingModal from "./ProfileModal/FollowingModal";
+// import FollowingModal from "./ProfileModal/FollowingModal";
 
 import SimilarAccountModal from "./OtherProfile/OtherProfileModal/SimilarAccountModal";
 import OtherProfileSettingModal from "./OtherProfile/OtherProfileModal/OtherProfileSettingModal";
@@ -84,7 +84,7 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
   return (
     <>
 
-      {following_modal && <FollowingModal />}
+      {/*{following_modal && <FollowingModal />}*/}
       {SimilarAccount_Modal && <SimilarAccountModal />}
 
 

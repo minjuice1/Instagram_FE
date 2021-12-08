@@ -24,7 +24,6 @@ const postSlice = createSlice({
     replyReducer : (state, action) => {
       console.log(action.payload);
       state.replyTag = action.payload;
-      // console.log("replyTag 호출됨", state.replyTag);
     },
 
   },

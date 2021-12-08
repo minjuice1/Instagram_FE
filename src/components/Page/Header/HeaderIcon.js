@@ -4,10 +4,10 @@ import HeaderLikeText from "./HeaderLikeText";
 import {Link, useNavigate} from "react-router-dom";
 
 import {home, message, write, compass, heart, test, blackheart,
-  blackhome, menu_setting, menu_save, menu_change, menu_profile,
+  blackhome, menu_setting, menu_save, menu_change, menu_profile, none_profile,
 blackcompass}
   from "../../../common/IconImage";
-import {logout} from "../../../redux/user/user";
+import {getProfile, logout} from "../../../redux/user/user";
 import {useDispatch, useSelector} from "react-redux";
 import {add_modal} from "../../../redux/modal/modalSlice";
 import HeaderUser from "./HeaderUser";
@@ -22,6 +22,7 @@ const HeaderIcon = () => {
   const [homeIcon, SetHomeIcon] = useState(false);
   const [compassIcon, SetCompassIcon] = useState(false);
   const [direct, SetDirect] = useState(false);
+  const [myProfileImage, SetMyProfileImage] = useState(false);
 
   //외부클릭 감지
   function useOutsideClick(ref) {
@@ -88,6 +89,13 @@ const HeaderIcon = () => {
   }
 
 
+  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
+  const profile_img = useSelector(state => state.user.user.profileImage);
+  const my_img = profile_img && profile_img? profile_img : none_profile;
+
+  //내정보 불러오기
+
+
   return (
     <>
       <div className="header_icon">
@@ -110,8 +118,8 @@ const HeaderIcon = () => {
           }
         </div>
         <div className="profile_icons" ref={profileSideRef}>
-          {myProfile ? <img className="nav_profile" src={heart} alt="nav_icon"  onClick={myProfileClickHandler}/> :
-            <img src={heart} alt="nav_icon"  onClick={myProfileClickHandler}/>}
+          { myProfile ? <img className="nav_profile" src={my_img} alt="nav_icon"  onClick={myProfileClickHandler}/> :
+              <img src={my_img} alt="nav_icon"  onClick={myProfileClickHandler}/>}
           {myProfile && <HeaderUser/>}
         </div>
       </div>

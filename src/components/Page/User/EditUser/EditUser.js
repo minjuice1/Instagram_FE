@@ -5,6 +5,7 @@ import {useState} from "react";
 import EditPassword from "./EditPassword";
 
 const EditUser = () => {
+  
 
   const [editProfile, SetEditProfile] = useState(true);
   const [editPwd, SetEditPwd] = useState(false);

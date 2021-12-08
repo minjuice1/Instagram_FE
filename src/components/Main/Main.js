@@ -19,6 +19,8 @@ const Main = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const post_data = useSelector((state) => state.post.posts);
 
+	console.log("이것은 포스트데이타이니라", post_data);
+
 
 	return (
 		<>

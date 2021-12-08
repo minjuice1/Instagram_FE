@@ -8,8 +8,7 @@ import ProfileTagged from "./CommonProfile/ProfileTagged";
 import ProfileSaved from "./CommonProfile/ProfileSaved";
 
 // 모달
-import ProfileSettingModal from "./Myprofile/MyProfileModal/ProfileSettingModal";
-import FollowingModal from "./ProfileModal/FollowingModal";
+import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
 // scss, icon, img
 import "./Profile.scss";
 import pp from "../../../image/profile.jpg";
@@ -104,15 +103,12 @@ const Profile = () => {
 
 
 const user_info = useSelector(state=> state.post.user);
-
-console.log("aaaaaaaaaaaaaa",user_info);
 const user_data = user_info && user_info[0];
 
  
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
-      {following_modal && <FollowingModal/>}
 
 
 
@@ -127,6 +123,7 @@ const user_data = user_info && user_info[0];
                 totalFollower = {user_data.totalFollower}
                 totalPost = {user_data.totalPost}
                 introdution = {user_data.introdution}
+                profileImage={user_data.profileImage}
               />}
             {!myProfile && user_data &&
               <UserProfileInfo

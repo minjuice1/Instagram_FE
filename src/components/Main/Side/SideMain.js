@@ -1,19 +1,29 @@
 import "./SideMain.scss";
-import profile from "../../../image/profile.jpg";
+import {none_profile} from "../../../common/IconImage";
 import SideRecommend from "./SideRecommend";
+import {useSelector} from "react-redux";
 
 const SideMain = () => {
+
+
+  //개인 유저정보 불러오기
+  const user_info = useSelector(state=>state.user.user);
+
+  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
+  const profile_img = useSelector(state=>state.user.user.profileImage);
+  const my_img = profile_img? profile_img : none_profile;
+
 
   return(
     <>
       <div className="side">
         <div className="side-my">
           <div className="side-image">
-            {/*<img src={profile}/>*/}
+            <img src={my_img} alt="my_profile_img"/>
           </div>
           <div className="side_profile">
-            <div className="side_myprofile">hyemin0805</div>
-            <div className="side_myprofile">Hyemin Park</div>
+            <div className="side_myprofile">{user_info.userId}</div>
+            <div className="side_myprofile">{user_info.name}</div>
           </div>
           <div className="side_blue">전환</div>
         </div>

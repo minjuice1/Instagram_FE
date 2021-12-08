@@ -1,14 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "./PostCard.scss";
-import {
-  post_heart,
-  post_red_heart,
-  message,
-  text,
-  dot,
-  post_save,
-} from "../../../common/IconImage";
+import {post_heart, post_red_heart, message, text, dot, post_save, none_profile,} from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
 
@@ -19,8 +12,9 @@ import PostComment from "./PostComment";
 import dompurify from "dompurify";
 import {likePost, deletePost} from "../../../redux/post/post";
 import PostGetComment from "./PostGetComment";
-import {useNavigate, useParams} from "react-router";
-import {replace} from "connected-react-router";
+import {useNavigate} from "react-router";
+
+
 
 
 const PostCard = ({contents, createdAt, writer, postId,
@@ -29,6 +23,7 @@ const PostCard = ({contents, createdAt, writer, postId,
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log("라이터이니라", writer);
 
   // 게시글에 \n으로 되어있는 부분을 html코드인 <br/>로 변경해서 줄바꿈 표시함.
   const sanitizer = dompurify.sanitize;
@@ -101,15 +96,16 @@ const PostCard = ({contents, createdAt, writer, postId,
       }))
   };
 
-  // useEffect(() => {
-  //   dispatch(replyReducer(""))
-  // }, [])
-
-  //유저 정보 클릭
+  //유저 정보 프로필 클릭해서 들어가기
  const UserProfileClickHandler = () => {
    const id = writer[0].userId
    navigate(`/profile/${id}`, {replace: true})
   }
+
+  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
+  const profile_img = writer[0].profileImage;
+  const user_img = profile_img? profile_img : none_profile;
+
 
   return (
     <>
@@ -118,7 +114,7 @@ const PostCard = ({contents, createdAt, writer, postId,
         <div className="post_card">
           <div className="post_header">
             <div className="profile_img">
-              <img className="post_user_image" src={Profile_image}/>
+              <img className="post_user_image" src={user_img}/>
               <div className="post_user_id"  onClick={UserProfileClickHandler} >{writer[0].userId}</div>
               {/*임시 삭제버튼*/}
               <div onClick={deleteClickHandler}>삭제</div>
@@ -144,7 +140,7 @@ const PostCard = ({contents, createdAt, writer, postId,
             <div className="post_content">
               <a className="post_user_id">좋아요 1,200개</a>
               <div className="post_text">
-                <a className="post_user_id">writer</a>
+                <a className="post_user_id">{writer[0].userId}</a>
                 {morePost ? (
                     <div
                       className="post_text"
