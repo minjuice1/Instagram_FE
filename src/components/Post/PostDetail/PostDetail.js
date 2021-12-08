@@ -5,7 +5,6 @@ import { useParams } from "react-router";
 import {getPostDetail} from "../../../redux/post/post";
 import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
-import {formatDistance} from 'date-fns';
 
 // modal
 import { modal_check } from "../../../redux/modal/modalSlice";
@@ -26,7 +25,7 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	console.log(comments);
+	// console.log(postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -56,33 +55,33 @@ const PostDetail = () => {
 	};
 
 	
-    //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
-    function displayTime(value) {
-      const today = new Date();
-      const nowTime = new Date(value);
-  
-      const displayTime = Math.floor(
-        (today.getTime() - nowTime.getTime()) / 1000 / 60,
-      );
-      if (displayTime < 1) return "방금 전";
-      if (displayTime < 60) {
-        return `${displayTime}분전`;
-      }
-  
-      const displayTimeHour = Math.floor(displayTime / 60);
-      if (displayTimeHour < 24) {
-        return `${displayTimeHour}시간 전`;
-      }
-  
-      const displayTimeDay = Math.floor(displayTime / 60 / 24);
-      if (displayTimeDay < 365) {
-        return `${displayTimeDay}일 전`;
-      }
-      return `${Math.floor(displayTimeDay / 365)}년 전`;
-    }
-  
-    // const time = displayTime(postDetail.createdAt);
+	//글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
+	function displayTime(value) {
+		const today = new Date();
+		const nowTime = new Date(value);
 
+		const displayTime = Math.floor(
+			(today.getTime() - nowTime.getTime()) / 1000 / 60,
+		);
+		if (displayTime < 1) return "방금 전";
+		if (displayTime < 60) {
+			return `${displayTime}분전`;
+		}
+
+		const displayTimeHour = Math.floor(displayTime / 60);
+		if (displayTimeHour < 24) {
+			return `${displayTimeHour}시간 전`;
+		}
+
+		const displayTimeDay = Math.floor(displayTime / 60 / 24);
+		if (displayTimeDay < 365) {
+			return `${displayTimeDay}일 전`;
+		}
+		return `${Math.floor(displayTimeDay / 365)}년 전`;
+	}
+
+	// const time = displayTime(postDetail.createdAt);
+	// console.log(time);
 		
 
 	return (
@@ -124,7 +123,7 @@ const PostDetail = () => {
 											</span>
 										</div>
 										<div className="postDetail_comment_info">
-											<span>{postDetail.createdAt}</span>
+											<span>time</span>
 										</div>
 									</div>
 								</div>
@@ -188,7 +187,7 @@ const PostDetail = () => {
 									</div>
 								</div>
 								<div className="postDetail_comment_time">
-									<span>{postDetail.createdAt}</span>
+									<span>time</span>
 								</div>
 								<PostComment postId={postId} commentId={comments._id}/>
 							</div>

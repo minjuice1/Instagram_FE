@@ -103,6 +103,7 @@
 					.postDetail_comments {
 						display: flex;
 						width: 100%;
+						height: auto;
 
 						.postDetail_comment_pp {
 							display: flex;
@@ -120,10 +121,9 @@
 
 						.postDetail_comments_comment {
 							width: 78%;
-							margin-bottom: 10px;
+							height: auto;
 
 							.postDetail_comment_userId {
-								height: auto;
 								width: 97%;
 								@include fontSize("large");
 
@@ -139,10 +139,10 @@
 							}
 
 							.postDetail_comment_info {
-								height: 15%;
+								height: 20px;
 								width: 100%;
 								@include fontSize("normal");
-								margin: 10px;
+								margin: 10px 10px 0 10px;
 								color: $instaMenuGray;
 
 								& > span:nth-child(2) {
@@ -156,14 +156,90 @@
 									cursor: pointer;
 								}
 							}
-						}
 
-						.postDetail_replycomment{
-							@include fontSize("normal");
-							font-weight: 600;
-							color: $instaMenuGray;
-							cursor: pointer;
-							margin-bottom: 10px;
+							.postDetail_replycomment{
+								@include fontSize("normal");
+								font-weight: 600;
+								color: $instaMenuGray;
+								cursor: pointer;
+								margin: 10px;
+							}
+	
+							.postDetail_replycomment_hidden {
+								@include fontSize("normal");
+								font-weight: 600;
+								color: $instaMenuGray;
+								cursor: pointer;
+								margin: 10px;
+							}
+
+								// 대댓글
+							.postDetail_replyCommentsBox {
+
+								.postDetail_replyComments {
+									display: flex;
+									width: 100%;
+									margin: 5px 0;
+										
+									.postDetail_replyComment_pp {
+										display: flex;
+										height: 10%;
+										width: 15%;
+								
+										& > img {
+											margin-left: 10px;
+											justify-content: space-between;
+											width: 32px;
+											height: 32px;
+											cursor: pointer;
+										}
+									}
+								
+									.postDetail_replyComments_comment {
+										width: 78%;
+								
+										.postDetail_replyComment_userId {
+											width: 97%;
+											@include fontSize("large");
+											color: $instaMenuBlack;
+								
+											& > span:first-child {
+												font-weight: bold;
+												margin: 0 8px;
+												cursor: pointer;
+											}
+								
+											.postDetail_replyComment_contents {
+												height: auto;
+												font-weight: 300;
+											}
+										}
+								
+										.postDetail_replyComment_info {
+											height: 15%;
+											width: 100%;
+											@include fontSize("normal");
+											margin: 3px 10px;
+											color: $instaMenuGray;
+
+											& > span:nth-child(1) {
+												font-weight: lighter;
+											}
+								
+											& > span:nth-child(2) {
+												font-weight: bold;
+												margin-left: 10px;
+												cursor: pointer;
+											}
+								
+											& > span:nth-child(3) {
+												margin-left: 10px;
+												cursor: pointer;
+											}
+										}
+									}
+								}
+							}
 						}
 
 						.postDetail_commentList_liked {
@@ -299,6 +375,7 @@
 	}
 	}
 
+	// modal
 .postDetail_overlay {
 	position: absolute;
   width: 100%;
@@ -310,7 +387,7 @@
 // InputEmoji
 .postDetail_cmt {
 	display: flex;
-	// border-top: 1px solid $instaGray;
+	border-top: 1px solid $instaGray;
 
 	.postDetail_cmt > input{
 	width: 80%;
@@ -339,3 +416,5 @@
 	background: $instaWhite;
  }
 }
+
+

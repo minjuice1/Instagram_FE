@@ -91,7 +91,7 @@ export const addReplyComment = createAsyncThunk(
 				},
 			})
 			if(response.data.ok){
-				// console.log(response);
+				console.log(response);
 				return response.data;
 			}
 			return response;
