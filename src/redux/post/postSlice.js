@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {deletePost, getPost, getPostDetail, getUserPost} from "./post";
-import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment } from './comment';
+import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment } from './comment';
 
 
 const postSlice = createSlice({
@@ -15,6 +15,7 @@ const postSlice = createSlice({
       isLiked: false,
       like: [],
       childComments: [],
+      wrtier: [],
     },
     
     replyTag: "",
@@ -52,7 +53,7 @@ const postSlice = createSlice({
 
     //comment
     [addComment.fulfilled] : (state, action) => {
-      console.log(action);
+      console.log(action.payload.comment.writer);
 			state.comment.push(action.payload.comment);
     },
     [deleteComment.fulfilled]: (state, action) => {			
@@ -70,10 +71,6 @@ const postSlice = createSlice({
       console.log(action);
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
       const re = state.comment[idx].childComments.push(action.payload.reComment);
-      console.log(idx);
-      console.log(re);
-			// state.comment[idx].childComments[re].push(action.payload.reComment);
-      // console.log(state.replyComment);
     },
     [deleteReplyComment.fulfilled]: (state, action) => {		
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
@@ -81,6 +78,12 @@ const postSlice = createSlice({
 			state.comment[idx].childComments = state.comment[idx].childComments.filter(
 				(re) => re._id !== action.meta.arg.commentId );
 		 },
+     [likedReplyComment.fulfilled]: (state, action) => {
+       console.log(action);
+      // const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
+      // state.comment[idx].isLike = !state.comment[idx].isLike;
+      // state.comment[idx].like = action.meta.arg.like;
+    },
   },
 });
 export const {delete_post, replyReducer} = postSlice.actions;

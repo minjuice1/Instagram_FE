@@ -1,12 +1,17 @@
 import React, {useState} from "react";
+import { useDispatch } from "react-redux";
+
 import PostDetailReplyCommentModal from './PostDetailReplyCommentModal';
+import { likedReplyComment } from '../../../redux/post/comment';
+import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 // postDetail과 css공유
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 
 
-const PostReplyComment = ({Recontents, RecreatedAt, Relike, Rewriter, ReCommentId, postId, Id}) => {  
+const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, ReCommentId, postId, Id}) => {  
+  const dispatch = useDispatch();
 
   // modal
   const [openModal, setOpenModal] = useState(false); 
@@ -14,33 +19,46 @@ const PostReplyComment = ({Recontents, RecreatedAt, Relike, Rewriter, ReCommentI
 		setOpenModal(true);
 	};
 
-    //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
-    function displayTime(value) {
-      const today = new Date();
-      const nowTime = new Date(value);
-  
-      const displayTime = Math.floor(
-        (today.getTime() - nowTime.getTime()) / 1000 / 60,
-      );
-      if (displayTime < 1) return "방금전";
-      if (displayTime < 60) {
-        return `${displayTime}분전`;
-      }
-  
-      const displayTimeHour = Math.floor(displayTime / 60);
-      if (displayTimeHour < 24) {
-        return `${displayTimeHour}시간전`;
-      }
-  
-      const displayTimeDay = Math.floor(displayTime / 60 / 24);
-      if (displayTimeDay < 365) {
-        return `${displayTimeDay}일전`;
-      }
-  
-      return `${Math.floor(displayTimeDay / 365)}년전`;
+  // 댓글 좋아요
+  const AccessToken = localStorage.getItem("user");
+  const LikedReplyCommentHandler = () => {
+    dispatch(
+      likedReplyComment({
+        commentId: ReCommentId,
+        AccessToken,
+        ReIsLike,
+        Relike,
+      }));
+  };
+
+
+  //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
+  function displayTime(value) {
+    const today = new Date();
+    const nowTime = new Date(value);
+
+    const displayTime = Math.floor(
+      (today.getTime() - nowTime.getTime()) / 1000 / 60,
+    );
+    if (displayTime < 1) return "방금전";
+    if (displayTime < 60) {
+      return `${displayTime}분전`;
     }
-  
-    const time = displayTime(RecreatedAt);
+
+    const displayTimeHour = Math.floor(displayTime / 60);
+    if (displayTimeHour < 24) {
+      return `${displayTimeHour}시간전`;
+    }
+
+    const displayTimeDay = Math.floor(displayTime / 60 / 24);
+    if (displayTimeDay < 365) {
+      return `${displayTimeDay}일전`;
+    }
+
+    return `${Math.floor(displayTimeDay / 365)}년전`;
+  }
+
+  const time = displayTime(RecreatedAt);
 
   return(
   <>
@@ -59,12 +77,31 @@ const PostReplyComment = ({Recontents, RecreatedAt, Relike, Rewriter, ReCommentI
       </div>
       <div className="postDetail_replyComment_info">
         <span>{time}</span>
-        {Relike !== 0 && (<span>
-          좋아요 <span>{Relike}</span>개
-        </span>)}
+        {Relike ?
+        (<span>
+          좋아요 <span>{(Relike.length)+1}</span>개
+        </span>) 
+        : (<span>
+          좋아요 <span>{Relike.length}</span>개
+        </span>) }
         <span>답글 달기</span>
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
       </div>
+    </div>
+    <div className="postDetail_commentList_liked">
+      {ReIsLike ? (
+        <img
+          src={comment_red_heart}
+          onClick={LikedReplyCommentHandler}
+          alt="comment_red_heart"
+        />
+      ) : (
+        <img
+          src={comment_heart}
+          onClick={LikedReplyCommentHandler}
+          alt="comment_heart"
+        />
+      )}
     </div>
   </div>}
   </>

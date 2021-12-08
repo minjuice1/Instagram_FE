@@ -34,18 +34,18 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   };
 
   // 답글 달기
-  
-  const replyHandler = () => {
+  const replyHandler = (event) => {
     const replyInfo = {writer: writer, commentId: commentId}
     dispatch(replyReducer(replyInfo));
+    event.preventDefault();
   }
 
-    // 대댓글
-    const [clickReply, setClickReply] = useState(false);
+  // 대댓글
+  const [clickReply, setClickReply] = useState(false);
 
-    const ReplyClickHandler = () => {
-      setClickReply(!clickReply);
-    }
+  const ReplyClickHandler = () => {
+    setClickReply(!clickReply);
+  }
    
     //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
@@ -108,7 +108,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         <div onClick={ReplyClickHandler} className="postDetail_replycomment_hidden"> ㅡ 답글 숨기기 
         {childComments && childComments.map((reply) => (
         <PostReplyComment
-        Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.like}
+        Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.like} ReIsLike={reply.isLike}
         Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId}
         />
       ))}

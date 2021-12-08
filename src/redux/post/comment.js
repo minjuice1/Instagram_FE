@@ -18,7 +18,7 @@ export const addComment = createAsyncThunk(
 				},
 			})
 			if(response.data.ok){
-				// console.log(response);
+				console.log(response);
 				return response.data;
 			}
 			return response;
@@ -120,6 +120,26 @@ export const deleteReplyComment = createAsyncThunk(
 			}
 			return response;
 
+		} catch (e) {
+
+			return false;
+		}
+	},
+);
+
+export const likedReplyComment = createAsyncThunk(
+	"commment/likedReplyComment",
+	async ({ commentId, AccessToken }) => {
+		try {
+			const response = await Api({
+				url: `/comment/${commentId}/like`,
+				method: "PUT",
+				headers: {
+					Authorization: `Bearer ${AccessToken}`,
+				},
+			})
+			console.log(response);
+			return response.data;
 		} catch (e) {
 
 			return false;
