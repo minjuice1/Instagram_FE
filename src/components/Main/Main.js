@@ -18,7 +18,7 @@ const Main = () => {
 
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const post_data = useSelector((state) => state.post.posts);
-
+	console.log(post_data);
 
 	return (
 		<>
@@ -36,6 +36,7 @@ const Main = () => {
 								isLike={post.isLike}
 								comments={post.comments}
 								commentIsAllowed={post.commentIsAllowed}
+								commentCount={post.commentCount}
 							/>
 						))}
 					</div>

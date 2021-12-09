@@ -6,16 +6,12 @@ import {addComment, addReplyComment} from "../../../redux/post/comment";
 import InputEmoji from "react-input-emoji";
 import { replyReducer } from '../../../redux/post/postSlice';
 
-const PostComment = (postId, commentId, writer) => {
+const PostComment = (postId) => {
 	const dispatch = useDispatch();
-	// console.log(commentId);
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
-	// console.log(replyUserId);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
-	// console.log(replyCommentId);
 
 	const [postComment, SetPostComment] = useState("");
-	// const [replyComment, SetReplyComment] = useState();
 	const AccessToken = localStorage.getItem("user");
 	const _postId = postId.postId;
 
@@ -36,7 +32,6 @@ const PostComment = (postId, commentId, writer) => {
 				postId: _postId,
 				contents: postComment,
 				AccessToken,
-				writer,
 			}),
 			[dispatch],
 		); 
@@ -49,7 +44,6 @@ const PostComment = (postId, commentId, writer) => {
 			postId: _postId,
 			contents: postComment,
 			AccessToken,
-			writer,
 		}),
 			[dispatch],
 		);

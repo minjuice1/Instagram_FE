@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { history } from '../../../history';
 
-import {getPostDetail} from "../../../redux/post/post";
+import {getPostDetail, savedPost} from "../../../redux/post/post";
 import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
 
@@ -15,7 +16,7 @@ import "./PostDetail.scss";
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
 import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
-import { history } from '../../../history';
+
 
 const PostDetail = () => {	
 
@@ -25,7 +26,7 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	console.log(comments);
+	// console.log(comments);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -38,12 +39,17 @@ const PostDetail = () => {
 		SetPostLike(!postLike);
 	};
 
-	// 북마크
-	const [postBookmark, SetPostBookmark] = useState(false);
+	//포스트 북마크
+  const postBookmark = useSelector((state) => state.post.savedPost);
 
-	const postBookmarkClickHandler = () => {
-		SetPostBookmark((postBookmark) => !postBookmark);
-	};
+  const AccessToken = localStorage.getItem("user");
+  const savedPostHandler = () => {
+    dispatch(
+      savedPost({
+        postId,
+        AccessToken,
+      }));
+  };
 
 	// modal
 	const show_postModal = () => {
@@ -55,33 +61,33 @@ const PostDetail = () => {
 	};
 
 	
-    //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
-    function displayTime(value) {
-      const today = new Date();
-      const nowTime = new Date(value);
-  
-      const displayTime = Math.floor(
-        (today.getTime() - nowTime.getTime()) / 1000 / 60,
-      );
-      if (displayTime < 1) return "방금 전";
-      if (displayTime < 60) {
-        return `${displayTime}분전`;
-      }
-  
-      const displayTimeHour = Math.floor(displayTime / 60);
-      if (displayTimeHour < 24) {
-        return `${displayTimeHour}시간 전`;
-      }
-  
-      const displayTimeDay = Math.floor(displayTime / 60 / 24);
-      if (displayTimeDay < 365) {
-        return `${displayTimeDay}일 전`;
-      }
-      return `${Math.floor(displayTimeDay / 365)}년 전`;
-    }
-  
-    // const time = displayTime(postDetail.createdAt);
+	//글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
+	function displayTime(value) {
+		const today = new Date();
+		const nowTime = new Date(value);
 
+		const displayTime = Math.floor(
+			(today.getTime() - nowTime.getTime()) / 1000 / 60,
+		);
+		if (displayTime < 1) return "방금 전";
+		if (displayTime < 60) {
+			return `${displayTime}분전`;
+		}
+
+		const displayTimeHour = Math.floor(displayTime / 60);
+		if (displayTimeHour < 24) {
+			return `${displayTimeHour}시간 전`;
+		}
+
+		const displayTimeDay = Math.floor(displayTime / 60 / 24);
+		if (displayTimeDay < 365) {
+			return `${displayTimeDay}일 전`;
+		}
+		return `${Math.floor(displayTimeDay / 365)}년 전`;
+	}
+
+	// const time = displayTime(postDetail.createdAt);
+	// console.log(time);
 		
 
 	return (
@@ -123,7 +129,7 @@ const PostDetail = () => {
 											</span>
 										</div>
 										<div className="postDetail_comment_info">
-											<span>{postDetail.createdAt}</span>
+											<span>time</span>
 										</div>
 									</div>
 								</div>
@@ -160,18 +166,18 @@ const PostDetail = () => {
 										<img src={message} alt="message" />
 									</div>
 									<div className="postDetail_comment_Bookmarkfunc">
-										{postBookmark ? (
+										{postBookmark.isPost ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}
-												onClick={postBookmarkClickHandler}
+												onClick={savedPostHandler}
 												alt="post_save"
 											/>
 										) : (
 											<img
 												className="post_save"
 												src={post_save}
-												onClick={postBookmarkClickHandler}
+												onClick={savedPostHandler}
 												alt="post_save"
 											/>
 										)}
@@ -187,7 +193,7 @@ const PostDetail = () => {
 									</div>
 								</div>
 								<div className="postDetail_comment_time">
-									<span>{postDetail.createdAt}</span>
+									<span>time</span>
 								</div>
 								<PostComment postId={postId} commentId={comments._id}/>
 							</div>
