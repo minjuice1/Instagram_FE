@@ -3,16 +3,15 @@ import {useSelector} from "react-redux";
 import HeaderSearchCard from "./HeaderSearchCard";
 
 const HeaderSearchResult = () => {
-//
-  const search_user = useSelector(state=>state.search.user);
-  const search_result = useSelector(state=>state.search.result);
+// //
+//   const search_user = useSelector(state=>state.search.user);
 
 
   return (
     <>
       <div>
 
-        <HeaderSearchCard user={search_user} result={search_result}/>
+        {/*<HeaderSearchCard user={search_user} result={search_result}/>*/}
 
       </div>
     </>

@@ -1,11 +1,7 @@
 import {useEffect} from "react";
 import {useSelector} from "react-redux";
 
-const HeaderSearchCard = ({user, result}) => {
-
-  console.log("유저", user);
-  console.log("결과", result);
-
+const HeaderSearchCard = () => {
 
 
   return(
