@@ -3,13 +3,12 @@ import {createSlice} from "@reduxjs/toolkit";
 import {deletePost, getPost, getPostDetail, getUserPost, savedPost} from "./post";
 import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment } from './comment';
 
-
 const postSlice = createSlice({
   name: 'post',
   initialState: {
     user: [],
     savedPost: {
-      postId: [],
+      postId: "",
       isPost: false,
     },
     posts: [],
@@ -53,9 +52,7 @@ const postSlice = createSlice({
     [savedPost.fulfilled]: (state, action) => {
       state.savedPost.postId = action.meta.arg.postId;
       state.savedPost.isPost = !state.savedPost.isPost;
-      
     },
-
 
     //comment
     [addComment.fulfilled] : (state, action) => {
