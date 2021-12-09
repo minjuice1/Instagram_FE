@@ -1,0 +1,51 @@
+
+@import "./src/common/mixin";
+
+
+//팔로우, 팔로잉 카드 스타일
+.follow_Card {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 10px 0 10px;
+
+  .follow_info {
+    display: flex;
+
+    .follow_user {
+      margin-left: 10px;
+    }
+
+    & > img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50px;
+    }
+
+    //카드 유저아이디 상태메세지 css
+    .follow_user {
+      @include fontSize('large');
+
+      & > div:first-child {
+        font-weight: 600;
+      }
+
+      & > div:nth-child(2) {
+        color: $instaMenuGray;
+      }
+    }
+  }
+
+  //삭제버튼
+  .follow_delete_button {
+    & > button {
+      width: 50px;
+      height: 30px;
+      color: $instaMenuBlack;
+      font-weight: 600;
+      background: $instaWhite;
+      border: 1px solid $instaMenuGray;
+      @include fontSize('large');
+    }
+  }
+
+}

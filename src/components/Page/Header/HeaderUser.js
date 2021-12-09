@@ -11,6 +11,8 @@ const HeaderUser = () => {
   const navigate = useNavigate();
   const userLogoutClickHandler = () => {
     dispatch(logout());
+    navigate(`/login}`, {replace: true})
+
   }
 
   const id = useSelector(state=>state.user.user.userId);

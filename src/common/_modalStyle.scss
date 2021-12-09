@@ -1,0 +1,52 @@
+//팔로우, 팔로워 컨테이너
+.modal_common_container {
+  width: 405px;
+  height: 405px;
+  background: $instaWhite;
+  border-radius: 15px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 100;
+  background: $instaWhite;
+
+  //임시방편 나중에 카드에 스크롤 따로 히든 줄 것.
+  overflow: auto;
+  overflow-x: hidden;
+
+
+  .modal_common_header {
+    font-weight: 600;
+    border-bottom:  1px solid $instaGray;
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    justify-content: flex-end;
+
+
+    & > span:first-child{
+      margin-right: 140px;
+    }
+    & > span:nth-child(2) {
+      margin-right: 15px;
+      margin-top: 7px;
+      cursor: pointer;
+    }
+  }
+  .modal_content{
+
+  }
+
+}
+.overlay {
+
+  box-sizing: border-box;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+

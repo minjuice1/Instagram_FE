@@ -1,4 +1,4 @@
-import "../../Myprofile/MyProfileModal/CommonProfileSettingModal.scss";
+import "../../CommonProfile/CommonProfileSettingModal.scss";
 import { useDispatch } from "react-redux";
 import {modal_check} from "../../../../../redux/modal/modalSlice";
 

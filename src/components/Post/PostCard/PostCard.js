@@ -2,15 +2,15 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router";
 import {Link} from "react-router-dom";
-import {replace} from "connected-react-router";
 
-import {modal_check} from "../../../redux/modal/modalSlice";
+import {likeList_modal, modal_check} from "../../../redux/modal/modalSlice";
 import {likePost, deletePost, savedPost} from "../../../redux/post/post";
 import { replyReducer } from '../../../redux/post/postSlice';
 
 import PostComment from "./PostComment";
 import PostGetComment from "./PostGetComment";
 import PostDetail from '../PostDetail/PostDetail';
+import PostLikeModal from "../PostModal/PostLikeModal";
 
 import "./PostCard.scss";
 import {
@@ -21,9 +21,8 @@ import {
   dot,
   post_save,
   post_saveActive,
+  none_profile,
 } from "../../../common/IconImage";
-
-import Profile_image from "../../../image/profile.jpg";
 import dompurify from "dompurify";
 
 const PostCard = ({contents, createdAt, writer, postId,
@@ -119,20 +118,35 @@ const PostCard = ({contents, createdAt, writer, postId,
     dispatch(replyReducer(""))
   }, [])
 
-  //유저 정보 클릭
+  //유저 정보 프로필 클릭해서 들어가기
  const UserProfileClickHandler = () => {
    const id = writer[0].userId
-   navigate(`/profile/${id}`, {replace: true})
+   navigate(`/profile/${id}`,{state: id})}
+
+  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
+  const profile_img = writer[0].profileImage;
+  const user_img = profile_img? profile_img : none_profile;
+
+
+  //좋아요 리스트 모달
+  const likeListClickHandler = () => {
+      dispatch(likeList_modal(
+        postId,
+      ));
+
   }
+  const post_like_list = useSelector(state=>state.modal.likeList_modal);
+
 
   return (
     <>
+      {post_like_list && <PostLikeModal/>}
     {is_postDetailmodal && <PostDetail/>}
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
             <div className="profile_img">
-              <img className="post_user_image" src={Profile_image}/>
+              <img className="post_user_image" src={user_img}/>
               <div className="post_user_id"  onClick={UserProfileClickHandler} >{writer[0].userId}</div>
               {/*임시 삭제버튼*/}
               <div onClick={deleteClickHandler}>삭제</div>
@@ -170,7 +184,7 @@ const PostCard = ({contents, createdAt, writer, postId,
               </div>
             </div>
             <div className="post_content">
-              <a className="post_user_id">좋아요 1,200개</a>
+              <a className="post_user_id" onClick={likeListClickHandler}>좋아요 1,200개</a>
               <div className="post_text">
                 <a className="post_user_id">{writer[0].userId}</a>
                 {morePost ? (

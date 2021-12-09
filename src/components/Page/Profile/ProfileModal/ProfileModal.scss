@@ -1,27 +1,44 @@
 @import "./src/common/variables.scss";
 @import "./src/common/mixin";
-.profile_modal_container {
-	left: 0;
-	width: 97vw;
-	border-radius: 12px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	z-index: 100;
-	position: fixed;
-}
 
-.profile_modalBox {
-	width: 400px;
-	max-height: 400px;
-	min-height: 200px;
-	border: 1px solid $instaGray;
-	border-radius: 15px;
-	box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-	position: absolute;
-	background: $instaWhite;
-	margin: 20px;
-	overflow: hidden;
+
+//profileImgModal
+.profile_img_modal {
+  width: 400px;
+  height: 230px;
+  background: $instaWhite;
+  border-radius: 15px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 100;
+  background: $instaWhite;
+  margin-top: 150px;
+  & > div{
+    height: 50px;
+    border-bottom: 1px solid $instaGray;
+    text-align: center;
+    line-height: 50px;
+    @include fontSize('large');
+    font-weight: 600;
+  }
+
+  & > div:first-child{
+    height: 80px;
+    border-bottom: 1px solid $instaGray;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 80px;
+  }
+  & > div:nth-child(2) {
+    color: $instaBlue;
+  }
+  & > div:nth-child(3) {
+    color: $instaRed;
+  }
+  &> div:last-child{
+    border: none;
+    font-weight: 400;
+    line-height: 48px;
+  }
+
 }

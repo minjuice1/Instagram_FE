@@ -8,6 +8,7 @@ import "./FollowModal.scss";
 
 import {x_img} from "../../../../common/IconImage";
 import FollowCard from "./FollowCard";
+import {getFollow} from "../../../../redux/user/user";
 
 const FollowerModal = () => {
   const dispatch = useDispatch();
@@ -17,28 +18,36 @@ const FollowerModal = () => {
     dispatch(following_modal_check());
   };
 
-  // const userId = useSelector(state => state.post.user[0]._id);
+  const userId = useSelector(state => state.post.user[0]._id);
 
   useEffect(() => {
-    // dispatch(getFollow({
-    //   Id: userId,
-    // }))
+    dispatch(getFollow({
+      Id: userId,
+    }))
   },[dispatch])
   //
-  // const info = useSelector(state=>state.user.FollowerList);
+  const FollowList = useSelector(state=>state.user.FollowList);
+  console.log(FollowList);
 
 
 
   return (
     <>
-      <div className="follow_container">
-        <div className="follow_modal_header">
+      <div className="modal_common_container">
+        <div className="modal_common_header">
           <span>팔로우</span><span> <img onClick={cancleClickHandler} src={x_img} alt="cancle"/></span>
         </div>
-        <div className="follow_modal_card">
-          <FollowCard/>
+        <div className="modal_common_card">
+          {FollowList && FollowList.map((follow) => (
+            <FollowCard
+            name ={follow.name}
+            userId={follow.userId}
+            />
+          ))}
+
         </div>
       </div>
+      <div className="overlay" onClick={cancleClickHandler}/>
     </>
   );
 };
