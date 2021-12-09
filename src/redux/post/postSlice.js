@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {deletePost, getPost, getPostDetail, getUserPost} from "./post";
+import {deletePost, getPost, getPostDetail, getUserPost, savedPost} from "./post";
 import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment } from './comment';
 
 
@@ -8,22 +8,25 @@ const postSlice = createSlice({
   name: 'post',
   initialState: {
     user: [],
-    savedPost: [],
+    savedPost: {
+      postId: [],
+      isPost: false,
+    },
     posts: [],
     postDetail: [],
     comment: {
       isLiked: false,
       like: [],
-      childComments: [],
-      wrtier: [],
+      childComments: {
+        isLiked: false,
+        like: [],
+      },
+      writer: [],
     },
-    
     replyTag: "",
-    
   },
   reducers: {
     replyReducer : (state, action) => {
-      // console.log(action.payload);
       state.replyTag = action.payload;
       // console.log("replyTag 호출됨", state.replyTag);
     },
@@ -44,17 +47,21 @@ const postSlice = createSlice({
      state.posts = post_list;
     },
     [getPostDetail.fulfilled]: (state, action) => {
-      // console.log(action.payload);
-      // console.log(action.payload.comment);
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
+    },
+    [savedPost.fulfilled]: (state, action) => {
+      state.savedPost.postId = action.meta.arg.postId;
+      state.savedPost.isPost = !state.savedPost.isPost;
       
     },
 
+
     //comment
     [addComment.fulfilled] : (state, action) => {
-      console.log(action.payload.comment.writer);
-			state.comment.push(action.payload.comment);
+      // const idx = state.posts.filter(post=> post._id !== action.meta.arg.postId);
+      // state.posts[idx].comments.push(action.payload.comment);
+      state.comment.push(action.payload.comment);
     },
     [deleteComment.fulfilled]: (state, action) => {			
 			state.comment = state.comment.filter(
@@ -66,23 +73,22 @@ const postSlice = createSlice({
        state.comment[idx].like = action.meta.arg.like;
      },
 
+
      //replyComment
      [addReplyComment.fulfilled] : (state, action) => {
-      console.log(action);
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
-      const re = state.comment[idx].childComments.push(action.payload.reComment);
+      state.comment[idx].childComments.push(action.payload.reComment);
     },
     [deleteReplyComment.fulfilled]: (state, action) => {		
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
-      console.log(idx);
 			state.comment[idx].childComments = state.comment[idx].childComments.filter(
 				(re) => re._id !== action.meta.arg.commentId );
 		 },
      [likedReplyComment.fulfilled]: (state, action) => {
-       console.log(action);
-      // const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
-      // state.comment[idx].isLike = !state.comment[idx].isLike;
-      // state.comment[idx].like = action.meta.arg.like;
+      const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
+      const re = state.comment[idx].childComments.findIndex((c) => c._id === action.meta.arg.commentId);
+      state.comment[idx].childComments[re].isLike = !state.comment[idx].childComments[re].isLike;
+      state.comment[idx].childComments[re].like = action.meta.arg.Relike;
     },
   },
 });

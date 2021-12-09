@@ -28,6 +28,7 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
         AccessToken,
         ReIsLike,
         Relike,
+        Id,
       }));
   };
 
@@ -77,18 +78,19 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
       </div>
       <div className="postDetail_replyComment_info">
         <span>{time}</span>
-        {Relike ?
-        (<span>
+        {ReIsLike ? (
+        <span>
           좋아요 <span>{(Relike.length)+1}</span>개
-        </span>) 
-        : (<span>
+        </span>
+        ) : (
+        <span>
           좋아요 <span>{Relike.length}</span>개
         </span>) }
         <span>답글 달기</span>
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
       </div>
     </div>
-    <div className="postDetail_commentList_liked">
+    <div className="postDetail_Reply_liked">
       {ReIsLike ? (
         <img
           src={comment_red_heart}

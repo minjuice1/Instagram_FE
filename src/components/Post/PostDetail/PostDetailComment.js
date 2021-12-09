@@ -37,7 +37,6 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   const replyHandler = (event) => {
     const replyInfo = {writer: writer, commentId: commentId}
     dispatch(replyReducer(replyInfo));
-    event.preventDefault();
   }
 
   // 대댓글

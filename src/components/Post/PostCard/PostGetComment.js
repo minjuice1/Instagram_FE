@@ -1,11 +1,14 @@
 import React, {useState} from "react";
+import { useDispatch } from 'react-redux';
 import {comment_heart, comment_red_heart} from "../../../common/IconImage";
+import { likedComment } from '../../../redux/post/comment';
 
 //postcard와 css공유함.
 import "./PostCard";
 
 
-const PostGetComment = ({contents, writer, postId}) => {
+const PostGetComment = ({contents, writer, postId, commentId}) => {
+  const dispatch = useDispatch();
 
   //댓글 좋아요
   const [commentLike, SetCommentLike] = useState(false);
@@ -13,9 +16,21 @@ const PostGetComment = ({contents, writer, postId}) => {
   // userId 추출
   const userId = writer[0].userId;
 
+  // const commentLikeClickHandler = () => {
+  //   SetCommentLike(!commentLike)
+  // }
+
+  // 댓글 좋아요
+  const AccessToken = localStorage.getItem("user");
   const commentLikeClickHandler = () => {
-    SetCommentLike(!commentLike)
-  }
+    dispatch(
+      likedComment({
+        commentId,
+        AccessToken,
+        // isLike,
+        // like,
+      }));
+  };
 
   return(
     <>

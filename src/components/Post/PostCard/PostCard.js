@@ -1,5 +1,17 @@
 import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router";
 import {Link} from "react-router-dom";
+import {replace} from "connected-react-router";
+
+import {modal_check} from "../../../redux/modal/modalSlice";
+import {likePost, deletePost, savedPost} from "../../../redux/post/post";
+import { replyReducer } from '../../../redux/post/postSlice';
+
+import PostComment from "./PostComment";
+import PostGetComment from "./PostGetComment";
+import PostDetail from '../PostDetail/PostDetail';
+
 import "./PostCard.scss";
 import {
   post_heart,
@@ -8,27 +20,17 @@ import {
   text,
   dot,
   post_save,
+  post_saveActive,
 } from "../../../common/IconImage";
 
 import Profile_image from "../../../image/profile.jpg";
-
-import {modal_check} from "../../../redux/modal/modalSlice";
-import PostDetail from '../PostDetail/PostDetail';
-import {useDispatch, useSelector} from "react-redux";
-import PostComment from "./PostComment";
 import dompurify from "dompurify";
-import {likePost, deletePost} from "../../../redux/post/post";
-import PostGetComment from "./PostGetComment";
-import {useNavigate, useParams} from "react-router";
-import {replace} from "connected-react-router";
-
 
 const PostCard = ({contents, createdAt, writer, postId,
-                    postImage, isLike, comments, commentIsAllowed}) => {
+                    postImage, isLike, comments, commentIsAllowed, commentCount}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
 
   // 게시글에 \n으로 되어있는 부분을 html코드인 <br/>로 변경해서 줄바꿈 표시함.
   const sanitizer = dompurify.sanitize;
@@ -46,9 +48,20 @@ const PostCard = ({contents, createdAt, writer, postId,
       likePost({
         postId,
       }))
-
   };
 
+  //포스트 북마크
+  const postBookmark = useSelector((state) => state.post.savedPost);
+
+  const AccessToken = localStorage.getItem("user");
+  const savedPostHandler = () => {
+    dispatch(
+      savedPost({
+        postId,
+        AccessToken,
+      }));
+  };
+  
 	//게시글 더보기
 	const [morePost, SetMorePost] = useState(false);
 
@@ -101,9 +114,10 @@ const PostCard = ({contents, createdAt, writer, postId,
       }))
   };
 
-  // useEffect(() => {
-  //   dispatch(replyReducer(""))
-  // }, [])
+  // 답글 달기 취소
+  useEffect(() => {
+    dispatch(replyReducer(""))
+  }, [])
 
   //유저 정보 클릭
  const UserProfileClickHandler = () => {
@@ -138,13 +152,27 @@ const PostCard = ({contents, createdAt, writer, postId,
                 <img src={message}/>
               </div>
               <div className="footer_collection">
-                <img src={post_save}/>
+              {postBookmark.isPost ? (
+											<img
+												className="post_saveActive"
+												src={post_saveActive}
+												onClick={savedPostHandler}
+												alt="post_save"
+											/>
+										) : (
+											<img
+												className="post_save"
+												src={post_save}
+												onClick={savedPostHandler}
+												alt="post_save"
+											/>
+										)}
               </div>
             </div>
             <div className="post_content">
               <a className="post_user_id">좋아요 1,200개</a>
               <div className="post_text">
-                <a className="post_user_id">writer</a>
+                <a className="post_user_id">{writer[0].userId}</a>
                 {morePost ? (
                     <div
                       className="post_text"
@@ -159,9 +187,9 @@ const PostCard = ({contents, createdAt, writer, postId,
                   </div>)}
               </div>
               <div>
-                {comments.length > 2 && (
+                {commentCount > 2 && (
                   <Link to={`/postdetail/${postId}`} >
-                  댓글 <span>{comments.length}</span>개 모두 보기
+                  댓글 <span>{commentCount}</span>개 모두 보기
                 </Link>
                 )}
               </div>
@@ -169,7 +197,8 @@ const PostCard = ({contents, createdAt, writer, postId,
             {get_comments && get_comments.map((comment) => (
               <PostGetComment contents ={comment.contents}
                               postId={comment.postId}
-                              writer={comment.writer}/>
+                              writer={comment.writer}
+                              commentId={comment._id}/>
              ))}
             <div className="post_time">{time}</div>
             {commentIsAllowed ? <PostComment postId={postId}/>:

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { history } from '../../../history';
 
-import {getPostDetail} from "../../../redux/post/post";
+import {getPostDetail, savedPost} from "../../../redux/post/post";
 import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
 
@@ -15,7 +16,7 @@ import "./PostDetail.scss";
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
 import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
-import { history } from '../../../history';
+
 
 const PostDetail = () => {	
 
@@ -38,12 +39,17 @@ const PostDetail = () => {
 		SetPostLike(!postLike);
 	};
 
-	// 북마크
-	const [postBookmark, SetPostBookmark] = useState(false);
+	//포스트 북마크
+  const postBookmark = useSelector((state) => state.post.savedPost);
 
-	const postBookmarkClickHandler = () => {
-		SetPostBookmark((postBookmark) => !postBookmark);
-	};
+  const AccessToken = localStorage.getItem("user");
+  const savedPostHandler = () => {
+    dispatch(
+      savedPost({
+        postId,
+        AccessToken,
+      }));
+  };
 
 	// modal
 	const show_postModal = () => {
@@ -160,18 +166,18 @@ const PostDetail = () => {
 										<img src={message} alt="message" />
 									</div>
 									<div className="postDetail_comment_Bookmarkfunc">
-										{postBookmark ? (
+										{postBookmark.isPost ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}
-												onClick={postBookmarkClickHandler}
+												onClick={savedPostHandler}
 												alt="post_save"
 											/>
 										) : (
 											<img
 												className="post_save"
 												src={post_save}
-												onClick={postBookmarkClickHandler}
+												onClick={savedPostHandler}
 												alt="post_save"
 											/>
 										)}

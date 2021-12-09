@@ -242,8 +242,19 @@
 							}
 						}
 
+						.postDetail_Reply_liked {
+							height: 20%;
+							width: 6%;
+
+							& > img {
+								margin-top: 10px;
+								margin-right: 5px;
+								cursor: pointer;
+							}
+						}
+
 						.postDetail_commentList_liked {
-							height: auto;
+							height: 20%;
 							width: 6%;
 
 							& > img {

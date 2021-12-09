@@ -98,7 +98,7 @@ export const getPostDetail = createAsyncThunk(
 
 
 
-//게시글 좋아요
+//좋아요
 export const likePost = createAsyncThunk(
   "post/likePost",
   async ({postId}, thunkAPI) => {
@@ -117,6 +117,7 @@ export const likePost = createAsyncThunk(
     }
   }
 )
+
 
 
 //개인 포스트 가져오기
@@ -144,3 +145,23 @@ export const getUserPost = createAsyncThunk(
   }
 )
 
+// 게시물 저장하기
+export const savedPost = createAsyncThunk(
+	"post/savedPost",
+	async ({postId, AccessToken}) => {
+		try {
+			const response = await Api({
+				url: `/post/${postId}/save`,
+				method: "PUT",
+				headers: {
+					Authorization: `Bearer ${AccessToken}`,
+				},
+			})
+			console.log(response);
+			return response.data;
+		} catch (e) {
+
+			return false;
+		}
+	},
+);
