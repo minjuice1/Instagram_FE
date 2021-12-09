@@ -3,11 +3,10 @@ import "./HeaderIcon.scss";
 import HeaderLikeText from "./HeaderLikeText";
 import {Link, useNavigate} from "react-router-dom";
 
-import {home, message, write, compass, heart, test, blackheart,
+import {home, message, write, compass, heart, blackheart,
   blackhome, menu_setting, menu_save, menu_change, menu_profile, none_profile,
 blackcompass}
   from "../../../common/IconImage";
-import {getProfile, logout} from "../../../redux/user/user";
 import {useDispatch, useSelector} from "react-redux";
 import {add_modal} from "../../../redux/modal/modalSlice";
 import HeaderUser from "./HeaderUser";
@@ -21,8 +20,6 @@ const HeaderIcon = () => {
   const [myProfile, SetMyProfile] = useState(false);
   const [homeIcon, SetHomeIcon] = useState(false);
   const [compassIcon, SetCompassIcon] = useState(false);
-  const [direct, SetDirect] = useState(false);
-  const [myProfileImage, SetMyProfileImage] = useState(false);
 
   //외부클릭 감지
   function useOutsideClick(ref) {

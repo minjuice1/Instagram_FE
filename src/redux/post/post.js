@@ -144,3 +144,27 @@ export const getUserPost = createAsyncThunk(
   }
 )
 
+//포스트 좋아요 목록
+export const getLikeList = createAsyncThunk(
+  "post/getLikeList",
+  async({postId}, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
+    try {
+      const response = await Api({
+        url: `/post/:${postId}/likeUsers`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        },
+      })
+      if(response.data.ok){
+        return response;
+      }
+      console.log(response)
+      return response;
+    }catch (e){
+      console.log(e.response);
+    }
+  }
+)
+

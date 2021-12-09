@@ -179,10 +179,14 @@ export const userFollow = createAsyncThunk(
 export const getFollower = createAsyncThunk(
   "user/getFollower",
   async(data, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
         url: `/user/followers/${data.Id}`,
         method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
       })
       console.log(response);
       return response;
@@ -197,10 +201,14 @@ export const getFollower = createAsyncThunk(
 export const getFollow = createAsyncThunk(
   "user/getFollow",
   async(data, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
     try{
       const response = await Api({
         url: `/user/following/${data.Id}`,
         method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
       })
       console.log(response);
       return response;

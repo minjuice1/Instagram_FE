@@ -4,6 +4,7 @@ import HeaderIcon from "./HeaderIcon";
 import Logo from "../../../image/InstaLogo.png";
 import { Link } from "react-router-dom";
 import {useNavigate} from "react-router";
+import HeaderSearch from "./HeaderSearch";
 
 
 const Header = () => {
@@ -22,7 +23,7 @@ const Header = () => {
 								<img src={Logo} alt="logo" />
 						</div>
 						<div className="nav_input">
-							<input placeholder="검색" />
+							<HeaderSearch/>
 						</div>
 						<div className="nav_icon">
 							<HeaderIcon />

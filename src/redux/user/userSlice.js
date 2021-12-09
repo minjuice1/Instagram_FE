@@ -29,9 +29,11 @@ const userSlice = createSlice({
 			state.user = action.payload.data.user;
 	},
 		[getUserPost.fulfilled]: (state,action) => {
-			console.log(action.payload);
+
+			// state.user = action.payload.data.user;
 		},
 		[getFollower.fulfilled]: (state, action) => {
+			// console.log("aaaaaa",action.payload)
 			state.FollowerList = action.payload.data.user;
 		},
 		[getFollow.fulfilled]: (state, action) => {

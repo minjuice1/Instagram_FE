@@ -1,9 +1,7 @@
 @import "../../../common/variables";
 @import "../../../common/mixin";
 
-
-
-
+//header css
 .nav_logo{
   margin-left: 8vw;
 }
@@ -34,20 +32,72 @@
   display: flex;
   border: 1px solid $instaLightGray;
   background-color: #fafafa;
+}
 
-  &:hover > label{
-    display: none;
-  }
-  &>input{
-    width: 180px;
-    height: 20px;
-    border: none;
+
+//nav_input안에 HeaderSearch
+.header_search {
+
+  & > input {
+    width: 200px;
     margin-left: 20px;
-    background-color: #fafafa;
+    border: none;
+    height: 30px;
+
     &:focus{
-      outline:none;
+      outline: none;
     }
   }
+
+  .active_input{
+    border: none;
+    border-radius: 15px;
+    background: $instaWhite;
+    width: 380px;
+    height: 360px;
+    color: black;
+    z-index: 100;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    position: fixed;
+    margin-top: 10px;
+
+    & > div{
+      overflow: auto;
+      overflow-x: hidden;
+    }
+    //overflow-x: hidden;
+
+    &:after, &:before {
+      bottom: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: "";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    &:after {
+      border-color: rgba(213, 213, 213, 0);
+      border-bottom-color: #ffffff;
+      border-width: 10px;
+      margin-left: -100px;
+    }
+
+    &:before {
+      border-color: rgba(194, 225, 245, 0);
+      border-bottom-color: $instaGray;
+      border-width: 12px;
+      margin-left: -102px;
+    }
+  }
+
+}
+
+//header_search_card
+.header_search_card{
+  margin-left: 10px;
 }
 
 .nav_icon{

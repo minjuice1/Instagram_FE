@@ -95,15 +95,10 @@ const Profile = () => {
 
   // 프로필 편집, 팔로워, 팔로우 모달
   const is_modal = useSelector((state) => state.modal.is_modal);
-  const following_modal = useSelector((state) => state.modal.following_modal);
-  const followers_modal = useSelector((state) => state.modal.followers_modal);
-
-
-
-
-
 const user_info = useSelector(state=> state.post.user);
 const user_data = user_info && user_info[0];
+const my_follow = user_data && user_data.isFollow;
+
 
  
   return (
@@ -134,7 +129,10 @@ const user_data = user_info && user_info[0];
                 totalFollower = {user_data.totalFollower}
                 totalPost = {user_data.totalPost}
                 introdution = {user_data.introdution}
-                profileImage={user_data.profileImage}/>}
+                profileImage={user_data.profileImage}
+                my_follow={my_follow}
+                // my_follow={my_follow}
+              />}
             {/*<ProfileStory/>*/}
             <div className="profile_post_dir" role="tablist">
               {ClickedPosts ? (

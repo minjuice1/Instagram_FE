@@ -2,10 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import "./PostCard.scss";
 import {post_heart, post_red_heart, message, text, dot, post_save, none_profile,} from "../../../common/IconImage";
-
-import Profile_image from "../../../image/profile.jpg";
-
-import {modal_check} from "../../../redux/modal/modalSlice";
+import {likeList_modal, modal_check} from "../../../redux/modal/modalSlice";
 import PostDetail from '../PostDetail/PostDetail';
 import {useDispatch, useSelector} from "react-redux";
 import PostComment from "./PostComment";
@@ -13,6 +10,7 @@ import dompurify from "dompurify";
 import {likePost, deletePost} from "../../../redux/post/post";
 import PostGetComment from "./PostGetComment";
 import {useNavigate} from "react-router";
+import PostLikeModal from "../PostModal/PostLikeModal";
 
 
 
@@ -22,8 +20,6 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  console.log("라이터이니라", writer);
 
   // 게시글에 \n으로 되어있는 부분을 html코드인 <br/>로 변경해서 줄바꿈 표시함.
   const sanitizer = dompurify.sanitize;
@@ -99,16 +95,26 @@ const PostCard = ({contents, createdAt, writer, postId,
   //유저 정보 프로필 클릭해서 들어가기
  const UserProfileClickHandler = () => {
    const id = writer[0].userId
-   navigate(`/profile/${id}`, {replace: true})
-  }
+   navigate(`/profile/${id}`,{state: id})}
 
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
   const profile_img = writer[0].profileImage;
   const user_img = profile_img? profile_img : none_profile;
 
 
+  //좋아요 리스트 모달
+  const likeListClickHandler = () => {
+      dispatch(likeList_modal(
+        postId,
+      ));
+
+  }
+  const post_like_list = useSelector(state=>state.modal.likeList_modal);
+
+
   return (
     <>
+      {post_like_list && <PostLikeModal/>}
     {is_postDetailmodal && <PostDetail/>}
       <div className="post_cards">
         <div className="post_card">
@@ -138,7 +144,7 @@ const PostCard = ({contents, createdAt, writer, postId,
               </div>
             </div>
             <div className="post_content">
-              <a className="post_user_id">좋아요 1,200개</a>
+              <a className="post_user_id" onClick={likeListClickHandler}>좋아요 1,200개</a>
               <div className="post_text">
                 <a className="post_user_id">{writer[0].userId}</a>
                 {morePost ? (
