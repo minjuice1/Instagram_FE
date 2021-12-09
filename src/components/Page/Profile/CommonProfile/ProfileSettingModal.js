@@ -1,7 +1,7 @@
 import "./CommonProfileSettingModal.scss";
 import { useDispatch } from "react-redux";
-import {modal_check} from "../../../../../redux/modal/modalSlice";
-import {logout} from "../../../../../redux/user/user";
+import {modal_check} from "../../../../redux/modal/modalSlice";
+import {logout} from "../../../../redux/user/user";
 
 const ProfileModal = () => {
 	const dispatch = useDispatch();

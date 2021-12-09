@@ -1,4 +1,4 @@
-import profile from "../../../image/profile.jpg";
+import profile from "../../../image/profile.png";
 import "./MainStory.scss";
 
 const MainStory = () => {

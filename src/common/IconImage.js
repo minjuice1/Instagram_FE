@@ -28,8 +28,10 @@ import post_heart from "../image/icon/post_heart.png";
 import post_red_heart from "../image/icon/post_red_heart.png";
 import x_img from "../image/icon/x_img.png";
 import profile_setting from "../image/icon/profile_setting.png";
+import none_profile from "../image/profile.png";
 
-export {blackcompass, blackhome, blackmessage, blackwrite, x_img,
+
+export {blackcompass, blackhome, blackmessage, blackwrite, x_img, none_profile,
   compass, home, hovermark, hovertext, mark, message, text, my_message,
   heart, write, post_saveActive, post_save, blackheart, menu_save, menu_setting, menu_change,
   menu_profile, dot, recomtest, emoji, comment_heart, comment_red_heart, post_red_heart, post_heart, profile_setting};

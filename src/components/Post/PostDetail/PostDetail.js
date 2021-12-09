@@ -5,7 +5,6 @@ import { useParams } from "react-router";
 import {getPostDetail} from "../../../redux/post/post";
 import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
-import {formatDistance} from 'date-fns';
 
 // modal
 import { modal_check } from "../../../redux/modal/modalSlice";

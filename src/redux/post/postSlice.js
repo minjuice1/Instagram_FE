@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {deletePost, getPost, getPostDetail, getUserPost} from "./post";
+import {deletePost, getLikeList, getPost, getPostDetail, getUserPost} from "./post";
 import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment } from './comment';
 
 
@@ -16,7 +16,7 @@ const postSlice = createSlice({
       like: [],
       childComments: [],
     },
-    
+    likeUsers:[],
     replyTag: "",
     
   },
@@ -24,7 +24,6 @@ const postSlice = createSlice({
     replyReducer : (state, action) => {
       console.log(action.payload);
       state.replyTag = action.payload;
-      // console.log("replyTag 호출됨", state.replyTag);
     },
 
   },
@@ -43,8 +42,6 @@ const postSlice = createSlice({
      state.posts = post_list;
     },
     [getPostDetail.fulfilled]: (state, action) => {
-      // console.log(action.payload);
-      // console.log(action.payload.comment);
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
       
@@ -65,6 +62,11 @@ const postSlice = createSlice({
        state.comment[idx].isLike = !state.comment[idx].isLike;
        state.comment[idx].like.length = !state.comment[idx].like.length;
      },
+
+    //좋아요 리스트 목록 가져오기기
+   [getLikeList.fulfilled]: (state, action) => {
+      state.likeUsers = action.payload.data.likeUsers;
+    },
 
      //replyComment
      [addReplyComment.fulfilled] : (state, action) => {

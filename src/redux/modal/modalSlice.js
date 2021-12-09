@@ -35,6 +35,11 @@ export const postDetail_modal = createAsyncThunk(
 	async (data, thunkAPI) => {},
 );
 
+export const likeList_modal = createAsyncThunk(
+	"modal/likeList_modal",
+	async () => {},
+)
+
 const modalSlice = createSlice({
 	name: "modal",
 	initialState: {
@@ -44,6 +49,7 @@ const modalSlice = createSlice({
 		add_modal: false,
 		similarAccount_modal: false,
 		postDetailComment_modal: false,
+		likeList_modal: false,
 	},
 	reducers: {},
 	extraReducers: {
@@ -64,6 +70,9 @@ const modalSlice = createSlice({
 		},
 		[postDetailComment_modal.fulfilled]: (state, action) => {
 			state.postDetailComment_modal = !state.postDetailComment_modal;
+		},
+		[likeList_modal.fulfilled]: (state, action) => {
+			state.likeList_modal = !state.likeList_modal;
 		},
 	},
 });

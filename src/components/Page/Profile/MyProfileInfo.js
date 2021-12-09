@@ -3,14 +3,15 @@ import "./Profile.scss";
 import {followers_modal_check, following_modal_check, modal_check} from "../../../redux/modal/modalSlice";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import pp from "../../../image/profile.jpg";
+import pp from "../../../image/profile.png";
 import UserFollower from "./Follow/UserFollower";
 import {React} from "react";
 import {profile_setting} from "../../../common/IconImage";
+import UserFollow from "./Follow/UserFollow";
 
 
 //프로필이 자기일 때 보여주는 화면
-const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, introdution}) => {
+const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, introdution, profileImage,}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const show_postModal = () => {
@@ -18,12 +19,11 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
   };
 
 
+
+
+
   const show_following_modal = () => {
     dispatch(following_modal_check());
-  };
-
-  const show_followers_modal = () => {
-    dispatch(followers_modal_check());
   };
 
   const editProfileClickHandler = () => {
@@ -32,7 +32,9 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
   return(
     <div className="profile_header">
       <div className="profile_header_image">
-        <img src={pp} alt={"profile"}/>
+        {profileImage? <img src={profileImage} alt="profile"/>:
+          <img src={pp} alt={"profile"}/>}
+
       </div>
       <section className="profile_header_main">
         <div className="profile_header_top">
@@ -48,12 +50,7 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
 
             <UserFollower totalFollower={totalFollower}/>
 
-          <span
-            onClick={show_following_modal}
-            className="profile_following_modal"
-          >
-										팔로우 <span>{totalFollow}</span>
-									</span>
+          <UserFollow totalFollow={totalFollow}/>
         </ul>
         <div className="profile_header_name">{name}</div>
         <div className="profile_header_bottom">{introdution}</div>

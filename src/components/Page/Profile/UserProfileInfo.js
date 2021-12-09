@@ -1,10 +1,10 @@
-import {React, useEffect, useState} from "react";
+import {React, useEffect, useMemo, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // 모달
 import {modal_check, followers_modal_check, following_modal_check, similarAccount_modal_check} from "../../../redux/modal/modalSlice";
 
-import FollowingModal from "./ProfileModal/FollowingModal";
+// import FollowingModal from "./ProfileModal/FollowingModal";
 
 import SimilarAccountModal from "./OtherProfile/OtherProfileModal/SimilarAccountModal";
 import OtherProfileSettingModal from "./OtherProfile/OtherProfileModal/OtherProfileSettingModal";
@@ -21,13 +21,11 @@ import UserFollow from "./Follow/UserFollow";
 
 
 const OtherProfile = ({userId, name, totalFollow, totalFollower,
-                        totalPost, introdution, Id, profileImage}) => {
+                        totalPost, introdution, Id, profileImage, my_follow}) => {
   const dispatch = useDispatch();
 
 
   // 프로필 편집, 팔로워, 팔로우 모달
-  const is_modal = useSelector((state) => state.modal.is_modal);
-  const following_modal = useSelector((state) => state.modal.following_modal);
   const SimilarAccount_Modal = useSelector(
     (state) => state.modal.similarAccount_modal,
   );
@@ -35,12 +33,6 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
   const show_postModal = () => {
     dispatch(modal_check());
   };
-
-  const show_following_modal = () => {
-    dispatch(following_modal_check());
-  };
-
-
 
   const show_similarAccount_modal = () => {
     dispatch(similarAccount_modal_check());
@@ -54,22 +46,26 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
   };
 
   //팔로우or언팔로우 하기
+  const [Isfollowing, SetIsFollowing] = useState(false);
+
   const followClickHandler = () => {
     dispatch(userFollow({
       Id,
     }))
-  }
-  const [Isfollowing, SetIsFollowing] = useState(false);
-
-  const followButtonClickHandler = () => {
     SetIsFollowing(!Isfollowing);
   }
-  const followerList = useSelector(state=>state.user.FollowerList);
-  const myInfo = useSelector(state=>state.user.user._id);
 
+
+
+  const followerList = useSelector(state=>state.user.FollowerList);
+  console.log(followerList)
+
+  const result = useMemo(() => sessionStorage.getItem("info"), ["info"]);
+  const my_info = JSON.parse(result);
 
   const follower = followerList.map((user) => user._id)
-  const followerInfo = follower.includes(myInfo);
+  console.log(followerList);
+  const followerInfo = follower.includes(my_info._id);
 
   useEffect(() => {
     dispatch(getFollower({
@@ -77,14 +73,14 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
     }))
     if(followerInfo){
       SetIsFollowing(true)
+    }else {
+      SetIsFollowing(false);
     }
   },[dispatch, followerInfo])
 
 
   return (
     <>
-
-      {following_modal && <FollowingModal />}
       {SimilarAccount_Modal && <SimilarAccountModal />}
 
 
@@ -96,15 +92,15 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
 
               </div>
               <section className="otherProfile_header_main">
-                {Isfollowing? (
+                {my_follow? (
                   <div className="otherProfile_header_top">
                     <span>{userId}</span>
                     <span className="otherProfile_header_sengMsg">
 											메세지 보내기
 										</span>
 
-                    <span className="otherProfile_header_askFollowing">
-											<FaUserCheck/>
+                    <span className="otherProfile_header_askFollowing" onClick={followClickHandler} >
+											<FaUserCheck />
 										</span>
                     {recomAccountbtn ? (
                       <span
@@ -130,7 +126,7 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
                   <div className="otherProfile_header_top">
                     <span>{userId}</span>
                     <span className="otherProfile_header_following" onClick={followClickHandler}>
-											<a onClick={followButtonClickHandler}>팔로우</a>
+											<a>팔로우</a>
 										</span>
                     {recomAccountbtn ? (
                       <span

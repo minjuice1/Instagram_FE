@@ -43,7 +43,7 @@ export const login = createAsyncThunk(
         const accessToken = response.data.token;
         localStorage.setItem("user", accessToken);
         if (response.data.ok) {
-          history.push({pathname: '/home'});
+          history.replace({pathname: '/home'});
         }
       })
       return response;
@@ -64,7 +64,7 @@ export const logout = createAsyncThunk(
   "user/logout",
   async (data, thunkAPI) => {
     localStorage.removeItem("user");
-    history.push({pathname: '/login'});
+    sessionStorage.removeItem("info");
   }
 );
 
@@ -81,6 +81,10 @@ export const getProfile = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
+      if(response.data.ok){
+        console.log("리덕스", response);
+       sessionStorage.setItem("info",  JSON.stringify(response.data.user));
+      }
       return response;
 
     } catch (e) {
@@ -154,7 +158,6 @@ export const changePassword = createAsyncThunk(
 export const userFollow = createAsyncThunk(
   "user/follow",
   async(data, thunkAPI) => {
-    console.log(data.Id)
     const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
@@ -176,13 +179,90 @@ export const userFollow = createAsyncThunk(
 export const getFollower = createAsyncThunk(
   "user/getFollower",
   async(data, thunkAPI) => {
-    console.log(data);
+    const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
         url: `/user/followers/${data.Id}`,
         method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
       })
       console.log(response);
+      return response;
+    }catch (e) {
+      console.log(e.response)
+      return false
+    }
+  }
+)
+
+//팔로우 보기
+export const getFollow = createAsyncThunk(
+  "user/getFollow",
+  async(data, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
+    try{
+      const response = await Api({
+        url: `/user/following/${data.Id}`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      console.log(response);
+      return response;
+    }catch (e) {
+      console.log(e.response)
+      return false
+    }
+  }
+)
+
+//프로필 이미지 등록
+export const profileImg = createAsyncThunk(
+  "user/profileImg",
+  async({formData, user_id}, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user");
+    try {
+      const response = await Api({
+        url: `/accounts/profileImg`,
+        method: 'PUT',
+        data: formData,
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+
+      if(response.data.ok){
+        thunkAPI.dispatch(getProfile());
+
+      }
+      return response;
+    }catch (e) {
+      console.log(e.response)
+      return false
+    }
+  }
+)
+
+//프로필 이미지 삭제
+export const deleteProfileImg = createAsyncThunk(
+  "user/deleteProfileImg",
+  async(data, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user");
+    try {
+      const response = await Api({
+        url:`/accounts/profileImg`,
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      if(response.data.ok){
+        thunkAPI.dispatch(getProfile());
+
+      }
       return response;
     }catch (e) {
       console.log(e.response)
