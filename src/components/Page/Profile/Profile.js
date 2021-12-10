@@ -204,27 +204,24 @@ console.log(savedUser);
             {ClickedPosts && (
                 <div className="OtherProfile_postsBox">
                   {post_list && post_list.map((img) => (
+                    <Link to={`/postdetail/${img._id}`}>
                     <ProfilePosts
                       picture = {img.imageUrl}
                       userId = {img._id}/>
+                    </Link>
                   ))}
                 </div>
             )}
-            {ClickedSaved ? (
+            {ClickedSaved && (
                 <div className="OtherProfile_postsBox">
 									{savedUser && savedUser.map((save) => (
+                    <Link to={`/postdetail/${save._id}`}>
                     <ProfileSaved
                       savedPost = {save.imageUrl}
-                      userId = {save._id}
-                    />
+                      userId = {save._id}  />
+                    </Link>
                   ))}
                 </div>
-              ) : (
-                <a className="profile_post_unclicked">
-									<span onClick={savedClickHandler}>
-											<BiBookmark/> 저장됨
-									</span>
-                </a>
               )}
               {ClickedVideo && (
                 <div className="OtherProfile_postsBox">
