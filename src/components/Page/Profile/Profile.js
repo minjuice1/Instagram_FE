@@ -41,6 +41,8 @@ const Profile = () => {
 
 
   const post_list = useSelector(state=>state.post.post);
+  console.log(post_list);
+
   useEffect((e) => {
 
     if(!myProfile){
@@ -94,11 +96,15 @@ const Profile = () => {
   };
 
   // 프로필 편집, 팔로워, 팔로우 모달
-  const is_modal = useSelector((state) => state.modal.is_modal);
+const is_modal = useSelector((state) => state.modal.is_modal);
 const user_info = useSelector(state=> state.post.user);
+
 const user_data = user_info && user_info[0];
 const my_follow = user_data && user_data.isFollow;
 
+// 저장된 게시물 불러오기
+const savedUser = useSelector((state) => state.post.savedPost);
+console.log(savedUser);
 
  
   return (
@@ -168,11 +174,11 @@ const my_follow = user_data && user_data.isFollow;
 
 
               {ClickedSaved ? (
-                <a className="profile_post_clicked">
+                <div className="profile_post_clicked">
 									<span onClick={savedClickHandler}>
 											<BiBookmark/> 저장됨
 									</span>
-                </a>
+                </div>
               ) : (
                 <a className="profile_post_unclicked">
 									<span onClick={savedClickHandler}>
@@ -198,14 +204,28 @@ const my_follow = user_data && user_data.isFollow;
             {ClickedPosts && (
                 <div className="OtherProfile_postsBox">
                   {post_list && post_list.map((img) => (
-                    <Link to={`/postdetail/${img._id}`}>
                     <ProfilePosts
                       picture = {img.imageUrl}
                       userId = {img._id}/>
-                    </Link>
                   ))}
                 </div>
             )}
+            {ClickedSaved ? (
+                <div className="OtherProfile_postsBox">
+									{savedUser && savedUser.map((save) => (
+                    <ProfileSaved
+                      savedPost = {save.imageUrl}
+                      userId = {save._id}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <a className="profile_post_unclicked">
+									<span onClick={savedClickHandler}>
+											<BiBookmark/> 저장됨
+									</span>
+                </a>
+              )}
               {ClickedVideo && (
                 <div className="OtherProfile_postsBox">
                   <ProfileVideo/>

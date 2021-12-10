@@ -55,6 +55,11 @@ const PostDetail = () => {
 	const show_postModal = () => {
 		dispatch(modal_check());
 	};
+	// modal
+  // const [openModal, setOpenModal] = useState(false); 
+  // const show_postModal = () => {
+	// 	setOpenModal(true);
+	// };
 
 	const cancleClickHandler = () => {
 		history.go(-1);

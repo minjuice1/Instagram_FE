@@ -169,7 +169,6 @@
         margin: 50px auto;
         border-top: 1px solid $instaGray;
 
-
         .profile_post_clicked {
           display: flex;
           width: 65px;
@@ -204,7 +203,7 @@
           cursor: pointer;
           align-items: center;
           justify-content: center;
-          border-top: 1px solid $instaGray;
+          // border-top: 1px solid $instaGray;
         }
 
         .profile_post_clickOn {

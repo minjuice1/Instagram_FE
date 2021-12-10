@@ -2,29 +2,12 @@ import React from "react";
 
 import { recomtest } from "../../../../common/IconImage";
 
-const ProfileSaved = () => {
+const ProfileSaved = ({savedPost}) => {
 	return (
 		<>
-			<div className="otherProfile_postList">
 				<div className="otherProfile_post">
-					<img src={recomtest} />
+					<img src={savedPost} />
 				</div>
-				{/* <div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div>
-				<div className="otherProfile_post">
-					<img src={recomtest} />
-				</div> */}
-			</div>
 		</>
 	);
 };

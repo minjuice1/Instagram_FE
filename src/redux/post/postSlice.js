@@ -8,19 +8,20 @@ const postSlice = createSlice({
   initialState: {
     user: [],
     savedPost: {
-      postId: "",
+      postId: [],
       isPost: false,
     },
     posts: [],
     postDetail: [],
+    // comment: {
+    //   like: [],
+    //   childComments: {
+    //     like: [],
+    //   },
+    //   writer: [],
+    // },
     comment: {
-      isLiked: false,
-      like: [],
-      childComments: {
-        isLiked: false,
-        like: [],
-      },
-      writer: [],
+      childComments: [],
     },
     likeUsers:[],
     replyTag: "",
@@ -29,7 +30,6 @@ const postSlice = createSlice({
     replyReducer : (state, action) => {
       state.replyTag = action.payload;
     },
-
   },
   extraReducers: {
     [getPost.fulfilled]: (state, action) => {
@@ -50,8 +50,12 @@ const postSlice = createSlice({
       state.comment = action.payload.comment;
     },
     [savedPost.fulfilled]: (state, action) => {
-      state.savedPost.postId = action.meta.arg.postId;
-      state.savedPost.isPost = !state.savedPost.isPost;
+      state.savedPost.postId.push(action.meta.arg.postId);
+      const idx = state.savedPost.postId.findIndex((c) => c.postId === action.meta.arg.postId);
+      console.log(idx);
+      console.log(state.savedPost);
+      // state.savedPost.postId[idx].isPost = false;
+      // state.savedPost.postId[idx].isPost = !state.savedPost.postId[idx].isPost;
     },
 
     //comment
