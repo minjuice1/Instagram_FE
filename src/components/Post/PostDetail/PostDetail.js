@@ -26,7 +26,8 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	// console.log(comments);
+	console.log(comments);
+	console.log(postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -40,14 +41,13 @@ const PostDetail = () => {
 	};
 
 	//포스트 북마크
-  const postBookmark = useSelector((state) => state.post.savedPost);
-
   const AccessToken = localStorage.getItem("user");
   const savedPostHandler = () => {
     dispatch(
       savedPost({
         postId,
         AccessToken,
+        isPostSaved: postDetail.isPostSaved,
       }));
   };
 
@@ -140,7 +140,7 @@ const PostDetail = () => {
 								</div>
 									{comments && comments.map((comment) => (
 										<PostDetailComment postId={postId} commentId={comment._id} contents = {comment.contents}
-										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like} date={comment.createdAt}
+										writer={comment.writer.userId} isLike={comment.isLike} like={comment.likeCount} date={comment.createdAt}
 										childComments={comment.childComments}
 										/>
 									))}
@@ -150,7 +150,7 @@ const PostDetail = () => {
 							<div className="postDetail_bottom">
 								<div className="postDetail_comment_funcs">
 									<div className="postDetail_comment_Likefunc">
-										{postLike ? (
+										{postLike? (
 											<img
 												src={heart}
 												onClick={postLikeClickHandler}
@@ -171,7 +171,7 @@ const PostDetail = () => {
 										<img src={message} alt="message" />
 									</div>
 									<div className="postDetail_comment_Bookmarkfunc">
-										{postBookmark ? (
+										{postDetail.isPostSaved ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}

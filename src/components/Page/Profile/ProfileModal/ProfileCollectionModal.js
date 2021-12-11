@@ -4,6 +4,7 @@ import "./ProfileCollectionModal.scss";
 import { AiOutlineLeft } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
 import {recomtest} from "../../../../common/IconImage";
+import ProfileCollectionListModal from './ProfileCollectionListModal';
 const ProfileCollectionModal = ({setOpenModal}) => {
 
   // 컬렉션 이름 입력시 다음 btn 활성화
@@ -22,33 +23,12 @@ const ProfileCollectionModal = ({setOpenModal}) => {
   const addCollectionListHandler = () => {
     setModalChange(true);
   }
-  const addCollectionHandler = () => {
-    setModalChange(false);
-  }
 
   return(
     <>
 			<div className="profile_modal_container">
         {modalChange ?
-        (<div className="collectionList_modal_modal">
-        <div>
-          <div onClick={addCollectionHandler}><AiOutlineLeft size={24}/> </div>
-          <div>저장된 항목에서 추가</div>
-          <div onClick={cancleClickHandler}><GrClose size={24}/></div>
-        </div>
-        <div>
-          <div>
-            <img src={recomtest} />
-          </div>
-          <div>
-            <img src={recomtest} />
-          </div>
-          <div>
-            <img src={recomtest} />
-          </div>
-        </div>
-        <div >완료</div>
-      </div>) :
+        (<ProfileCollectionListModal setOpenModal={setOpenModal} setModalChange={setModalChange}/>) :
       (<div className="collection_modal_modal">
 					<div className="collection_modal_header">
             <div>새 컬렉션</div>

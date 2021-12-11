@@ -37,6 +37,7 @@ const Main = () => {
 								comments={post.comments}
 								commentIsAllowed={post.commentIsAllowed}
 								commentCount={post.commentCount}
+								isPostSaved={post.isPostSaved}
 							/>
 						))}
 					</div>

@@ -26,7 +26,7 @@ import {
 import dompurify from "dompurify";
 
 const PostCard = ({contents, createdAt, writer, postId,
-                    postImage, isLike, comments, commentIsAllowed, commentCount}) => {
+                    postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -50,17 +50,13 @@ const PostCard = ({contents, createdAt, writer, postId,
   };
 
   //포스트 북마크
-  const postBookmark = useSelector((state) => state.post.savedPost);
-  const _user = useSelector((state) => state.user);
-  console.log(postBookmark);
-  console.log(_user);
-
   const AccessToken = localStorage.getItem("user");
   const savedPostHandler = () => {
     dispatch(
       savedPost({
         postId,
         AccessToken,
+        isPostSaved,
       }));
   };
   
@@ -169,7 +165,7 @@ const PostCard = ({contents, createdAt, writer, postId,
                 <img src={message}/>
               </div>
               <div className="footer_collection">
-              {postBookmark ? (
+              {isPostSaved ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}

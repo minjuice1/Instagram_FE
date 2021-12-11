@@ -7,12 +7,14 @@ const postSlice = createSlice({
   name: 'post',
   initialState: {
     user: [],
-    // savedPost: {
-    //   postId: [],
-    //   isPost: false,
-    // },
     posts: [],
     postDetail: [],
+    // comment: {
+    //   childComments: {
+    //     like: [],
+    //   },
+    //   writer: [],
+    // },
     comment: {
       childComments: [],
     },
@@ -44,12 +46,10 @@ const postSlice = createSlice({
       state.comment = action.payload.comment;
     },
     [savedPost.fulfilled]: (state, action) => {
-      // state.savedPost.postId.push(action.meta.arg.postId);
-      // const idx = state.savedPost.postId.findIndex((c) => c.postId === action.meta.arg.postId);
-      // console.log(idx);
-      // console.log(state.savedPost);
-      // state.savedPost.postId[idx].isPost = false;
-      // state.savedPost.postId[idx].isPost = !state.savedPost.postId[idx].isPost;
+      const post = state.posts.findIndex((p) => p._id === action.meta.arg.postId);
+      const detail = state.postDetail.findIndex((d) => d._id === action.meta.arg.postId);
+      state.posts[post].isPostSaved = !state.posts[post].isPostSaved;
+      state.postDetail[detail].isPostSaved = !state.postDetail[detail].isPostSaved;
     },
 
     //comment
@@ -65,7 +65,6 @@ const postSlice = createSlice({
      [likedComment.fulfilled]: (state, action) => {
        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
        state.comment[idx].isLike = !state.comment[idx].isLike;
-       state.comment[idx].like = action.meta.arg.like;
      },
 
     //좋아요 리스트 목록 가져오기기

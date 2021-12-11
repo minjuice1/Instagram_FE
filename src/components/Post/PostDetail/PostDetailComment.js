@@ -41,7 +41,6 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
   // 대댓글
   const [clickReply, setClickReply] = useState(false);
-
   const ReplyClickHandler = () => {
     setClickReply(!clickReply);
   }
@@ -92,11 +91,13 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         <span>{time}</span>
         {isLike ? (
           <span>
-          좋아요 <span>{(like.length)+1}</span>개
+          좋아요 <span>{(like)+1}</span>개
+          {/* 좋아요 <span>like</span>개 */}
         </span>
         ) : (
           <span>
-          좋아요 <span>{like.length}</span>개
+          좋아요 <span>{like}</span>개
+          {/* 좋아요 <span>like</span>개 */}
         </span>
         )}
         <span onClick={replyHandler}>답글 달기</span>
