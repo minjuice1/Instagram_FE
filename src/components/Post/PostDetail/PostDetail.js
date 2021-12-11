@@ -171,7 +171,7 @@ const PostDetail = () => {
 										<img src={message} alt="message" />
 									</div>
 									<div className="postDetail_comment_Bookmarkfunc">
-										{postBookmark.isPost ? (
+										{postBookmark ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}

@@ -169,7 +169,7 @@ const PostCard = ({contents, createdAt, writer, postId,
                 <img src={message}/>
               </div>
               <div className="footer_collection">
-              {postId ? (
+              {postBookmark ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}

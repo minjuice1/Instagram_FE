@@ -1,0 +1,118 @@
+@import "../../../../common/variables";
+@import "../../../../common/mixin";
+
+.profile_modal_container {
+	left: 0;
+	width: 97vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	z-index: 100;
+	position: fixed;
+
+	.collection_modal_modal {
+		width: 360px;
+		height: 151px;
+		border: 1px solid $instaGray;
+		border-radius: 10px;
+		position: absolute;
+		z-index: 100;
+		background-color: $instaWhite;
+		cursor: pointer;
+
+		& > div {
+			border-bottom: 1px solid $instaGray;
+			text-align: center;
+			line-height: 30px;
+		}
+
+		& > div:nth-child(1) {
+      display: flex;
+      height: 35px;
+			color: $instaMenuBlack;
+      @include fontSize("large");
+			font-weight: bold;
+      margin: 5px 0;
+
+      & > div:nth-child(1) {
+        width: 90%;
+        text-align: center;
+        margin-left: 35px;
+      }
+      & > div:nth-child(2) {
+        width: 10%;
+        cursor: pointer;
+      }
+		}
+
+    & > div:nth-child(2) {
+      height: 65px;
+      width: 360px;
+			font-weight: bold;
+      
+      & > input {
+      height: 25px;
+      width: 320px;
+      margin: 12.5px 0;
+      border-radius: 6px;
+      border: 1px solid $instaGray;
+      background: $backgroundGray;
+      @include fontSize("normal");
+      padding: 4px;
+      outline: none;
+      }
+		}
+
+		.collection_modal_bottomOff {
+      height: 48px;
+      color:  $instaMenuGray;
+      font-weight: 600;
+      @include fontSize("normal");
+      margin: 5px 0;
+      border: none;
+		}	
+
+    .collection_modal_bottomOn {
+      height: 48px;
+			color:  $instaBlue;
+      font-weight: 600;
+      @include fontSize("normal");
+      margin: 5px 0;
+      border: none;
+		}	
+	}
+
+}
+
+.collection_modal_overlay {
+	box-sizing: border-box;
+	position: fixed;
+	width: 100vw;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+@include desktop {
+	.profile_modal_container {
+		top: 50%;
+	}
+}
+
+@include tablet {
+	.profile_modal_container {
+		top: 65%;
+	}
+}
+
+@include mobile {
+	.profile_modal_container {
+		left: 10%;
+		top: 65%;
+	}
+}

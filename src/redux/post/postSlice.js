@@ -7,19 +7,12 @@ const postSlice = createSlice({
   name: 'post',
   initialState: {
     user: [],
-    savedPost: {
-      postId: [],
-      isPost: false,
-    },
+    // savedPost: {
+    //   postId: [],
+    //   isPost: false,
+    // },
     posts: [],
     postDetail: [],
-    // comment: {
-    //   like: [],
-    //   childComments: {
-    //     like: [],
-    //   },
-    //   writer: [],
-    // },
     comment: {
       childComments: [],
     },
@@ -36,6 +29,7 @@ const postSlice = createSlice({
       state.posts = action.payload.posts;
     },
     [getUserPost.fulfilled] : (state, action) => {
+      console.log(action);
       state.post = action.payload.data.post;
       state.user = action.payload.data.user;
       state.savedPost = action.payload.data.savedPost;
@@ -50,10 +44,10 @@ const postSlice = createSlice({
       state.comment = action.payload.comment;
     },
     [savedPost.fulfilled]: (state, action) => {
-      state.savedPost.postId.push(action.meta.arg.postId);
-      const idx = state.savedPost.postId.findIndex((c) => c.postId === action.meta.arg.postId);
-      console.log(idx);
-      console.log(state.savedPost);
+      // state.savedPost.postId.push(action.meta.arg.postId);
+      // const idx = state.savedPost.postId.findIndex((c) => c.postId === action.meta.arg.postId);
+      // console.log(idx);
+      // console.log(state.savedPost);
       // state.savedPost.postId[idx].isPost = false;
       // state.savedPost.postId[idx].isPost = !state.savedPost.postId[idx].isPost;
     },
