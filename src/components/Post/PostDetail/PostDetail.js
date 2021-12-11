@@ -28,6 +28,8 @@ const PostDetail = () => {
 	const comments = useSelector((state) => state.post.comment);
 	// console.log(comments);
 
+	console.log("포스트디테일",postDetail)
+
 	useEffect(() => {
     dispatch(getPostDetail(postId));
   }, [getPostDetail]);
@@ -85,10 +87,13 @@ const PostDetail = () => {
 		}
 		return `${Math.floor(displayTimeDay / 365)}년 전`;
 	}
+	const times = postDetail && postDetail.createdAt;
+	const time = displayTime(times);
 
-	// const time = displayTime(postDetail.createdAt);
-	// console.log(time);
-		
+	console.log(time);
+
+
+
 
 	return (
 		<>
@@ -129,7 +134,7 @@ const PostDetail = () => {
 											</span>
 										</div>
 										<div className="postDetail_comment_info">
-											<span>time</span>
+											<span>{time}</span>
 										</div>
 									</div>
 								</div>
@@ -193,7 +198,7 @@ const PostDetail = () => {
 									</div>
 								</div>
 								<div className="postDetail_comment_time">
-									<span>time</span>
+									<span>{time}</span>
 								</div>
 								<PostComment postId={postId} commentId={comments._id}/>
 							</div>

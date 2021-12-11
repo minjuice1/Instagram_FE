@@ -14,12 +14,12 @@ const PostGetComment = ({contents, writer, postId, commentId}) => {
   const [commentLike, SetCommentLike] = useState(false);
 
   // userId 추출
-  const userId = writer[0].userId;
+  // const userId = writer && writer[0].userId;
+  //
 
-  // const commentLikeClickHandler = () => {
-  //   SetCommentLike(!commentLike)
-  // }
-
+  const userInfo = sessionStorage.getItem("info");
+  const userData = JSON.parse(userInfo);
+  const userId = userData.userId;
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
   const commentLikeClickHandler = () => {

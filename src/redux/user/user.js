@@ -82,7 +82,6 @@ export const getProfile = createAsyncThunk(
         }
       })
       if(response.data.ok){
-        console.log("리덕스", response);
        sessionStorage.setItem("info",  JSON.stringify(response.data.user));
       }
       return response;

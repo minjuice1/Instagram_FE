@@ -28,8 +28,6 @@ const FollowerModal = () => {
 	},[dispatch])
 	const info = useSelector(state=>state.user.FollowerList);
 
-	console.log(info);
-
 
 	return (
 		<>
@@ -41,7 +39,9 @@ const FollowerModal = () => {
 					{info&& info.map((info) => (
 						<FollowerCard
 						name = {info.name}
-						userId={info.userId}/>
+						userId={info.userId}
+						profileImage={info.profileImage}/>
+
 					))}
 				</div>
 			</div>

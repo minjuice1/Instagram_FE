@@ -50,7 +50,9 @@ const PostCard = ({contents, createdAt, writer, postId,
   };
 
   //포스트 북마크
-  const postBookmark = useSelector((state) => state.post.savedPost);
+  const postBookmark = useSelector((state) => state.post.savedPost.isPost);
+
+
 
   const AccessToken = localStorage.getItem("user");
   const savedPostHandler = () => {
@@ -166,7 +168,7 @@ const PostCard = ({contents, createdAt, writer, postId,
                 <img src={message}/>
               </div>
               <div className="footer_collection">
-              {postBookmark.isPost ? (
+              {postBookmark && postBookmark ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}

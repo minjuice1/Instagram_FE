@@ -7,15 +7,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {getFollow} from "../../../../redux/user/user";
 
 
-const FollowerCard = ({name, userId}) => {
+const FollowerCard = ({name, userId, profileImage}) => {
   const dispatch = useDispatch();
-
 
   return (
     <>
       <div className="follow_Card">
         <div className="follow_info">
-          <img src={profile} alt="profile_img"/>
+          {profileImage ?  <img src={profileImage} alt="profile_img"/> :  <img src={profile} alt="profile_img"/>}
+
           <div className="follow_user">
           <div>{userId}</div>
           <div>{name}</div>

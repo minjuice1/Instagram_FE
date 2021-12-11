@@ -18,11 +18,14 @@ import { FaUserCheck, FaChevronCircleRight } from "react-icons/fa";
 import {getFollower, userFollow} from "../../../redux/user/user";
 import UserFollower from "./Follow/UserFollower";
 import UserFollow from "./Follow/UserFollow";
+import {useParams} from "react-router";
 
 
 const OtherProfile = ({userId, name, totalFollow, totalFollower,
                         totalPost, introdution, Id, profileImage, my_follow}) => {
   const dispatch = useDispatch();
+
+  const {id} = useParams();
 
 
   // 프로필 편집, 팔로워, 팔로우 모달
@@ -46,13 +49,14 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
   };
 
   //팔로우or언팔로우 하기
-  const [Isfollowing, SetIsFollowing] = useState(false);
+  const [isfollowing, SetIsFollowing] = useState(false);
 
   const followClickHandler = () => {
+    SetIsFollowing(true);
     dispatch(userFollow({
       Id,
     }))
-    SetIsFollowing(!Isfollowing);
+
   }
 
 
@@ -71,12 +75,12 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
     dispatch(getFollower({
       Id: Id,
     }))
-    if(followerInfo){
-      SetIsFollowing(true)
-    }else {
-      SetIsFollowing(false);
-    }
-  },[dispatch, followerInfo])
+ if(follower){
+   SetIsFollowing(true);
+ }else{
+   SetIsFollowing(false);
+ }
+  },[dispatch])
 
 
   return (
@@ -92,7 +96,7 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
 
               </div>
               <section className="otherProfile_header_main">
-                {my_follow? (
+                {isfollowing? (
                   <div className="otherProfile_header_top">
                     <span>{userId}</span>
                     <span className="otherProfile_header_sengMsg">

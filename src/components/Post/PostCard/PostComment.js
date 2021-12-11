@@ -47,7 +47,6 @@ const PostComment = (postId) => {
 		}),
 			[dispatch],
 		);
-
 		SetPostComment("")
 	};
 
