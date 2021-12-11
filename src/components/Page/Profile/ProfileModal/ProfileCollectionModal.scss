@@ -20,7 +20,6 @@
 		position: absolute;
 		z-index: 100;
 		background-color: $instaWhite;
-		cursor: pointer;
 
 		& > div {
 			border-bottom: 1px solid $instaGray;
@@ -83,7 +82,72 @@
       border: none;
 		}	
 	}
+}
 
+// 사진 추가하는 모달
+.collectionList_modal_modal {
+  width: 400px;
+  height: 691px;
+  border: 1px solid $instaGray;
+  border-radius: 10px;
+  position: absolute;
+  z-index: 100;
+  background-color: $instaWhite;
+
+  & > div {
+    border-bottom: 1px solid $instaGray;
+  }
+
+  & > div:nth-child(1) {
+    display: flex;
+    width: 100%;
+    height: 42px;
+    color: $instaMenuBlack;
+    @include fontSize("biglarge");
+    font-weight: bold;
+    
+
+    & > div:nth-child(1) {
+      width: 40px;
+      line-height: 52px;
+      text-align: center;
+      cursor: pointer;
+    }
+    & > div:nth-child(2) {
+      line-height: 40px;
+      margin: auto;
+
+    }
+    & > div:nth-child(3) {
+      width: 40px;
+      line-height: 52px;
+      cursor: pointer;
+    }
+  }
+
+  & > div:nth-child(2) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 600px;
+    width: 400px;
+    min-height: 600px;
+    overflow: auto;
+    font-weight: bold;
+    
+    & > div > img {
+      width: 133px;
+      height: 133px;
+    }
+  }
+
+  & > div:nth-child(3) {
+    height: 48px;
+    color:  $instaBlue;
+    font-weight: 600;
+    @include fontSize("normal");
+    line-height: 48px;
+    border: none;
+  }	
 }
 
 .collection_modal_overlay {

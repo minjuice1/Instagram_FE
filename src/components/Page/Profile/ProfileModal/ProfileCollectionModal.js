@@ -1,10 +1,12 @@
 import { react, useState } from 'react';
-import ProfileCollectionListModal from './ProfileCollectionListModal';
 import "./ProfileCollectionModal.scss";
 
+import { AiOutlineLeft } from "react-icons/ai";
+import { GrClose } from "react-icons/gr";
+import {recomtest} from "../../../../common/IconImage";
 const ProfileCollectionModal = ({setOpenModal}) => {
 
-  // 컬렉션 이름 입력시 다음으로 넘어가게.
+  // 컬렉션 이름 입력시 다음 btn 활성화
   const [collectionName, SetCollectionName] =  useState("");
   const nameOnChange = (e) => {
     SetCollectionName(e.target.value);
@@ -15,21 +17,42 @@ const ProfileCollectionModal = ({setOpenModal}) => {
 		setOpenModal(false);
 	};
 
-  // next modal
-  const [openModal, _setOpenModal] = useState(false);
+  // modal 선택
+  const [modalChange, setModalChange] = useState(false);
   const addCollectionListHandler = () => {
-    _setOpenModal(true);
+    setModalChange(true);
+  }
+  const addCollectionHandler = () => {
+    setModalChange(false);
   }
 
   return(
     <>
-    {openModal && <ProfileCollectionListModal _setOpenModal={_setOpenModal}/>}
-
 			<div className="profile_modal_container">
-				<div className="collection_modal_modal">
+        {modalChange ?
+        (<div className="collectionList_modal_modal">
+        <div>
+          <div onClick={addCollectionHandler}><AiOutlineLeft size={24}/> </div>
+          <div>저장된 항목에서 추가</div>
+          <div onClick={cancleClickHandler}><GrClose size={24}/></div>
+        </div>
+        <div>
+          <div>
+            <img src={recomtest} />
+          </div>
+          <div>
+            <img src={recomtest} />
+          </div>
+          <div>
+            <img src={recomtest} />
+          </div>
+        </div>
+        <div >완료</div>
+      </div>) :
+      (<div className="collection_modal_modal">
 					<div className="collection_modal_header">
             <div>새 컬렉션</div>
-            <div onClick={cancleClickHandler}>X</div>
+            <div onClick={cancleClickHandler}><GrClose size={24}/></div>
           </div>
 					<div className="collection_modal_mid">
             <input type="text" value={collectionName} onChange={nameOnChange} placeholder=" 컬렉션 이름"/>
@@ -39,8 +62,8 @@ const ProfileCollectionModal = ({setOpenModal}) => {
           ) : (
             <div className="collection_modal_bottomOff">다음</div>
           )}
-					
-				</div>
+				</div>)}
+				
 			</div>
 			<div className="collection_modal_overlay" onClick={cancleClickHandler}></div>
 	</>

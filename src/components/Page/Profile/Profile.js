@@ -110,6 +110,14 @@ const addCollectionHandler = () => {
   setOpenModal(true);
 }
  
+// // next modal
+// const [_openModal, _setOpenModal] = useState(false);
+// const addCollectionListHandler = () => {
+  
+//   _setOpenModal(true);
+//   // setOpenModal(false);
+// }
+
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
