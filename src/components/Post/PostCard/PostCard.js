@@ -27,7 +27,6 @@ import dompurify from "dompurify";
 
 const PostCard = ({contents, createdAt, writer, postId,
                     postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
-  console.log(isPostSaved);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

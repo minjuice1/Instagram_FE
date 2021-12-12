@@ -9,12 +9,6 @@ const postSlice = createSlice({
     user: [],
     posts: [],
     postDetail: [],
-    // comment: {
-    //   childComments: {
-    //     like: [],
-    //   },
-    //   writer: [],
-    // },
     comment: {
       childComments: [],
     },
@@ -47,9 +41,12 @@ const postSlice = createSlice({
     },
     [savedPost.fulfilled]: (state, action) => {
       const post = state.posts.findIndex((p) => p._id === action.meta.arg.postId);
+      console.log(action.meta.arg.postId);
+      console.log(post);
       const detail = state.postDetail.findIndex((d) => d._id === action.meta.arg.postId);
-      state.posts[post].isPostSaved = !state.posts[post].isPostSaved;
-      state.postDetail[detail].isPostSaved = !state.postDetail[detail].isPostSaved;
+      // state.posts[post].isPostSaved = !state.posts[post].isPostSaved;
+      // state.postDetail[detail].isPostSaved = !state.postDetail[detail].isPostSaved;
+    
     },
 
     //comment

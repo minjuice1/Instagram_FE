@@ -81,12 +81,29 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       <img src={pp} alt="pp" />
     </div>
     <div className="postDetail_comments_comment">
+      <div>
       <div className="postDetail_comment_userId">
         <span>{writer}</span>
         <span className="postDetail_comment_contents">
           {contents}
         </span>
       </div>
+      <div className="postDetail_commentList_liked">
+      {isLike ? (
+        <img
+          src={comment_red_heart}
+          onClick={LikedCommentHandler}
+          alt="comment_red_heart"
+        />
+      ) : (
+        <img
+          src={comment_heart}
+          onClick={LikedCommentHandler}
+          alt="comment_heart"
+        />
+      )}
+    </div>
+    </div>
       <div className="postDetail_comment_info">
         <span>{time}</span>
         {isLike ? (
@@ -108,7 +125,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         <div onClick={ReplyClickHandler} className="postDetail_replycomment_hidden"> ㅡ 답글 숨기기 
         {childComments && childComments.map((reply) => (
         <PostReplyComment
-        Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.like} ReIsLike={reply.isLike}
+        Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.likeCount} ReIsLike={reply.isLike}
         Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId}
         />
       ))}
@@ -120,21 +137,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       : (<div className="postDetail_replycomment"></div>) }
       </div>)}
     </div>
-    <div className="postDetail_commentList_liked">
-      {isLike ? (
-        <img
-          src={comment_red_heart}
-          onClick={LikedCommentHandler}
-          alt="comment_red_heart"
-        />
-      ) : (
-        <img
-          src={comment_heart}
-          onClick={LikedCommentHandler}
-          alt="comment_heart"
-        />
-      )}
-    </div>
+    
     </div>
   </>
   )
