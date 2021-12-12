@@ -17,7 +17,6 @@ import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
 import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
 
-
 const PostDetail = () => {	
 
 	const dispatch = useDispatch();
@@ -42,14 +41,16 @@ const PostDetail = () => {
 
 	//포스트 북마크
   const AccessToken = localStorage.getItem("user");
-  const savedPostHandler = () => {
-    dispatch(
-      savedPost({
-        postId,
-        AccessToken,
-        isPostSaved: postDetail.isPostSaved,
-      }));
-  };
+  const savedPostHandler = () => { 
+    const path = "postDetail";
+		dispatch( 
+      savedPost({ 
+        postId, 
+        AccessToken, 
+        path, 
+      }) 
+      ); 
+    };
 
 	// modal
 	const show_postModal = () => {

@@ -39,14 +39,21 @@ const postSlice = createSlice({
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
     },
-    [savedPost.fulfilled]: (state, action) => {
-      const post = state.posts.findIndex((p) => p._id === action.meta.arg.postId);
-      console.log(action.meta.arg.postId);
-      console.log(post);
-      const detail = state.postDetail.findIndex((d) => d._id === action.meta.arg.postId);
-      // state.posts[post].isPostSaved = !state.posts[post].isPostSaved;
-      // state.postDetail[detail].isPostSaved = !state.postDetail[detail].isPostSaved;
-    
+    // [savedPost.fulfilled]: (state, action) => {
+    //   const post = state.posts.findIndex((p) => p._id === action.meta.arg.postId);
+    //   // const detail = state.postDetail.findIndex((d) => d._id === action.meta.arg.postId);
+    //   console.log(action.meta.arg.postId);
+    //   console.log(post);
+    //   // state.posts[post].isPostSaved = !state.posts[post].isPostSaved;
+    //   // state.postDetail[detail].isPostSaved = !state.postDetail[detail].isPostSaved;
+    // },
+    [savedPost.fulfilled]: (state, action) => { 
+      if (action.payload.path === "main") { 
+        const post = state.posts.findIndex( (p) => p._id === action.payload.postId ); 
+        state.posts[post].isPostSaved = !state.posts[post].isPostSaved; 
+      } else { 
+        state.postDetail[0].isPostSaved = !state.postDetail[0].isPostSaved; 
+      } 
     },
 
     //comment

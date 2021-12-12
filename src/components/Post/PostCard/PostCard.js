@@ -51,14 +51,16 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   //포스트 북마크
   const AccessToken = localStorage.getItem("user");
-  const savedPostHandler = () => {
-    dispatch(
-      savedPost({
-        postId,
-        AccessToken,
-        isPostSaved,
-      }));
-  };
+  const savedPostHandler = () => { 
+    const path = "main";
+    dispatch( 
+      savedPost({ 
+        postId, 
+        AccessToken, 
+        path, 
+      }) 
+    );
+  }; 
   
 	//게시글 더보기
 	const [morePost, SetMorePost] = useState(false);

@@ -34,9 +34,11 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   };
 
   // 답글 달기
+
   const replyHandler = (event) => {
     const replyInfo = {writer: writer, commentId: commentId}
     dispatch(replyReducer(replyInfo));
+    
   }
 
   // 대댓글

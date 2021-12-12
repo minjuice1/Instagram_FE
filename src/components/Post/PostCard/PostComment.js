@@ -8,6 +8,10 @@ import { replyReducer } from '../../../redux/post/postSlice';
 
 const PostComment = (postId) => {
 	const dispatch = useDispatch();
+
+	
+
+	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
 
@@ -23,7 +27,10 @@ const PostComment = (postId) => {
 		if(replyUserId !== "" && replyUserId !== undefined){
 			SetPostComment("※"+replyUserId+" ");
 		}
-	}, [replyUserId])
+	}, [replyTag])
+
+	console.log(replyTag);
+	console.log(replyUserId);
 
 	// 댓글
 	function CommentOnEnter(postComment) {
@@ -50,6 +57,31 @@ const PostComment = (postId) => {
 
 		SetPostComment("")
 	};
+
+	// function CommentOnEnter(postComment) {
+	// 	dispatch( 
+	// 		addComment({ 
+	// 			postId: _postId, 
+	// 			contents: postComment, 
+	// 			AccessToken, 
+	// 			path: { path }, 
+	// 		}), 
+	// 		[dispatch],
+	// 			); 
+	// 		} 
+	// const CommentClickHandler = (event) => {
+	// 		event.preventDefault(); 
+	// 		dispatch( 
+	// 			addComment({ 
+	// 				postId: _postId, 
+	// 				contents: postComment,
+	// 				AccessToken, 
+	// 				path: { path }, 
+	// 			}), 
+	// 			[dispatch] 
+	// 			); 
+	// 			SetPostComment(""); 
+	// 		};
 
 	// 대댓글
 
