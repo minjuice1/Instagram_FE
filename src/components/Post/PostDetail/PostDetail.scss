@@ -120,21 +120,40 @@
 						}
 
 						.postDetail_comments_comment {
-							width: 78%;
+							width: 100%;
 							height: auto;
+							border: 1px solid red;
 
-							.postDetail_comment_userId {
-								width: 97%;
-								@include fontSize("large");
+							& > div:nth-child(1) {
+								display: flex;
+								justify-content: space-between;
 
-								& > span:first-child {
-									font-weight: bold;
-									margin: 0 8px;
-									cursor: pointer;
+								.postDetail_comment_userId {
+									width: 88%;
+									border: 1px solid red;
+									
+									@include fontSize("large");
+	
+									& > span:first-child {
+										font-weight: bold;
+										margin: 0 8px;
+										cursor: pointer;
+									}
+	
+									.postDetail_comment_contents {
+										height: auto;
+										border: 1px solid black;
+									}
 								}
-
-								.postDetail_comment_contents {
-									height: auto;
+	
+								.postDetail_commentList_liked {
+									height: 20%;
+									width: 7%;
+									
+									& > img {
+										margin-top: 10px;
+										cursor: pointer;
+									}
 								}
 							}
 
@@ -170,17 +189,17 @@
 								font-weight: 600;
 								color: $instaMenuGray;
 								cursor: pointer;
-								margin: 10px;
+								margin: 10px 0;
+								width: 100%;
 							}
+						}
 
-								// 대댓글
+							// 대댓글
 							.postDetail_replyCommentsBox {
-
 								.postDetail_replyComments {
 									display: flex;
 									width: 100%;
 									margin: 5px 0;
-										
 									.postDetail_replyComment_pp {
 										display: flex;
 										height: 10%;
@@ -240,26 +259,14 @@
 									}
 								}
 							}
-						}
 
 						.postDetail_Reply_liked {
 							height: 20%;
 							width: 6%;
+							
 
 							& > img {
 								margin-top: 10px;
-								margin-right: 5px;
-								cursor: pointer;
-							}
-						}
-
-						.postDetail_commentList_liked {
-							height: 20%;
-							width: 6%;
-
-							& > img {
-								margin-top: 10px;
-								margin-right: 5px;
 								cursor: pointer;
 							}
 						}

@@ -40,7 +40,7 @@ export const getPost = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
-      console.log(response)
+      // console.log(response)
       return response.data;
     } catch (e) {
 
@@ -142,24 +142,42 @@ export const getUserPost = createAsyncThunk(
 )
 
 // 게시물 저장하기
-export const savedPost = createAsyncThunk(
-	"post/savedPost",
-	async ({postId, AccessToken}) => {
-		try {
-			const response = await Api({
-				url: `/post/${postId}/save`,
-				method: "PUT",
-				headers: {
-					Authorization: `Bearer ${AccessToken}`,
-				},
-			})
-			console.log(response);
-			return response.data;
-		} catch (e) {
+// export const savedPost = createAsyncThunk(
+// 	"post/savedPost",
+// 	async ({postId, AccessToken}) => {
+// 		try {
+// 			const response = await Api({
+// 				url: `/post/${postId}/save`,
+// 				method: "PUT",
+// 				headers: {
+// 					Authorization: `Bearer ${AccessToken}`,
+// 				},
+// 			})
+// 			// console.log(response);
+// 			return response.data;
+// 		} catch (e) {
 
-			return false;
-		}
-	},
+// 			return false;
+// 		}
+// 	},
+// );
+
+// 게시물 저장하기
+export const savedPost = createAsyncThunk(
+  "post/savedPost",
+  async ({ postId, AccessToken, path }) => {
+    try { 
+      const response = await Api({ 
+        url: `/post/${postId}/save`, 
+        method: "PUT", 
+        headers: { Authorization: `Bearer ${AccessToken}`, 
+      }, 
+    }); 
+    return { postId: postId, path: path }; 
+  } catch (e) { 
+    return false; 
+  } 
+} 
 );
 
 //포스트 좋아요 목록

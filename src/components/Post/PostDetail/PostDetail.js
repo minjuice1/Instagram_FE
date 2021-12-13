@@ -17,7 +17,6 @@ import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
 import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
 
-
 const PostDetail = () => {	
 
 	const dispatch = useDispatch();
@@ -27,6 +26,7 @@ const PostDetail = () => {
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
 	// console.log(comments);
+	// console.log(postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -40,16 +40,17 @@ const PostDetail = () => {
 	};
 
 	//포스트 북마크
-  const postBookmark = useSelector((state) => state.post.savedPost);
-
   const AccessToken = localStorage.getItem("user");
-  const savedPostHandler = () => {
-    dispatch(
-      savedPost({
-        postId,
-        AccessToken,
-      }));
-  };
+	const path = "postDetail";
+  const savedPostHandler = () => { 
+		dispatch( 
+      savedPost({ 
+        postId, 
+        AccessToken, 
+        path, 
+      }) 
+      ); 
+    };
 
 	// modal
 	const show_postModal = () => {
@@ -135,7 +136,7 @@ const PostDetail = () => {
 								</div>
 									{comments && comments.map((comment) => (
 										<PostDetailComment postId={postId} commentId={comment._id} contents = {comment.contents}
-										writer={comment.writer.userId} isLike={comment.isLike} like={comment.like} date={comment.createdAt}
+										writer={comment.writer.userId} isLike={comment.isLike} like={comment.likeCount} date={comment.createdAt}
 										childComments={comment.childComments}
 										/>
 									))}
@@ -145,7 +146,7 @@ const PostDetail = () => {
 							<div className="postDetail_bottom">
 								<div className="postDetail_comment_funcs">
 									<div className="postDetail_comment_Likefunc">
-										{postLike ? (
+										{postLike? (
 											<img
 												src={heart}
 												onClick={postLikeClickHandler}
@@ -166,7 +167,7 @@ const PostDetail = () => {
 										<img src={message} alt="message" />
 									</div>
 									<div className="postDetail_comment_Bookmarkfunc">
-										{postBookmark.isPost ? (
+										{postDetail.isPostSaved ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}
@@ -195,7 +196,7 @@ const PostDetail = () => {
 								<div className="postDetail_comment_time">
 									<span>time</span>
 								</div>
-								<PostComment postId={postId} commentId={comments._id}/>
+								<PostComment path={path} postId={postId} commentId={comments._id}/>
 							</div>
 						</div>
 					</div>

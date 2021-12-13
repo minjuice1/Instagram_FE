@@ -169,7 +169,6 @@
         margin: 50px auto;
         border-top: 1px solid $instaGray;
 
-
         .profile_post_clicked {
           display: flex;
           width: 65px;
@@ -204,7 +203,7 @@
           cursor: pointer;
           align-items: center;
           justify-content: center;
-          border-top: 1px solid $instaGray;
+          // border-top: 1px solid $instaGray;
         }
 
         .profile_post_clickOn {
@@ -236,10 +235,37 @@
     margin: -50px auto;
     gap: 25px;
     background-color: $backgroundGray;
-
-
   }
 
+  .OtherProfile_savedBox {
+    display: grid;
+    position: absolute;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0px auto;
+    gap: 25px;
+    background-color: $backgroundGray;
+  }
+
+  .savedPostBox{
+    display: flex;
+    justify-content: space-between;
+    width: 920px;
+    height: 20px;
+    margin: -30px auto;
+    @include fontSize("normal");
+
+    .desc_savedPost{
+      display: flex;
+      color: $instaMenuGray;
+    }
+    .add_savedPostBox{
+      display: flex;
+      justify-content: right;
+      color: $instaBlue;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
 
 
 //UserProfileInfo

@@ -20,6 +20,9 @@ const Main = () => {
 	const post_data = useSelector((state) => state.post.posts);
 	console.log(post_data);
 
+	// 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
+  // const get_comments = comments.slice(0-2);
+
 	return (
 		<>
 			<div className="container">
@@ -37,6 +40,7 @@ const Main = () => {
 								comments={post.comments}
 								commentIsAllowed={post.commentIsAllowed}
 								commentCount={post.commentCount}
+								isPostSaved={post.isPostSaved}
 							/>
 						))}
 					</div>

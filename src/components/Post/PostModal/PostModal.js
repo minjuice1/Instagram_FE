@@ -2,12 +2,15 @@ import "./PostModal.scss";
 import { useDispatch } from "react-redux";
 import { modal_check } from "../../../redux/modal/modalSlice";
 
-const PostModal = () => {
+const PostModal = ({setOpenModal}) => {
 	const dispatch = useDispatch();
 
 	const cancleClickHandler = () => {
 		dispatch(modal_check());
 	};
+	// const cancleClickHandler = () => {
+	// 	setOpenModal(false);
+	// };
 
 	return (
 		<>
@@ -22,7 +25,7 @@ const PostModal = () => {
 					<div onClick={cancleClickHandler}>취소</div>
 				</div>
 			</div>
-			<div className="overlay" onClick={cancleClickHandler}></div>
+			<div className="postModal_overlay" onClick={cancleClickHandler}></div>
 		</>
 	);
 };
