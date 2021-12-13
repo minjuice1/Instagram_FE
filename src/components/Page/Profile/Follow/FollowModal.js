@@ -42,6 +42,8 @@ const FollowerModal = () => {
             <FollowCard
             name ={follow.name}
             userId={follow.userId}
+            profileImage={follow.profileImage}
+            isFollow={follow.isFollow}
             />
           ))}
 

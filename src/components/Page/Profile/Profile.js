@@ -19,7 +19,6 @@ import {MdGridOn} from "react-icons/md";
 import ProfileStory from "./ProfileStory";
 import MyProfileInfo from "./MyProfileInfo";
 import {useParams} from "react-router";
-import {getProfile} from "../../../redux/user/user";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
 import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
@@ -27,10 +26,7 @@ import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
 
 const Profile = () => {
 
-
-
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   //개인 데이터 불러오기
   const {id} = useParams();
@@ -41,19 +37,23 @@ const Profile = () => {
   const myId = useSelector(state=>state.user.user.userId);
 
 
+
   const post_list = useSelector(state=>state.post.post);
 
   useEffect((e) => {
 
     if(!myProfile){
       dispatch(getUserPost(user_id));
-    }else{
-      dispatch(getUserPost(myId));
     }
     if(myId === user_id){
       SetMyProfile(true);
+    }else{
+      SetMyProfile(false);
     }
   }, [dispatch, myProfile, myId, user_id]);
+
+
+  const post_list = useSelector(state=>state.post.post);
 
 
   // 	// 게시물, 동영상, 저장됨, 태그됨
@@ -66,7 +66,7 @@ const Profile = () => {
 
   // 게시물, 동영상, 태그됨
   const postsClickHandler = () => {
-    setClickedPosts(true);
+    setClickedPosts(false);
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
@@ -102,6 +102,11 @@ const user_info = useSelector(state=> state.post.user);
 const user_data = user_info && user_info[0];
 const my_follow = user_data && user_data.isFollow;
 
+
+
+console.log("포스트", post_list);
+
+
 // 저장된 게시물 불러오기
 const savedUser = useSelector((state) => state.post.savedPost);
 // 컬렉션 생성
@@ -109,6 +114,7 @@ const [openModal, setOpenModal] = useState(false);
 const addCollectionHandler = () => {
   setOpenModal(true);
 }
+
  
 // // next modal
 // const [_openModal, _setOpenModal] = useState(false);

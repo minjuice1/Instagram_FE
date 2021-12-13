@@ -1,6 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
-import {add_modal} from "../modal/modalSlice";
 
 export const headerSearch = createAsyncThunk(
   "search/headerSearch",
@@ -15,7 +14,9 @@ export const headerSearch = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
+      console.log(response);
       return response.data;
+
     } catch (e) {
       console.log(e.response)
       return false;

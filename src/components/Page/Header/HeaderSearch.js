@@ -54,7 +54,7 @@ const HeaderSearch = () => {
 
     }
   }
-  //
+
 
 
 
@@ -67,8 +67,10 @@ const HeaderSearch = () => {
         {activeSearch&&
         <div className="active_input">
           <div>
-            {!searchBefore && <div>모르겠다나도</div>}
-            {searchBefore&&<div><HeaderSearchResult/></div>}
+            {!searchBefore && <div>검색전</div>}
+
+            {searchBefore&&
+            <div><HeaderSearchResult/></div>}
           </div>
 
         </div>}

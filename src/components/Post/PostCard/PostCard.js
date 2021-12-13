@@ -50,7 +50,6 @@ const PostCard = ({contents, createdAt, writer, postId,
       }))
   };
 
-  //포스트 북마크
   const AccessToken = localStorage.getItem("user");
   const path = "main";
   const savedPostHandler = () => { 
@@ -168,6 +167,7 @@ const PostCard = ({contents, createdAt, writer, postId,
                 <img src={message}/>
               </div>
               <div className="footer_collection">
+
               {isPostSaved ? (
 											<img
 												className="post_saveActive"
