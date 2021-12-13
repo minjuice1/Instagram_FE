@@ -34,14 +34,15 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   };
 
   // 답글 달기
+
   const replyHandler = (event) => {
     const replyInfo = {writer: writer, commentId: commentId}
     dispatch(replyReducer(replyInfo));
+    
   }
 
   // 대댓글
   const [clickReply, setClickReply] = useState(false);
-
   const ReplyClickHandler = () => {
     setClickReply(!clickReply);
   }
@@ -82,44 +83,14 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       <img src={pp} alt="pp" />
     </div>
     <div className="postDetail_comments_comment">
+      <div>
       <div className="postDetail_comment_userId">
         <span>{writer}</span>
         <span className="postDetail_comment_contents">
           {contents}
         </span>
       </div>
-      <div className="postDetail_comment_info">
-        <span>{time}</span>
-        {isLike ? (
-          <span>
-          좋아요 <span>{(like.length)+1}</span>개
-        </span>
-        ) : (
-          <span>
-          좋아요 <span>{like.length}</span>개
-        </span>
-        )}
-        <span onClick={replyHandler}>답글 달기</span>
-        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
-      </div>
-      {clickReply ?
-      (<div className="postDetail_replyCommentsBox">
-        <div onClick={ReplyClickHandler} className="postDetail_replycomment_hidden"> ㅡ 답글 숨기기 
-        {childComments && childComments.map((reply) => (
-        <PostReplyComment
-        Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.like} ReIsLike={reply.isLike}
-        Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId}
-        />
-      ))}
-      </div>
-      </div>)
-    : (<div  onClick={ReplyClickHandler}>
-        {childComments && childComments.length > 0 ? 
-        (<div className="postDetail_replycomment"> ㅡ 답글보기 (<span>{childComments.length}</span>개)</div>)
-      : (<div className="postDetail_replycomment"></div>) }
-      </div>)}
-    </div>
-    <div className="postDetail_commentList_liked">
+      <div className="postDetail_commentList_liked">
       {isLike ? (
         <img
           src={comment_red_heart}
@@ -134,6 +105,41 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         />
       )}
     </div>
+    </div>
+      <div className="postDetail_comment_info">
+        <span>{time}</span>
+        {isLike ? (
+          <span>
+          좋아요 <span>{(like)+1}</span>개
+          {/* 좋아요 <span>like</span>개 */}
+        </span>
+        ) : (
+          <span>
+          좋아요 <span>{like}</span>개
+          {/* 좋아요 <span>like</span>개 */}
+        </span>
+        )}
+        <span onClick={replyHandler}>답글 달기</span>
+        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
+      </div>
+      {clickReply ?
+      (<div className="postDetail_replyCommentsBox">
+        <div onClick={ReplyClickHandler} className="postDetail_replycomment_hidden"> ㅡ 답글 숨기기 
+        {childComments && childComments.map((reply) => (
+        <PostReplyComment
+        Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.likeCount} ReIsLike={reply.isLike}
+        Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId}
+        />
+      ))}
+      </div>
+      </div>)
+    : (<div  onClick={ReplyClickHandler}>
+        {childComments && childComments.length > 0 ? 
+        (<div className="postDetail_replycomment"> ㅡ 답글보기 (<span>{childComments.length}</span>개)</div>)
+      : (<div className="postDetail_replycomment"></div>) }
+      </div>)}
+    </div>
+    
     </div>
   </>
   )

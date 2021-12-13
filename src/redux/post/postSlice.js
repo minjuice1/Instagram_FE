@@ -7,20 +7,10 @@ const postSlice = createSlice({
   name: 'post',
   initialState: {
     user: [],
-    savedPost: {
-      postId: "",
-      isPost: false,
-    },
     posts: [],
     postDetail: [],
     comment: {
-      isLiked: false,
-      like: [],
-      childComments: {
-        isLiked: false,
-        like: [],
-      },
-      writer: [],
+      childComments: [],
     },
     likeUsers:[],
     replyTag: "",
@@ -29,13 +19,13 @@ const postSlice = createSlice({
     replyReducer : (state, action) => {
       state.replyTag = action.payload;
     },
-
   },
   extraReducers: {
     [getPost.fulfilled]: (state, action) => {
       state.posts = action.payload.posts;
     },
     [getUserPost.fulfilled] : (state, action) => {
+      console.log(action);
       state.post = action.payload.data.post;
       state.user = action.payload.data.user;
       state.savedPost = action.payload.data.savedPost;
@@ -49,17 +39,25 @@ const postSlice = createSlice({
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
     },
-    [savedPost.fulfilled]: (state, action) => {
-      state.savedPost.postId = action.meta.arg.postId;
-      state.savedPost.isPost = !state.savedPost.isPost;
+    [savedPost.fulfilled]: (state, action) => { 
+      if (action.payload.path === "main") { 
+        const post = state.posts.findIndex( (p) => p._id === action.payload.postId ); 
+        state.posts[post].isPostSaved = !state.posts[post].isPostSaved; 
+      } else { 
+        state.postDetail[0].isPostSaved = !state.postDetail[0].isPostSaved; 
+      } 
     },
 
-    //comment
-    [addComment.fulfilled] : (state, action) => {
-      // const idx = state.posts.filter(post=> post._id !== action.meta.arg.postId);
-      // state.posts[idx].comments.push(action.payload.comment);
-      state.comment.push(action.payload.comment);
+    [addComment.fulfilled]: (state, action) => { 
+      if (action.payload.path === "main") { 
+        const idx = state.posts.findIndex( (c) => c._id === action.payload.data.comment.postId ); 
+        state.posts[idx].commentCount++;
+        state.posts[idx].comments.push(action.payload.data.comment); 
+      } else { 
+        state.comment.push(action.payload.data.comment); 
+      } 
     },
+
     [deleteComment.fulfilled]: (state, action) => {			
 			state.comment = state.comment.filter(
 				(cnt) => cnt._id !== action.payload );
@@ -67,7 +65,6 @@ const postSlice = createSlice({
      [likedComment.fulfilled]: (state, action) => {
        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
        state.comment[idx].isLike = !state.comment[idx].isLike;
-       state.comment[idx].like = action.meta.arg.like;
      },
 
     //좋아요 리스트 목록 가져오기기

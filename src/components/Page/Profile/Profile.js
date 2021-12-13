@@ -21,6 +21,7 @@ import MyProfileInfo from "./MyProfileInfo";
 import {useParams} from "react-router";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
+import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
 
 
 const Profile = () => {
@@ -36,6 +37,8 @@ const Profile = () => {
   const myId = useSelector(state=>state.user.user.userId);
 
 
+
+  const post_list = useSelector(state=>state.post.post);
 
   useEffect((e) => {
 
@@ -93,20 +96,38 @@ const Profile = () => {
   };
 
   // 프로필 편집, 팔로워, 팔로우 모달
-  const is_modal = useSelector((state) => state.modal.is_modal);
+const is_modal = useSelector((state) => state.modal.is_modal);
 const user_info = useSelector(state=> state.post.user);
+
 const user_data = user_info && user_info[0];
 const my_follow = user_data && user_data.isFollow;
 
 
+
 console.log("포스트", post_list);
 
+
+// 저장된 게시물 불러오기
+const savedUser = useSelector((state) => state.post.savedPost);
+// 컬렉션 생성
+const [openModal, setOpenModal] = useState(false);
+const addCollectionHandler = () => {
+  setOpenModal(true);
+}
+
  
+// // next modal
+// const [_openModal, _setOpenModal] = useState(false);
+// const addCollectionListHandler = () => {
+  
+//   _setOpenModal(true);
+//   // setOpenModal(false);
+// }
+
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
-
-
+      {openModal && <ProfileCollectionModal setOpenModal={setOpenModal}/>}
 
       <div className="profile_all">
         <div className="profile_content">
@@ -169,11 +190,11 @@ console.log("포스트", post_list);
 
 
               {ClickedSaved ? (
-                <a className="profile_post_clicked">
+                <div className="profile_post_clicked">
 									<span onClick={savedClickHandler}>
 											<BiBookmark/> 저장됨
 									</span>
-                </a>
+                </div>
               ) : (
                 <a className="profile_post_unclicked">
 									<span onClick={savedClickHandler}>
@@ -196,6 +217,13 @@ console.log("포스트", post_list);
               )}
             </div>
             <div className="post_layout">
+              {ClickedSaved && (
+                <div className="savedPostBox">
+                  <div className="desc_savedPost">저장한 내용은 회원님만 볼 수 있습니다</div>
+                  <div className="add_savedPostBox" onClick={addCollectionHandler}>+ 새 컬렉션</div>
+                </div>
+                
+              )}
             {ClickedPosts && (
                 <div className="OtherProfile_postsBox">
                   {post_list && post_list.map((img) => (
@@ -207,6 +235,17 @@ console.log("포스트", post_list);
                   ))}
                 </div>
             )}
+            {ClickedSaved && (
+                <div className="OtherProfile_savedBox">
+									{savedUser && savedUser.map((save) => (
+                    <Link to={`/postdetail/${save._id}`}>
+                    <ProfileSaved
+                      savedPost = {save.imageUrl}
+                      userId = {save._id}  />
+                    </Link>
+                  ))}
+                </div>
+              )}
               {ClickedVideo && (
                 <div className="OtherProfile_postsBox">
                   <ProfileVideo/>

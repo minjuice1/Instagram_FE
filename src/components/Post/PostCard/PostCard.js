@@ -26,8 +26,9 @@ import {
 import dompurify from "dompurify";
 
 const PostCard = ({contents, createdAt, writer, postId,
-                    postImage, isLike, comments, commentIsAllowed, commentCount}) => {
+                    postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
 
+                      console.log(commentCount);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -49,19 +50,17 @@ const PostCard = ({contents, createdAt, writer, postId,
       }))
   };
 
-  //포스트 북마크
-  const postBookmark = useSelector((state) => state.post.savedPost.isPost);
-
-
-
   const AccessToken = localStorage.getItem("user");
-  const savedPostHandler = () => {
-    dispatch(
-      savedPost({
-        postId,
-        AccessToken,
-      }));
-  };
+  const path = "main";
+  const savedPostHandler = () => { 
+    dispatch( 
+      savedPost({ 
+        postId, 
+        AccessToken, 
+        path, 
+      }) 
+    );
+  }; 
   
 	//게시글 더보기
 	const [morePost, SetMorePost] = useState(false);
@@ -73,7 +72,7 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
   const get_comments = comments.slice(0-2);
-
+  
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
     const today = new Date();
@@ -168,7 +167,8 @@ const PostCard = ({contents, createdAt, writer, postId,
                 <img src={message}/>
               </div>
               <div className="footer_collection">
-              {postBookmark && postBookmark ? (
+
+              {isPostSaved ? (
 											<img
 												className="post_saveActive"
 												src={post_saveActive}
@@ -217,7 +217,7 @@ const PostCard = ({contents, createdAt, writer, postId,
                               commentId={comment._id}/>
              ))}
             <div className="post_time">{time}</div>
-            {commentIsAllowed ? <PostComment postId={postId}/>:
+            {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
               <div>이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
 
           </div>

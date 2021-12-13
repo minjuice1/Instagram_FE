@@ -64,7 +64,8 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
   return(
   <>
   {openModal && <PostDetailReplyCommentModal Id={Id} setOpenModal={setOpenModal} Recontents={Recontents} postId={postId} RecommentId={ReCommentId}/>}
-  {Recontents && 
+  <div>
+  {Recontents &&
   <div className="postDetail_replyComments">
     <div className="postDetail_replyComment_pp">
       <img src={pp} alt="pp" />
@@ -80,11 +81,11 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
         <span>{time}</span>
         {ReIsLike ? (
         <span>
-          좋아요 <span>{(Relike.length)+1}</span>개
+          좋아요 <span>{(Relike)+1}</span>개
         </span>
         ) : (
         <span>
-          좋아요 <span>{Relike.length}</span>개
+          좋아요 <span>{Relike}</span>개
         </span>) }
         <span>답글 달기</span>
         <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
@@ -105,7 +106,9 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
         />
       )}
     </div>
-  </div>}
+  </div>
+  }
+  </div>
   </>
   )
 }
