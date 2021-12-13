@@ -25,8 +25,8 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	console.log(comments);
-	console.log(postDetail);
+	// console.log(comments);
+	// console.log(postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -41,8 +41,8 @@ const PostDetail = () => {
 
 	//포스트 북마크
   const AccessToken = localStorage.getItem("user");
+	const path = "postDetail";
   const savedPostHandler = () => { 
-    const path = "postDetail";
 		dispatch( 
       savedPost({ 
         postId, 
@@ -56,11 +56,6 @@ const PostDetail = () => {
 	const show_postModal = () => {
 		dispatch(modal_check());
 	};
-	// modal
-  // const [openModal, setOpenModal] = useState(false); 
-  // const show_postModal = () => {
-	// 	setOpenModal(true);
-	// };
 
 	const cancleClickHandler = () => {
 		history.go(-1);
@@ -201,7 +196,7 @@ const PostDetail = () => {
 								<div className="postDetail_comment_time">
 									<span>time</span>
 								</div>
-								<PostComment postId={postId} commentId={comments._id}/>
+								<PostComment path={path} postId={postId} commentId={comments._id}/>
 							</div>
 						</div>
 					</div>

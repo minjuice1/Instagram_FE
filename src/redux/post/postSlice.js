@@ -39,14 +39,6 @@ const postSlice = createSlice({
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
     },
-    // [savedPost.fulfilled]: (state, action) => {
-    //   const post = state.posts.findIndex((p) => p._id === action.meta.arg.postId);
-    //   // const detail = state.postDetail.findIndex((d) => d._id === action.meta.arg.postId);
-    //   console.log(action.meta.arg.postId);
-    //   console.log(post);
-    //   // state.posts[post].isPostSaved = !state.posts[post].isPostSaved;
-    //   // state.postDetail[detail].isPostSaved = !state.postDetail[detail].isPostSaved;
-    // },
     [savedPost.fulfilled]: (state, action) => { 
       if (action.payload.path === "main") { 
         const post = state.posts.findIndex( (p) => p._id === action.payload.postId ); 
@@ -56,12 +48,18 @@ const postSlice = createSlice({
       } 
     },
 
-    //comment
-    [addComment.fulfilled] : (state, action) => {
-      // const idx = state.posts.filter(post=> post._id !== action.meta.arg.postId);
-      // state.posts[idx].comments.push(action.payload.comment);
-      state.comment.push(action.payload.comment);
+    [addComment.fulfilled]: (state, action) => { 
+      console.log(action.payload); 
+      if (action.payload.path === "main") { 
+        const idx = state.posts.findIndex( (c) => c._id === action.payload.data.comment.postId ); 
+        state.posts[idx].commentCount++;
+        console.log(state.posts[idx].commentCount);
+        state.posts[idx].comments.push(action.payload.data.comment); 
+      } else { 
+        state.comment.push(action.payload.data.comment); 
+      } 
     },
+
     [deleteComment.fulfilled]: (state, action) => {			
 			state.comment = state.comment.filter(
 				(cnt) => cnt._id !== action.payload );
