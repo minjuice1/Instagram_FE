@@ -135,12 +135,12 @@ const PostCard = ({contents, createdAt, writer, postId,
       ));
 
   }
-  const post_like_list = useSelector(state=>state.modal.likeList_modal);
+
 
 
   return (
     <>
-      {post_like_list && <PostLikeModal/>}
+
     {is_postDetailmodal && <PostDetail/>}
       <div className="post_cards">
         <div className="post_card">

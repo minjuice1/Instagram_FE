@@ -29,6 +29,7 @@ const FollowerModal = () => {
 	const info = useSelector(state=>state.user.FollowerList);
 
 
+
 	return (
 		<>
 			<div className="modal_common_container">
@@ -40,7 +41,8 @@ const FollowerModal = () => {
 						<FollowerCard
 						name = {info.name}
 						userId={info.userId}
-						profileImage={info.profileImage}/>
+						profileImage={info.profileImage}
+						isFollow = {info.isFollow}/>
 
 					))}
 				</div>

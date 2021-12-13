@@ -17,6 +17,7 @@ import PostDetail from "./components/Post/PostDetail/PostDetail";
 import Profile from "./components/Page/Profile/Profile";
 import EditUser from "./components/Page/User/EditUser/EditUser";
 import {getProfile} from "./redux/user/user";
+import SearchHash from "./components/Page/Search/SearchHash";
 
 
 
@@ -88,6 +89,7 @@ function App() {
 					<Route path="/profile/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/tagged"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+					<Route path="/searchhash"	element={<RequireAuth redirectTo="/login"> <SearchHash /> </RequireAuth>}/>
 
         </Routes>
 

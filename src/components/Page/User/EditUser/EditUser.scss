@@ -4,6 +4,11 @@
 
 //EditUser style
 
+.edit_profile{
+  border-right: 1px solid $instaGray;
+  width: 250px;
+}
+
 .edit_menu {
   height: 50px;
   padding-left: 10px;
@@ -22,6 +27,7 @@
   line-height: 50px;
   cursor: pointer;
   border-left: 2px solid $instaMenuBlack;
+
   font-weight: 600;
 }
 
@@ -32,11 +38,45 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 
+  width: 600px;
+  margin-left: -170px;
 
+  .edit_user_info {
+    font-weight: 300;
+  }
   & > div:nth-child(1){
     text-align: right;
-    margin-right: 20px;
+    margin-right: 30px;
+    font-weight: 600;
+
   }
+}
+
+.edit_user_info{
+  margin-top: 15px;
+  & > img {
+    width: 35px;
+    height: 35px;
+    margin: 3px 15px 0 15px;
+    border-radius: 50px;
+    border: 1px solid $instaGray;
+    cursor: pointer;
+  }
+}
+.edit_forms > div {
+  height: 50px;
+}
+.edit_forms > div:nth-child(2) {
+  height: 130px;
+
+}
+.edit_text {
+  @include fontSize('normal');
+  color: $instaMenuGray;
+  margin-top: 15px;
+}
+.edit_forms:first-child > div {
+  line-height: 50px;
 }
 
 //아이디, 프로필 사진 바꾸기 css
@@ -51,6 +91,15 @@
     @include fontSize('large');
     font-weight: 600;
     margin-top: -5px;
+    cursor: pointer;
+  }
+  & > button {
+    background: $instaBlue;
+    border: 1px solid $instaWhite;
+    color: $instaWhite;
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
   }
 }
 
@@ -60,27 +109,12 @@
   margin-top: 10px;
   border: 1px solid $instaLightGray;
 
+
 }
 
-.edit_user_info{
-  margin-top: 15px;
-  & > img {
-    width: 35px;
-    height: 35px;
-    margin: 3px 15px 0 15px;
-  }
-}
-.edit_forms > div {
-  height: 50px;
-}
-.edit_forms > div:nth-child(2) {
-  height: 130px;
 
-  & > a {
-    @include fontSize('normal');
-    color: $instaMenuGray;
-  }
+@include mobile{
+.edit_profile{
+  display: none;
 }
-.edit_forms:first-child > div {
-  line-height: 50px;
 }

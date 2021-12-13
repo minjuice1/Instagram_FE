@@ -1,4 +1,4 @@
-import {deleteProfileImg, getFollow, getFollower, getProfile, login, logout, profileImg} from "./user";
+import {deleteProfileImg, editProfile, getFollow, getFollower, getProfile, login, logout, profileImg} from "./user";
 import { createSlice } from "@reduxjs/toolkit";
 import {history} from "../../history";
 import {getUserPost} from "../post/post";
@@ -46,7 +46,8 @@ const userSlice = createSlice({
 		[deleteProfileImg.fulfilled] : (state, action) => {
 			//header까지 이미지 변경을 해주기 위해 부득이하게 window.location.reload사용함.
 			window.location.reload();
-		}
+		},
+
 }
 });
 

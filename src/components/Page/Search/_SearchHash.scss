@@ -1,0 +1,12 @@
+@import "../../../common/variables";
+@import "../../../common/mixin";
+
+
+.search_hash_header {
+
+  & > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+  }
+}

@@ -117,7 +117,10 @@ export const editProfile = createAsyncThunk(
         }
       })
       console.log(response);
-      alert("프로필 정보 수정완료");
+      if(response.data.ok){
+        alert("프로필 정보 수정완료");
+      }
+
       return response;
     } catch (e) {
       console.log(e.response);

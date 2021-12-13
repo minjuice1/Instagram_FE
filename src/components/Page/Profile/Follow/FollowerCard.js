@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getFollow} from "../../../../redux/user/user";
 
 
-const FollowerCard = ({name, userId, profileImage}) => {
+const FollowerCard = ({name, userId, profileImage, isFollow}) => {
   const dispatch = useDispatch();
 
   return (
@@ -22,8 +22,10 @@ const FollowerCard = ({name, userId, profileImage}) => {
           </div>
         </div>
 
-        <div className="follow_delete_button">
-          <button>삭제</button>
+        <div className="card_button">
+          {isFollow?<button className="card_following_button_">팔로잉</button> : <button className="card_follow_button">팔로우</button> }
+
+
         </div>
 
       </div>
