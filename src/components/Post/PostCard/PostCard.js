@@ -73,12 +73,7 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
   const get_comments = comments.slice(0-2);
-  // 댓글이 2개 이상이 되면 댓글 여러개 모두 보기 띄워줌.
-  // useEffect(() => {
-  //   if (commentCount > 2) {
-
-  //   }, [getPostDetail]);
-
+  
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
     const today = new Date();

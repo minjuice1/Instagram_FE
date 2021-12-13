@@ -49,11 +49,9 @@ const postSlice = createSlice({
     },
 
     [addComment.fulfilled]: (state, action) => { 
-      console.log(action.payload); 
       if (action.payload.path === "main") { 
         const idx = state.posts.findIndex( (c) => c._id === action.payload.data.comment.postId ); 
         state.posts[idx].commentCount++;
-        console.log(state.posts[idx].commentCount);
         state.posts[idx].comments.push(action.payload.data.comment); 
       } else { 
         state.comment.push(action.payload.data.comment); 

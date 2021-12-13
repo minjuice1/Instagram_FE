@@ -56,31 +56,6 @@ const PostComment = ({ postId, path }) => {
 		SetPostComment("")
 	};
 
-	// function CommentOnEnter(postComment) {
-	// 	dispatch( 
-	// 		addComment({ 
-	// 			postId: _postId, 
-	// 			contents: postComment, 
-	// 			AccessToken, 
-	// 			path: { path }, 
-	// 		}), 
-	// 		[dispatch],
-	// 			); 
-	// 		} 
-	// const CommentClickHandler = (event) => {
-	// 		event.preventDefault(); 
-	// 		dispatch( 
-	// 			addComment({ 
-	// 				postId: _postId, 
-	// 				contents: postComment,
-	// 				AccessToken, 
-	// 				path: { path }, 
-	// 			}), 
-	// 			[dispatch] 
-	// 			); 
-	// 			SetPostComment(""); 
-	// 		};
-
 	// 대댓글
 
 	function ReplyCommentOnEnter(postComment) {

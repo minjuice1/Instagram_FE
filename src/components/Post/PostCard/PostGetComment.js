@@ -14,7 +14,6 @@ const PostGetComment = ({contents, writer, postId, commentId}) => {
   const [commentLike, SetCommentLike] = useState(false);
 
   // userId 추출
-  
   const userId = writer[0] ? 
     (writer[0].userId) : 
     (writer.userId);
