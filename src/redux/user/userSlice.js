@@ -29,7 +29,7 @@ const userSlice = createSlice({
 			state.user = action.payload.data.user;
 	},
 		[getUserPost.fulfilled]: (state,action) => {
-
+			console.log(action);
 			// state.user = action.payload.data.user;
 		},
 		[getFollower.fulfilled]: (state, action) => {

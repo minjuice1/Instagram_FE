@@ -40,7 +40,6 @@ const Profile = () => {
   const [myProfile, SetMyProfile] = useState(false);
   const myId = useSelector(state=>state.user.user.userId);
 
-
   const post_list = useSelector(state=>state.post.post);
 
   useEffect((e) => {
@@ -55,7 +54,9 @@ const Profile = () => {
     }
   }, [dispatch, myProfile, myId, user_id]);
 
-
+  useEffect((e) => {
+    
+  });
   // 	// 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
   const [ClickedVideo, setClickedVideo] = useState(false);
@@ -70,7 +71,7 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    // navigate("/profile");
+    navigate("/profile");
   };
 
   const videoClickHandler = () => {
@@ -78,7 +79,7 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    // navigate("/profile/channel");
+    navigate("/profile/channel");
   };
 
   const savedClickHandler = (event) => {
@@ -86,6 +87,7 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedPosts(false);
     setClickedTagged(false);
+    navigate(`/profile/${myId}/saved`);
   };
 
   const taggedClickHandler = (event) => {
@@ -93,6 +95,7 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedVideo(false);
     setClickedSaved(false);
+    navigate("/profile/tagged");
   };
 
   // 프로필 편집, 팔로워, 팔로우 모달
@@ -104,6 +107,7 @@ const my_follow = user_data && user_data.isFollow;
 
 // 저장된 게시물 불러오기
 const savedUser = useSelector((state) => state.post.savedPost);
+
 // 컬렉션 생성
 const [openModal, setOpenModal] = useState(false);
 const addCollectionHandler = () => {
@@ -123,6 +127,7 @@ const addCollectionHandler = () => {
       {is_modal && <ProfileSettingModal/>}
       {openModal && <ProfileCollectionModal setOpenModal={setOpenModal}/>}
 
+      {post_list && savedUser &&
       <div className="profile_all">
         <div className="profile_content">
           <div className="profile_profileBox">
@@ -247,7 +252,6 @@ const addCollectionHandler = () => {
               )}
             </div>
 
-
             {/*{saved && (*/}
             {/*  <div className="OtherProfile_postsBox">*/}
             {/*    <ProfileSaved/>*/}
@@ -261,8 +265,9 @@ const addCollectionHandler = () => {
           </div>
         </div>
       </div>
-
+}
     </>
+
   );
 };
 

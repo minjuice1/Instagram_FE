@@ -131,7 +131,7 @@ export const getUserPost = createAsyncThunk(
         }
       })
       if(response.data.ok){
-        return response;
+        return response.data;
       }
       console.log(response)
       return response;

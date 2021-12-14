@@ -86,7 +86,7 @@ function App() {
 					<Route path="/profile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/myprofile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-					<Route path="/profile/saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+					<Route path="/profile/:user_Id/saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/tagged"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 
         </Routes>

@@ -25,10 +25,9 @@ const postSlice = createSlice({
       state.posts = action.payload.posts;
     },
     [getUserPost.fulfilled] : (state, action) => {
-      console.log(action);
-      state.post = action.payload.data.post;
-      state.user = action.payload.data.user;
-      state.savedPost = action.payload.data.savedPost;
+      state.post = action.payload.post;
+      state.user = action.payload.user;
+      state.savedPost = action.payload.savedPost;
     },
     [deletePost.fulfilled]: (state, {payload}) => {
      const post_list = state.posts.filter(

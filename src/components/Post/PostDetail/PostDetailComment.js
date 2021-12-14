@@ -75,10 +75,22 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
 	const time = displayTime(date);
 
+  // mouseOver
+  const [showModal, setShowModal] = useState(false)
+  const handleMouseEnter = e => {
+    setShowModal(true)
+  }
+  const handleMouseLeave = e => {
+    setShowModal(false)
+  }
+
+
   return(
     <>
-    {openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
-    <div className="postDetail_comments">
+    { openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
+    
+    <div className="postDetail_comments" onMouseEnter={handleMouseEnter}
+							onMouseLeave={handleMouseLeave}>
     <div className="postDetail_comment_pp">
       <img src={pp} alt="pp" />
     </div>
@@ -120,11 +132,13 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         </span>
         )}
         <span onClick={replyHandler}>답글 달기</span>
-        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
+        {showModal && <span className="postDetail_comment_info_modal" onClick={show_postModal}><BiDotsHorizontalRounded size={15}/></span>}
+          
       </div>
       {clickReply ?
       (<div className="postDetail_replyCommentsBox">
-        <div onClick={ReplyClickHandler} className="postDetail_replycomment_hidden"> ㅡ 답글 숨기기 
+        <div onClick={ReplyClickHandler} className="postDetail_replycomment_hidden">
+          <span> ㅡㅡ 답글 숨기기 </span>
         {childComments && childComments.map((reply) => (
         <PostReplyComment
         Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.likeCount} ReIsLike={reply.isLike}
@@ -135,7 +149,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       </div>)
     : (<div  onClick={ReplyClickHandler}>
         {childComments && childComments.length > 0 ? 
-        (<div className="postDetail_replycomment"> ㅡ 답글보기 (<span>{childComments.length}</span>개)</div>)
+        (<div className="postDetail_replycomment"> ㅡㅡ 답글보기 (<span>{childComments.length}</span>개)</div>)
       : (<div className="postDetail_replycomment"></div>) }
       </div>)}
     </div>

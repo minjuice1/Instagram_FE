@@ -89,7 +89,8 @@ const PostDetail = () => {
 
 	// const time = displayTime(postDetail.createdAt);
 	// console.log(time);
-		
+	
+	
 
 	return (
 		<>
@@ -116,20 +117,21 @@ const PostDetail = () => {
 						</div>
 						{/* main */}
 						<div className="postDetail_main">						
-							<div className="postDetail_comment_list">
+							<div className="postDetail_comment_list"
+							>
 							{/* 댓글리스트 */}
 								<div className="postDetail_comments">
 									<div className="postDetail_comment_pp">
 										<img src={pp} alt="pp" />
 									</div>
-									<div className="postDetail_comments_comment">
-										<div className="postDetail_comment_userId">
+									<div className="postDetail_comments_mycomment">
+										<div className="postDetail_comment_myUserId">
 											<span>{postDetail.writer.userId}</span>
-											<span className="postDetail_comment_contents">
+											<span className="postDetail_comment_myContents">
 												{postDetail.contents}
 											</span>
 										</div>
-										<div className="postDetail_comment_info">
+										<div className="postDetail_comment_myInfo">
 											<span>time</span>
 										</div>
 									</div>
