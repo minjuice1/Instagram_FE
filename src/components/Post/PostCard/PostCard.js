@@ -31,6 +31,9 @@ const PostCard = ({contents, createdAt, writer, postId,
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // postDetail이랑 path로 action 구분
+  const path = "main";
+
   // 게시글에 \n으로 되어있는 부분을 html코드인 <br/>로 변경해서 줄바꿈 표시함.
   const sanitizer = dompurify.sanitize;
   let html_content = contents.replace(/\n/g, '<br/>');
@@ -38,20 +41,16 @@ const PostCard = ({contents, createdAt, writer, postId,
   let first_content = html_content.split("<br/>");
 
   //포스트 좋아요
-  const likes = isLike
-  const [postLike, SetPostLike] = useState(likes);
-
   const postLikeClickHandler = () => {
-    SetPostLike(!postLike);
     dispatch(
       likePost({
         postId,
+        path,
       }))
   };
 
   //포스트 북마크
   const AccessToken = localStorage.getItem("user");
-  const path = "main";
   const savedPostHandler = () => { 
     dispatch( 
       savedPost({ 
@@ -164,7 +163,7 @@ const PostCard = ({contents, createdAt, writer, postId,
             </div>
             <div className="post_icon">
               <div className="footer_icon">
-                {postLike ? (
+                {isLike ? (
                     <img src={post_red_heart} onClick={postLikeClickHandler}/>) :
                   (<img src={post_heart} onClick={postLikeClickHandler}/>)}
                   <img src={text} className="post_cursor" onClick={toPostDetailHandler}/>
@@ -221,7 +220,6 @@ const PostCard = ({contents, createdAt, writer, postId,
             <div className="post_time">{time}</div>
             {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
               <div>이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
-
           </div>
         </div>
       </div>

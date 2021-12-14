@@ -2,33 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
 import { history } from '../../history';
 
-// // Comment
-// export const addComment = createAsyncThunk(
-// 	"commment/addComment",
-// 	async ({ postId, contents, AccessToken }) => {
-// 		try {
-// 			const response = await Api({
-// 				url: `/comment/${postId}`,
-// 				method: "POST",
-// 				data: {
-// 					contents,
-// 				},
-// 				headers: {
-// 					Authorization: `Bearer ${AccessToken}`,
-// 				},
-// 			})
-// 			if(response.data.ok){
-// 				console.log(response);
-// 				return response.data;
-// 			}
-// 			return response;
-// 		} catch (e) {
-
-// 			return false;
-// 		}
-// 	},
-// );
-
 // Comment
 export const addComment = createAsyncThunk( 
 	"commment/addComment", 
@@ -78,7 +51,7 @@ export const deleteComment = createAsyncThunk(
 
 export const likedComment = createAsyncThunk(
 	"commment/likedComment",
-	async ({ commentId, AccessToken }) => {
+	async ({ commentId, AccessToken, path }) => {
 		try {
 			const response = await Api({
 				url: `/comment/${commentId}/like`,
@@ -88,7 +61,7 @@ export const likedComment = createAsyncThunk(
 				},
 			})
 			console.log(response);
-			return response.data;
+			return { path: path, data: response.data }; 
 		} catch (e) {
 
 			return false;

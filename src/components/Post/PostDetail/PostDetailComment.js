@@ -23,6 +23,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
+  const path = "detailCmt"
   const LikedCommentHandler = () => {
     dispatch(
       likedComment({
@@ -30,6 +31,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         AccessToken,
         isLike,
         like,
+        path,
       }));
   };
 

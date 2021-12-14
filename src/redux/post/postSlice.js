@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {deletePost, getLikeList, getPost, getPostDetail, getUserPost, savedPost} from "./post";
+import {deletePost, getLikeList, getPost, getPostDetail, getUserPost, savedPost, likePost} from "./post";
 import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment } from './comment';
 
 const postSlice = createSlice({
@@ -46,7 +46,18 @@ const postSlice = createSlice({
         state.postDetail[0].isPostSaved = !state.postDetail[0].isPostSaved; 
       } 
     },
+    [likePost.fulfilled]: (state, action) => {
+      console.log(action.meta.arg);
+      console.log(action.payload.path);
+      if (action.meta.arg.path === "main") {
+       const idx = state.posts.findIndex((p) => p._id === action.meta.arg.postId);
+       state.posts[idx].isLike = !state.posts[idx].isLike;
+      } else {
+        state.postDetail[0].isLike = !state.postDetail[0].isLike;
+      }
+    },
 
+    // Comment
     [addComment.fulfilled]: (state, action) => { 
       if (action.payload.path === "main") { 
         const idx = state.posts.findIndex( (c) => c._id === action.payload.data.comment.postId ); 
@@ -62,8 +73,13 @@ const postSlice = createSlice({
 				(cnt) => cnt._id !== action.payload );
 		 },
      [likedComment.fulfilled]: (state, action) => {
-       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
-       state.comment[idx].isLike = !state.comment[idx].isLike;
+       console.log(action);
+       if (action.payload.path === "detailCmt") {
+        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
+        state.comment[idx].isLike = !state.comment[idx].isLike;
+       } else {
+
+       }
      },
 
     //좋아요 리스트 목록 가져오기기

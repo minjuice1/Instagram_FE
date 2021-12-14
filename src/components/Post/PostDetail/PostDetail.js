@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { history } from '../../../history';
 
-import {getPostDetail, savedPost} from "../../../redux/post/post";
+import {getPostDetail, likePost, savedPost} from "../../../redux/post/post";
 import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
 
@@ -15,12 +15,15 @@ import PostModal from "../PostModal/PostModal";
 import "./PostDetail.scss";
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
-import {heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
+import {post_red_heart, post_heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
 
 const PostDetail = () => {	
 
 	const dispatch = useDispatch();
 	const {postId} = useParams();
+
+	// main이랑 path로 action 구분
+	const path = "postDetail";
 
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
@@ -33,15 +36,17 @@ const PostDetail = () => {
   }, [getPostDetail]);
 
 	// 포스트 좋아요
-	const [postLike, SetPostLike] = useState(false);
-
 	const postLikeClickHandler = () => {
-		SetPostLike(!postLike);
-	};
+    dispatch(
+      likePost({
+        postId,
+        path,
+      }))
+  };
 
 	//포스트 북마크
   const AccessToken = localStorage.getItem("user");
-	const path = "postDetail";
+	
   const savedPostHandler = () => { 
 		dispatch( 
       savedPost({ 
@@ -148,15 +153,15 @@ const PostDetail = () => {
 							<div className="postDetail_bottom">
 								<div className="postDetail_comment_funcs">
 									<div className="postDetail_comment_Likefunc">
-										{postLike? (
+										{postDetail.isLike? (
 											<img
-												src={heart}
+												src={post_red_heart}
 												onClick={postLikeClickHandler}
 												alt="heart"
 											/>
 										) : (
 											<img
-												src={heart}
+												src={post_heart}
 												onClick={postLikeClickHandler}
 												alt="heart"
 											/>

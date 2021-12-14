@@ -24,11 +24,13 @@ const PostGetComment = ({contents, writer, postId, commentId}) => {
 
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
+  const path = "mainCmt";
   const commentLikeClickHandler = () => {
     dispatch(
       likedComment({
         commentId,
         AccessToken,
+        path,
       }));
   };
 
