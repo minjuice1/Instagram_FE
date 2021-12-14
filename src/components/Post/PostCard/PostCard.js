@@ -138,6 +138,10 @@ const PostCard = ({contents, createdAt, writer, postId,
   }
   const post_like_list = useSelector(state=>state.modal.likeList_modal);
 
+  // postDetail 로
+  const toPostDetailHandler = () => {
+    navigate(`/postdetail/${postId}`);
+  }
 
   return (
     <>
@@ -163,7 +167,7 @@ const PostCard = ({contents, createdAt, writer, postId,
                 {postLike ? (
                     <img src={post_red_heart} onClick={postLikeClickHandler}/>) :
                   (<img src={post_heart} onClick={postLikeClickHandler}/>)}
-                <img src={text}/>
+                  <img src={text} className="post_cursor" onClick={toPostDetailHandler}/>
                 <img src={message}/>
               </div>
               <div className="footer_collection">
@@ -203,9 +207,8 @@ const PostCard = ({contents, createdAt, writer, postId,
               </div>
               <div>
                 {commentCount > 2 && (
-                  <Link to={`/postdetail/${postId}`} >
-                  댓글 <span>{commentCount}</span>개 모두 보기
-                </Link>
+                <span className="post_cursor" onClick={toPostDetailHandler}>
+                  댓글 <span>{commentCount}</span>개 모두 보기</span>
                 )}
               </div>
             </div>
