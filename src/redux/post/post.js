@@ -99,8 +99,8 @@ export const getPostDetail = createAsyncThunk(
 //좋아요
 export const likePost = createAsyncThunk(
   "post/likePost",
-  async ({postId}, path) => {
-    const AccessToken = localStorage.getItem("user")
+  async ({postId, path} ) => {
+    const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
         url: `/post/${postId}/like`,
@@ -110,7 +110,8 @@ export const likePost = createAsyncThunk(
         },
 			})
 			console.log(response);
-			return { path: path, data: response.data }; 
+			return { path: path, postId: postId, data: response }; 
+      
 		} catch (e) {
 			return false;
 		}

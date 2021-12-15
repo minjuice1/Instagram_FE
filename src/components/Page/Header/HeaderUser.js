@@ -21,7 +21,7 @@ const HeaderUser = () => {
     // history.replace(`/myprofile/${id}`, {replace: true});
   }
 
-  // 저장됨 으로 이동
+  // 저장됨으로 이동
   const savedProfileClickHandler = () => {
     navigate(`/profile/${id}/saved`, {replace: true})
     // history.replace(`/myprofile/${id}`, {replace: true});

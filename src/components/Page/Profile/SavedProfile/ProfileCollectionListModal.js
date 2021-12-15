@@ -1,14 +1,20 @@
+import { useSelector } from 'react-redux';
+
+
+import ProfileSavedAllPost from './ProfileSavedAllPost';
 
 // ProfileCollectionModal과 css 공유
 import "./ProfileCollectionModal.scss";
 import { AiOutlineLeft } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
-import {recomtest} from "../../../../common/IconImage";
 
-const ProfileCollectionListModal = ({setOpenModal, setModalChange}) => {
+
+const ProfileCollectionListModal = ({setOpenCollectionModal, setModalChange}) => {
+
+  const saved = useSelector((state) => state.post.savedPost);
 
   const cancleClickHandler = () => {
-		setOpenModal(false);
+		setOpenCollectionModal(false);
 	};
 
   const addCollectionHandler = () => {
@@ -24,15 +30,9 @@ const ProfileCollectionListModal = ({setOpenModal, setModalChange}) => {
           <div onClick={cancleClickHandler}><GrClose size={24}/></div>
         </div>
         <div>
-          <div>
-            <img src={recomtest} />
-          </div>
-          <div>
-            <img src={recomtest} />
-          </div>
-          <div>
-            <img src={recomtest} />
-          </div>
+          {saved && saved.map((post) => (
+            <ProfileSavedAllPost savedPost = {post.imageUrl}/>
+          ))}
         </div>
         <div >완료</div>
       </div>

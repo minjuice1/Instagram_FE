@@ -1,11 +1,13 @@
 import { react, useState } from 'react';
-import "./ProfileCollectionModal.scss";
 
+import ProfileCollectionListModal from './ProfileCollectionListModal';
+
+import "./ProfileCollectionModal.scss";
 import { AiOutlineLeft } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
-import {recomtest} from "../../../../common/IconImage";
-import ProfileCollectionListModal from './ProfileCollectionListModal';
-const ProfileCollectionModal = ({setOpenModal}) => {
+
+
+const ProfileCollectionModal = ({setOpenCollectionModal}) => {
 
   // 컬렉션 이름 입력시 다음 btn 활성화
   const [collectionName, SetCollectionName] =  useState("");
@@ -15,7 +17,7 @@ const ProfileCollectionModal = ({setOpenModal}) => {
   
   // 모달 창 닫기
   const cancleClickHandler = () => {
-		setOpenModal(false);
+		setOpenCollectionModal(false);
 	};
 
   // modal 선택
@@ -28,7 +30,7 @@ const ProfileCollectionModal = ({setOpenModal}) => {
     <>
 			<div className="profile_modal_container">
         {modalChange ?
-        (<ProfileCollectionListModal setOpenModal={setOpenModal} setModalChange={setModalChange}/>) :
+        (<ProfileCollectionListModal setOpenCollectionModal={setOpenCollectionModal} setModalChange={setModalChange}/>) :
       (<div className="collection_modal_modal">
 					<div className="collection_modal_header">
             <div>새 컬렉션</div>

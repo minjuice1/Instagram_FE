@@ -28,7 +28,7 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	// console.log(comments);
+	console.log(comments);
 	// console.log(postDetail);
 
 	useEffect(() => {
@@ -46,7 +46,6 @@ const PostDetail = () => {
 
 	//포스트 북마크
   const AccessToken = localStorage.getItem("user");
-	
   const savedPostHandler = () => { 
 		dispatch( 
       savedPost({ 
@@ -195,10 +194,14 @@ const PostDetail = () => {
 									<div className="postDetail_likeList_pic">
 										<img src={menu_profile} alt="menu_profile" />
 									</div>
-									<div className="postDetail_likeList_likeInfo">
-										<span>testtest</span>님 <span>외 60,000명</span>이
+									{postDetail.likeCount > 1 ?
+									(<div className="postDetail_likeList_likeInfo">
+										<span>testtest</span>님 <span>외 <span>{(postDetail.likeCount)-1}</span>명</span>이
 										좋아합니다
-									</div>
+									</div>) :
+									(<div className="postDetail_likeList_likeInfo">
+									<span> testtest</span> 님이	좋아합니다
+								</div>) }
 								</div>
 								<div className="postDetail_comment_time">
 									<span>time</span>

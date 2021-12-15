@@ -139,8 +139,8 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       </div>
       {clickReply ?
       (<div className="postDetail_replyCommentsBox">
-        <div onClick={ReplyClickHandler} className="postDetail_replycomment_hidden">
-          <span> ㅡㅡ 답글 숨기기 </span>
+        <div className="postDetail_replycomment_hidden">
+          <span  onClick={ReplyClickHandler}> ㅡㅡ 답글 숨기기 </span>
         {childComments && childComments.map((reply) => (
         <PostReplyComment
         Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.likeCount} ReIsLike={reply.isLike}

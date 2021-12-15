@@ -9,6 +9,8 @@ import ProfileSaved from "./CommonProfile/ProfileSaved";
 
 // 모달
 import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
+import ProfileCollectionModal from './SavedProfile/ProfileCollectionModal';
+
 // scss, icon, img
 import "./Profile.scss";
 import pp from "../../../image/profile.jpg";
@@ -22,7 +24,7 @@ import {useParams} from "react-router";
 import {getProfile} from "../../../redux/user/user";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
-import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
+
 
 
 const Profile = () => {
@@ -109,23 +111,16 @@ const my_follow = user_data && user_data.isFollow;
 const savedUser = useSelector((state) => state.post.savedPost);
 
 // 컬렉션 생성
-const [openModal, setOpenModal] = useState(false);
+const [openCollectionModal, setOpenCollectionModal] = useState(false);
 const addCollectionHandler = () => {
-  setOpenModal(true);
+  setOpenCollectionModal(true);
 }
- 
-// // next modal
-// const [_openModal, _setOpenModal] = useState(false);
-// const addCollectionListHandler = () => {
-  
-//   _setOpenModal(true);
-//   // setOpenModal(false);
-// }
+
 
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
-      {openModal && <ProfileCollectionModal setOpenModal={setOpenModal}/>}
+      {openCollectionModal && <ProfileCollectionModal setOpenCollectionModal={setOpenCollectionModal}/>}
 
       {post_list && savedUser &&
       <div className="profile_all">

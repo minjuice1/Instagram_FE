@@ -6,7 +6,6 @@ import { history } from '../../history';
 export const addComment = createAsyncThunk( 
 	"commment/addComment", 
 	async ({ postId, contents, AccessToken, path }) => { 
-		console.log(path); 
 		try { const response = await Api({ 
 			url: `/comment/${postId}`, 
 			method: "POST", 
@@ -87,7 +86,7 @@ export const addReplyComment = createAsyncThunk(
 			})
 			if(response.data.ok){
 				console.log(response);
-				return response.data;
+				return { commentId: commentId, data: response.data };
 			}
 			return response;
 		} catch (e) {
@@ -111,7 +110,7 @@ export const deleteReplyComment = createAsyncThunk(
 			})
 			if(response.data.ok){
 				console.log(response);
-				return response;
+				return { commentId: commentId, data: response.data };
 			}
 			return response;
 
@@ -134,7 +133,7 @@ export const likedReplyComment = createAsyncThunk(
 				},
 			})
 			console.log(response);
-			return response.data;
+			return { commentId: commentId, data: response.data };
 		} catch (e) {
 
 			return false;

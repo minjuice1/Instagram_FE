@@ -25,7 +25,7 @@ import {
 } from "../../../common/IconImage";
 import dompurify from "dompurify";
 
-const PostCard = ({contents, createdAt, writer, postId,
+const PostCard = ({contents, createdAt, writer, postId, likeCount,
                     postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
 
   const dispatch = useDispatch();
@@ -188,7 +188,8 @@ const PostCard = ({contents, createdAt, writer, postId,
               </div>
             </div>
             <div className="post_content">
-              <a className="post_user_id" onClick={likeListClickHandler}>좋아요 1,200개</a>
+              <a className="post_user_id" onClick={likeListClickHandler}>좋아요 <span>{likeCount}</span>개</a>
+              
               <div className="post_text">
                 <a className="post_user_id">{writer[0].userId}</a>
                 {morePost ? (
