@@ -30,21 +30,17 @@ const userSlice = createSlice({
 	},
 		[getUserPost.fulfilled]: (state,action) => {
 
-			// state.user = action.payload.data.user;
 		},
 		[getFollower.fulfilled]: (state, action) => {
-			// console.log("aaaaaa",action.payload)
 			state.FollowerList = action.payload.data.user;
 		},
 		[getFollow.fulfilled]: (state, action) => {
 			state.FollowList = action.payload.data.user;
 		},
 		[profileImg.fulfilled]: (state, action) => {
-			//header까지 이미지 변경을 해주기 위해 부득이하게 window.location.reload사용함.
 			window.location.reload();
 		},
 		[deleteProfileImg.fulfilled] : (state, action) => {
-			//header까지 이미지 변경을 해주기 위해 부득이하게 window.location.reload사용함.
 			window.location.reload();
 		},
 

@@ -57,9 +57,7 @@ const EditProfile = () => {
   return(
     <>
       {is_modal && <ProfileImgModal userId={userId}/>}
-      <div className="editProfile">
 
-      </div>
       <div className="edit_form">
         <div className="edit_forms">
           <div className="edit_user_info" onClick={imgChangeClickHandler}>
@@ -92,10 +90,13 @@ const EditProfile = () => {
             <label><input className="editInput" value={userWebSite} onChange={onChangeUserWebSite}/></label>
           </div>
           <div className="editIntroduce">
-            <label><input className="editInput" value={userIntroduce} onChange={onChangeUserIntroduce}/></label>
+            <label><textarea className="editInput" value={userIntroduce} onChange={onChangeUserIntroduce}/></label>
+            <div className="edit_text"> <span>개인정보</span><br/>
+              비즈니스나 반려동물 등에 사용된 계정인 경우에도 회원님의 개인정보를 입력하세요. 공개 프로필에는 포함되지 않습니다.</div>
           </div>
           <div className="editEmail">
             <label><input className="editInput" value={userEmail} onChange={onChangeUserEmail} /></label>
+            <button>이메일 확인</button>
           </div>
           <div className="editNumber">
             <label><input className="editInput"  value={userNumber} onChange={onChangeUserNumber}/></label>
@@ -104,7 +105,9 @@ const EditProfile = () => {
             <label><input className="editInput"  value={userGender} onChange={onChangeUserGender}/></label>
 
           </div>
-          <button onClick={EditClickHandler}>제출</button>
+          <div>
+          <button onClick={EditClickHandler}>제출</button> <a>계정을 일시적으로 비활성화</a>
+          </div>
         </div>
 
       </div>

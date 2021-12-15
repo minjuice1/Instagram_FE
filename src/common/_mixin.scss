@@ -38,6 +38,7 @@
 		font-weight: 600;
 		background: $instaWhite;
 		border: 1px solid $instaMenuGray;
+		border-radius: 5px;
 		@include fontSize('large');
 	} @else if $color == "blue" {
 		width: 50px;
@@ -45,7 +46,8 @@
 		color: $instaWhite;
 		font-weight: 600;
 		background: $instaBlue;
-		border: 1px solid $instaMenuGray;
+		border: none;
+		border-radius: 5px;
 		@include fontSize('large');
 	}
 }

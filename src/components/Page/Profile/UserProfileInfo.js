@@ -25,8 +25,8 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
                         totalPost, introdution, Id, profileImage, my_follow}) => {
   const dispatch = useDispatch();
 
-  const {id} = useParams();
 
+  console.log(my_follow);
 
   // 프로필 편집, 팔로워, 팔로우 모달
   const SimilarAccount_Modal = useSelector(
@@ -47,35 +47,38 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
   const show_recomAccountbtn = () => {
     SetRecomAccountbtn(!recomAccountbtn);
   };
+  const followerList = useSelector(state=>state.user.FollowerList);
+  console.log(followerList)
 
   //팔로우or언팔로우 하기
   const [isfollowing, SetIsFollowing] = useState(false);
+  const [followerCount, SetFollowerCount] = useState(totalFollower);
 
+  console.log(followerCount);
+
+  let follower_count = totalFollower;
   const followClickHandler = () => {
-    SetIsFollowing(true);
     dispatch(userFollow({
       Id,
     }))
+    SetIsFollowing(!isfollowing);
+    if(isfollowing){
+      SetFollowerCount(followerCount - 1);
+    }else {
+      SetFollowerCount(followerCount + 1);
+    }
 
   }
 
 
 
-  const followerList = useSelector(state=>state.user.FollowerList);
-  console.log(followerList)
 
-  const result = useMemo(() => sessionStorage.getItem("info"), ["info"]);
-  const my_info = JSON.parse(result);
-
-  const follower = followerList.map((user) => user._id)
-  console.log(followerList);
-  const followerInfo = follower.includes(my_info._id);
 
   useEffect(() => {
     dispatch(getFollower({
       Id: Id,
     }))
- if(follower){
+ if(my_follow){
    SetIsFollowing(true);
  }else{
    SetIsFollowing(false);
@@ -86,8 +89,6 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
   return (
     <>
       {SimilarAccount_Modal && <SimilarAccountModal />}
-
-
           <div className="otherProfile_profileBox">
             <div className="otherProfile_header">
               <div className="otherProfile_header_pp">
@@ -159,7 +160,7 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
 										게시물 <span>{totalPost}</span>
 									</span>
                   {/*팔로워*/}
-                  <UserFollower totalFollower={totalFollower}/>
+                  <UserFollower totalFollower={followerCount}/>
                   <UserFollow totalFollow={totalFollow}/>
                 </ul>
                 <div className="otherProfile_header_name">

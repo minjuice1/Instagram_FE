@@ -1,4 +1,4 @@
-import {React} from "react";
+import {React, useState} from "react";
 import {followers_modal_check} from "../../../../redux/modal/modalSlice";
 import {useDispatch, useSelector} from "react-redux";
 import FollowerModal from "./FollowerModal";
@@ -11,7 +11,6 @@ const UserFollower = ({totalFollower}) => {
   const show_followers_modal = () => {
     dispatch(followers_modal_check());
   };
-
 
 
   return(

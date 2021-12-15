@@ -110,13 +110,6 @@ const addCollectionHandler = () => {
   setOpenModal(true);
 }
 
-// // next modal
-// const [_openModal, _setOpenModal] = useState(false);
-// const addCollectionListHandler = () => {
-  
-//   _setOpenModal(true);
-//   // setOpenModal(false);
-// }
 
   return (
     <>
@@ -147,7 +140,6 @@ const addCollectionHandler = () => {
                 introdution = {user_data.introdution}
                 profileImage={user_data.profileImage}
                 my_follow={my_follow}
-                // my_follow={my_follow}
               />}
             {/*<ProfileStory/>*/}
             <div className="profile_post_dir" role="tablist">

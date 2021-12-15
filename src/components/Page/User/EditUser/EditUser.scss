@@ -7,6 +7,7 @@
 .edit_profile{
   border-right: 1px solid $instaGray;
   width: 250px;
+
 }
 
 .edit_menu {
@@ -39,7 +40,7 @@
   grid-template-columns: repeat(2, 1fr);
 
   width: 600px;
-  margin-left: -170px;
+  margin-left: -150px;
 
   .edit_user_info {
     font-weight: 300;
@@ -66,17 +67,50 @@
 .edit_forms > div {
   height: 50px;
 }
+//이름
 .edit_forms > div:nth-child(2) {
   height: 130px;
-
 }
+//사용자이름
+.edit_forms > div:nth-child(3) {
+ height: 100px;
+}
+//소개
+.edit_forms > div:nth-child(5) {
+  height: 140px;
+  & > label > textarea{
+    height: 60px;
+  }
+  .edit_text > span {
+    @include fontSize('large');
+    font-weight: bold;
+  }
+}
+//이메일
+.edit_forms > div:nth-child(6) {
+  height: 100px;
+  & > button {
+    margin-top: 15px;
+    @include buttonStyle("blue");
+    width: 80px;
+  }
+}
+//전화번호
+.edit_forms > div:nth-child(7) {
+  margin-top: -13px;
+}
+
+
 .edit_text {
   @include fontSize('normal');
   color: $instaMenuGray;
   margin-top: 15px;
+  width: 360px;
 }
+
 .edit_forms:first-child > div {
   line-height: 50px;
+
 }
 
 //아이디, 프로필 사진 바꾸기 css
@@ -93,28 +127,149 @@
     margin-top: -5px;
     cursor: pointer;
   }
-  & > button {
-    background: $instaBlue;
-    border: 1px solid $instaWhite;
-    color: $instaWhite;
-    width: 50px;
-    height: 30px;
-    border-radius: 5px;
+  & > div:nth-child(6) > button {
+    @include buttonStyle("blue");
+    width: 100px;
+  }
+  & > div > button {
+    @include buttonStyle("blue");
+  }
+  & > div > a {
+    color : $instaBlue;
+    @include fontSize('large');
+    font-weight: bold;
+    margin-left: 120px;
   }
 }
 
 .editInput{
   width: 350px;
   height: 25px;
-  margin-top: 10px;
+  margin-top : 10px;
+  padding-left: 5px;
   border: 1px solid $instaLightGray;
+}
 
+//비밀번호 변경 css
+.password_form {
+  width:600px;
+  margin-left: -90px;
+  .password_info {
+    display: flex;
+    margin-left: 80px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    & > div > img {
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+    }
+    & > div {
+      font-size: 24px;
+      margin-left: 22px;
+    }
+  }
+}
+.password_item {
+  display: flex;
+  height: 55px;
+  & > div:first-child{
+    text-align: end;
+    width: 300px;
+    font-weight: 600;
+    margin-top: 5px;
+  }
+  & > div >input{
+    width: 440px;
+    margin-left: 10px;
+    height: 40px;
+    border: 1px solid $instaGray;
+    border-radius: 5px;
+    background: $backgroundGray;
+    outline: none;
+    padding-left: 10px;
+  }
+
+}
+.password_item:last-child{
+  display: contents;
+  & > button {
+    @include buttonStyle("blue");
+    width: 110px;
+    height: 30px;
+    margin-left: 150px;
+  }
+  & > div {
+    @include fontSize('large');
+    color: $instaBlue;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-left: 150px;
+  }
 
 }
 
 
-@include mobile{
-.edit_profile{
-  display: none;
+@include tablet{
+  .password_item {
+    & > div > input {
+      width: 380px;
+      margin-left: 50px;
+    }
+  }
+  .password_item:last-child{
+    display: contents;
+    & > button {
+      @include buttonStyle("blue");
+      width: 110px;
+      height: 30px;
+      margin-left: 210px;
+    }
+    & > div {
+      @include fontSize('large');
+      color: $instaBlue;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-left: 210px;
+    }
+
+  }
 }
+
+@include mobile {
+  .edit_profile {
+    display: none;
+  }
+  .password_item {
+    display: contents;
+    & > div:first-child{
+      text-align: start;
+      margin-left: 100px;
+    }
+    & > div > input {
+      width: 440px;
+      margin-left: 100px;
+      margin-top: 10px;
+    }
+  }
+
+  .password_item:last-child{
+    display: contents;
+    & > button {
+      @include buttonStyle("blue");
+      width: 110px;
+      height: 30px;
+      margin-left: 100px;
+      margin-top: 20px;
+    }
+    & > div {
+      @include fontSize('large');
+      color: $instaBlue;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-left: 100px;
+    }
+
+  }
 }
+
