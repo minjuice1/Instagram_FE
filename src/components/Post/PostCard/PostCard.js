@@ -216,7 +216,8 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
               <PostGetComment contents ={comment.contents}
                               postId={comment.postId}
                               writer={comment.writer}
-                              commentId={comment._id}/>
+                              commentId={comment._id}
+                              isLike={comment.isLike}/>
              ))}
             <div className="post_time">{time}</div>
             {commentIsAllowed ? <PostComment path={path} postId={postId}/>:

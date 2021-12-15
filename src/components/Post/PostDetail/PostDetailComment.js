@@ -25,12 +25,11 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   const AccessToken = localStorage.getItem("user");
   const path = "detailCmt"
   const LikedCommentHandler = () => {
+    console.log(postId);
     dispatch(
       likedComment({
         commentId,
         AccessToken,
-        isLike,
-        like,
         path,
       }));
   };
@@ -77,7 +76,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
 	const time = displayTime(date);
 
-  // mouseOver
+  // 삭제, 신고버튼 mouseOver 
   const [showModal, setShowModal] = useState(false)
   const handleMouseEnter = e => {
     setShowModal(true)

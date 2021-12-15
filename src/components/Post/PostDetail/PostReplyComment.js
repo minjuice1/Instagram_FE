@@ -32,6 +32,15 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
       }));
   };
 
+  // 삭제, 신고버튼 mouseOver 
+  const [showModal, setShowModal] = useState(false)
+  const handleMouseEnter = e => {
+    setShowModal(true)
+  }
+  const handleMouseLeave = e => {
+    setShowModal(false)
+  }
+
 
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
@@ -66,7 +75,8 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
   {openModal && <PostDetailReplyCommentModal Id={Id} setOpenModal={setOpenModal} Recontents={Recontents} postId={postId} RecommentId={ReCommentId}/>}
   <div>
   {Recontents &&
-  <div className="postDetail_replyComments">
+  <div className="postDetail_replyComments"
+    onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
     <div className="postDetail_replyComment_pp">
       <img src={pp} alt="pp" />
     </div>
@@ -88,7 +98,8 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
           좋아요 <span>{Relike}</span>개
         </span>) }
         <span>답글 달기</span>
-        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
+        {showModal &&
+        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>}
       </div>
     </div>
     <div className="postDetail_Reply_liked">

@@ -74,24 +74,26 @@ const postSlice = createSlice({
     [deleteComment.fulfilled]: (state, action) => {			
 			state.comment = state.comment.filter(
 				(cnt) => cnt._id !== action.payload );
-		 },
-     [likedComment.fulfilled]: (state, action) => {
-       console.log(action);
-       if (action.payload.path === "detailCmt") {
+		},
+    [likedComment.fulfilled]: (state, action) => {
+      console.log(action);
+      if (action.payload.path === "detailCmt") {
         const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
         state.comment[idx].isLike = !state.comment[idx].isLike;
-       } else {
-
-       }
-     },
+      } else {
+        const post = state.posts.findIndex((p) => p._id === action.payload.postId);
+        const cmt = state.posts[post].comments.findIndex((c) => c._id === action.payload.commentId);
+        state.posts[post].comments[cmt].isLike = !state.posts[post].comments[cmt].isLike;
+      }
+    },
 
     //좋아요 리스트 목록 가져오기기
-   [getLikeList.fulfilled]: (state, action) => {
+    [getLikeList.fulfilled]: (state, action) => {
       state.likeUsers = action.payload.data.likeUsers;
     },
 
      //replyComment
-     [addReplyComment.fulfilled] : (state, action) => {
+    [addReplyComment.fulfilled] : (state, action) => {
       console.log(action);
       const idx = state.comment.findIndex((c) => c._id === action.payload.commentId);
       state.comment[idx].childComments.push(action.payload.data.reComment);

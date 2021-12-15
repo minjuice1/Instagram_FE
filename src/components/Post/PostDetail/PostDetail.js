@@ -206,7 +206,9 @@ const PostDetail = () => {
 								<div className="postDetail_comment_time">
 									<span>time</span>
 								</div>
+								<div className="postDetail_postComment">
 								<PostComment path={path} postId={postId} commentId={comments._id}/>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -50,7 +50,7 @@ export const deleteComment = createAsyncThunk(
 
 export const likedComment = createAsyncThunk(
 	"commment/likedComment",
-	async ({ commentId, AccessToken, path }) => {
+	async ({ commentId, AccessToken, path, postId }) => {
 		try {
 			const response = await Api({
 				url: `/comment/${commentId}/like`,
@@ -60,7 +60,7 @@ export const likedComment = createAsyncThunk(
 				},
 			})
 			console.log(response);
-			return { path: path, data: response.data }; 
+			return { path: path, commentId: commentId, postId: postId, data: response.data }; 
 		} catch (e) {
 
 			return false;

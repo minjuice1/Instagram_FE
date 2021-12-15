@@ -7,7 +7,7 @@ import { likedComment } from '../../../redux/post/comment';
 import "./PostCard";
 
 
-const PostGetComment = ({contents, writer, postId, commentId}) => {
+const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
   const dispatch = useDispatch();
 
   //댓글 좋아요
@@ -31,6 +31,7 @@ const PostGetComment = ({contents, writer, postId, commentId}) => {
         commentId,
         AccessToken,
         path,
+        postId,
       }));
   };
 
@@ -40,7 +41,7 @@ const PostGetComment = ({contents, writer, postId, commentId}) => {
         <div className="post_one_comment">
           <div> <a>{userId}</a>  <a>{contents}</a> </div>
 
-          {commentLike ? (
+          {isLike ? (
               <img src={comment_red_heart} onClick={commentLikeClickHandler}/>) :
             (<img src={comment_heart} onClick={commentLikeClickHandler}/>)}
         </div>
