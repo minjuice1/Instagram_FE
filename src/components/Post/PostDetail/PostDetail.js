@@ -28,8 +28,8 @@ const PostDetail = () => {
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
-	console.log(comments);
-	// console.log(postDetail);
+	console.log("comments", comments);
+	console.log("postDetail", postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -191,17 +191,22 @@ const PostDetail = () => {
 									</div>
 								</div>
 								<div className="postDetail_comment_likeList">
-									<div className="postDetail_likeList_pic">
+									{/* 팔로우 좋아요를 눌렀을 경우 */}
+									{/* <div className="postDetail_likeList_pic">
 										<img src={menu_profile} alt="menu_profile" />
+									</div> */}
+									{postDetail.isLike?
+										(<div className="postDetail_likeList_likeInfo">
+										좋아요 <span>{(postDetail.likeCount)+1}</span>개
+									</div>) : (<div className="postDetail_likeList_likeInfo">
+										좋아요 <span>{postDetail.likeCount}</span>개
 									</div>
-									{postDetail.likeCount > 1 ?
-									(<div className="postDetail_likeList_likeInfo">
-										<span>testtest</span>님 <span>외 <span>{(postDetail.likeCount)-1}</span>명</span>이
-										좋아합니다
-									</div>) :
-									(<div className="postDetail_likeList_likeInfo">
-									<span> testtest</span> 님이	좋아합니다
-								</div>) }
+									)}
+									{/* 팔로우 좋아요를 눌렀을 경우 */}
+									{/* // <div className="postDetail_likeList_likeInfo">
+									<span>testtest</span>님 <span>외 <span>{postDetail.likeCount}</span>명</span>이
+									좋아합니다
+									</div> */}
 								</div>
 								<div className="postDetail_comment_time">
 									<span>time</span>

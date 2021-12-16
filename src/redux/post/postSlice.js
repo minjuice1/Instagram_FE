@@ -56,7 +56,6 @@ const postSlice = createSlice({
       // state.posts[idx].likeCount = state.posts[idx].likeCount;
       } else {
         state.postDetail[0].isLike = !state.postDetail[0].isLike;
-        state.postDetail[0].likeCount = state.postDetail[0].likeCount;
       }
     },
 
@@ -82,7 +81,9 @@ const postSlice = createSlice({
         state.comment[idx].isLike = !state.comment[idx].isLike;
       } else {
         const post = state.posts.findIndex((p) => p._id === action.payload.postId);
+        console.log(post);
         const cmt = state.posts[post].comments.findIndex((c) => c._id === action.payload.commentId);
+        console.log(cmt);
         state.posts[post].comments[cmt].isLike = !state.posts[post].comments[cmt].isLike;
       }
     },

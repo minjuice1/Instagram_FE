@@ -10,9 +10,6 @@ import "./PostCard";
 const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
   const dispatch = useDispatch();
 
-  //댓글 좋아요
-  const [commentLike, SetCommentLike] = useState(false);
-
   // userId 추출
   const userId = writer[0] ? 
     (writer[0].userId) : 
@@ -26,6 +23,7 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
   const AccessToken = localStorage.getItem("user");
   const path = "mainCmt";
   const commentLikeClickHandler = () => {
+    console.log(isLike);
     dispatch(
       likedComment({
         commentId,
@@ -33,14 +31,14 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
         path,
         postId,
       }));
+      console.log(isLike);
   };
-
+  console.log(isLike);
   return(
     <>
       <div className="post_comment">
         <div className="post_one_comment">
           <div> <a>{userId}</a>  <a>{contents}</a> </div>
-
           {isLike ? (
               <img src={comment_red_heart} onClick={commentLikeClickHandler}/>) :
             (<img src={comment_heart} onClick={commentLikeClickHandler}/>)}

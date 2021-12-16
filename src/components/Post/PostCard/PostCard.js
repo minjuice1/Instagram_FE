@@ -70,7 +70,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
 
 
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
-  const get_comments = comments.slice(0-2);
+  const get_comments = comments.slice(0,2);
   
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
@@ -188,7 +188,12 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
               </div>
             </div>
             <div className="post_content">
-              <a className="post_user_id" onClick={likeListClickHandler}>좋아요 <span>{likeCount}</span>개</a>
+              {isLike? (
+                <a className="post_user_id" onClick={likeListClickHandler}>좋아요 <span>{(likeCount)+1}</span>개</a>
+              ) : (
+                <a className="post_user_id" onClick={likeListClickHandler}>좋아요 <span>{likeCount}</span>개</a>
+              )}
+              
               
               <div className="post_text">
                 <a className="post_user_id">{writer[0].userId}</a>
