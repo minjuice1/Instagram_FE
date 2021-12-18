@@ -1,21 +1,24 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router';
 
 import { likedComment } from '../../../redux/post/comment';
 import { replyReducer } from '../../../redux/post/postSlice';
 import PostReplyComment from './PostReplyComment';
 
 // postDetail과 css공유
-import pp from "../../../image/profile.jpg";
+import {none_profile} from "../../../common/IconImage";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 // modal
 import PostDetailCommentModal from "./PostDetailCommentModal";
 
-const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments, profileImage}) => {
-  const dispatch = useDispatch();
 
+const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments, profileImage}) => {
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // modal
   const [openModal, setOpenModal] = useState(false); 
   const show_postModal = () => {
@@ -48,7 +51,16 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   const ReplyClickHandler = () => {
     setClickReply(!clickReply);
   }
-   
+
+   //유저 정보 프로필 클릭해서 들어가기
+	const UserProfileClickHandler = () => {
+		// const id = postDetail.writer.userId
+		navigate(`/profile/${writer}`,{state: writer})
+	}
+
+  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
+	const user_img = profileImage? profileImage : none_profile;
+
     //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
     const today = new Date();
@@ -94,12 +106,12 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
     <div className="postDetail_comments" onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}>
     <div className="postDetail_comment_pp">
-      <img src={profileImage}/>
+      <img src={user_img}/>
     </div>
     <div className="postDetail_comments_comment">
       <div>
       <div className="postDetail_comment_userId">
-        <span>{writer}</span>
+        <span onClick={UserProfileClickHandler}>{writer}</span>
         <span className="postDetail_comment_contents">
           {contents}
         </span>

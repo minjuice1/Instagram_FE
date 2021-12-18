@@ -18,18 +18,14 @@ import {FiSettings, FiPlayCircle} from "react-icons/fi";
 import {BiBookmark} from "react-icons/bi";
 import {RiAccountBoxLine} from "react-icons/ri";
 import {MdGridOn} from "react-icons/md";
-import ProfileStory from "./ProfileStory";
 import MyProfileInfo from "./MyProfileInfo";
 import {useParams} from "react-router";
-import {getProfile} from "../../../redux/user/user";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
 
 
 
 const Profile = () => {
-
-
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -48,18 +44,15 @@ const Profile = () => {
 
     if(!myProfile){
       dispatch(getUserPost(user_id));
-    }else{
-      dispatch(getUserPost(myId));
     }
     if(myId === user_id){
       SetMyProfile(true);
+    }else{
+      SetMyProfile(false);
     }
   }, [dispatch, myProfile, myId, user_id]);
 
-  useEffect((e) => {
-    
-  });
-  // 	// 게시물, 동영상, 저장됨, 태그됨
+  // 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
   const [ClickedVideo, setClickedVideo] = useState(false);
   const [ClickedSaved, setClickedSaved] = useState(false);
@@ -69,7 +62,7 @@ const Profile = () => {
 
   // 게시물, 동영상, 태그됨
   const postsClickHandler = () => {
-    setClickedPosts(true);
+    setClickedPosts(false);
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
@@ -107,6 +100,11 @@ const user_info = useSelector(state=> state.post.user);
 const user_data = user_info && user_info[0];
 const my_follow = user_data && user_data.isFollow;
 
+
+
+console.log("포스트", post_list);
+
+
 // 저장된 게시물 불러오기
 const savedUser = useSelector((state) => state.post.savedPost);
 
@@ -115,7 +113,6 @@ const [openCollectionModal, setOpenCollectionModal] = useState(false);
 const addCollectionHandler = () => {
   setOpenCollectionModal(true);
 }
-
 
   return (
     <>

@@ -53,7 +53,6 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
       }))
   };
 
-  //포스트 북마크
   const AccessToken = localStorage.getItem("user");
   const savedPostHandler = () => { 
     dispatch( 
@@ -179,6 +178,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
                 <img src={message}/>
               </div>
               <div className="footer_collection">
+
               {isPostSaved ? (
 											<img
 												className="post_saveActive"

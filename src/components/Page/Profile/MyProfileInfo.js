@@ -18,14 +18,6 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
     dispatch(modal_check());
   };
 
-
-
-
-
-  const show_following_modal = () => {
-    dispatch(following_modal_check());
-  };
-
   const editProfileClickHandler = () => {
     navigate("/edituser");
   }

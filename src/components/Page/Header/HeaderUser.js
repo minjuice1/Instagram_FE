@@ -3,12 +3,12 @@ import React from "react";
 import {logout} from "../../../redux/user/user";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
-import {history} from "../../../history";
 
 
 const HeaderUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const userLogoutClickHandler = () => {
     dispatch(logout());
     navigate(`/login}`, {replace: true})
@@ -17,8 +17,7 @@ const HeaderUser = () => {
 
   const id = useSelector(state=>state.user.user.userId);
   const editUserClickHandler = () => {
-    navigate(`/myprofile/${id}`, {replace: true})
-    // history.replace(`/myprofile/${id}`, {replace: true});
+    navigate(`/profile/${id}`,{state: id})
   }
 
   // 저장됨으로 이동

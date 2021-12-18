@@ -3,15 +3,25 @@ import {useSelector} from "react-redux";
 import HeaderSearchCard from "./HeaderSearchCard";
 
 const HeaderSearchResult = () => {
-// //
-//   const search_user = useSelector(state=>state.search.user);
+
+  const user_data = useSelector(state=>state.search.user);
+  const hash_data = useSelector(state=>state.search.result);
+
+  console.log(user_data);
+
+
 
 
   return (
     <>
       <div>
 
-        {/*<HeaderSearchCard user={search_user} result={search_result}/>*/}
+        {user_data && user_data.map((user) => (
+          <HeaderSearchCard name={user.name} userId={user.userId} profileImage={user.profileImage}/>
+        ))}
+        {hash_data && hash_data.map((hash) => (
+          <HeaderSearchCard tagName={hash.tagName} postCount={hash.postCount}/>
+        ))}
 
       </div>
     </>

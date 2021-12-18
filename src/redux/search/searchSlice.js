@@ -8,7 +8,9 @@ const searchSlice = createSlice({
     user:[],
     result:[],
   },
-  reducers: {},
+  reducers: {
+
+  },
 
   extraReducers: {
     [headerSearch.fulfilled]: (state, action) => {

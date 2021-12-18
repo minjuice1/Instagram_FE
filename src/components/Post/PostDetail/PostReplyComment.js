@@ -1,17 +1,20 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router';
 
 import PostDetailReplyCommentModal from './PostDetailReplyCommentModal';
 import { likedReplyComment } from '../../../redux/post/comment';
 import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 // postDetail과 css공유
-import pp from "../../../image/profile.jpg";
+import {none_profile} from "../../../common/IconImage";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+
 
 
 const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, ReCommentId, postId, Id, ReprofileImage}) => {  
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // modal
   const [openModal, setOpenModal] = useState(false); 
@@ -41,6 +44,14 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
     setShowModal(false)
   }
 
+  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
+	const user_img = ReprofileImage? ReprofileImage : none_profile;
+
+    //유저 정보 프로필 클릭해서 들어가기
+	const UserProfileClickHandler = () => {
+		// const id = postDetail.writer.userId
+		navigate(`/profile/${Rewriter}`,{state: Rewriter})
+	}
 
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
@@ -78,7 +89,7 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
   <div className="postDetail_replyComments"
     onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
     <div className="postDetail_replyComment_pp">
-      <img src={ReprofileImage} alt="pp" />
+      <img src={user_img} alt="pp" />
     </div>
     <div className="postDetail_replyComments_comment">
       <div className="postDetail_replyComment_userId">

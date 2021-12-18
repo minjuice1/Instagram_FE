@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useParams } from "react-router";
+import {useNavigate, useParams } from "react-router";
 import { history } from '../../../history';
 
 import {getPostDetail, likePost, savedPost} from "../../../redux/post/post";
@@ -12,12 +12,12 @@ import PostOptionModal from './PostOptionModal';
 
 // css
 import "./PostDetail.scss";
-import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
-import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile,} from "../../../common/IconImage";
+import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 
 const PostDetail = () => {	
 
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const {postId} = useParams();
 
@@ -29,6 +29,8 @@ const PostDetail = () => {
 	const myId = useSelector(state=>state.user.user.userId);
 	console.log("comments", comments);
 	// console.log("postDetail", postDetail);
+
+	console.log("포스트디테일",postDetail)
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -69,11 +71,11 @@ const PostDetail = () => {
 	 //유저 정보 프로필 클릭해서 들어가기
 	const UserProfileClickHandler = () => {
 		const id = postDetail.writer.userId
-		Navigate(`/profile/${id}`,{state: id})
+		navigate(`/profile/${id}`,{state: id})
 	}
 
 	 //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
-	const profile_img = postDetail.writer.profileImage;
+	const profile_img = postDetail && postDetail.writer.profileImage;
 	const user_img = profile_img? profile_img : none_profile;
 
 	//글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
@@ -100,14 +102,16 @@ const PostDetail = () => {
 		}
 		return `${Math.floor(displayTimeDay / 365)}년 전`;
 	}
+	const times = postDetail && postDetail.createdAt;
+	const time = displayTime(times);
 
-	// const time = displayTime(postDetail.createdAt);
-	// console.log(time);
+	console.log(time);
+
 
 	return (
 		<>
 			{openModal && <PostOptionModal myId={myId} writer={postDetail.writer.userId} setOpenModal={setOpenModal} />}
-			{postDetail && comments && postDetail.writer &&
+			{postDetail && comments && 
 			<div className="postDetail_background">
 				<div className="postDetail_overlay" onClick={cancleClickHandler}/>
 				<div className="postDetail_exit"><BiX size={40} onClick={cancleClickHandler}/></div>
@@ -134,7 +138,7 @@ const PostDetail = () => {
 							{/* 댓글리스트 */}
 								<div className="postDetail_comments">
 									<div className="postDetail_comment_pp">
-										<img src={pp} alt="pp" />
+										<img src={user_img} alt="pp" />
 									</div>
 									<div className="postDetail_comments_mycomment">
 										<div className="postDetail_comment_myUserId">
@@ -143,8 +147,8 @@ const PostDetail = () => {
 												{postDetail.contents}
 											</span>
 										</div>
-										<div className="postDetail_comment_myInfo">
-											<span>time</span>
+										<div className="postDetail_comment_info">
+											<span>{time}</span>
 										</div>
 									</div>
 								</div>
@@ -217,7 +221,7 @@ const PostDetail = () => {
 									</div> */}
 								</div>
 								<div className="postDetail_comment_time">
-									<span>time</span>
+									<span>{time}</span>
 								</div>
 								<div className="postDetail_postComment">
 								<PostComment path={path} postId={postId} commentId={comments._id}/>

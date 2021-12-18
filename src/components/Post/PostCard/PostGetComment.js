@@ -11,13 +11,14 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
   const dispatch = useDispatch();
 
   // userId 추출
+
   const userId = writer[0] ? 
     (writer[0].userId) : 
     (writer.userId);
 
-  // const commentLikeClickHandler = () => {
-  //   SetCommentLike(!commentLike)
-  // }
+  // const userInfo = sessionStorage.getItem("info");
+  // const userData = JSON.parse(userInfo);
+  // const userId = userData.userId;
 
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
@@ -40,10 +41,6 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
               <img src={comment_red_heart} onClick={commentLikeClickHandler}/>) :
             (<img src={comment_heart} onClick={commentLikeClickHandler}/>)}
         </div>
-        {/*<div className="post_one_comment"><a className="post_user_id"> poseson92</a><div>오우ㅜㅜㅜㅜㅜㅜㅜㅜ</div>*/}
-        {/*  {commentLike? <img src={comment_red_heart} onClick={commentLikeClickHandler}/> :  <img src={comment_heart} onClick={commentLikeClickHandler}/>}*/}
-        {/*</div>*/}
-
       </div>
     </>
   )
