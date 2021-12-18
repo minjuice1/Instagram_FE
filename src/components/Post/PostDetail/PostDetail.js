@@ -8,14 +8,14 @@ import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
 
 // modal
-import { modal_check } from "../../../redux/modal/modalSlice";
-import PostModal from "../PostModal/PostModal";
+import PostDetailModal from './PostDetailModal';
 
 // css
 import "./PostDetail.scss";
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
+
 
 const PostDetail = () => {	
 
@@ -56,13 +56,19 @@ const PostDetail = () => {
       ); 
     };
 
-	// modal
-	const show_postModal = () => {
-		dispatch(modal_check());
-	};
-
+	// PostDetail 전체 modal
 	const cancleClickHandler = () => {
 		history.go(-1);
+	};
+
+	// PostDetail의 dot modal
+  const [openModal, setOpenModal] = useState(false); 
+  const show_postInfoModal = () => {
+		setOpenModal(true);
+	};
+
+	const cancleInfoClickHandler = () => {
+		setOpenModal(false);
 	};
 
 	
@@ -93,17 +99,15 @@ const PostDetail = () => {
 
 	// const time = displayTime(postDetail.createdAt);
 	// console.log(time);
-	
-	
 
 	return (
 		<>
-			{is_modal && <PostModal />}
+			{openModal && <PostDetailModal setOpenModal={setOpenModal} />}
 			{postDetail && comments &&
 			<div className="postDetail_background">
-				<div className="postDetail_overlay" onClick={cancleClickHandler}/>
+				<div className="postDetail_overlay" onClick={cancleInfoClickHandler} onClick={cancleClickHandler}/>
 				<div className="postDetail_exit"><BiX size={40} onClick={cancleClickHandler}/></div>
-				<div className="postDetail_container">
+				<div className="postDetail_container" >
 					<div className="postDetail_leftsideBox">
 						<img src={postDetail.imageUrl} alt="postImg" />
 					</div>
@@ -115,7 +119,7 @@ const PostDetail = () => {
 							<div className="postDetail_header_userId">
 								<span>{postDetail.writer.userId}</span> * <span> 팔로잉</span>
 							</div>
-							<div className="postDetail_header_btn" onClick={show_postModal}>
+							<div className="postDetail_header_btn" onClick={show_postInfoModal}>
 								<BiDotsHorizontalRounded size={25} />
 							</div>
 						</div>

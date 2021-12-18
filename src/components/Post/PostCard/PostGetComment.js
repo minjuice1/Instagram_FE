@@ -23,7 +23,6 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
   const AccessToken = localStorage.getItem("user");
   const path = "mainCmt";
   const commentLikeClickHandler = () => {
-    console.log(isLike);
     dispatch(
       likedComment({
         commentId,
@@ -31,10 +30,8 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
         path,
         postId,
       }));
-      console.log(isLike);
   };
-  console.log(isLike);
-  return(
+  return( 
     <>
       <div className="post_comment">
         <div className="post_one_comment">

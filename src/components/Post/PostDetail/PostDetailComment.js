@@ -1,16 +1,17 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
-import {comment_heart, comment_red_heart} from "../../../common/IconImage";
+
 import { likedComment } from '../../../redux/post/comment';
+import { replyReducer } from '../../../redux/post/postSlice';
+import PostReplyComment from './PostReplyComment';
 
 // postDetail과 css공유
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
+import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 // modal
 import PostDetailCommentModal from "./PostDetailCommentModal";
-import { replyReducer } from '../../../redux/post/postSlice';
-import PostReplyComment from './PostReplyComment';
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments}) => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
 	const time = displayTime(date);
 
-  // 삭제, 신고버튼 mouseOver 
+  // 삭제버튼 mouseOver 
   const [showModal, setShowModal] = useState(false)
   const handleMouseEnter = e => {
     setShowModal(true)
@@ -88,7 +89,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
   return(
     <>
-    { openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
+    {openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
     
     <div className="postDetail_comments" onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}>
