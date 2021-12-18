@@ -1,48 +1,76 @@
 @import "../../../common/variables";
 @import "../../../common/mixin";
 
-//post_modal
-.post_modal {
-  width: 400px;
-  height: 335px;
-  border: 1px solid $instaGray;
-  border-radius: 15px;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  position: fixed;
-  z-index: 100;
-  background: $instaWhite;
-  cursor: pointer;
-  margin-left: -600px;
-  margin-top: 200px;
+.post_modal_container {
+	left: 0;
+	width: 97vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	z-index: 1500;
+	position: fixed;
 
-
-
-  & > div {
-    border-bottom: 1px solid $instaGray;
-    height: 47px;
-    text-align: center;
-    line-height: 47px;
-    @include fontSize('large');
-    color: $instaMenuBlack;
+	.post_modal {
+    width: 400px;
+    height: 335px;
+    border: 1px solid $instaGray;
+    border-radius: 15px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
     z-index: 1100;
-  }
-  & > div:first-child, & > div:nth-child(2){
-    color: $instaRed;
-    font-weight: bold;
-  }
-  & > div:last-child{
-    border: none;
-  }
+    background: $instaWhite;
+    cursor: pointer;
+    position: fixed;
+
+		& > div {
+      border-bottom: 1px solid $instaGray;
+      height: 47px;
+      text-align: center;
+      line-height: 47px;
+      @include fontSize('large');
+      color: $instaMenuBlack;
+      z-index: 1100;
+		}
+		& > div:first-child, & > div:nth-child(2){
+			color: $instaRed;
+			font-weight: bold;
+		}
+		& > div:last-child{
+			border: none;
+		}
+	}
+
+	.post_modal_myId {
+		width: 400px;
+    height: 144px;
+    border: 1px solid $instaGray;
+    border-radius: 15px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    background: $instaWhite;
+    cursor: pointer;
+    position: fixed;
+
+		& > div {
+      border-bottom: 1px solid $instaGray;
+      height: 47px;
+      text-align: center;
+      line-height: 47px;
+      @include fontSize('large');
+      color: $instaMenuBlack;
+      z-index: 100;
+		}
+		& > div:first-child {
+			color: $instaRed;
+			font-weight: bold;
+		}
+		& > div:last-child{
+			border: none;
+		}
+	}
 }
 
-.post_modal_container{
-  left:0;
-  width: 80vw;
-  border-radius: 12px;
-  z-index: 1500;
-
-
-}
 //post_like_list
 .like_list_container{
   width: 400px;
@@ -66,7 +94,7 @@
 	left: 0;
 	bottom: 0;
 	right: 0;
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0.7);
   z-index: 99;
 }
 

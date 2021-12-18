@@ -8,13 +8,14 @@ import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
 
 // modal
-import PostDetailModal from './PostDetailModal';
+import PostOptionModal from './PostOptionModal';
 
 // css
 import "./PostDetail.scss";
 import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, comment_heart, comment_red_heart, menu_profile,} from "../../../common/IconImage";
+import PostModal from '../PostModal/PostModal';
 
 
 const PostDetail = () => {	
@@ -25,11 +26,12 @@ const PostDetail = () => {
 	// main이랑 path로 action 구분
 	const path = "postDetail";
 
-	const is_modal = useSelector((state) => state.modal.is_modal);
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
+	const myId = useSelector(state=>state.user.user.userId);
 	console.log("comments", comments);
 	console.log("postDetail", postDetail);
+	console.log(myId);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -63,14 +65,9 @@ const PostDetail = () => {
 
 	// PostDetail의 dot modal
   const [openModal, setOpenModal] = useState(false); 
-  const show_postInfoModal = () => {
+  const show_postOptionModal = () => {
 		setOpenModal(true);
 	};
-
-	const cancleInfoClickHandler = () => {
-		setOpenModal(false);
-	};
-
 	
 	//글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
 	function displayTime(value) {
@@ -102,10 +99,10 @@ const PostDetail = () => {
 
 	return (
 		<>
-			{openModal && <PostDetailModal setOpenModal={setOpenModal} />}
+			{openModal && <PostOptionModal myId={myId} writer={postDetail.writer.userId} setOpenModal={setOpenModal} />}
 			{postDetail && comments &&
 			<div className="postDetail_background">
-				<div className="postDetail_overlay" onClick={cancleInfoClickHandler} onClick={cancleClickHandler}/>
+				<div className="postDetail_overlay" onClick={cancleClickHandler}/>
 				<div className="postDetail_exit"><BiX size={40} onClick={cancleClickHandler}/></div>
 				<div className="postDetail_container" >
 					<div className="postDetail_leftsideBox">
@@ -119,7 +116,7 @@ const PostDetail = () => {
 							<div className="postDetail_header_userId">
 								<span>{postDetail.writer.userId}</span> * <span> 팔로잉</span>
 							</div>
-							<div className="postDetail_header_btn" onClick={show_postInfoModal}>
+							<div className="postDetail_header_btn" onClick={show_postOptionModal}>
 								<BiDotsHorizontalRounded size={25} />
 							</div>
 						</div>

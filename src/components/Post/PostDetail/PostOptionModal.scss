@@ -9,7 +9,7 @@
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	z-index: 1100;
+	z-index: 1300;
 	position: fixed;
 
 	.postDetailModal {
@@ -21,7 +21,8 @@
     z-index: 1100;
     background: $instaWhite;
     cursor: pointer;
-    margin-top: 130px;
+    margin-top: 600px;
+		position: fixed;
 
 		& > div {
       border-bottom: 1px solid $instaGray;
@@ -31,15 +32,45 @@
       @include fontSize('large');
       color: $instaMenuBlack;
       z-index: 1100;
+		}
+		& > div:first-child, & > div:nth-child(2){
+			color: $instaRed;
+			font-weight: bold;
+		}
+		& > div:last-child{
+			border: none;
+		}
 	}
-  & > div:first-child, & > div:nth-child(2){
-    color: $instaRed;
-    font-weight: bold;
-  }
-  & > div:last-child{
-    border: none;
-  }
-}
+	
+	.postDetailModal_myId {
+		width: 400px;
+    height: 144px;
+    border: 1px solid $instaGray;
+    border-radius: 15px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    background: $instaWhite;
+    cursor: pointer;
+    position: fixed;
+		margin-top: 630px;
+
+		& > div {
+      border-bottom: 1px solid $instaGray;
+      height: 47px;
+      text-align: center;
+      line-height: 47px;
+      @include fontSize('large');
+      color: $instaMenuBlack;
+      z-index: 1100;
+		}
+		& > div:first-child {
+			color: $instaRed;
+			font-weight: bold;
+		}
+		& > div:last-child{
+			border: none;
+		}
+	}
 }
 
 .postDetailModal_overlay {

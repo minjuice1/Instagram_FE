@@ -9,8 +9,8 @@ import { replyReducer } from '../../../redux/post/postSlice';
 
 import PostComment from "./PostComment";
 import PostGetComment from "./PostGetComment";
-import PostDetail from '../PostDetail/PostDetail';
 import PostLikeModal from "../PostModal/PostLikeModal";
+import PostModal from '../PostModal/PostModal';
 
 import "./PostCard.scss";
 import {
@@ -24,12 +24,16 @@ import {
   none_profile,
 } from "../../../common/IconImage";
 import dompurify from "dompurify";
+import PostOptionModal from '../PostDetail/PostOptionModal';
+
 
 const PostCard = ({contents, createdAt, writer, postId, likeCount,
                     postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const myId = useSelector(state=>state.user.user.userId);
 
   // postDetail이랑 path로 action 구분
   const path = "main";
@@ -68,7 +72,6 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
 		SetMorePost(!morePost);
 	};
 
-
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
   const get_comments = comments.slice(-2);
   
@@ -101,7 +104,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
 	const time = displayTime(createdAt);
 
   //모달 리덕스에서 관리
-  const is_postDetailmodal = useSelector((state) => state.modal.postDetail_modal);
+  const is_modal = useSelector((state) => state.modal.is_modal);
   const show_postModal = () => {
     dispatch(modal_check());
   };
@@ -142,10 +145,16 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
     navigate(`/postdetail/${postId}`);
   }
 
+  // PostDetail의 dot modal
+  const [openModal, setOpenModal] = useState(false); 
+  const show_postOptionModal = () => {
+		setOpenModal(true);
+	};
+
   return (
     <>
+      {openModal && <PostModal setOpenModal={setOpenModal} writer={writer[0].userId} myId={myId} />}
       {post_like_list && <PostLikeModal/>}
-    {is_postDetailmodal && <PostDetail/>}
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
@@ -154,7 +163,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
               <div className="post_user_id"  onClick={UserProfileClickHandler} >{writer[0].userId}</div>
               {/*임시 삭제버튼*/}
               <div onClick={deleteClickHandler}>삭제</div>
-              <div className="profile_img_dot" onClick={show_postModal}>
+              <div className="profile_img_dot" onClick={show_postOptionModal}>
                <img src={dot}/>
               </div>
             </div>

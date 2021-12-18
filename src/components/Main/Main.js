@@ -5,7 +5,6 @@ import SideMain from "./Side/SideMain";
 import "./Main.scss";
 import MainStory from "./MainStory/MainStory";
 import { useDispatch, useSelector } from "react-redux";
-import PostModal from "../Post/PostModal/PostModal";
 import { getPost } from "../../redux/post/post";
 
 const Main = () => {
@@ -15,7 +14,6 @@ const Main = () => {
 		dispatch(getPost());
 	}, [dispatch]);
 
-	const is_modal = useSelector((state) => state.modal.is_modal);
 	const post_data = useSelector((state) => state.post.posts);
 	console.log(post_data);
 
@@ -45,7 +43,6 @@ const Main = () => {
 					<div className="Main_side">
 						<SideMain />
 					</div>
-					{is_modal && <PostModal />}
 				</div>
 			</div>
 		</>
