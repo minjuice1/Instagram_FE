@@ -66,7 +66,7 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    navigate("/profile");
+    navigate(`/profile/${myId}`);
   };
 
   const videoClickHandler = () => {

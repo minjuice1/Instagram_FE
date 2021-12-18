@@ -54,7 +54,6 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
    //유저 정보 프로필 클릭해서 들어가기
 	const UserProfileClickHandler = () => {
-		// const id = postDetail.writer.userId
 		navigate(`/profile/${writer}`,{state: writer})
 	}
 

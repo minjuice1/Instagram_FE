@@ -49,7 +49,6 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
 
     //유저 정보 프로필 클릭해서 들어가기
 	const UserProfileClickHandler = () => {
-		// const id = postDetail.writer.userId
 		navigate(`/profile/${Rewriter}`,{state: Rewriter})
 	}
 
@@ -93,7 +92,7 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
     </div>
     <div className="postDetail_replyComments_comment">
       <div className="postDetail_replyComment_userId">
-        <span>{Rewriter}</span>
+        <span onClick={UserProfileClickHandler}>{Rewriter}</span>
         <span className="postDetail_replyComment_contents">
           {Recontents}
         </span>

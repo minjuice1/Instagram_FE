@@ -28,9 +28,7 @@ const PostDetail = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
 	console.log("comments", comments);
-	// console.log("postDetail", postDetail);
-
-	console.log("포스트디테일",postDetail)
+	console.log("postDetail", postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -70,9 +68,11 @@ const PostDetail = () => {
 	
 	 //유저 정보 프로필 클릭해서 들어가기
 	const UserProfileClickHandler = () => {
-		const id = postDetail.writer.userId
-		navigate(`/profile/${id}`,{state: id})
+		const user_Id = postDetail.writer.userId
+		navigate(`/profile/${user_Id}`, {replace: true})
+		console.log(user_Id);
 	}
+	
 
 	 //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
 	const profile_img = postDetail && postDetail.writer.profileImage;
@@ -104,9 +104,6 @@ const PostDetail = () => {
 	}
 	const times = postDetail && postDetail.createdAt;
 	const time = displayTime(times);
-
-	console.log(time);
-
 
 	return (
 		<>
@@ -142,12 +139,12 @@ const PostDetail = () => {
 									</div>
 									<div className="postDetail_comments_mycomment">
 										<div className="postDetail_comment_myUserId">
-											<span>{postDetail.writer.userId}</span>
+											<span onClick={UserProfileClickHandler}>{postDetail.writer.userId}</span>
 											<span className="postDetail_comment_myContents">
 												{postDetail.contents}
 											</span>
 										</div>
-										<div className="postDetail_comment_info">
+										<div className="postDetail_comment_myInfo">
 											<span>{time}</span>
 										</div>
 									</div>
