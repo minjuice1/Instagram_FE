@@ -13,7 +13,7 @@ import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 // modal
 import PostDetailCommentModal from "./PostDetailCommentModal";
 
-const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments}) => {
+const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments, profileImage}) => {
   const dispatch = useDispatch();
 
   // modal
@@ -94,7 +94,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
     <div className="postDetail_comments" onMouseEnter={handleMouseEnter}
 							onMouseLeave={handleMouseLeave}>
     <div className="postDetail_comment_pp">
-      <img src={pp} alt="pp" />
+      <img src={profileImage}/>
     </div>
     <div className="postDetail_comments_comment">
       <div>
@@ -144,7 +144,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         {childComments && childComments.map((reply) => (
         <PostReplyComment
         Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.likeCount} ReIsLike={reply.isLike}
-        Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId}
+        Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId} ReprofileImage={reply.writer.profileImage}
         />
       ))}
       </div>

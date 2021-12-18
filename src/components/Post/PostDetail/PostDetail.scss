@@ -202,6 +202,8 @@
 							.postDetail_comments_mycomment{
 								width: 100%;
 								height: auto;
+								border: 1px solid blue;
+								
 
 								.postDetail_comment_myUserId {
 								width: 88%;
@@ -209,15 +211,18 @@
 
 								& > span:first-child {
 									font-weight: bold;
-									margin: 0 20px;
+									margin: 0 20px 5px 20px;
 									cursor: pointer;
+									border: 1px solid green;
+									
 								}
 
 								.postDetail_comment_myContents {
 									height: auto;
 									width: auto;
-									justify-content: left;
+									// justify-content: center;
 									margin: 0 -10px;
+									border: 1px solid red;
 								}
 							}
 
@@ -438,9 +443,10 @@
 
 // InputEmoji
 .postDetail_postComment{
-	position: absolute;
+	// position: fixed;
 	width: 497px;
 	height: auto;
+	// margin-bottom: 50px;
 }
 .postDetail_cmt {
 	display: flex;

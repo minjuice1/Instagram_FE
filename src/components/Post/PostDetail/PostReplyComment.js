@@ -10,7 +10,7 @@ import pp from "../../../image/profile.jpg";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 
 
-const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, ReCommentId, postId, Id}) => {  
+const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, ReCommentId, postId, Id, ReprofileImage}) => {  
   const dispatch = useDispatch();
 
   // modal
@@ -78,7 +78,7 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
   <div className="postDetail_replyComments"
     onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
     <div className="postDetail_replyComment_pp">
-      <img src={pp} alt="pp" />
+      <img src={ReprofileImage} alt="pp" />
     </div>
     <div className="postDetail_replyComments_comment">
       <div className="postDetail_replyComment_userId">
