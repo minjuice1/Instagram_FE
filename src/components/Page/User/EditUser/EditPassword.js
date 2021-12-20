@@ -1,7 +1,7 @@
 import "./EditUser.scss";
-import profile_img from "../../../../image/profile.jpg";
-import {useDispatch} from "react-redux";
-import {useState} from "react";
+import profile_image from "../../../../image/profile.png";
+import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from "react";
 import {changePassword} from "../../../../redux/user/user";
 
 const EditPassword = () => {
@@ -11,6 +11,7 @@ const EditPassword = () => {
   const [newPwd, SetNewPwd] = useState();
   const [checkNewPwd, SetCheckNewPwd] = useState();
 
+  const my_info = useSelector(state => state.user.user);
 
 
   const beforePwdOnChange = (e) => {
@@ -29,29 +30,46 @@ const EditPassword = () => {
       beforePwd,
       newPwd,
       checkNewPwd,
-    }),[dispatch])
+    }), [dispatch])
   }
 
-  return(
+  return (
     <>
-      <label>
-        <div>
-        이전 비밀번호 <input value={beforePwd} onChange={beforePwdOnChange}/>
+      <div className="password_form">
+        <div className="edit_password">
+          <div className="password_info">
+            <div>
+            {profile_image ? <img src={my_info.profileImage} alt="profile_img"/> :
+              <img src={profile_image} alt="profile_image"/>}
+            </div>
+            <div>
+              {my_info.userId}
+            </div>
+          </div>
+          <div className="password_item">
+            <div>이전 비밀번호</div>
+            <div>
+              <input value={beforePwd} onChange={beforePwdOnChange}/>
+            </div>
+          </div>
+          <div className="password_item">
+            <div>새 비밀번호</div>
+            <div>
+              <input value={newPwd} onChange={newPwdOnChange}/>
+            </div>
+          </div>
+          <div className="password_item">
+            <div>새 비밀번호 확인</div>
+            <div>
+              <input value={checkNewPwd} onChange={checkNewPwdOnChange}/>
+            </div>
+          </div>
+          <div className="password_item">
+            <button>비밀번호 변경</button>
+            <div onClick={ChangePwdClickHandler}>비밀번호를 잊으셨나요?</div>
+          </div>
         </div>
-      </label>
-      <label>
-        <div>
-        새 비밀번호 <input value={newPwd} onChange={newPwdOnChange}/>
-        </div>
-      </label>
-      <label>
-        <div>
-        새 비밀번호 확인<input value={checkNewPwd} onChange={checkNewPwdOnChange}/>
-        </div>
-      </label>
-      <button onClick={ChangePwdClickHandler}>비밀번호 변경</button>
-
-      <div>비밀번호를 잊으셨나요?</div>
+      </div>
     </>
   )
 }

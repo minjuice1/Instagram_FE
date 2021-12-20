@@ -6,6 +6,7 @@ import "./Main.scss";
 import MainStory from "./MainStory/MainStory";
 import { useDispatch, useSelector } from "react-redux";
 import { getPost } from "../../redux/post/post";
+import PostLikeModal from "../Post/PostModal/PostLikeModal";
 
 const Main = () => {
 	const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Main = () => {
 	}, [dispatch]);
 
 	const post_data = useSelector((state) => state.post.posts);
-	console.log(post_data);
+	const post_like_list = useSelector(state=>state.modal.likeList_modal);
 
 	return (
 		<>
@@ -43,6 +44,9 @@ const Main = () => {
 					<div className="Main_side">
 						<SideMain />
 					</div>
+					{post_like_list && post_data.map((posts) => (
+						<PostLikeModal postId={posts._id}/>
+					)) }
 				</div>
 			</div>
 		</>

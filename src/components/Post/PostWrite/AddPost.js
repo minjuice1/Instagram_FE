@@ -1,10 +1,10 @@
-import React, {createRef, useEffect} from 'react';
+import React, {createRef, useCallback, useEffect} from 'react';
 import {useDispatch} from "react-redux";
 import {useState} from "react";
 import {addPost} from "../../../redux/post/post";
 import {useDropzone} from 'react-dropzone';
 import post_write from "../../../image/post_write.png";
-
+import Cropper from 'react-easy-crop'
 
 import "./AddPost.scss";
 
@@ -16,6 +16,15 @@ import {add_modal} from "../../../redux/modal/modalSlice";
 const AddPost = () => {
   const dispatch = useDispatch();
 
+  //크롭이미지 할 수 있나 처음부터 했어야 했나
+
+  const [crop, setCrop] = useState({ x: 0, y: 0 })
+  const [zoom, setZoom] = useState(1)
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    console.log(croppedArea, croppedAreaPixels)
+  }, [])
+
   const thumbInner = {
     display: 'flex',
     minWidth: 0,
@@ -24,10 +33,11 @@ const AddPost = () => {
 
 
   //이미지 프리뷰 및 이미지 등록, 이미지 drag&drop 이미지 클릭해서 추가하기.
-
+  //크롭설정
   const [files, setFiles] = useState([]);
   const [noneImage, SetNoneImage] = useState(false);
   const [addNext, SetAddNext] = useState(false);
+
 
   //댓글기능 해제
   const [hideComment, SetHideComment] = useState(true);
@@ -44,12 +54,15 @@ const AddPost = () => {
     SetAddNext(true);
   }
 
+
   const {getRootProps, getInputProps, open, acceptedFiles} = useDropzone({
     accept: 'image/*',
     onDrop: acceptedFiles => {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
+
       })))
+
 			SetNoneImage(true);
     },
     noClick: true,
@@ -58,8 +71,7 @@ const AddPost = () => {
 
 
   //이미지 프리뷰 & 프리뷰 누르고 다음페이지
-  const thumbs =
-    files.map(file => (
+  const thumbs = files.map(file => (
       <div className="thumb" key={file.name}>
         <div style={thumbInner}>
           <img className="img_preview"
@@ -68,6 +80,7 @@ const AddPost = () => {
         </div>
       </div>
     ));
+
 
   const after_thumbs =
     files.map(file => (
@@ -80,6 +93,15 @@ const AddPost = () => {
       </div>
     ));
 
+  {/*<Cropper*/}
+  {/*  image={yourImage}*/}
+  {/*  crop={crop}*/}
+  {/*  zoom={zoom}*/}
+  {/*  aspect={4 / 3}*/}
+  {/*  onCropChange={setCrop}*/}
+  {/*  onCropComplete={onCropComplete}*/}
+  {/*  onZoomChange={setZoom}*/}
+  {/*/>*/}
 
   useEffect(() => () => {
     // Make sure to revoke the data uris to avoid memory leaks
@@ -131,6 +153,10 @@ const AddPost = () => {
   }
 
 
+
+
+
+
   //사진 첨부하고 다음 버튼 누르고 난 후
   if (addNext) return (
     <>
@@ -160,7 +186,6 @@ const AddPost = () => {
                 <button onClick={hideCommentClickHandler}>댓글 기능 해제</button>
                 <a>나중에 게시물 상단의 메뉴(...)에서 이 설정을 변경할 수 있습니다.</a>
               </div>
-              {/*<button >등록하기</button>*/}
             </div>
           </div>
 
@@ -188,11 +213,11 @@ const AddPost = () => {
               </div> :
               <a>새 게시물 만들기</a>
             }</div>
-
           <div className="add_post_image">
             <input {...getInputProps()}/>
             {getInputProps && <aside className="thumbsContainer">
               {thumbs}
+
             </aside>}
             {!noneImage &&
             <div className="add_post_image">

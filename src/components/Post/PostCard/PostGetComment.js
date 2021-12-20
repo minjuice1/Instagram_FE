@@ -11,17 +11,14 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
   const dispatch = useDispatch();
 
   // userId 추출
-
-  const userId = writer[0] ? 
-    (writer[0].userId) : 
+  const userId = writer[0] ?
+    (writer[0].userId) :
     (writer.userId);
 
   // const userInfo = sessionStorage.getItem("info");
   // const userData = JSON.parse(userInfo);
   // const userId = userData.userId;
 
-  console.log(isLike);
-  
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
   const path = "mainCmt";

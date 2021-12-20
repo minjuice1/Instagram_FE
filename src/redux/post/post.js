@@ -135,7 +135,6 @@ export const getUserPost = createAsyncThunk(
       if(response.data.ok){
         return response.data;
       }
-      console.log(response)
       return response;
     }catch (e){
       console.log(e.response);
@@ -168,7 +167,7 @@ export const getLikeList = createAsyncThunk(
     const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
-        url: `/post/:${postId}/likeUsers`,
+        url: `/post/${postId}/likeUsers`,
         method: 'GET',
         headers: {
           Authorization: `Bearer ${AccessToken}`,
@@ -177,7 +176,6 @@ export const getLikeList = createAsyncThunk(
       if(response.data.ok){
         return response;
       }
-      console.log(response)
       return response;
     }catch (e){
       console.log(e.response);

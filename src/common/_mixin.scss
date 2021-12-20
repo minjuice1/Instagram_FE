@@ -29,3 +29,25 @@
 		font-size: 12px;
 	}
 }
+
+@mixin buttonStyle($color) {
+	@if $color == "white" {
+		width: 50px;
+		height: 30px;
+		color: $instaMenuBlack;
+		font-weight: 600;
+		background: $instaWhite;
+		border: 1px solid $instaMenuGray;
+		border-radius: 5px;
+		@include fontSize('large');
+	} @else if $color == "blue" {
+		width: 50px;
+		height: 30px;
+		color: $instaWhite;
+		font-weight: 600;
+		background: $instaBlue;
+		border: none;
+		border-radius: 5px;
+		@include fontSize('large');
+	}
+}

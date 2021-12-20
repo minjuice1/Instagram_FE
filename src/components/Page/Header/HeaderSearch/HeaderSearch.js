@@ -1,9 +1,9 @@
 import React, {useEffect, useRef, useState} from "react";
-import {likeList_modal} from "../../../redux/modal/modalSlice";
+import {likeList_modal} from "../../../../redux/modal/modalSlice";
 import HeaderSearchResult from "./HeaderSearchResult";
-import "./Header.scss";
+import "../Header.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {headerSearch} from "../../../redux/search/search";
+import {headerSearch} from "../../../../redux/search/search";
 import HeaderSearchCard from "./HeaderSearchCard";
 
 
@@ -55,11 +55,6 @@ const HeaderSearch = () => {
     }
   }
 
-
-
-
-
-
   return(
     <>
       <label className="header_search" onClick={activeSearchOnClick}  ref={searchSideRef}>
@@ -76,8 +71,6 @@ const HeaderSearch = () => {
         </div>}
       </label>
     }
-
-      {/*<div className="out_side" onClick={cancleClickHandler}/>*/}
     </>
   )
 }

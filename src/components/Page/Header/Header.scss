@@ -51,7 +51,7 @@
 
   .active_input{
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
     background: $instaWhite;
     width: 380px;
     height: 360px;
@@ -120,6 +120,21 @@
     margin-left: 10px;
 
     //카드 유저 이름
+    & > a:first-child{
+      font-weight: 600;
+    }
+    & > a:nth-child(2){
+      color: $instaMenuGray;
+    }
+  }
+}
+//해쉬태그 카드
+.header_search_hash{
+  display: flex;
+  margin: 10px;
+
+  & > div:nth-child(2){
+    margin: 3px 0 0 8px;
     & > a:first-child{
       font-weight: 600;
     }

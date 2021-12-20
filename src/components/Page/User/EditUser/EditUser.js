@@ -42,7 +42,6 @@ const EditUser = () => {
         <div>
           {editProfile &&  <EditProfile/>}
           {editPwd && <EditPassword/>}
-
       </div>
       </div>
     </>

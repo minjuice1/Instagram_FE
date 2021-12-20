@@ -117,7 +117,10 @@ export const editProfile = createAsyncThunk(
         }
       })
       console.log(response);
-      alert("프로필 정보 수정완료");
+      if(response.data.ok){
+        alert("프로필 정보 수정완료");
+      }
+
       return response;
     } catch (e) {
       console.log(e.response);
@@ -218,6 +221,31 @@ export const getFollow = createAsyncThunk(
   }
 )
 
+//내가 원하는 팔로워 삭제
+export const deleteOneFollower = createAsyncThunk(
+  "user/deleteFollower",
+  async(data, thunkAPI) => {
+    console.log(data);
+
+    const AccessToken = localStorage.getItem("user")
+    try {
+      const response = await Api({
+        url: `/user/follower/deleteFollow/${data._id}`,
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      console.log(response);
+      return response;
+    }catch (e) {
+      console.log(e.response)
+      return false
+    }
+  }
+);
+
+
 //프로필 이미지 등록
 export const profileImg = createAsyncThunk(
   "user/profileImg",
@@ -261,6 +289,33 @@ export const deleteProfileImg = createAsyncThunk(
       if(response.data.ok){
         thunkAPI.dispatch(getProfile());
 
+      }
+      return response;
+    }catch (e) {
+      console.log(e.response)
+      return false
+    }
+  }
+)
+
+//회원탈퇴
+export const deleteUser = createAsyncThunk(
+  "user/deleteUser",
+  async(data, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user");
+    try {
+      const response = await Api({
+        url:`/accounts/deleteUser`,
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      if(response.data.ok){
+        localStorage.removeItem("user");
+        sessionStorage.removeItem("info");
+        alert("회원탈퇴 완료")
+        history.push({ pathname: '/login'});
       }
       return response;
     }catch (e) {
