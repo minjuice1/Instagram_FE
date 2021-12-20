@@ -9,6 +9,8 @@ import ProfileSaved from "./CommonProfile/ProfileSaved";
 
 // 모달
 import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
+import ProfileCollectionModal from './SavedProfile/ProfileCollectionModal';
+
 // scss, icon, img
 import "./Profile.scss";
 import pp from "../../../image/profile.jpg";
@@ -16,18 +18,18 @@ import {FiSettings, FiPlayCircle} from "react-icons/fi";
 import {BiBookmark} from "react-icons/bi";
 import {RiAccountBoxLine} from "react-icons/ri";
 import {MdGridOn} from "react-icons/md";
-import ProfileStory from "./ProfileStory";
 import MyProfileInfo from "./MyProfileInfo";
 import {useLocation, useParams} from "react-router";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
-import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
+
 
 
 const Profile = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
 
   //개인 데이터 불러오기
   const {id} = useParams();
@@ -37,6 +39,7 @@ const Profile = () => {
   const [myProfile, SetMyProfile] = useState(false);
   const myId = useSelector(state=>state.user.user.userId);
 
+  const post_list = useSelector(state=>state.post.post);
 
   useEffect((e) => {
 
@@ -50,11 +53,7 @@ const Profile = () => {
     }
   }, [dispatch, myProfile, location]);
 
-
-  const post_list = useSelector(state=>state.post.post);
-
-
-  // 	// 게시물, 동영상, 저장됨, 태그됨
+  // 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
   const [ClickedVideo, setClickedVideo] = useState(false);
   const [ClickedSaved, setClickedSaved] = useState(false);
@@ -68,7 +67,7 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    // navigate("/profile");
+    navigate(`/profile/${myId}`);
   };
 
   const videoClickHandler = () => {
@@ -76,7 +75,7 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    // navigate("/profile/channel");
+    navigate("/profile/channel");
   };
 
   const savedClickHandler = (event) => {
@@ -84,6 +83,7 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedPosts(false);
     setClickedTagged(false);
+    navigate(`/profile/${myId}/saved`);
   };
 
   const taggedClickHandler = (event) => {
@@ -91,6 +91,7 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedVideo(false);
     setClickedSaved(false);
+    navigate("/profile/tagged");
   };
 
   // 프로필 편집, 팔로워, 팔로우 모달
@@ -105,18 +106,19 @@ console.log("포스트", post_list);
 
 // 저장된 게시물 불러오기
 const savedUser = useSelector((state) => state.post.savedPost);
-// 컬렉션 생성
-const [openModal, setOpenModal] = useState(false);
-const addCollectionHandler = () => {
-  setOpenModal(true);
-}
 
+// 컬렉션 생성
+const [openCollectionModal, setOpenCollectionModal] = useState(false);
+const addCollectionHandler = () => {
+  setOpenCollectionModal(true);
+}
 
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
-      {openModal && <ProfileCollectionModal setOpenModal={setOpenModal}/>}
+      {openCollectionModal && <ProfileCollectionModal setOpenCollectionModal={setOpenCollectionModal}/>}
 
+      {post_list && savedUser &&
       <div className="profile_all">
         <div className="profile_content">
           <div className="profile_profileBox">
@@ -240,7 +242,6 @@ const addCollectionHandler = () => {
               )}
             </div>
 
-
             {/*{saved && (*/}
             {/*  <div className="OtherProfile_postsBox">*/}
             {/*    <ProfileSaved/>*/}
@@ -254,8 +255,9 @@ const addCollectionHandler = () => {
           </div>
         </div>
       </div>
-
+}
     </>
+
   );
 };
 

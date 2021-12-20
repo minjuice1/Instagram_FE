@@ -9,8 +9,8 @@ import { replyReducer } from '../../../redux/post/postSlice';
 
 import PostComment from "./PostComment";
 import PostGetComment from "./PostGetComment";
-import PostDetail from '../PostDetail/PostDetail';
 import PostLikeModal from "../PostModal/PostLikeModal";
+import PostModal from '../PostModal/PostModal';
 
 import "./PostCard.scss";
 import {
@@ -24,15 +24,19 @@ import {
   none_profile,
 } from "../../../common/IconImage";
 import dompurify from "dompurify";
+import PostOptionModal from '../PostDetail/PostOptionModal';
 
-const PostCard = ({contents, createdAt, writer, postId,
+
+const PostCard = ({contents, createdAt, writer, postId, likeCount,
                     postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const myId = useSelector(state=>state.user.user.userId);
 
-
+  // postDetail이랑 path로 action 구분
+  const path = "main";
 
   // 게시글에 \n으로 되어있는 부분을 html코드인 <br/>로 변경해서 줄바꿈 표시함.
   const sanitizer = dompurify.sanitize;
@@ -41,36 +45,30 @@ const PostCard = ({contents, createdAt, writer, postId,
   let first_content = html_content.split("<br/>");
 
   //포스트 좋아요
-  const likes = isLike
-  const [postLike, SetPostLike] = useState(likes);
-
   const postLikeClickHandler = () => {
-    SetPostLike(!postLike);
     dispatch(
       likePost({
         postId,
+        path,
       }))
   };
 
   const AccessToken = localStorage.getItem("user");
-  const path = "main";
-  const savedPostHandler = () => {
-    dispatch(
-      savedPost({
-        postId,
-        AccessToken,
-        path,
-      })
-    );
+  const savedPostHandler = () => { 
+    dispatch( 
+      savedPost({ 
+        postId, 
+        AccessToken, 
+        path, 
+      }))
   };
-  
+
 	//게시글 더보기
 	const [morePost, SetMorePost] = useState(false);
 
 	const morePostClickHandler = () => {
 		SetMorePost(!morePost);
 	};
-
 
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
   const comment_slice = comments.slice(0, 2);
@@ -105,7 +103,7 @@ const PostCard = ({contents, createdAt, writer, postId,
 	const time = displayTime(createdAt);
 
   //모달 리덕스에서 관리
-  const is_postDetailmodal = useSelector((state) => state.modal.postDetail_modal);
+  const is_modal = useSelector((state) => state.modal.is_modal);
   const show_postModal = () => {
     dispatch(modal_check());
   };
@@ -141,10 +139,20 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   }
 
+  // postDetail 로
+  const toPostDetailHandler = () => {
+    navigate(`/postdetail/${postId}`);
+  }
+
+  // PostDetail의 dot modal
+  const [openModal, setOpenModal] = useState(false); 
+  const show_postOptionModal = () => {
+		setOpenModal(true);
+	};
 
   return (
     <>
-    {is_postDetailmodal && <PostDetail/>}
+      {openModal && <PostModal setOpenModal={setOpenModal} writer={writer[0].userId} myId={myId} />}
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
@@ -153,7 +161,7 @@ const PostCard = ({contents, createdAt, writer, postId,
               <div className="post_user_id"  onClick={UserProfileClickHandler} >{writer[0].userId}</div>
               {/*임시 삭제버튼*/}
               <div onClick={deleteClickHandler}>삭제</div>
-              <div className="profile_img_dot" onClick={show_postModal}>
+              <div className="profile_img_dot" onClick={show_postOptionModal}>
                <img src={dot}/>
               </div>
             </div>
@@ -162,10 +170,10 @@ const PostCard = ({contents, createdAt, writer, postId,
             </div>
             <div className="post_icon">
               <div className="footer_icon">
-                {postLike ? (
+                {isLike ? (
                     <img src={post_red_heart} onClick={postLikeClickHandler}/>) :
                   (<img src={post_heart} onClick={postLikeClickHandler}/>)}
-                <img src={text}/>
+                  <img src={text} className="post_cursor" onClick={toPostDetailHandler}/>
                 <img src={message}/>
               </div>
               <div className="footer_collection">
@@ -188,7 +196,13 @@ const PostCard = ({contents, createdAt, writer, postId,
               </div>
             </div>
             <div className="post_content">
-              <a className="post_user_id" onClick={likeListClickHandler}>좋아요 1,200개</a>
+              {isLike? (
+                <a className="post_user_id" onClick={likeListClickHandler}>좋아요 <span>{(likeCount)+1}</span>개</a>
+              ) : (
+                <a className="post_user_id" onClick={likeListClickHandler}>좋아요 <span>{likeCount}</span>개</a>
+              )}
+              
+              
               <div className="post_text">
                 <a className="post_user_id">{writer[0].userId}</a>
                 {morePost ? (
@@ -205,10 +219,9 @@ const PostCard = ({contents, createdAt, writer, postId,
                   </div>)}
               </div>
               <div>
-                {commentCount > 2 && (
-                  <Link to={`/postdetail/${postId}`} >
-                  댓글 <span>{commentCount}</span>개 모두 보기
-                </Link>
+                {commentCount >= 2 && (
+                <span className="post_cursor" onClick={toPostDetailHandler}>
+                  댓글 <span>{commentCount}</span>개 모두 보기</span>
                 )}
               </div>
             </div>
@@ -216,12 +229,12 @@ const PostCard = ({contents, createdAt, writer, postId,
               <PostGetComment contents ={comment.contents}
                               postId={comment.postId}
                               writer={comment.writer}
-                              commentId={comment._id}/>
+                              commentId={comment._id}
+                              isLike={comment.isLike}/>
              ))}
             <div className="post_time">{time}</div>
             {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
               <div>이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
-
           </div>
         </div>
       </div>

@@ -56,6 +56,11 @@
 
 .post_text{
  display: flex;
+
+}
+
+.post_cursor{
+  cursor: pointer;
 }
 
 .post_icon {
@@ -63,6 +68,7 @@
  justify-content: space-between;
  margin: 0 10px 0 10px;
 }
+
 
 .post_cmt {
  border-top: 1px solid $instaGray;
@@ -93,7 +99,7 @@
   color: $instaMenuBlack;
  }
  & > img {
-  margin-right: 10px;
+  margin-right: 13px;
  }
 }
 

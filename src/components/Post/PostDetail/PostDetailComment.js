@@ -1,20 +1,24 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
-import {comment_heart, comment_red_heart} from "../../../common/IconImage";
+import { useNavigate } from 'react-router';
+
 import { likedComment } from '../../../redux/post/comment';
-
-// postDetail과 css공유
-import pp from "../../../image/profile.jpg";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
-
-// modal
-import PostDetailCommentModal from "./PostDetailCommentModal";
 import { replyReducer } from '../../../redux/post/postSlice';
 import PostReplyComment from './PostReplyComment';
 
-const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments}) => {
-  const dispatch = useDispatch();
+// postDetail과 css공유
+import {none_profile} from "../../../common/IconImage";
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 
+// modal
+import PostDetailCommentModal from "./PostDetailCommentModal";
+
+
+const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments, profileImage}) => {
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   // modal
   const [openModal, setOpenModal] = useState(false); 
   const show_postModal = () => {
@@ -23,13 +27,14 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
+  const path = "detailCmt"
   const LikedCommentHandler = () => {
+    console.log(postId);
     dispatch(
       likedComment({
         commentId,
         AccessToken,
-        isLike,
-        like,
+        path,
       }));
   };
 
@@ -46,7 +51,15 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   const ReplyClickHandler = () => {
     setClickReply(!clickReply);
   }
-   
+
+   //유저 정보 프로필 클릭해서 들어가기
+	const UserProfileClickHandler = () => {
+		navigate(`/profile/${writer}`,{state: writer})
+	}
+
+  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
+	const user_img = profileImage? profileImage : none_profile;
+
     //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
     const today = new Date();
@@ -75,17 +88,29 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
 
 	const time = displayTime(date);
 
+  // 삭제버튼 mouseOver 
+  const [showModal, setShowModal] = useState(false)
+  const handleMouseEnter = e => {
+    setShowModal(true)
+  }
+  const handleMouseLeave = e => {
+    setShowModal(false)
+  }
+
+
   return(
     <>
     {openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
-    <div className="postDetail_comments">
+    
+    <div className="postDetail_comments" onMouseEnter={handleMouseEnter}
+							onMouseLeave={handleMouseLeave}>
     <div className="postDetail_comment_pp">
-      <img src={pp} alt="pp" />
+      <img src={user_img}/>
     </div>
     <div className="postDetail_comments_comment">
       <div>
       <div className="postDetail_comment_userId">
-        <span>{writer}</span>
+        <span onClick={UserProfileClickHandler}>{writer}</span>
         <span className="postDetail_comment_contents">
           {contents}
         </span>
@@ -108,34 +133,36 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
     </div>
       <div className="postDetail_comment_info">
         <span>{time}</span>
-        {isLike ? (
+        {isLike ? isLike === 0 ? (
           <span>
           좋아요 <span>{(like)+1}</span>개
-          {/* 좋아요 <span>like</span>개 */}
         </span>
         ) : (
           <span>
           좋아요 <span>{like}</span>개
-          {/* 좋아요 <span>like</span>개 */}
         </span>
+        ) : (
+          <span>좋아요 0개</span>
         )}
         <span onClick={replyHandler}>답글 달기</span>
-        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>
+        {showModal && <span className="postDetail_comment_info_modal" onClick={show_postModal}><BiDotsHorizontalRounded size={15}/></span>}
+          
       </div>
       {clickReply ?
       (<div className="postDetail_replyCommentsBox">
-        <div onClick={ReplyClickHandler} className="postDetail_replycomment_hidden"> ㅡ 답글 숨기기 
+        <div className="postDetail_replycomment_hidden">
+          <span  onClick={ReplyClickHandler}> ㅡㅡ 답글 숨기기 </span>
         {childComments && childComments.map((reply) => (
         <PostReplyComment
         Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.likeCount} ReIsLike={reply.isLike}
-        Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId}
+        Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId} ReprofileImage={reply.writer.profileImage}
         />
       ))}
       </div>
       </div>)
     : (<div  onClick={ReplyClickHandler}>
         {childComments && childComments.length > 0 ? 
-        (<div className="postDetail_replycomment"> ㅡ 답글보기 (<span>{childComments.length}</span>개)</div>)
+        (<div className="postDetail_replycomment"> ㅡㅡ 답글보기 (<span>{childComments.length}</span>개)</div>)
       : (<div className="postDetail_replycomment"></div>) }
       </div>)}
     </div>

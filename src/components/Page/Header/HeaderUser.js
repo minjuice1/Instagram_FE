@@ -20,13 +20,20 @@ const HeaderUser = () => {
     navigate(`/profile/${id}`,{state: id})
   }
 
+  // 저장됨으로 이동
+  const savedProfileClickHandler = () => {
+    navigate(`/profile/${id}/saved`, {replace: true})
+    // history.replace(`/myprofile/${id}`, {replace: true});
+  }
+
+
   return(
     <div className="myprofile">
       <div className="profile_menu" onClick={editUserClickHandler}>
         <img src={menu_profile}/>
         <div>프로필</div>
       </div>
-      <div className="profile_menu">
+      <div className="profile_menu" onClick={savedProfileClickHandler}>
         <img src={menu_save}/>
         <div>저장됨</div>
       </div>

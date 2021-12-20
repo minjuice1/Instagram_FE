@@ -38,7 +38,7 @@ const userSlice = createSlice({
 			state.user = action.payload.data.user;
 	},
 		[getUserPost.fulfilled]: (state,action) => {
-
+			// postSlice에 있음
 		},
 		[getFollower.fulfilled]: (state, action) => {
 			console.log(action.payload);

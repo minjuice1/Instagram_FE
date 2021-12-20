@@ -99,22 +99,24 @@ export const getPostDetail = createAsyncThunk(
 //좋아요
 export const likePost = createAsyncThunk(
   "post/likePost",
-  async ({postId}, thunkAPI) => {
-    const AccessToken = localStorage.getItem("user")
+  async ({postId, path} ) => {
+    const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
         url: `/post/${postId}/like`,
         method: "PUT",
         headers: {
           Authorization: `Bearer ${AccessToken}`,
-        }
-      })
-      return response;
-    } catch (e) {
-      return false;
-    }
-  }
-)
+        },
+			})
+			console.log(response);
+			return { path: path, postId: postId, data: response }; 
+      
+		} catch (e) {
+			return false;
+		}
+	},
+);
 
 //개인 포스트 가져오기
 export const getUserPost = createAsyncThunk(
@@ -131,7 +133,7 @@ export const getUserPost = createAsyncThunk(
         }
       })
       if(response.data.ok){
-        return response;
+        return response.data;
       }
       return response;
     }catch (e){

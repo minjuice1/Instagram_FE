@@ -128,27 +128,46 @@
   & > div:nth-child(2) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    height: 600px;
     width: 400px;
-    min-height: 600px;
     overflow: auto;
+    overflow-x: hidden;
     font-weight: bold;
-    
-    & > div > img {
-      width: 133px;
+
+    // 컬렉션 추가하는 모달
+    .savedPost_list {
       height: 133px;
+
+      & > img {
+        width: 133px;
+        height: 133px;
+      }
+      
+      .savedPost_each:hover {
+        opacity: 0.7;
+      }
+      & > span {
+        height: 134px;
+        align-items: center;
+        display: flex;
+      }
     }
   }
 
   & > div:nth-child(3) {
     height: 48px;
+    width: 100%;
     color:  $instaBlue;
     font-weight: 600;
     @include fontSize("normal");
     line-height: 48px;
     border: none;
+    position: absolute;
+    bottom: 0;
   }	
 }
+
+
+
 
 .collection_modal_overlay {
 	box-sizing: border-box;
