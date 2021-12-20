@@ -1,33 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
-import { history } from '../../history';
-
-// // Comment
-// export const addComment = createAsyncThunk(
-// 	"commment/addComment",
-// 	async ({ postId, contents, AccessToken }) => {
-// 		try {
-// 			const response = await Api({
-// 				url: `/comment/${postId}`,
-// 				method: "POST",
-// 				data: {
-// 					contents,
-// 				},
-// 				headers: {
-// 					Authorization: `Bearer ${AccessToken}`,
-// 				},
-// 			})
-// 			if(response.data.ok){
-// 				console.log(response);
-// 				return response.data;
-// 			}
-// 			return response;
-// 		} catch (e) {
-
-// 			return false;
-// 		}
-// 	},
-// );
 
 // Comment
 export const addComment = createAsyncThunk( 
