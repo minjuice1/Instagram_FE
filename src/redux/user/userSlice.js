@@ -1,7 +1,6 @@
 import {
 	deleteOneFollower,
 	deleteProfileImg,
-	editProfile,
 	getFollow,
 	getFollower,
 	getProfile,
@@ -10,7 +9,6 @@ import {
 	profileImg
 } from "./user";
 import { createSlice } from "@reduxjs/toolkit";
-import {history} from "../../history";
 import {getUserPost} from "../post/post";
 
 const userSlice = createSlice({

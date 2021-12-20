@@ -28,9 +28,8 @@ import UserProfileInfo from "./UserProfileInfo";
 const Profile = () => {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const location = useLocation();
-
+  const navigate = useNavigate();
 
   //개인 데이터 불러오기
   const {id} = useParams();

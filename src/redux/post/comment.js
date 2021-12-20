@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
-import { history } from '../../history';
 
 // Comment
 export const addComment = createAsyncThunk( 

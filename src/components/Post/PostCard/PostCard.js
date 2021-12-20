@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router";
+import {useLocation, useNavigate, useParams} from "react-router";
 import {Link} from "react-router-dom";
 
 import {likeList_modal, modal_check} from "../../../redux/modal/modalSlice";
