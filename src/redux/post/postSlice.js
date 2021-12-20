@@ -9,9 +9,7 @@ const postSlice = createSlice({
     user: [],
     posts: [],
     postDetail: [],
-    comment: {
-      childComments: [],
-    },
+    comment: [],
     likeUsers:[],
     replyTag: "",
   },
@@ -64,7 +62,7 @@ const postSlice = createSlice({
       if (action.payload.path === "main") { 
         const idx = state.posts.findIndex( (c) => c._id === action.payload.data.comment.postId ); 
         state.posts[idx].commentCount++;
-        state.posts[idx].comments.push(action.payload.data.comment); 
+        state.posts[idx].comments.unshift(action.payload.data.comment); 
       } else { 
         state.comment.push(action.payload.data.comment); 
       } 

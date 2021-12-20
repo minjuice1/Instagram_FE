@@ -20,6 +20,8 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
   // const userData = JSON.parse(userInfo);
   // const userId = userData.userId;
 
+  console.log(isLike);
+  
   // 댓글 좋아요
   const AccessToken = localStorage.getItem("user");
   const path = "mainCmt";

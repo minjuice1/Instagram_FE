@@ -69,8 +69,7 @@ const PostDetail = () => {
 	 //유저 정보 프로필 클릭해서 들어가기
 	const UserProfileClickHandler = () => {
 		const user_Id = postDetail.writer.userId
-		navigate(`/profile/${user_Id}`, {replace: true})
-		console.log(user_Id);
+		navigate(`/profile/${user_Id}`, {state: user_Id})
 	}
 	
 
