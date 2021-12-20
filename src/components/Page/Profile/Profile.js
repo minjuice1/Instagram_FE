@@ -29,7 +29,6 @@ const Profile = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
 
   //개인 데이터 불러오기
   const {id} = useParams();
@@ -38,8 +37,6 @@ const Profile = () => {
   //userpost를 가져오면서 본인이 맞는지 아닌지 확인
   const [myProfile, SetMyProfile] = useState(false);
   const myId = useSelector(state=>state.user.user.userId);
-
-  const post_list = useSelector(state=>state.post.post);
 
   useEffect((e) => {
 
@@ -52,6 +49,8 @@ const Profile = () => {
       SetMyProfile(false);
     }
   }, [dispatch, myProfile, location]);
+
+  const post_list = useSelector(state=>state.post.post);
 
   // 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
@@ -67,7 +66,7 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    navigate(`/profile/${myId}`);
+    //navigate(`/profile/${myId}`);
   };
 
   const videoClickHandler = () => {
@@ -75,23 +74,23 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    navigate("/profile/channel");
+    //navigate("/profile/channel");
   };
 
-  const savedClickHandler = (event) => {
+  const savedClickHandler = () => {
     setClickedSaved(true);
     setClickedVideo(false);
     setClickedPosts(false);
     setClickedTagged(false);
-    navigate(`/profile/${myId}/saved`);
+    //navigate(`/profile/${myId}/saved`);
   };
 
-  const taggedClickHandler = (event) => {
+  const taggedClickHandler = () => {
     setClickedTagged(true);
     setClickedPosts(false);
     setClickedVideo(false);
     setClickedSaved(false);
-    navigate("/profile/tagged");
+    //navigate("/profile/tagged");
   };
 
   // 프로필 편집, 팔로워, 팔로우 모달
@@ -118,7 +117,7 @@ const addCollectionHandler = () => {
       {is_modal && <ProfileSettingModal/>}
       {openCollectionModal && <ProfileCollectionModal setOpenCollectionModal={setOpenCollectionModal}/>}
 
-      {post_list && savedUser &&
+      
       <div className="profile_all">
         <div className="profile_content">
           <div className="profile_profileBox">
@@ -255,7 +254,6 @@ const addCollectionHandler = () => {
           </div>
         </div>
       </div>
-}
     </>
 
   );
