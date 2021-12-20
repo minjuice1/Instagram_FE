@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-import postSlice from "../post/postSlice";
 import {headerSearch, SearchHashResult} from "./search";
 
 const searchSlice = createSlice({
@@ -26,6 +25,6 @@ const searchSlice = createSlice({
   },
 });
 
-export const {} = searchSlice.actions;
+// export const {} = searchSlice.actions;
 
 export default searchSlice;

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate, useParams} from "react-router";
+import {useLocation, useNavigate, useParams} from "react-router";
 import {Link} from "react-router-dom";
 
 import {likeList_modal, modal_check} from "../../../redux/modal/modalSlice";
@@ -30,6 +30,9 @@ const PostCard = ({contents, createdAt, writer, postId,
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
+
 
   // 게시글에 \n으로 되어있는 부분을 html코드인 <br/>로 변경해서 줄바꿈 표시함.
   const sanitizer = dompurify.sanitize;

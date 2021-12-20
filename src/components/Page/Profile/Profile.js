@@ -18,7 +18,7 @@ import {RiAccountBoxLine} from "react-icons/ri";
 import {MdGridOn} from "react-icons/md";
 import ProfileStory from "./ProfileStory";
 import MyProfileInfo from "./MyProfileInfo";
-import {useParams} from "react-router";
+import {useLocation, useParams} from "react-router";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
 import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
@@ -27,6 +27,7 @@ import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
 const Profile = () => {
 
   const dispatch = useDispatch();
+  const location = useLocation();
 
   //개인 데이터 불러오기
   const {id} = useParams();
@@ -47,7 +48,7 @@ const Profile = () => {
     }else{
       SetMyProfile(false);
     }
-  }, [dispatch, myProfile, myId, user_id]);
+  }, [dispatch, myProfile, location]);
 
 
   const post_list = useSelector(state=>state.post.post);
