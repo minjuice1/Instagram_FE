@@ -25,7 +25,6 @@ const postSlice = createSlice({
       state.posts = action.payload.posts;
     },
     [getUserPost.fulfilled] : (state, action) => {
-      console.log(action);
       state.post = action.payload.data.post;
       state.user = action.payload.data.user;
       state.savedPost = action.payload.data.savedPost;
@@ -39,7 +38,8 @@ const postSlice = createSlice({
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
     },
-    [savedPost.fulfilled]: (state, action) => { 
+    [savedPost.fulfilled]: (state, action) => {
+      console.log("리덕스",action.payload);
       if (action.payload.path === "main") { 
         const post = state.posts.findIndex( (p) => p._id === action.payload.postId ); 
         state.posts[post].isPostSaved = !state.posts[post].isPostSaved; 

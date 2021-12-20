@@ -133,34 +133,12 @@ export const getUserPost = createAsyncThunk(
       if(response.data.ok){
         return response;
       }
-      console.log(response)
       return response;
     }catch (e){
       console.log(e.response);
     }
   }
 )
-
-// 게시물 저장하기
-// export const savedPost = createAsyncThunk(
-// 	"post/savedPost",
-// 	async ({postId, AccessToken}) => {
-// 		try {
-// 			const response = await Api({
-// 				url: `/post/${postId}/save`,
-// 				method: "PUT",
-// 				headers: {
-// 					Authorization: `Bearer ${AccessToken}`,
-// 				},
-// 			})
-// 			// console.log(response);
-// 			return response.data;
-// 		} catch (e) {
-
-// 			return false;
-// 		}
-// 	},
-// );
 
 // 게시물 저장하기
 export const savedPost = createAsyncThunk(
@@ -187,7 +165,7 @@ export const getLikeList = createAsyncThunk(
     const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
-        url: `/post/:${postId}/likeUsers`,
+        url: `/post/${postId}/likeUsers`,
         method: 'GET',
         headers: {
           Authorization: `Bearer ${AccessToken}`,
@@ -196,7 +174,6 @@ export const getLikeList = createAsyncThunk(
       if(response.data.ok){
         return response;
       }
-      console.log(response)
       return response;
     }catch (e){
       console.log(e.response);

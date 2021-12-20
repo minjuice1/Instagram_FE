@@ -1,0 +1,32 @@
+@import "../../../../common/variables";
+@import "../../../../common/mixin";
+
+
+.search_hash_header {
+  display: flex;
+  width: 1000px;
+  margin: auto;
+  & > img {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+  }
+  & > div> div:first-child{
+    font-size: 28px;
+    font-weight:  300;
+  }
+  & > div> div:nth-child(2) > a {
+    font-weight: 600;
+  }
+
+  & > div > button {
+    @include buttonStyle("blue");
+  }
+}
+.hash_posts {
+  margin: auto;
+  display: grid;
+  width: 1000px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 25px;
+}

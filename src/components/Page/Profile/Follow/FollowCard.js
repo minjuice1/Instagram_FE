@@ -1,10 +1,8 @@
 //팔로우 유저 하나하나 리스트에 보여줄 수 있게 카드로 만들어 줌.
 
 import profile from "../../../../image/profile.png";
-import React, {useEffect} from "react";
+import React from "react";
 import "./CardStyle.scss";
-import {useDispatch, useSelector} from "react-redux";
-import {getFollow} from "../../../../redux/user/user";
 
 
 const FollowCard = ({name, userId, profileImage, isFollow}) => {

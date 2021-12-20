@@ -1,12 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
-import {likeList_modal, modal_check} from "../../../redux/modal/modalSlice";
+import {likeList_modal} from "../../../redux/modal/modalSlice";
 import {x_img} from "../../../common/IconImage";
 
 import React, {useEffect} from "react";
 import PostLikeCard from "./PostLikeCard";
 import {getLikeList} from "../../../redux/post/post";
 
-const PostLikeModal = () => {
+const PostLikeModal = ({postId}) => {
   const dispatch = useDispatch();
 
   const cancleClickHandler = () => {
@@ -14,8 +14,12 @@ const PostLikeModal = () => {
   };
 
   useEffect(() => {
-    dispatch(getLikeList());
-  })
+    dispatch(getLikeList({postId}));
+    console.log("헴")
+  },[dispatch])
+
+  const like_user_list = useSelector(state=>state.post.likeUsers);
+
 
 
   return (
@@ -28,7 +32,10 @@ const PostLikeModal = () => {
 
         <div className="modal_common_card">
           <div className="modal_content">
-          <PostLikeCard/>
+            {like_user_list && like_user_list.map((likes) => (
+              <PostLikeCard userId={likes.userId} name={likes.name} profileImage={likes.profileImage} isFollow={likes.isFollow}/>
+            ))}
+
 
         </div>
         </div>

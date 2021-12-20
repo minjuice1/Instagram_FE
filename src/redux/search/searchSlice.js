@@ -1,12 +1,14 @@
 import {createSlice} from "@reduxjs/toolkit";
 import postSlice from "../post/postSlice";
-import {get_headerSearch, headerSearch} from "./search";
+import {headerSearch, SearchHashResult} from "./search";
 
 const searchSlice = createSlice({
   name: 'search',
   initialState: {
     user:[],
     result:[],
+    posts:[],
+    searchHashtag: [],
   },
   reducers: {
 
@@ -17,7 +19,10 @@ const searchSlice = createSlice({
       state.user = action.payload.user;
       state.result = action.payload.result;
     },
-
+    [SearchHashResult.fulfilled]: (state, action) => {
+      state.posts = action.payload.posts;
+      state.searchHashtag = action.payload.searchHashtag;
+    }
   },
 });
 

@@ -7,6 +7,7 @@ import MainStory from "./MainStory/MainStory";
 import { useDispatch, useSelector } from "react-redux";
 import PostModal from "../Post/PostModal/PostModal";
 import { getPost } from "../../redux/post/post";
+import PostLikeModal from "../Post/PostModal/PostLikeModal";
 
 const Main = () => {
 	const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Main = () => {
 
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const post_data = useSelector((state) => state.post.posts);
+	const post_like_list = useSelector(state=>state.modal.likeList_modal);
 	console.log(post_data);
 
 	// 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
@@ -49,6 +51,9 @@ const Main = () => {
 						<SideMain />
 					</div>
 					{is_modal && <PostModal />}
+					{post_like_list && post_data.map((posts) => (
+						<PostLikeModal postId={posts._id}/>
+					)) }
 				</div>
 			</div>
 		</>

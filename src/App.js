@@ -17,6 +17,7 @@ import PostDetail from "./components/Post/PostDetail/PostDetail";
 import Profile from "./components/Page/Profile/Profile";
 import EditUser from "./components/Page/User/EditUser/EditUser";
 import {getProfile} from "./redux/user/user";
+import SearchHash from "./components/Page/Header/HeaderSearch/SearchHash";
 
 
 
@@ -71,23 +72,27 @@ function App() {
         {show_header &&  <Header/>}
         {write_modal && <AddPost/>}
         <Routes>
+          <Route path="/" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
+          <Route path="/*" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
           <Route path="/login" element={<RejectAuth redirectTo="/"> <Login/> </RejectAuth>}/>
           <Route path="/accounts/password" element={<RequireAuth redirectTo="/login"> <FindPassword/> </RequireAuth>}/>
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
           <Route path="/recom" element={<RequireAuth redirectTo="/login"> <Recommendation/> </RequireAuth>}/>
           <Route path="/postdetail/:postId" element={<RequireAuth redirectTo="/login"> <PostDetail/> </RequireAuth>}/>
           <Route path="/accounts/signup" element={<RejectAuth redirectTo="/"> <SignUp/> </RejectAuth>}/>
-          <Route path="/" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
-          <Route path="/*" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
           <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
           <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser /> </RequireAuth>}/>
-					<Route path="/profile/"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}/>
+					<Route path="/profile/*"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}/>
 					<Route path="/profile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/myprofile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
 					<Route path="/profile/tagged"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+          <Route path="/searchhash/*"	element={<RequireAuth redirectTo="/login"> <SearchHash /> </RequireAuth>}>
+            <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash /> </RequireAuth>}/>
+          </Route>
+
 
         </Routes>
 

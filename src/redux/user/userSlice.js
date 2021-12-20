@@ -1,4 +1,14 @@
-import {deleteProfileImg, getFollow, getFollower, getProfile, login, logout, profileImg} from "./user";
+import {
+	deleteOneFollower,
+	deleteProfileImg,
+	editProfile,
+	getFollow,
+	getFollower,
+	getProfile,
+	login,
+	logout,
+	profileImg
+} from "./user";
 import { createSlice } from "@reduxjs/toolkit";
 import {history} from "../../history";
 import {getUserPost} from "../post/post";
@@ -10,6 +20,7 @@ const userSlice = createSlice({
 		isLogin: false,
 		FollowerList: [],
 		FollowList: [],
+		hashtagFollow: [],
 	},
 	reducers: {
 		profile_img_change : (state, action) => {
@@ -30,23 +41,27 @@ const userSlice = createSlice({
 	},
 		[getUserPost.fulfilled]: (state,action) => {
 
-			// state.user = action.payload.data.user;
 		},
 		[getFollower.fulfilled]: (state, action) => {
-			// console.log("aaaaaa",action.payload)
+			console.log(action.payload);
 			state.FollowerList = action.payload.data.user;
 		},
+		[deleteOneFollower.fulfilled]: (state, {payload}) => {
+
+		},
+
 		[getFollow.fulfilled]: (state, action) => {
+			console.log(action.payload)
 			state.FollowList = action.payload.data.user;
+			state.hashtagFollow = action.payload.data.hashtagFollow;
 		},
 		[profileImg.fulfilled]: (state, action) => {
-			//header까지 이미지 변경을 해주기 위해 부득이하게 window.location.reload사용함.
 			window.location.reload();
 		},
 		[deleteProfileImg.fulfilled] : (state, action) => {
-			//header까지 이미지 변경을 해주기 위해 부득이하게 window.location.reload사용함.
 			window.location.reload();
-		}
+		},
+
 }
 });
 

@@ -37,9 +37,6 @@ const Profile = () => {
   const myId = useSelector(state=>state.user.user.userId);
 
 
-
-  const post_list = useSelector(state=>state.post.post);
-
   useEffect((e) => {
 
     if(!myProfile){
@@ -66,7 +63,7 @@ const Profile = () => {
 
   // 게시물, 동영상, 태그됨
   const postsClickHandler = () => {
-    setClickedPosts(false);
+    setClickedPosts(true);
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
@@ -98,10 +95,8 @@ const Profile = () => {
   // 프로필 편집, 팔로워, 팔로우 모달
 const is_modal = useSelector((state) => state.modal.is_modal);
 const user_info = useSelector(state=> state.post.user);
-
 const user_data = user_info && user_info[0];
 const my_follow = user_data && user_data.isFollow;
-
 
 
 console.log("포스트", post_list);
@@ -115,14 +110,6 @@ const addCollectionHandler = () => {
   setOpenModal(true);
 }
 
- 
-// // next modal
-// const [_openModal, _setOpenModal] = useState(false);
-// const addCollectionListHandler = () => {
-  
-//   _setOpenModal(true);
-//   // setOpenModal(false);
-// }
 
   return (
     <>
@@ -153,7 +140,6 @@ const addCollectionHandler = () => {
                 introdution = {user_data.introdution}
                 profileImage={user_data.profileImage}
                 my_follow={my_follow}
-                // my_follow={my_follow}
               />}
             {/*<ProfileStory/>*/}
             <div className="profile_post_dir" role="tablist">
