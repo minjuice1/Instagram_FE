@@ -18,6 +18,7 @@ import {FiSettings, FiPlayCircle} from "react-icons/fi";
 import {BiBookmark} from "react-icons/bi";
 import {RiAccountBoxLine} from "react-icons/ri";
 import {MdGridOn} from "react-icons/md";
+import ProfileStory from "./ProfileStory";
 import MyProfileInfo from "./MyProfileInfo";
 import {useLocation, useParams} from "react-router";
 import {getUserPost} from "../../../redux/post/post";
@@ -29,7 +30,6 @@ const Profile = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
-  const navigate = useNavigate();
 
   //개인 데이터 불러오기
   const {id} = useParams();
@@ -39,7 +39,6 @@ const Profile = () => {
   const [myProfile, SetMyProfile] = useState(false);
   const myId = useSelector(state=>state.user.user.userId);
 
-  const post_list = useSelector(state=>state.post.post);
 
   useEffect((e) => {
 
@@ -53,7 +52,11 @@ const Profile = () => {
     }
   }, [dispatch, myProfile, location]);
 
-  // 게시물, 동영상, 저장됨, 태그됨
+
+  const post_list = useSelector(state=>state.post.post);
+
+
+  // 	// 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
   const [ClickedVideo, setClickedVideo] = useState(false);
   const [ClickedSaved, setClickedSaved] = useState(false);
@@ -74,7 +77,6 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    // navigate("/profile/channel");
   };
 
   const savedClickHandler = () => {
@@ -82,7 +84,6 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedPosts(false);
     setClickedTagged(false);
-    //navigate(`/profile/${myId}/saved`);
   };
 
   const taggedClickHandler = () => {
@@ -90,17 +91,16 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedVideo(false);
     setClickedSaved(false);
-    //navigate("/profile/tagged");
   };
 
   // 프로필 편집, 팔로워, 팔로우 모달
-const is_modal = useSelector((state) => state.modal.is_modal);
-const user_info = useSelector(state=> state.post.user);
-const user_data = user_info && user_info[0];
-const my_follow = user_data && user_data.isFollow;
+  const is_modal = useSelector((state) => state.modal.is_modal);
+  const user_info = useSelector(state=> state.post.user);
+  const user_data = user_info && user_info[0];
+  const my_follow = user_data && user_data.isFollow;
 
 
-console.log("포스트", post_list);
+  console.log("포스트", post_list);
 
 
 // 저장된 게시물 불러오기
@@ -210,15 +210,15 @@ const addCollectionHandler = () => {
                   <div className="desc_savedPost">저장한 내용은 회원님만 볼 수 있습니다</div>
                   <div className="add_savedPostBox" onClick={addCollectionHandler}>+ 새 컬렉션</div>
                 </div>
-                
+
               )}
-            {ClickedPosts && (
+              {ClickedPosts && (
                 <div className="OtherProfile_postsBox">
                   {post_list && post_list.map((img) => (
                     <Link to={`/postdetail/${img._id}`}>
-                    <ProfilePosts
-                      picture = {img.imageUrl}
-                      userId = {img._id}/>
+                      <ProfilePosts
+                        picture = {img.imageUrl}
+                        userId = {img._id}/>
                     </Link>
                   ))}
                 </div>
@@ -254,7 +254,6 @@ const addCollectionHandler = () => {
           </div>
         </div>
       </div>
-}
     </>
 
   );

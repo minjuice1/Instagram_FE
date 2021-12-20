@@ -1,10 +1,12 @@
 import {useDispatch, useSelector} from "react-redux";
+import {likeList_modal} from "../../../redux/modal/modalSlice";
 import {x_img} from "../../../common/IconImage";
+
 import React, {useEffect} from "react";
 import PostLikeCard from "./PostLikeCard";
 import {getLikeList} from "../../../redux/post/post";
 
-const PostLikeModal = ({likeOpen, SetLikeOpen, postId}) => {
+const PostLikeModal = ({ likeOpen, SetLikeOpen, postId}) => {
   const dispatch = useDispatch();
 
   const cancleClickHandler = () => {
@@ -14,28 +16,24 @@ const PostLikeModal = ({likeOpen, SetLikeOpen, postId}) => {
 
   useEffect(() => {
     dispatch(getLikeList({postId}));
-  }, [dispatch])
+  },[dispatch])
+  // useEffect(() => {
+  //   document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`
+  //   return () => {
+  //     const scrollY = document.body.style.top
+  //     document.body.style.cssText = `position: ""; top: "";`
+  //     window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  //   }
+  // }, [])
+
+  const like_list = useSelector(state=>state.post.likeUsers);
 
 
-  useEffect(() => {
-    document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: hidden;
-      width: 99.23%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = '';
-      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-    };
-  }, []);
-
-
-  const like_list = useSelector(state => state.post.likeUsers);
 
   return (
     <>
       <div className="modal_common_container">
+
         <div className="modal_common_header">
           <span>좋아요</span><span> <img onClick={cancleClickHandler} src={x_img} alt="cancle"/></span>
         </div>
@@ -49,7 +47,9 @@ const PostLikeModal = ({likeOpen, SetLikeOpen, postId}) => {
                 profileImage={likes.profileImage}
                 isFollow={likes.isFollow}/>
             ))}
-          </div>
+
+
+        </div>
         </div>
       </div>
       <div className="overlay" onClick={cancleClickHandler}/>
