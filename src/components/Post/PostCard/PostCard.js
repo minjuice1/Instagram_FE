@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useLocation, useNavigate, useParams} from "react-router";
-import {Link} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router";
 
-import {likeList_modal, modal_check} from "../../../redux/modal/modalSlice";
-import {likePost, deletePost, savedPost} from "../../../redux/post/post";
+import {likeList_modal} from "../../../redux/modal/modalSlice";
+import {likePost, savedPost} from "../../../redux/post/post";
 import { replyReducer } from '../../../redux/post/postSlice';
 
 import PostComment from "./PostComment";
@@ -24,7 +23,6 @@ import {
   none_profile,
 } from "../../../common/IconImage";
 import dompurify from "dompurify";
-import PostOptionModal from '../PostDetail/PostOptionModal';
 
 
 const PostCard = ({contents, createdAt, writer, postId, likeCount,
@@ -102,23 +100,15 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
 
 	const time = displayTime(createdAt);
 
-  //모달 리덕스에서 관리
-  const is_modal = useSelector((state) => state.modal.is_modal);
-  const show_postModal = () => {
-    dispatch(modal_check());
-  };
-
-  
-
   // 답글 달기 취소
   useEffect(() => {
     dispatch(replyReducer(""))
   }, [])
 
   //유저 정보 프로필 클릭해서 들어가기
- const UserProfileClickHandler = () => {
-   const id = writer[0].userId
-   navigate(`/profile/${id}`,{state: id, replace: true})
+  const UserProfileClickHandler = () => {
+  const id = writer[0].userId
+  navigate(`/profile/${id}`,{state: id, replace: true})
   }
 
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
@@ -197,7 +187,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
               
               
               <div className="post_text">
-                <a className="post_user_id">{writer[0].userId}</a>
+                <a className="post_user_id" onClick={UserProfileClickHandler}>{writer[0].userId}</a>
                 {morePost ? (
                     <div
                       className="post_text"

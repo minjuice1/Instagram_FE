@@ -22,7 +22,6 @@ const PostDetailCommentModal = ({postId, commentId, setOpenModal}) => {
 
 	return (
 		<>
-	
 			<div className="profile_modal_container">
 				<div className="postDetailComment_modal_modal">
 					<div>신고</div>

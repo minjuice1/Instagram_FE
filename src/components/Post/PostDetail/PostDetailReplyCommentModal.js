@@ -21,7 +21,6 @@ const PostDetailReplyCommentModal = ({postId, RecommentId, setOpenModal, Id}) =>
 			cancleClickHandler();			
   };
 
-  
 	return (
 		<>
 			<div className="profile_modal_container">

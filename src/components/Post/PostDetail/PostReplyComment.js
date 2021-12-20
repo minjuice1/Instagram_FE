@@ -84,51 +84,51 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
   <>
   {openModal && <PostDetailReplyCommentModal Id={Id} setOpenModal={setOpenModal} Recontents={Recontents} postId={postId} RecommentId={ReCommentId}/>}
   <div>
-  {Recontents &&
-  <div className="postDetail_replyComments"
-    onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-    <div className="postDetail_replyComment_pp">
-      <img src={user_img} alt="pp" />
-    </div>
-    <div className="postDetail_replyComments_comment">
-      <div className="postDetail_replyComment_userId">
-        <span onClick={UserProfileClickHandler}>{Rewriter}</span>
-        <span className="postDetail_replyComment_contents">
-          {Recontents}
-        </span>
+    {Recontents &&
+    <div className="postDetail_replyComments"
+      onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div className="postDetail_replyComment_pp">
+        <img src={user_img} alt="pp" />
       </div>
-      <div className="postDetail_replyComment_info">
-        <span>{time}</span>
+      <div className="postDetail_replyComments_comment">
+        <div className="postDetail_replyComment_userId">
+          <span onClick={UserProfileClickHandler}>{Rewriter}</span>
+          <span className="postDetail_replyComment_contents">
+            {Recontents}
+          </span>
+        </div>
+        <div className="postDetail_replyComment_info">
+          <span>{time}</span>
+          {ReIsLike ? (
+          <span>
+            좋아요 <span>{(Relike)+1}</span>개
+          </span>
+          ) : (
+          <span>
+            좋아요 <span>{Relike}</span>개
+          </span>) }
+          <span>답글 달기</span>
+          {showModal &&
+          <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>}
+        </div>
+      </div>
+      <div className="postDetail_Reply_liked">
         {ReIsLike ? (
-        <span>
-          좋아요 <span>{(Relike)+1}</span>개
-        </span>
+          <img
+            src={comment_red_heart}
+            onClick={LikedReplyCommentHandler}
+            alt="comment_red_heart"
+          />
         ) : (
-        <span>
-          좋아요 <span>{Relike}</span>개
-        </span>) }
-        <span>답글 달기</span>
-        {showModal &&
-        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>}
+          <img
+            src={comment_heart}
+            onClick={LikedReplyCommentHandler}
+            alt="comment_heart"
+          />
+        )}
       </div>
     </div>
-    <div className="postDetail_Reply_liked">
-      {ReIsLike ? (
-        <img
-          src={comment_red_heart}
-          onClick={LikedReplyCommentHandler}
-          alt="comment_red_heart"
-        />
-      ) : (
-        <img
-          src={comment_heart}
-          onClick={LikedReplyCommentHandler}
-          alt="comment_heart"
-        />
-      )}
-    </div>
-  </div>
-  }
+    }
   </div>
   </>
   )

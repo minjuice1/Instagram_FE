@@ -8,7 +8,6 @@ const PostOptionModal = ({myId, writer, setOpenModal}) => {
 
 	return (
 		<>
-    
     <div className="postDetailModal_container">
       {myId === writer ? 
       (
@@ -28,8 +27,8 @@ const PostOptionModal = ({myId, writer, setOpenModal}) => {
         <div onClick={cancleOptionClickHandler}>취소</div>
       </div>
       )}
-        </div>
-			<div className="postDetailModal_overlay"  onClick={cancleOptionClickHandler}></div>
+    </div>
+		<div className="postDetailModal_overlay"  onClick={cancleOptionClickHandler}></div>
 		</>
 	);
 };
