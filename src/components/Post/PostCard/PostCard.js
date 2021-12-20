@@ -202,7 +202,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount,
                   </div>)}
               </div>
               <div>
-                {commentCount >= 2 && (
+                {commentCount > 2 && (
                 <span className="post_cursor" onClick={toPostDetailHandler}>
                   댓글 <span>{commentCount}</span>개 모두 보기</span>
                 )}

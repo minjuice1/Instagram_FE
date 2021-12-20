@@ -16,6 +16,8 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  console.log(Relike, ReIsLike);
+  
   // modal
   const [openModal, setOpenModal] = useState(false); 
   const show_postModal = () => {
@@ -29,8 +31,6 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
       likedReplyComment({
         commentId: ReCommentId,
         AccessToken,
-        ReIsLike,
-        Relike,
         Id,
       }));
   };

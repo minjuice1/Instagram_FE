@@ -143,6 +143,7 @@ const addCollectionHandler = () => {
                 profileImage={user_data.profileImage}
                 my_follow={my_follow}
               />}
+              
             {/*<ProfileStory/>*/}
             <div className="profile_post_dir" role="tablist">
               {ClickedPosts ? (
@@ -161,7 +162,6 @@ const addCollectionHandler = () => {
                   </a>
                 )}
 
-
               {ClickedVideo ? (
                 <a className="profile_post_clicked">
 									<span onClick={videoClickHandler}>
@@ -176,20 +176,24 @@ const addCollectionHandler = () => {
                 </a>
               )}
 
+              {!myProfile && ("")}
 
-              {ClickedSaved ? (
+              {!myProfile ? ClickedSaved ? (
                 <div className="profile_post_clicked">
-									<span onClick={savedClickHandler}>
-											<BiBookmark/> 저장됨
-									</span>
-                </div>
+                <span onClick={savedClickHandler}>
+                  <BiBookmark/> 저장됨
+                </span>
+              </div>
               ) : (
-                <a className="profile_post_unclicked">
-									<span onClick={savedClickHandler}>
-											<BiBookmark/> 저장됨
-									</span>
-                </a>
+                ""
+              ) : (
+                <div className="profile_post_unclicked">
+                  <span onClick={savedClickHandler}>
+                    <BiBookmark/> 저장됨
+                  </span>
+                </div>
               )}
+                
               {ClickedTagged ? (
                 <a className="profile_post_clicked">
 									<span onClick={taggedClickHandler}>
@@ -204,6 +208,7 @@ const addCollectionHandler = () => {
                 </a>
               )}
             </div>
+
             <div className="post_layout">
               {ClickedSaved && (
                 <div className="savedPostBox">

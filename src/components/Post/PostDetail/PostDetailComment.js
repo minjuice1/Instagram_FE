@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router';
 
-import { likedComment } from '../../../redux/post/comment';
+import { getLikedListComment, likedComment } from '../../../redux/post/comment';
 import { replyReducer } from '../../../redux/post/postSlice';
 import PostReplyComment from './PostReplyComment';
 
@@ -19,6 +19,9 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  console.log(childComments);
+
   // modal
   const [openModal, setOpenModal] = useState(false); 
   const show_postModal = () => {
@@ -29,7 +32,6 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   const AccessToken = localStorage.getItem("user");
   const path = "detailCmt"
   const LikedCommentHandler = () => {
-    console.log(postId);
     dispatch(
       likedComment({
         commentId,
@@ -38,8 +40,16 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       }));
   };
 
-  // 답글 달기
+  // 댓글 좋아요 누른 사람 목록 보기
+  const LikedListCommentHandler = () => {
+    dispatch(
+      getLikedListComment({
+        commentId,
+        AccessToken,
+      }));
+  };
 
+  // 답글 달기
   const replyHandler = (event) => {
     const replyInfo = {writer: writer, commentId: commentId}
     dispatch(replyReducer(replyInfo));
@@ -60,7 +70,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
 	const user_img = profileImage? profileImage : none_profile;
 
-    //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
+  //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
     const today = new Date();
     const nowTime = new Date(value);
@@ -133,16 +143,14 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
     </div>
       <div className="postDetail_comment_info">
         <span>{time}</span>
-        {isLike ? isLike === 0 ? (
-          <span>
+        {isLike ? (
+          <span onClick={LikedListCommentHandler}>
           좋아요 <span>{(like)+1}</span>개
         </span>
         ) : (
-          <span>
+          <span onClick={LikedListCommentHandler}>
           좋아요 <span>{like}</span>개
         </span>
-        ) : (
-          <span>좋아요 0개</span>
         )}
         <span onClick={replyHandler}>답글 달기</span>
         {showModal && <span className="postDetail_comment_info_modal" onClick={show_postModal}><BiDotsHorizontalRounded size={15}/></span>}

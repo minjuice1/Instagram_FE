@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {deletePost, getLikeList, getPost, getPostDetail, getUserPost, savedPost, likePost} from "./post";
-import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment } from './comment';
+import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment, getLikedListComment } from './comment';
 
 const postSlice = createSlice({
   name: 'post',
@@ -11,6 +11,7 @@ const postSlice = createSlice({
     postDetail: [],
     comment: [],
     likeUsers:[],
+    likeUsersCmt: [],
     replyTag: "",
   },
   reducers: {
@@ -57,6 +58,11 @@ const postSlice = createSlice({
       }
     },
 
+    //좋아요 리스트 목록 가져오기기
+    [getLikeList.fulfilled]: (state, action) => {
+      state.likeUsers = action.payload.data.likeUsers;
+    },
+
     // Comment
     [addComment.fulfilled]: (state, action) => { 
       if (action.payload.path === "main") { 
@@ -85,10 +91,10 @@ const postSlice = createSlice({
         state.posts[post].comments[cmt].isLike = !state.posts[post].comments[cmt].isLike;
       }
     },
-
-    //좋아요 리스트 목록 가져오기기
-    [getLikeList.fulfilled]: (state, action) => {
-      state.likeUsers = action.payload.data.likeUsers;
+    // 댓글, 대댓글 좋아요 누른 사람 목록 보기
+    [getLikedListComment.fulfilled]: (state, action) => {
+      console.log(action);
+      // state.likeUsersCmt.likeUsers = action.payload.data.likeUsers;
     },
 
      //replyComment
