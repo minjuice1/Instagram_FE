@@ -27,7 +27,7 @@ const FollowerModal = () => {
   },[dispatch])
   //
   const FollowList = useSelector(state=>state.user.FollowList);
-  console.log(FollowList);
+
 
 
 

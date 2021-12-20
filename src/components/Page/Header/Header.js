@@ -4,7 +4,7 @@ import HeaderIcon from "./HeaderIcon";
 import Logo from "../../../image/InstaLogo.png";
 import { Link } from "react-router-dom";
 import {useNavigate} from "react-router";
-import HeaderSearch from "./HeaderSearch";
+import HeaderSearch from "./HeaderSearch/HeaderSearch";
 
 
 const Header = () => {
@@ -16,7 +16,6 @@ const Header = () => {
 
 	return (
 		<>
-			{/*{user && (*/}
 				<div className="nav_header">
 					<div className="nav">
 						<div className="nav_logo" onClick={LogoClickHandler}>

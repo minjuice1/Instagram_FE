@@ -54,38 +54,38 @@ const OtherProfile = ({userId, name, totalFollow, totalFollower,
   const [isfollowing, SetIsFollowing] = useState(false);
   const [followerCount, SetFollowerCount] = useState(totalFollower);
 
+
   console.log(followerCount);
 
-  let follower_count = totalFollower;
+  const follower_user = totalFollower;
+
+  useEffect(() => {
+    SetFollowerCount(follower_user);
+    dispatch(getFollower({
+      Id: Id,
+    }))
+
+ if(my_follow){
+
+   SetIsFollowing(true);
+ }else{
+   SetFollowerCount(followerCount);
+   SetIsFollowing(false);
+ }
+  },[dispatch, SetFollowerCount, my_follow, totalFollower]);
+
   const followClickHandler = () => {
     dispatch(userFollow({
       Id,
     }))
     SetIsFollowing(!isfollowing);
     if(isfollowing){
-      SetFollowerCount(followerCount - 1);
+      SetFollowerCount(follower_user - 1);
     }else {
-      SetFollowerCount(followerCount + 1);
+      SetFollowerCount(follower_user + 1);
     }
 
   }
-
-
-
-
-
-  useEffect(() => {
-    dispatch(getFollower({
-      Id: Id,
-    }))
- if(my_follow){
-   SetIsFollowing(true);
- }else{
-   SetIsFollowing(false);
- }
-  },[dispatch])
-
-
   return (
     <>
       {SimilarAccount_Modal && <SimilarAccountModal />}

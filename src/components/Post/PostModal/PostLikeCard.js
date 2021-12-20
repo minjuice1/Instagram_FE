@@ -4,28 +4,29 @@
 
 import none_profile from "../../../image/profile.png";
 import React from "react";
-import {useDispatch} from "react-redux";
 
 
 
-const PostLikeCard = ({name, userId}) => {
-  const dispatch = useDispatch();
-
+const PostLikeCard = ({name, userId, profileImage, isFollow}) => {
+  console.log(name, userId, profileImage, isFollow)
 
   return (
     <>
       <div className="follow_Card">
         <div className="follow_info">
-          <img src={none_profile} alt="profile_img"/>
+          {profileImage?    <img src={profileImage} alt="profileImage"/> :  <img src={none_profile} alt="profile_img"/>}
+
           <div className="follow_user">
             <div>{userId}</div>
             <div>{name}</div>
           </div>
         </div>
-
-        <div className="follow_delete_button">
-          <button>삭제</button>
-        </div>
+        {isFollow? <div className="follow_delete_button">
+          <button>팔로잉</button>
+        </div> :  <div className="follow_delete_button">
+          <button>팔로우</button>
+        </div> }
+       
 
       </div>
 

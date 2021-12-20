@@ -70,7 +70,8 @@ const PostCard = ({contents, createdAt, writer, postId,
 
 
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
-  const get_comments = comments.slice(0, 2);
+  const comment_slice = comments.slice(0, 2);
+  const get_comments = comment_slice.reverse();
 
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
@@ -121,7 +122,8 @@ const PostCard = ({contents, createdAt, writer, postId,
   //유저 정보 프로필 클릭해서 들어가기
  const UserProfileClickHandler = () => {
    const id = writer[0].userId
-   navigate(`/profile/${id}`,{state: id})}
+   navigate(`/profile/${id}`,{state: id, replace: true})
+  }
 
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
   const profile_img = writer[0].profileImage;
@@ -137,10 +139,8 @@ const PostCard = ({contents, createdAt, writer, postId,
   }
 
 
-
   return (
     <>
-
     {is_postDetailmodal && <PostDetail/>}
       <div className="post_cards">
         <div className="post_card">

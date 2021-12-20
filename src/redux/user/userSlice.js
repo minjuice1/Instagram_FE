@@ -1,4 +1,14 @@
-import {deleteProfileImg, editProfile, getFollow, getFollower, getProfile, login, logout, profileImg} from "./user";
+import {
+	deleteOneFollower,
+	deleteProfileImg,
+	editProfile,
+	getFollow,
+	getFollower,
+	getProfile,
+	login,
+	logout,
+	profileImg
+} from "./user";
 import { createSlice } from "@reduxjs/toolkit";
 import {history} from "../../history";
 import {getUserPost} from "../post/post";
@@ -10,6 +20,7 @@ const userSlice = createSlice({
 		isLogin: false,
 		FollowerList: [],
 		FollowList: [],
+		hashtagFollow: [],
 	},
 	reducers: {
 		profile_img_change : (state, action) => {
@@ -32,10 +43,17 @@ const userSlice = createSlice({
 
 		},
 		[getFollower.fulfilled]: (state, action) => {
+			console.log(action.payload);
 			state.FollowerList = action.payload.data.user;
 		},
+		[deleteOneFollower.fulfilled]: (state, {payload}) => {
+
+		},
+
 		[getFollow.fulfilled]: (state, action) => {
+			console.log(action.payload)
 			state.FollowList = action.payload.data.user;
+			state.hashtagFollow = action.payload.data.hashtagFollow;
 		},
 		[profileImg.fulfilled]: (state, action) => {
 			window.location.reload();

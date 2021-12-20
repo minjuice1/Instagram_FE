@@ -1,13 +1,11 @@
-import {useEffect} from "react";
 import {useSelector} from "react-redux";
 import HeaderSearchCard from "./HeaderSearchCard";
+
 
 const HeaderSearchResult = () => {
 
   const user_data = useSelector(state=>state.search.user);
   const hash_data = useSelector(state=>state.search.result);
-
-  console.log(user_data);
 
 
 

@@ -1,7 +1,7 @@
 import React, {useMemo, useRef, useState} from "react";
 import "./EditUser.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {editProfile, getProfile} from "../../../../redux/user/user";
+import {deleteUser, editProfile, getProfile} from "../../../../redux/user/user";
 import profile_img from "../../../../image/profile.jpg";
 import {modal_check} from "../../../../redux/modal/modalSlice";
 import ProfileImgModal from "../../Profile/ProfileModal/ProfileImgModal";
@@ -52,6 +52,10 @@ const EditProfile = () => {
   }
   const is_modal = useSelector(state=>state.modal.is_modal);
   const profile_image = useSelector(state=>state.user.user.profileImage);
+
+  const deleteUserClickHandler = () => {
+    dispatch(deleteUser());
+  }
 
 
   return(
@@ -106,7 +110,8 @@ const EditProfile = () => {
 
           </div>
           <div>
-          <button onClick={EditClickHandler}>제출</button> <a>계정을 일시적으로 비활성화</a>
+          <button onClick={EditClickHandler}>제출</button> <a onClick={deleteUserClickHandler}>계정을 삭제합니다</a>
+            {/*<a onClick={deleteUserClickHandler}>계정을 일시적으로 비활성화</a>*/}
           </div>
         </div>
 

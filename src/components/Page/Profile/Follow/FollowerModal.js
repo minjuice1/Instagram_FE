@@ -20,15 +20,20 @@ const FollowerModal = () => {
 
 	const userId = useSelector(state => state.post.user[0]._id);
 
-
 	useEffect(() => {
 		dispatch(getFollower({
 			Id: userId,
 		}))
 	},[dispatch])
+
 	const info = useSelector(state=>state.user.FollowerList);
 
+	console.log(info);
 
+	const myInfoData = sessionStorage.getItem("info");
+	const myInfo = JSON.parse(myInfoData);
+
+	const myFollowers = userId === myInfo._id? true : false;
 
 	return (
 		<>
@@ -42,7 +47,11 @@ const FollowerModal = () => {
 						name = {info.name}
 						userId={info.userId}
 						profileImage={info.profileImage}
-						isFollow = {info.isFollow}/>
+						isFollow = {info.isFollow}
+						myId = {myInfo.userId}
+						myFollowers={myFollowers}
+						_id = {info._id}/>
+
 
 					))}
 				</div>

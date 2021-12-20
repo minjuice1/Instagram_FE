@@ -1,24 +1,20 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {none_profile, hash_icon} from "../../../common/IconImage";
-import "./Header.scss"
+import {none_profile, hash_icon} from "../../../../common/IconImage";
+import "../Header.scss"
 import {useNavigate} from "react-router";
-import {headerSearchResult} from "../../../redux/search/search";
 
 const HeaderSearchCard = ({name, userId, profileImage, tagName, postCount}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //유저 검색했을 경우
   const searchUserClickHandler = () => {
     const id = userId;
     navigate(`/profile/${id}`,{state: id});
   }
-
   const hashSearchResultClickHandler = () => {
-    let searchResult = tagName && tagName.replace('#', '%23');
-    dispatch(headerSearchResult({
-      searchResult
-    }))
+    navigate(`/searchhash/${tagName}`, {state: tagName, replace: true});
   }
 
   return (

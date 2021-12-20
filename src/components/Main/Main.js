@@ -51,7 +51,9 @@ const Main = () => {
 						<SideMain />
 					</div>
 					{is_modal && <PostModal />}
-					{post_like_list && <PostLikeModal/>}
+					{post_like_list && post_data.map((posts) => (
+						<PostLikeModal postId={posts._id}/>
+					)) }
 				</div>
 			</div>
 		</>
