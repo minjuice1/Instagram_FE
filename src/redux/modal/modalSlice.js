@@ -71,7 +71,7 @@ const modalSlice = createSlice({
 		[postDetailComment_modal.fulfilled]: (state, action) => {
 			state.postDetailComment_modal = !state.postDetailComment_modal;
 		},
-		[likeList_modal.fulfilled]: (state, action) => {
+		[likeList_modal.fulfilled]: (state) => {
 			state.likeList_modal = !state.likeList_modal;
 		},
 	},

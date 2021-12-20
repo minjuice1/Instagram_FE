@@ -6,19 +6,27 @@ import React, {useEffect} from "react";
 import PostLikeCard from "./PostLikeCard";
 import {getLikeList} from "../../../redux/post/post";
 
-const PostLikeModal = ({postId}) => {
+const PostLikeModal = ({ likeOpen, SetLikeOpen, postId}) => {
   const dispatch = useDispatch();
 
   const cancleClickHandler = () => {
-    dispatch(likeList_modal());
+    // dispatch(likeList_modal());
+    SetLikeOpen(false);
   };
 
   useEffect(() => {
     dispatch(getLikeList({postId}));
-    console.log("헴")
   },[dispatch])
+  // useEffect(() => {
+  //   document.body.style.cssText = `position: fixed; top: -${window.scrollY}px`
+  //   return () => {
+  //     const scrollY = document.body.style.top
+  //     document.body.style.cssText = `position: ""; top: "";`
+  //     window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  //   }
+  // }, [])
 
-  const like_user_list = useSelector(state=>state.post.likeUsers);
+  const like_list = useSelector(state=>state.post.likeUsers);
 
 
 
@@ -32,8 +40,12 @@ const PostLikeModal = ({postId}) => {
 
         <div className="modal_common_card">
           <div className="modal_content">
-            {like_user_list && like_user_list.map((likes) => (
-              <PostLikeCard userId={likes.userId} name={likes.name} profileImage={likes.profileImage} isFollow={likes.isFollow}/>
+            {like_list && like_list.map((likes) => (
+              <PostLikeCard
+                userId={likes.userId}
+                name={likes.name}
+                profileImage={likes.profileImage}
+                isFollow={likes.isFollow}/>
             ))}
 
 

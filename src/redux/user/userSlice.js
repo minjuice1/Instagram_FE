@@ -49,7 +49,6 @@ const userSlice = createSlice({
 		},
 
 		[getFollow.fulfilled]: (state, action) => {
-			console.log(action.payload)
 			state.FollowList = action.payload.data.user;
 			state.hashtagFollow = action.payload.data.hashtagFollow;
 		},

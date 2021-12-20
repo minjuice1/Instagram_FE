@@ -1,31 +1,32 @@
+import React, {useEffect} from "react";
 import "./Recommendation.scss";
-import {recomtest} from "../../../../common/IconImage";
+import RecommendCard from "./RecommendCard";
+import {useDispatch, useSelector} from "react-redux";
+import {randomPost} from "../../../../redux/post/post";
 
 const Recommendation = () => {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(randomPost())
+  },[dispatch])
+
+  const random_list = useSelector(state=>state.post.randomPosts);
+
+  console.log(random_list)
 
   return (
     <>
       <div className="recom">
         <div className="recommendation">
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
-          <div className="item"><img src={recomtest}/></div>
+          {random_list && random_list.map((random) => (
+            <RecommendCard
+            _id={random._id}
+            imageUrl={random.imageUrl}
+            likeCount={random.likeCount}
+            commentCount={random.commentCount}
+            />
+            ))}
 
         </div>
       </div>
