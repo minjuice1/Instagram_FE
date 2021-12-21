@@ -37,7 +37,6 @@ const Profile = () => {
   const [myProfile, SetMyProfile] = useState(false);
   const myId = useSelector(state=>state.user.user.userId);
 
-
   useEffect((e) => {
 
     if(!myProfile){
@@ -54,7 +53,7 @@ const Profile = () => {
   const post_list = useSelector(state=>state.post.post);
 
 
-  // 	// 게시물, 동영상, 저장됨, 태그됨
+  // 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
   const [ClickedVideo, setClickedVideo] = useState(false);
   const [ClickedSaved, setClickedSaved] = useState(false);
@@ -75,17 +74,16 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    // navigate("/profile/channel");
   };
 
-  const savedClickHandler = (event) => {
+  const savedClickHandler = () => {
     setClickedSaved(true);
     setClickedVideo(false);
     setClickedPosts(false);
     setClickedTagged(false);
   };
 
-  const taggedClickHandler = (event) => {
+  const taggedClickHandler = () => {
     setClickedTagged(true);
     setClickedPosts(false);
     setClickedVideo(false);
@@ -253,6 +251,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
 
     </>
   );
