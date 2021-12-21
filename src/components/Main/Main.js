@@ -18,6 +18,7 @@ const Main = () => {
 	useEffect(() => {
 		dispatch(getPost());
 	}, [dispatch]);
+
 	const is_modal = useSelector((state) => state.modal.is_modal);
 	const post_data = useSelector((state) => state.post.posts);
 	console.log(post_data);

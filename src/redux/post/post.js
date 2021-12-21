@@ -122,7 +122,7 @@ export const likePost = createAsyncThunk(
 export const getUserPost = createAsyncThunk(
   "post/getUserPost",
   async(data, thunkAPI) => {
-
+    console.log(data);
     const AccessToken = localStorage.getItem("user")
     try{
       const response = await Api({
@@ -133,6 +133,7 @@ export const getUserPost = createAsyncThunk(
         }
       })
       if(response.data.ok){
+        console.log(response)
         return response.data;
       }
       return response;

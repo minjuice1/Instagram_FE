@@ -5,15 +5,25 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import pp from "../../../image/profile.png";
 import UserFollower from "./Follow/UserFollower";
-import {React} from "react";
+import {useState} from "react";
 import {profile_setting} from "../../../common/IconImage";
 import UserFollow from "./Follow/UserFollow";
+import ProfileChangeImage from "../User/EditUser/ProfileChangeImage";
+import ProfileImgModal from "../User/EditUser/ProfileImgModal";
 
 
 //프로필이 자기일 때 보여주는 화면
 const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, introdution, profileImage,}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [imageChange, SetImageChange] = useState(false);
+
+  const imageChangeClickHandler = () => {
+    SetImageChange(!imageChange);
+
+  }
+
   const show_postModal = () => {
     dispatch(modal_check());
   };
@@ -23,7 +33,8 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
   }
   return(
     <div className="profile_header">
-      <div className="profile_header_image">
+      {/*{SetImageChange && <ProfileImgModal SetImageChange={SetImageChange} imageChange={imageChange}/>}*/}
+      <div className="profile_header_image" onClick={imageChangeClickHandler}>
         {profileImage? <img src={profileImage} alt="profile"/>:
           <img src={pp} alt={"profile"}/>}
 

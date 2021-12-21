@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { similarAccount_modal_check} from "../../../../../redux/modal/modalSlice";
-import "../../ProfileModal/CommonFollowingModal.scss";
+import "./CommonFollowingModal.scss";
 import profile from "../../../../../image/profile.png";
 
 const FollowersModal = () => {

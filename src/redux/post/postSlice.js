@@ -24,7 +24,7 @@ const postSlice = createSlice({
       state.posts = action.payload.posts;
     },
     [getUserPost.fulfilled] : (state, action) => {
-      console.log(action);
+      console.log(action.payload);
       state.post = action.payload.post;
       state.user = action.payload.user;
       state.savedPost = action.payload.savedPost;
