@@ -10,6 +10,8 @@ import "./PostCard";
 
 const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
 
+  console.log(isLike);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -45,8 +47,9 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
         <div className="post_one_comment">
           <div> <span onClick={UserProfileClickHandler}>{userId}</span>  <a>{contents}</a> </div>
           {isLike ? (
-              <img src={comment_red_heart} onClick={commentLikeClickHandler}/>) :
-            (<img src={comment_heart} onClick={commentLikeClickHandler}/>)}
+            <img src={comment_red_heart} onClick={commentLikeClickHandler}/>
+            ) : (
+            <img src={comment_heart} onClick={commentLikeClickHandler}/>)}
         </div>
       </div>
     </>

@@ -40,7 +40,7 @@ export const getPost = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
-      // console.log(response)
+      console.log(response);
       return response.data;
     } catch (e) {
 

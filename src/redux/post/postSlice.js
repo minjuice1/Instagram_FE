@@ -88,8 +88,8 @@ const postSlice = createSlice({
 		},
     [likedComment.fulfilled]: (state, action) => {
       console.log(action);
-      const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
       if (action.payload.path === "detailCmt") {
+        const idx = state.comment.findIndex((c) => c._id === action.payload.commentId);
         if(!state.comment[idx].isLike) {
           state.comment[idx].isLike = true;
           state.comment[idx].likeCount = state.comment[idx].likeCount + 1;
@@ -100,7 +100,15 @@ const postSlice = createSlice({
         }
       } else {
         const post = state.posts.findIndex((p) => p._id === action.payload.postId);
-        state.posts[post].comments[idx].isLike = !state.posts[post].comments[idx].isLike;
+        console.log(post);
+        const cmt = state.posts[post].comments.findIndex((c) => c._id === action.payload.commentId);
+        console.log(cmt);
+        if(!state.posts[post].comments[cmt].isLike) {
+          state.posts[post].comments[cmt].isLike = true;
+        } else {
+          state.posts[post].comments[cmt].isLike = false;
+        }
+        // state.posts[post].comments[cmt].isLike = !state.posts[post].comments[cmt].isLike;
       }
     },
     // 댓글, 대댓글 좋아요 누른 사람 목록 보기

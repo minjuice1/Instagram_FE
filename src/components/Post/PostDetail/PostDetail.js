@@ -14,6 +14,7 @@ import PostOptionModal from './PostOptionModal';
 import "./PostDetail.scss";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
+import { replyReducer } from '../../../redux/post/postSlice';
 
 const PostDetail = () => {	
 
@@ -28,6 +29,10 @@ const PostDetail = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
 	const likeUsersCmt = useSelector(state=>state.post.likeUsersCmt);
+
+	const replyTag = useSelector((state) => state.post.replyTag); 
+	const replyUserId = useSelector(state => state.post.replyTag?.writer);
+	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
 	console.log(likeUsersCmt);
 	console.log(postDetail);
 
@@ -59,6 +64,9 @@ const PostDetail = () => {
 	// PostDetail 전체 modal
 	const cancleClickHandler = () => {
 		history.go(-1);
+		if(replyTag) {
+			dispatch(replyReducer(""))
+		}
 	};
 
 	// PostDetail의 dot modal
@@ -221,7 +229,7 @@ const PostDetail = () => {
 									<span>{time}</span>
 								</div>
 								<div className="postDetail_postComment">
-								<PostComment path={path} postId={postId} commentId={comments._id}/>
+								<PostComment replyCommentId={replyCommentId} replyUserId={replyUserId} replyTag={replyTag} path={path} postId={postId} commentId={comments._id}/>
 								</div>
 							</div>
 						</div>

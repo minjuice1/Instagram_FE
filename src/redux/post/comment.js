@@ -49,7 +49,9 @@ export const deleteComment = createAsyncThunk(
 
 export const likedComment = createAsyncThunk(
 	"commment/likedComment",
+	
 	async ({ commentId, AccessToken, path, postId }) => {
+		console.log(commentId,postId, path );
 		try {
 			const response = await Api({
 				url: `/comment/${commentId}/like`,
@@ -58,7 +60,7 @@ export const likedComment = createAsyncThunk(
 					Authorization: `Bearer ${AccessToken}`,
 				},
 			})
-			// console.log(response);
+			console.log(response);
 			return { path: path, commentId: commentId, postId: postId, data: response.data }; 
 		} catch (e) {
 

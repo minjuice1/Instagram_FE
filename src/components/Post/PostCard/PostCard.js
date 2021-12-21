@@ -64,9 +64,8 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
   };
 
 
-  // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
-  const comment_slice = comments.slice(0, 2);
-  const get_comments = comment_slice.reverse();
+  // 홈화면 최신순을 위해 배열 뒤집음  
+  const get_comments = [...comments].reverse();
 
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {
@@ -97,9 +96,9 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
   const time = displayTime(createdAt);
 
   // 답글 달기 취소
-  useEffect(() => {
-    dispatch(replyReducer(""))
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(replyReducer(""))
+  // }, []);
 
   //유저 정보 프로필 클릭해서 들어가기
   const UserProfileClickHandler = () => {
@@ -119,6 +118,10 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
     SetLikeOpen(true)
   }
 
+  // postDetail 로
+  const toPostDetailHandler = () => {
+    navigate(`/postdetail/${postId}`);
+  }
 
    // PostDetail의 dot modal
   const [openModal, setOpenModal] = useState(false); 
@@ -147,11 +150,11 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
               <img className="post_center_image" src={postImage}/>
             </div>
             <div className="post_icon">
-              <div className="footer_icon">
+            <div className="footer_icon">
                 {isLike ? (
                     <img src={post_red_heart} onClick={postLikeClickHandler}/>) :
                   (<img src={post_heart} onClick={postLikeClickHandler}/>)}
-                <img src={text}/>
+                  <img src={text} className="post_cursor" onClick={toPostDetailHandler}/>
                 <img src={message}/>
               </div>
               <div className="footer_collection">
@@ -182,7 +185,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
                 좋아요 <span>{likeCount}</span>개</a>
               )}
               <div className="post_text">
-                <a className="post_user_id">{writer[0].userId}</a>
+                <a className="post_user_id" onClick={UserProfileClickHandler}>{writer[0].userId}</a>
                 {morePost ? (
                     <div
                       className="post_text"
@@ -197,10 +200,9 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
                   </div>)}
               </div>
               <div>
-                {commentCount > 2 && (
-                  <Link to={`/postdetail/${postId}`} >
-                    댓글 <span>{commentCount}</span>개 모두 보기
-                  </Link>
+                {commentCount >= 2 && (
+                <span className="post_cursor" onClick={toPostDetailHandler}>
+                  댓글 <span>{commentCount}</span>개 모두 보기</span>
                 )}
               </div>
             </div>
@@ -208,7 +210,8 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
               <PostGetComment contents ={comment.contents}
                               postId={comment.postId}
                               writer={comment.writer}
-                              commentId={comment._id}/>
+                              commentId={comment._id}
+                              isLike={comment.isLike}/>
             ))}
             <div className="post_time">{time}</div>
             {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
