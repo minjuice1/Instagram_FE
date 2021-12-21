@@ -10,28 +10,20 @@ import {replyReducer} from '../../../redux/post/postSlice';
 import PostComment from "./PostComment";
 import PostGetComment from "./PostGetComment";
 import PostDetail from '../PostDetail/PostDetail';
+import PostModal from "../PostModal/PostModal";
 import PostLikeModal from "../PostModal/PostLikeModal";
 
 import "./PostCard.scss";
-import {
-  post_heart,
-  post_red_heart,
-  message,
-  text,
-  dot,
-  post_save,
-  post_saveActive,
-  none_profile,
-} from "../../../common/IconImage";
+import {post_heart, post_red_heart, message, text, dot, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 import dompurify from "dompurify";
 
-const PostCard = ({
-                    contents, createdAt, writer, postId, likeUsers, likeCount,
-                    postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved
-                  }) => {
-
+const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, ostImage, postImage,
+                    isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const myId = useSelector(state=>state.user.user.userId);
+
+  console.log(likeCount)
 
   // postDetail이랑 path로 action 구분
   const path = "main";

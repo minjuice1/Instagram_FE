@@ -2,17 +2,17 @@
 @import "../../../common/mixin";
 
 .postDetailModal_container {
-	left: 0;
-	width: 97vw;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	z-index: 1300;
-	position: fixed;
+  left: 0;
+  width: 97vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1300;
+  position: fixed;
 
-	.postDetailModal {
+  .postDetailModal {
     width: 400px;
     height: 335px;
     border: 1px solid $instaGray;
@@ -22,9 +22,9 @@
     background: $instaWhite;
     cursor: pointer;
     margin-top: 600px;
-		position: fixed;
+    position: fixed;
 
-		& > div {
+    & > div {
       border-bottom: 1px solid $instaGray;
       height: 47px;
       text-align: center;
@@ -32,18 +32,20 @@
       @include fontSize('large');
       color: $instaMenuBlack;
       z-index: 1100;
-		}
-		& > div:first-child, & > div:nth-child(2){
-			color: $instaRed;
-			font-weight: bold;
-		}
-		& > div:last-child{
-			border: none;
-		}
-	}
-	
-	.postDetailModal_myId {
-		width: 400px;
+    }
+
+    & > div:first-child, & > div:nth-child(2) {
+      color: $instaRed;
+      font-weight: bold;
+    }
+
+    & > div:last-child {
+      border: none;
+    }
+  }
+
+  .postDetailModal_myId {
+    width: 400px;
     height: 144px;
     border: 1px solid $instaGray;
     border-radius: 15px;
@@ -52,9 +54,9 @@
     background: $instaWhite;
     cursor: pointer;
     position: fixed;
-		margin-top: 630px;
+    margin-top: 630px;
 
-		& > div {
+    & > div {
       border-bottom: 1px solid $instaGray;
       height: 47px;
       text-align: center;
@@ -62,44 +64,46 @@
       @include fontSize('large');
       color: $instaMenuBlack;
       z-index: 1100;
-		}
-		& > div:first-child {
-			color: $instaRed;
-			font-weight: bold;
-		}
-		& > div:last-child{
-			border: none;
-		}
-	}
+    }
+
+    & > div:first-child {
+      color: $instaRed;
+      font-weight: bold;
+    }
+
+    & > div:last-child {
+      border: none;
+    }
+  }
 }
 
 .postDetailModal_overlay {
-	box-sizing: border-box;
-	position: fixed;
-	width: 100vw;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	background-color: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 1050;
 }
 
 @include desktop {
-	.profile_modal_container {
-		top: 50%;
-	}
+  .profile_modal_container {
+    top: 50%;
+  }
 }
 
 @include tablet {
-	.profile_modal_container {
-		top: 65%;
-	}
+  .profile_modal_container {
+    top: 65%;
+  }
 }
 
 @include mobile {
-	.profile_modal_container {
-		left: 10%;
-		top: 65%;
-	}
+  .profile_modal_container {
+    left: 10%;
+    top: 65%;
+  }
 }
