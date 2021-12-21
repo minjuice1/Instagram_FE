@@ -141,67 +141,31 @@ const Profile = () => {
             />}
             {/*<ProfileStory/>*/}
             <div className="profile_post_dir" role="tablist">
-              {ClickedPosts ? (
-                  <a className="profile_post_clicked">
-									<span className="profile_post_clickOn"
-                        onClick={postsClickHandler}>
-											<MdGridOn/> 게시물
-									</span>
-                  </a>
-                )
-                : (
-                  <a className="profile_post_unclicked">
+                  <a className={ClickedPosts ? "profile_post_clicked" : "profile_post_unclicked"}>
 									<span onClick={postsClickHandler}>
 											<MdGridOn/> 게시물
 									</span>
                   </a>
-                )}
 
-              {ClickedVideo ? (
-                <a className="profile_post_clicked">
+                <a className={ClickedVideo ? "profile_post_clicked" : "profile_post_unclicked"}>
 									<span onClick={videoClickHandler}>
 											<FiPlayCircle/> 동영상
 									</span>
                 </a>
-              ) : (
-                <a className="profile_post_unclicked">
-								<span onClick={videoClickHandler}>
-											<FiPlayCircle/> 동영상
-									</span>
-                </a>
-              )}
-
-              {!myProfile && ("")}
-
-              {!myProfile ? ClickedSaved ? (
-                <div className="profile_post_clicked">
+              
+              {myProfile &&
+              <div className={ClickedSaved ? "profile_post_clicked" : "profile_post_unclicked"}>
                 <span onClick={savedClickHandler}>
                   <BiBookmark/> 저장됨
                 </span>
-              </div>
-              ) : (
-                ""
-              ) : (
-                <div className="profile_post_unclicked">
-                  <span onClick={savedClickHandler}>
-                    <BiBookmark/> 저장됨
-                  </span>
-                </div>
-              )}
+              </div>}              
                 
-              {ClickedTagged ? (
-                <a className="profile_post_clicked">
+              
+                <a className={ClickedTagged ? "profile_post_clicked" : "profile_post_unclicked"}>
 									<span onClick={taggedClickHandler}>
 											<RiAccountBoxLine/> 태그됨
 									</span>
                 </a>
-              ) : (
-                <a className="profile_post_unclicked">
-									<span onClick={taggedClickHandler}>
-											<RiAccountBoxLine/> 태그됨
-									</span>
-                </a>
-              )}
             </div>
 
             <div className="post_layout">
