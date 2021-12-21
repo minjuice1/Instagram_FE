@@ -54,7 +54,6 @@ const postSlice = createSlice({
       if (action.payload.path === "main") {
       const idx = state.posts.findIndex((p) => p._id === action.payload.postId);
       state.posts[idx].isLike = !state.posts[idx].isLike;
-      // state.posts[idx].likeCount = state.posts[idx].likeCount;
       } else {
         state.postDetail[0].isLike = !state.postDetail[0].isLike;
       }
@@ -100,7 +99,7 @@ const postSlice = createSlice({
     // 댓글, 대댓글 좋아요 누른 사람 목록 보기
     [getLikedListComment.fulfilled]: (state, action) => {
       console.log(action);
-      // state.likeUsersCmt.likeUsers = action.payload.data.likeUsers;
+      state.likeUsersCmt = action.payload.data.likeUsers;
     },
 
      //replyComment
@@ -121,8 +120,6 @@ const postSlice = createSlice({
       console.log(action);
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
       const re = state.comment[idx].childComments.findIndex((c) => c._id === action.payload.commentId);
-      // state.comment[idx].childComments[re].isLike = !state.comment[idx].childComments[re].isLike;
-      // state.comment[idx].childComments[re].likeCount = action.meta.arg.Relike;
       if(!state.comment[idx].childComments[re].isLike) {
         state.comment[idx].childComments[re].isLike = true;
         state.comment[idx].childComments[re].likeCount = state.comment[idx].childComments[re].likeCount + 1;

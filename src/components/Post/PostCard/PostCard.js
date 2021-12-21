@@ -12,21 +12,11 @@ import PostLikeModal from "../PostModal/PostLikeModal";
 import PostModal from '../PostModal/PostModal';
 
 import "./PostCard.scss";
-import {
-  post_heart,
-  post_red_heart,
-  message,
-  text,
-  dot,
-  post_save,
-  post_saveActive,
-  none_profile,
-} from "../../../common/IconImage";
+import {post_heart,  post_red_heart,  message,  text,  dot,  post_save,  post_saveActive,  none_profile,} from "../../../common/IconImage";
 import dompurify from "dompurify";
 
 
-const PostCard = ({contents, createdAt, writer, postId, likeCount,
-                    postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
+const PostCard = ({contents, createdAt, writer, postId, likeCount, postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
