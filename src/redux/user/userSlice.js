@@ -37,9 +37,6 @@ const userSlice = createSlice({
 		[getProfile.fulfilled]: (state,action) => {
 			state.user = action.payload.data.user;
 	},
-		[getUserPost.fulfilled]: (state,action) => {
-			// postSlice에 있음
-		},
 		[getFollower.fulfilled]: (state, action) => {
 			console.log(action.payload);
 			state.FollowerList = action.payload.data.user;
@@ -49,7 +46,6 @@ const userSlice = createSlice({
 		},
 
 		[getFollow.fulfilled]: (state, action) => {
-			console.log(action.payload)
 			state.FollowList = action.payload.data.user;
 			state.hashtagFollow = action.payload.data.hashtagFollow;
 		},

@@ -29,6 +29,7 @@ const PostDetail = () => {
 	const myId = useSelector(state=>state.user.user.userId);
 	const likeUsersCmt = useSelector(state=>state.post.likeUsersCmt);
 	console.log(likeUsersCmt);
+	console.log(postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));

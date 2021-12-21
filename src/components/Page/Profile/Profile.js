@@ -9,8 +9,6 @@ import ProfileSaved from "./CommonProfile/ProfileSaved";
 
 // 모달
 import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
-import ProfileCollectionModal from './SavedProfile/ProfileCollectionModal';
-
 // scss, icon, img
 import "./Profile.scss";
 import pp from "../../../image/profile.jpg";
@@ -18,11 +16,12 @@ import {FiSettings, FiPlayCircle} from "react-icons/fi";
 import {BiBookmark} from "react-icons/bi";
 import {RiAccountBoxLine} from "react-icons/ri";
 import {MdGridOn} from "react-icons/md";
+import ProfileStory from "./ProfileStory";
 import MyProfileInfo from "./MyProfileInfo";
 import {useLocation, useParams} from "react-router";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
-
+// import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
 
 
 const Profile = () => {
@@ -48,9 +47,11 @@ const Profile = () => {
     }else{
       SetMyProfile(false);
     }
-  }, [dispatch, myProfile, location]);
+  }, [dispatch, myProfile, location, user_id, myId]);
+
 
   const post_list = useSelector(state=>state.post.post);
+
 
   // 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
@@ -66,7 +67,6 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    //navigate(`/profile/${myId}`);
   };
 
   const videoClickHandler = () => {
@@ -74,7 +74,6 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedSaved(false);
     setClickedTagged(false);
-    //navigate("/profile/channel");
   };
 
   const savedClickHandler = () => {
@@ -82,7 +81,6 @@ const Profile = () => {
     setClickedVideo(false);
     setClickedPosts(false);
     setClickedTagged(false);
-    //navigate(`/profile/${myId}/saved`);
   };
 
   const taggedClickHandler = () => {
@@ -90,60 +88,57 @@ const Profile = () => {
     setClickedPosts(false);
     setClickedVideo(false);
     setClickedSaved(false);
-    //navigate("/profile/tagged");
   };
 
   // 프로필 편집, 팔로워, 팔로우 모달
-const is_modal = useSelector((state) => state.modal.is_modal);
-const user_info = useSelector(state=> state.post.user);
-const user_data = user_info && user_info[0];
-const my_follow = user_data && user_data.isFollow;
+  const is_modal = useSelector((state) => state.modal.is_modal);
+  const user_info = useSelector(state=> state.post.user);
+  const user_data = user_info && user_info[0];
+  const my_follow = user_data && user_data.isFollow;
 
 
-console.log("포스트", post_list);
+  console.log("포스트", post_list);
 
 
 // 저장된 게시물 불러오기
-const savedUser = useSelector((state) => state.post.savedPost);
-
+  const savedUser = useSelector((state) => state.post.savedPost);
 // 컬렉션 생성
-const [openCollectionModal, setOpenCollectionModal] = useState(false);
-const addCollectionHandler = () => {
-  setOpenCollectionModal(true);
-}
+  const [openModal, setOpenModal] = useState(false);
+  const addCollectionHandler = () => {
+    setOpenModal(true);
+  }
+
 
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
-      {openCollectionModal && <ProfileCollectionModal setOpenCollectionModal={setOpenCollectionModal}/>}
+      {/*{openModal && <ProfileCollectionModal setOpenModal={setOpenModal}/>}*/}
 
-      
       <div className="profile_all">
         <div className="profile_content">
           <div className="profile_profileBox">
             {myProfile && user_data &&
-              <MyProfileInfo
-                userId = {user_id}
-                name = {user_data.name}
-                totalFollow = {user_data.totalFollow}
-                totalFollower = {user_data.totalFollower}
-                totalPost = {user_data.totalPost}
-                introdution = {user_data.introdution}
-                profileImage={user_data.profileImage}
-              />}
+            <MyProfileInfo
+              userId = {user_id}
+              name = {user_data.name}
+              totalFollow = {user_data.totalFollow}
+              totalFollower = {user_data.totalFollower}
+              totalPost = {user_data.totalPost}
+              introdution = {user_data.introdution}
+              profileImage={user_data.profileImage}
+            />}
             {!myProfile && user_data &&
-              <UserProfileInfo
-                userId = {user_id}
-                Id = {user_data._id}
-                name = {user_data.name}
-                totalFollow = {user_data.totalFollow}
-                totalFollower = {user_data.totalFollower}
-                totalPost = {user_data.totalPost}
-                introdution = {user_data.introdution}
-                profileImage={user_data.profileImage}
-                my_follow={my_follow}
-              />}
-              
+            <UserProfileInfo
+              userId = {user_id}
+              Id = {user_data._id}
+              name = {user_data.name}
+              totalFollow = {user_data.totalFollow}
+              totalFollower = {user_data.totalFollower}
+              totalPost = {user_data.totalPost}
+              introdution = {user_data.introdution}
+              profileImage={user_data.profileImage}
+              my_follow={my_follow}
+            />}
             {/*<ProfileStory/>*/}
             <div className="profile_post_dir" role="tablist">
               {ClickedPosts ? (
@@ -215,26 +210,26 @@ const addCollectionHandler = () => {
                   <div className="desc_savedPost">저장한 내용은 회원님만 볼 수 있습니다</div>
                   <div className="add_savedPostBox" onClick={addCollectionHandler}>+ 새 컬렉션</div>
                 </div>
-                
+
               )}
-            {ClickedPosts && (
+              {ClickedPosts && (
                 <div className="OtherProfile_postsBox">
                   {post_list && post_list.map((img) => (
                     <Link to={`/postdetail/${img._id}`}>
-                    <ProfilePosts
-                      picture = {img.imageUrl}
-                      userId = {img._id}/>
+                      <ProfilePosts
+                        picture = {img.imageUrl}
+                        userId = {img._id}/>
                     </Link>
                   ))}
                 </div>
-            )}
-            {ClickedSaved && (
+              )}
+              {ClickedSaved && (
                 <div className="OtherProfile_savedBox">
-									{savedUser && savedUser.map((save) => (
+                  {savedUser && savedUser.map((save) => (
                     <Link to={`/postdetail/${save._id}`}>
-                    <ProfileSaved
-                      savedPost = {save.imageUrl}
-                      userId = {save._id}  />
+                      <ProfileSaved
+                        savedPost = {save.imageUrl}
+                        userId = {save._id}  />
                     </Link>
                   ))}
                 </div>
@@ -245,6 +240,7 @@ const addCollectionHandler = () => {
                 </div>
               )}
             </div>
+
 
             {/*{saved && (*/}
             {/*  <div className="OtherProfile_postsBox">*/}
@@ -259,8 +255,9 @@ const addCollectionHandler = () => {
           </div>
         </div>
       </div>
-    </>
 
+
+    </>
   );
 };
 

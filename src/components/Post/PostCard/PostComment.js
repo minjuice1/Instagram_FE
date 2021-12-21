@@ -20,7 +20,7 @@ const PostComment = ({ postId, path }) => {
 
 	useEffect(() => {
 		dispatch(replyReducer(""))
-	}, []);
+	}, [dispatch]);
 
 	useEffect(() => {
 		if(replyUserId !== "" && replyUserId !== undefined){

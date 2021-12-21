@@ -122,7 +122,7 @@ export const likePost = createAsyncThunk(
 export const getUserPost = createAsyncThunk(
   "post/getUserPost",
   async(data, thunkAPI) => {
-
+    console.log(data);
     const AccessToken = localStorage.getItem("user")
     try{
       const response = await Api({
@@ -133,6 +133,7 @@ export const getUserPost = createAsyncThunk(
         }
       })
       if(response.data.ok){
+        console.log(response)
         return response.data;
       }
       return response;
@@ -174,6 +175,7 @@ export const getLikeList = createAsyncThunk(
         },
       })
       if(response.data.ok){
+        console.log(response);
         return response;
       }
       return response;
@@ -183,5 +185,22 @@ export const getLikeList = createAsyncThunk(
   }
 )
 
+//게시물 랜덤 불러오기
 
-
+export const randomPost = createAsyncThunk(
+  "post/randomPost",
+  async() => {
+    try {
+      const response = await Api({
+        url: `/post/randomPosts`,
+        method: 'GET',
+      })
+      if(response.data.ok){
+        console.log(response)
+        return response;
+      }
+    }catch (e) {
+      console.log(e.response);
+    }
+  }
+)

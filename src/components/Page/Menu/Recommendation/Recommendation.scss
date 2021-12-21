@@ -13,6 +13,7 @@
   grid-template-columns: repeat(3, minmax(20px, max-content));
   grid-template-rows: repeat(8, 1fr);
   gap: 10px;
+  position: relative;
 
 .item{
   &>img {
@@ -20,6 +21,27 @@
     max-width: 300px;
   }
 }
+}
+
+.recommendCard {
+  width: 20vw;
+  height: auto;
+  min-width: 150px;
+  & > img{
+    width: 100%;
+    height: 100%;
+  }
+  .hoverRecommend {
+    display: none;
+
+  }
+  &:hover{
+    .hoverRecommend{
+      display: contents;
+      margin-top: 100px;
+      position: absolute;
+    }
+  }
 }
 
 @include mobile{

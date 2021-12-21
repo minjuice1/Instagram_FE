@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-import {deletePost, getLikeList, getPost, getPostDetail, getUserPost, savedPost, likePost} from "./post";
+import {deletePost, getLikeList, getPost, getPostDetail, getUserPost, savedPost, likePost, randomPost} from "./post";
 import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment, getLikedListComment } from './comment';
 
 const postSlice = createSlice({
@@ -15,6 +15,7 @@ const postSlice = createSlice({
     likeUsers:[],
     likeUsersCmt: [],
     replyTag: "",
+    randomPosts: [],
   },
   reducers: {
     replyReducer : (state, action) => {
@@ -26,7 +27,7 @@ const postSlice = createSlice({
       state.posts = action.payload.posts;
     },
     [getUserPost.fulfilled] : (state, action) => {
-      console.log(action);
+      console.log(action.payload);
       state.post = action.payload.post;
       state.user = action.payload.user;
       state.savedPost = action.payload.savedPost;
@@ -52,10 +53,16 @@ const postSlice = createSlice({
     [likePost.fulfilled]: (state, action) => {
       console.log(action);
       if (action.payload.path === "main") {
-      const idx = state.posts.findIndex((p) => p._id === action.payload.postId);
-      state.posts[idx].isLike = !state.posts[idx].isLike;
+        const idx = state.posts.findIndex((p) => p._id === action.payload.postId);
+        if(!state.posts[idx].isLike) {
+          state.posts[idx].isLike = true;
+          state.posts[idx].likeCount = state.posts[idx].likeCount +1;
+        } else {
+          state.posts[idx].isLike = false;
+          state.posts[idx].likeCount = state.posts[idx].likeCount -1;
+        }
       } else {
-        state.postDetail[0].isLike = !state.postDetail[0].isLike;
+        // state.postDetail[0].isLike = !state.postDetail[0].isLike;
       }
     },
 
@@ -129,6 +136,9 @@ const postSlice = createSlice({
         state.comment[idx].childComments[re].likeCount = state.comment[idx].childComments[re].likeCount - 1;
       }
     },
+    [randomPost.fulfilled]:(state, action) => {
+      state.randomPosts =  action.payload.data.randomPost;
+    }
   },
 });
 export const {delete_post, replyReducer} = postSlice.actions;
