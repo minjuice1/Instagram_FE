@@ -59,7 +59,6 @@ function App() {
 
 
 
-
   //헤더 띄우기용
   const show_header = is_login || token ;
 
@@ -83,12 +82,12 @@ function App() {
           <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
           <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser /> </RequireAuth>}/>
-					<Route path="/profile/*"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}/>
-					<Route path="/profile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-					<Route path="/myprofile/:user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-					<Route path="/profile/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-					<Route path="/profile/saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-					<Route path="/profile/tagged"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+					<Route path="/profile/*"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}>
+            <Route path=":user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+            <Route path="channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+            <Route path="saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+            <Route path="tagged"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+          </Route>
           <Route path="/searchhash/*"	element={<RequireAuth redirectTo="/login"> <SearchHash /> </RequireAuth>}>
             <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash /> </RequireAuth>}/>
           </Route>

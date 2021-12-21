@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {deleteUser, editProfile, getProfile} from "../../../../redux/user/user";
 import profile_img from "../../../../image/profile.jpg";
 import {modal_check} from "../../../../redux/modal/modalSlice";
-import ProfileImgModal from "../../Profile/ProfileModal/ProfileImgModal";
+import ProfileImgModal from "./ProfileImgModal";
 
 const EditProfile = () => {
   const dispatch = useDispatch();

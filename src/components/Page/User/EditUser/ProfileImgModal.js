@@ -9,7 +9,7 @@ import {useNavigate} from "react-router";
 import ProfileChangeImage from "./ProfileChangeImage";
 import {deleteProfileImg} from "../../../../redux/user/user";
 
-const ProfileImgModal = (userId, user_id) => {
+const ProfileImgModal = ({imageChange, SetImageChange} ) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

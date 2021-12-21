@@ -5,13 +5,9 @@
   background: $instaWhite;
   border-radius: 15px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  position: fixed;
+  position: absolute;
   z-index: 100;
-
-  //임시방편 나중에 카드에 스크롤 따로 히든 줄 것.
-  overflow: auto;
-  overflow-x: hidden;
-
+  margin : 50px;
 
   .modal_common_header {
     font-weight: 600;
@@ -34,8 +30,32 @@
   .modal_content{
 
   }
-
 }
+
+//팔로우 취소 모달
+.small_modal {
+  width: 400px;
+  height: 315px;
+  background: $instaWhite;
+  border-radius: 15px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  position: absolute;
+  z-index: 100;
+  margin : 50px;
+
+  .modal_common_header{
+    text-align: center;
+    margin-top: 20px;
+    & > img {
+      width: 100px;
+      height: 100px;
+
+    }
+  }
+}
+
+
+
 .overlay {
   box-sizing: border-box;
   position: fixed;
@@ -44,7 +64,8 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 99;
+
 }
 

@@ -21,13 +21,9 @@ const PostLikeCard = ({name, userId, profileImage, isFollow}) => {
             <div>{name}</div>
           </div>
         </div>
-        {isFollow? <div className="follow_delete_button">
-          <button>팔로잉</button>
-        </div> :  <div className="follow_delete_button">
-          <button>팔로우</button>
-        </div> }
-       
-
+        <div className="card_button">
+          {isFollow?<button className="card_following_button_">팔로잉</button> : <button className="card_follow_button">팔로우</button> }
+        </div>
       </div>
 
     </>
