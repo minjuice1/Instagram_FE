@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation, useNavigate, useParams} from "react-router";
-import {Link} from "react-router-dom";
 
-import {likeList_modal, modal_check} from "../../../redux/modal/modalSlice";
 import {likePost, deletePost, savedPost} from "../../../redux/post/post";
-import { replyReducer } from '../../../redux/post/postSlice';
 
 import PostComment from "./PostComment";
 import PostGetComment from "./PostGetComment";
-import PostDetail from '../PostDetail/PostDetail';
 import PostLikeModal from "../PostModal/PostLikeModal";
 
 import "./PostCard.scss";
@@ -94,11 +90,6 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
   }
 
   const time = displayTime(createdAt);
-
-  // 답글 달기 취소
-  // useEffect(() => {
-  //   dispatch(replyReducer(""))
-  // }, []);
 
   //유저 정보 프로필 클릭해서 들어가기
   const UserProfileClickHandler = () => {

@@ -205,7 +205,6 @@ const Profile = () => {
               )}
             </div>
 
-
             {/*{saved && (*/}
             {/*  <div className="OtherProfile_postsBox">*/}
             {/*    <ProfileSaved/>*/}

@@ -1,6 +1,18 @@
+import { useDispatch } from 'react-redux';
+import { deletePost } from '../../../redux/post/post';
 import "./PostOptionModal.scss";
 
-const PostOptionModal = ({myId, writer, setOpenModal}) => {
+const PostOptionModal = ({postId, myId, writer, setOpenModal}) => {
+
+  const dispatch = useDispatch();
+
+  const deleteClickHandler = () => {
+    dispatch(
+     deletePost({
+        postId,
+      }))
+		setOpenModal(false);
+  };
 
 	const cancleOptionClickHandler = () => {
 		setOpenModal(false);
@@ -12,7 +24,7 @@ const PostOptionModal = ({myId, writer, setOpenModal}) => {
       {myId === writer ? 
       (
       <div className="postDetailModal_myId">
-        <div>삭제</div>
+        <div onClick={deleteClickHandler}>삭제</div>
         <div>게시물로 이동</div>
         <div onClick={cancleOptionClickHandler}>취소</div>
       </div>

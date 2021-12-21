@@ -34,6 +34,16 @@ const Login = () => {
 		);
 	};
 
+	//로그인 서버 요청
+	const loginEnterHandler = () => {
+		dispatch(
+			login({email,
+				password,
+			}),
+			[dispatch],
+		);
+	};
+
 	const PasswordCheckClickHandler = () => {
 		SetCheckPassword(!checkPassword);
 	};
@@ -72,6 +82,7 @@ const Login = () => {
 										type="password"
 										value={password}
 										onChange={onChangePassword}
+										onKeyPress={loginEnterHandler}
 									/>
 								) : (
 									<input
@@ -81,6 +92,7 @@ const Login = () => {
 										type="text"
 										value={password}
 										onChange={onChangePassword}
+										onKeyPress={loginEnterHandler}
 									/>
 								)}
 
@@ -106,7 +118,7 @@ const Login = () => {
 									<button
 										className="login_btn_disabled"
 										type="submit"
-										onClick={loginClickHandler}
+										onClick={loginClickHandler}										
 									>
 										로그인
 									</button>
@@ -114,7 +126,7 @@ const Login = () => {
 									<button
 										className="login_btn_active"
 										type="submit"
-										onClick={loginClickHandler}
+										onClick={loginClickHandler}										
 									>
 										로그인
 									</button>

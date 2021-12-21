@@ -34,7 +34,7 @@ const PostDetail = () => {
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
 	console.log(likeUsersCmt);
-	console.log(postDetail);
+	// console.log(postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -81,7 +81,6 @@ const PostDetail = () => {
 		navigate(`/profile/${user_Id}`, {state: user_Id})
 	}
 	
-
 	 //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
 	const profile_img = postDetail && postDetail.writer.profileImage;
 	const user_img = profile_img? profile_img : none_profile;
@@ -115,7 +114,7 @@ const PostDetail = () => {
 
 	return (
 		<>
-			{openModal && <PostOptionModal myId={myId} writer={postDetail.writer.userId} setOpenModal={setOpenModal} />}
+			{openModal && <PostOptionModal postId={postId} myId={myId} writer={postDetail.writer.userId} setOpenModal={setOpenModal} />}
 			{postDetail && comments && 
 			<div className="postDetail_background">
 				<div className="postDetail_overlay" onClick={cancleClickHandler}/>

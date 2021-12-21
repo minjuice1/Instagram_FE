@@ -37,6 +37,19 @@ const SignUp = () => {
 		navigate("/login");
 	};
 
+	const SingUpEnterHandler = () => {
+		dispatch(
+			singUp({
+				email,
+				name,
+				userId,
+				password,
+			}),
+			[dispatch],
+		);
+		navigate("/login");
+	};
+
 	const EmailOnChange = (e) => {
 		SetEmail(e.target.value);
 	};
@@ -177,7 +190,7 @@ const SignUp = () => {
 											type="password"
 											value={password}
 											onChange={PassWordOnChange}
-											// onKeyUp={PasswordCheck}
+											onKeyPress={SingUpEnterHandler}
 										/>
 									) : (
 										<input
@@ -185,6 +198,7 @@ const SignUp = () => {
 											type="text"
 											value={password}
 											onChange={PassWordOnChange}
+											onKeyPress={SingUpEnterHandler}
 										/>
 									)}
 

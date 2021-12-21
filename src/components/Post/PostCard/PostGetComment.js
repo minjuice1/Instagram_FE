@@ -9,8 +9,6 @@ import "./PostCard";
 
 
 const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
-
-  console.log(isLike);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();

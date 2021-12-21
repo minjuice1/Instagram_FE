@@ -66,7 +66,7 @@ const postSlice = createSlice({
       }
     },
 
-    //좋아요 리스트 목록 가져오기기
+    //좋아요 리스트 목록 가져오기
     [getLikeList.fulfilled]: (state, action) => {
       state.likeUsers = action.payload.data.likeUsers;
     },
@@ -111,7 +111,7 @@ const postSlice = createSlice({
         // state.posts[post].comments[cmt].isLike = !state.posts[post].comments[cmt].isLike;
       }
     },
-    // 댓글, 대댓글 좋아요 누른 사람 목록 보기
+    // 댓글, 대댓글 좋아요 리스트목록 보기
     [getLikedListComment.fulfilled]: (state, action) => {
       console.log(action);
       state.likeUsersCmt = action.payload.data.likeUsers;

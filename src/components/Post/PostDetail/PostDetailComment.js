@@ -13,6 +13,7 @@ import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 // modal
 import PostDetailCommentModal from "./PostDetailCommentModal";
+import PostLikeModal from '../PostModal/PostLikeModal';
 
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount, writer, childComments, profileImage}) => {
@@ -105,9 +106,16 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
     setShowModal(false)
   }
 
+  //좋아요 리스트 모달
+  const [likeOpen, SetLikeOpen] = useState(false);
+  const likeListClickHandler = () => {
+    // dispatch(likeList_modal());
+    SetLikeOpen(true)
+  }
 
   return(
     <>
+    {likeOpen && <PostLikeModal likeOpen={likeOpen} SetLikeOpen={SetLikeOpen} postId={postId} />}
     {openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
     
     <div className="postDetail_comments" onMouseEnter={handleMouseEnter}
@@ -142,11 +150,11 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
       <div className="postDetail_comment_info">
         <span>{time}</span>
         {isLike ? (
-          <span onClick={LikedListCommentHandler}>
+          <span onClick={likeListClickHandler}>
           좋아요 <span>{likeCount}</span>개
           </span>
         ) : (
-          <span onClick={LikedListCommentHandler}>
+          <span onClick={likeListClickHandler}>
           좋아요 <span>{likeCount}</span>개
           </span>
         )}
