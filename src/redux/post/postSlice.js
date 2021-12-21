@@ -9,7 +9,9 @@ const postSlice = createSlice({
     user: [],
     posts: [],
     postDetail: [],
-    comment: [],
+    comment: {
+      childComments: [],
+    },
     likeUsers:[],
     likeUsersCmt: [],
     replyTag: "",
@@ -69,26 +71,30 @@ const postSlice = createSlice({
         const idx = state.posts.findIndex( (c) => c._id === action.payload.data.comment.postId ); 
         state.posts[idx].commentCount++;
         state.posts[idx].comments.unshift(action.payload.data.comment); 
-      } else { 
-        state.comment.push(action.payload.data.comment); 
+      } else {
+        action.payload.data.comment.likeCount = 0;
+        state.comment.push(action.payload.data.comment);
       } 
     },
-
     [deleteComment.fulfilled]: (state, action) => {			
 			state.comment = state.comment.filter(
 				(cnt) => cnt._id !== action.payload );
 		},
     [likedComment.fulfilled]: (state, action) => {
       console.log(action);
+      const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
       if (action.payload.path === "detailCmt") {
-        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
-        state.comment[idx].isLike = !state.comment[idx].isLike;
+        if(!state.comment[idx].isLike) {
+          state.comment[idx].isLike = true;
+          state.comment[idx].likeCount = state.comment[idx].likeCount + 1;
+        }
+        else {
+          state.comment[idx].isLike = false;
+          state.comment[idx].likeCount = state.comment[idx].likeCount - 1;
+        }
       } else {
         const post = state.posts.findIndex((p) => p._id === action.payload.postId);
-        console.log(post);
-        const cmt = state.posts[post].comments.findIndex((c) => c._id === action.payload.commentId);
-        console.log(cmt);
-        state.posts[post].comments[cmt].isLike = !state.posts[post].comments[cmt].isLike;
+        state.posts[post].comments[idx].isLike = !state.posts[post].comments[idx].isLike;
       }
     },
     // 댓글, 대댓글 좋아요 누른 사람 목록 보기
@@ -100,9 +106,11 @@ const postSlice = createSlice({
      //replyComment
     [addReplyComment.fulfilled] : (state, action) => {
       console.log(action);
+      action.payload.data.reComment.likeCount = 0;
       const idx = state.comment.findIndex((c) => c._id === action.payload.commentId);
       state.comment[idx].childComments.push(action.payload.data.reComment);
     },
+
     [deleteReplyComment.fulfilled]: (state, action) => {
       console.log(action);		
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
@@ -113,8 +121,16 @@ const postSlice = createSlice({
       console.log(action);
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
       const re = state.comment[idx].childComments.findIndex((c) => c._id === action.payload.commentId);
-      state.comment[idx].childComments[re].isLike = !state.comment[idx].childComments[re].isLike;
-      state.comment[idx].childComments[re].likeCount = action.meta.arg.Relike;
+      // state.comment[idx].childComments[re].isLike = !state.comment[idx].childComments[re].isLike;
+      // state.comment[idx].childComments[re].likeCount = action.meta.arg.Relike;
+      if(!state.comment[idx].childComments[re].isLike) {
+        state.comment[idx].childComments[re].isLike = true;
+        state.comment[idx].childComments[re].likeCount = state.comment[idx].childComments[re].likeCount + 1;
+      }
+      else {
+        state.comment[idx].childComments[re].isLike = false;
+        state.comment[idx].childComments[re].likeCount = state.comment[idx].childComments[re].likeCount - 1;
+      }
     },
   },
 });

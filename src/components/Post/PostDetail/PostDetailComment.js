@@ -15,12 +15,10 @@ import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 import PostDetailCommentModal from "./PostDetailCommentModal";
 
 
-const PostDetailComment = ({postId, commentId, contents, date, isLike, like, writer, childComments, profileImage}) => {
+const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount, writer, childComments, profileImage}) => {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  console.log(childComments);
 
   // modal
   const [openModal, setOpenModal] = useState(false); 
@@ -145,12 +143,12 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
         <span>{time}</span>
         {isLike ? (
           <span onClick={LikedListCommentHandler}>
-          좋아요 <span>{(like)+1}</span>개
-        </span>
+          좋아요 <span>{likeCount}</span>개
+          </span>
         ) : (
           <span onClick={LikedListCommentHandler}>
-          좋아요 <span>{like}</span>개
-        </span>
+          좋아요 <span>{likeCount}</span>개
+          </span>
         )}
         <span onClick={replyHandler}>답글 달기</span>
         {showModal && <span className="postDetail_comment_info_modal" onClick={show_postModal}><BiDotsHorizontalRounded size={15}/></span>}
@@ -160,8 +158,8 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
       (<div className="postDetail_replyCommentsBox">
         <div className="postDetail_replycomment_hidden">
           <span  onClick={ReplyClickHandler}> ㅡㅡ 답글 숨기기 </span>
-        {childComments && childComments.map((reply) => (
-        <PostReplyComment
+        {childComments && childComments.map((reply, idx) => (
+        <PostReplyComment key={idx}
         Recontents={reply.contents} RecreatedAt={reply.createdAt} Relike={reply.likeCount} ReIsLike={reply.isLike}
         Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId} ReprofileImage={reply.writer.profileImage}
         />

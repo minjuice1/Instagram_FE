@@ -27,8 +27,8 @@ const PostDetail = () => {
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
-	console.log(postDetail);
-	
+	console.log(comments);
+
 	useEffect(() => {
     dispatch(getPostDetail(postId));
   }, [getPostDetail]);
@@ -147,9 +147,9 @@ const PostDetail = () => {
 										</div>
 									</div>
 								</div>
-									{comments && comments.map((comment) => (
-										<PostDetailComment postId={postId} commentId={comment._id} contents = {comment.contents}
-										writer={comment.writer.userId} isLike={comment.isLike} like={comment.likeCount} date={comment.createdAt}
+									{comments && comments.map((comment, idx) => (
+										<PostDetailComment key={idx} postId={postId} commentId={comment._id} contents = {comment.contents}
+										writer={comment.writer.userId} isLike={comment.isLike} likeCount={comment.likeCount} date={comment.createdAt}
 										childComments={comment.childComments} profileImage={comment.writer.profileImage}
 										/>
 									))}

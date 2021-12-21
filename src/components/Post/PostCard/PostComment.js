@@ -49,7 +49,8 @@ const PostComment = ({ postId, path }) => {
 			contents: postComment,
 			AccessToken,
 			path: path,
-		}),
+		},
+		),
 			[dispatch],
 		);
 		SetPostComment("")

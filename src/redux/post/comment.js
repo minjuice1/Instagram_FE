@@ -142,7 +142,7 @@ export const likedReplyComment = createAsyncThunk(
 
 // 댓글, 대댓글 좋아요 누른 사람 목록 보기
 export const getLikedListComment = createAsyncThunk(
-	"post/getLikedListComment",
+	"comment/getLikedListComment",
 	async ({ commentId, AccessToken }) => {
 		try {
 			const response = await Api({
