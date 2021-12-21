@@ -113,7 +113,7 @@ const PostCard = ({
   // 답글 달기 취소
   useEffect(() => {
     dispatch(replyReducer(""))
-  }, [])
+  }, [dispatch])
 
   //유저 정보 프로필 클릭해서 들어가기
   const UserProfileClickHandler = () => {

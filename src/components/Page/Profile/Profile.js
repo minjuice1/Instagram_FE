@@ -50,7 +50,7 @@ const Profile = () => {
     }else{
       SetMyProfile(false);
     }
-  }, [dispatch, myProfile, location]);
+  }, [dispatch, myProfile, location, user_id, myId]);
 
 
   const post_list = useSelector(state=>state.post.post);
