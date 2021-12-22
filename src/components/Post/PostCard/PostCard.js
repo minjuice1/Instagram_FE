@@ -128,7 +128,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
 
   // postDetail 로
   const toPostDetailHandler = () => {
-    navigate(`/postdetail/${postId}`);
+    navigate(`/postdetail/${postId}`)
   }
 
   // PostDetail의 dot modal
