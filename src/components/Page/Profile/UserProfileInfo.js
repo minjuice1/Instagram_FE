@@ -31,7 +31,6 @@ const OtherProfile = ({
   const dispatch = useDispatch();
   const location = useLocation();
 
-  console.log(my_follow);
 
   // 프로필 편집, 팔로워, 팔로우 모달
   const SimilarAccount_Modal = useSelector(
@@ -53,7 +52,7 @@ const OtherProfile = ({
     SetRecomAccountbtn(!recomAccountbtn);
   };
   const followerList = useSelector(state => state.user.FollowerList);
-  console.log(followerList)
+
 
   //팔로우or언팔로우 하기
   const [isfollowing, SetIsFollowing] = useState(false);

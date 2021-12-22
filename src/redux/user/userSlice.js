@@ -1,13 +1,5 @@
-import {
-	deleteOneFollower,
-	deleteProfileImg,
-	getFollow,
-	getFollower,
-	getProfile,
-	login,
-	logout,
-	profileImg
-} from "./user";
+import {deleteOneFollower, deleteProfileImg, getFollow,
+	getFollower, getProfile, login, logout, profileImg} from "./user";
 import { createSlice } from "@reduxjs/toolkit";
 import {getUserPost} from "../post/post";
 

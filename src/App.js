@@ -48,11 +48,11 @@ function App() {
   const userInfo = useSelector(state => state.user.user);
 
   //내정보 불러오기
-  useEffect(() => {
-    if (token) {
-      dispatch(getProfile());
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (token) {
+  //     dispatch(getProfile());
+  //   }
+  // }, [dispatch]);
 
 
   //헤더 띄우기용

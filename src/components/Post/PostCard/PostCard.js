@@ -23,7 +23,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
   const navigate = useNavigate();
   const myId = useSelector(state=>state.user.user.userId);
 
-  console.log(likeCount)
+
 
   // postDetail이랑 path로 action 구분
   const path = "main";
