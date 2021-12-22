@@ -113,6 +113,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
     navigate(`/profile/${id}`, {state: id, replace: true})
   }
 
+
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
   const profile_img = writer[0].profileImage;
   const user_img = profile_img ? profile_img : none_profile;
