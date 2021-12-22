@@ -34,24 +34,25 @@ const SignUp = () => {
 			}),
 			[dispatch],
 		);
+		alert('가입 되었습니다.');
 		navigate("/login");
 	};
 
-	const SingUpEnterHandler = (e) => {
-		if (e.key == 'Enter') {
-			alert('가입 되었습니다.');
-		dispatch(
-			singUp({
-				email,
-				name,
-				userId,
-				password,
-			}),
-			[dispatch],
-		);
-		navigate("/login");
-		};
-	};
+	// const SingUpEnterHandler = (e) => {
+	// 	if (e.key == 'Enter') {
+	// 	dispatch(
+	// 		singUp({
+	// 			email,
+	// 			name,
+	// 			userId,
+	// 			password,
+	// 		}),
+	// 		[dispatch],
+	// 	);
+	// 	alert('가입 되었습니다.');
+	// 	navigate("/login");
+	// 	};
+	// };
 
 	const EmailOnChange = (e) => {
 		SetEmail(e.target.value);
@@ -186,7 +187,11 @@ const SignUp = () => {
 										type={checkPassword ? "password" : "text"}
 										value={password}
 										onChange={PassWordOnChange}
-										onKeyPress={SingUpEnterHandler}
+										onKeyPress={(e) => {if (e.key == 'Enter'){
+											e.preventDefault();
+											SingUpClickHandler()
+										}
+									}}
 										/>
 
 									<label className="signup_label">

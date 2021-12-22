@@ -154,7 +154,7 @@ export const getLikedListComment = createAsyncThunk(
 					Authorization: `Bearer ${AccessToken}`,
 				},
 			})
-			console.log(response);
+			// console.log(response);
 			return { commentId: commentId, data: response.data };
 		} catch (e) {
 			return false;

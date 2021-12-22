@@ -23,27 +23,13 @@ const Login = () => {
 		SetPassword(e.target.value);
 	};
 
-
 	//로그인 서버 요청
 	const loginClickHandler = () => {
 		dispatch(
 			login({email,
 				password,
 			}),
-			[dispatch],
 		);
-	};
-
-	//로그인 서버 요청
-	const loginEnterHandler = (e) => {
-		if (e.key == 'Enter') {
-		dispatch(
-			login({email,
-				password,
-			}),
-			[dispatch],
-		);
-		}
 	};
 
 	const PasswordCheckClickHandler = () => {
@@ -83,7 +69,11 @@ const Login = () => {
 									type={checkPassword ? "password" : "text"}
 									value={password}
 									onChange={onChangePassword}
-									onKeyPress={loginEnterHandler}
+									onKeyPress={(e) => {if (e.key === 'Enter') {
+										e.preventDefault();
+										loginClickHandler()
+									}
+								}}
 								/>
 
 								<label className="login_label_pwd">

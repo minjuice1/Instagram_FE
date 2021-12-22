@@ -28,12 +28,10 @@ const PostDetail = () => {
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
-	const likeUsersCmt = useSelector(state=>state.post.likeUsersCmt);
 
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
-	console.log(likeUsersCmt);
 	// console.log(postDetail);
 
 	useEffect(() => {
@@ -169,17 +167,9 @@ const PostDetail = () => {
 								<div className="postDetail_comment_funcs">
 									<div className="postDetail_comment_Likefunc">
 										{postDetail.isLike? (
-											<img
-												src={post_red_heart}
-												onClick={postLikeClickHandler}
-												alt="heart"
-											/>
+											<img src={post_red_heart} onClick={postLikeClickHandler} alt="heart" />
 										) : (
-											<img
-												src={post_heart}
-												onClick={postLikeClickHandler}
-												alt="heart"
-											/>
+											<img src={post_heart} onClick={postLikeClickHandler} alt="heart" />
 										)}
 									</div>
 									<div className="postDetail_comment_Commentfunc">
@@ -190,8 +180,7 @@ const PostDetail = () => {
 									</div>
 									<div className="postDetail_comment_Bookmarkfunc">
 										{postDetail.isPostSaved ? (
-											<img
-												className="post_saveActive"
+											<img className="post_saveActive"
 												src={post_saveActive}
 												onClick={savedPostHandler}
 												alt="post_save"

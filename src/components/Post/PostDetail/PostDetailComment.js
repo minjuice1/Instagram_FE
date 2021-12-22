@@ -13,8 +13,7 @@ import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 
 // modal
 import PostDetailCommentModal from "./PostDetailCommentModal";
-import PostLikeModal from '../PostModal/PostLikeModal';
-
+import PostDetailLikeModal from '../PostDetail/PostDetailLikeModal';
 
 const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount, writer, childComments, profileImage}) => {
   
@@ -49,7 +48,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
   };
 
   // 답글 달기
-  const replyHandler = (event) => {
+  const replyHandler = () => {
     const replyInfo = {writer: writer, commentId: commentId}
     dispatch(replyReducer(replyInfo));
     
@@ -99,10 +98,10 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
 
   // 삭제버튼 mouseOver 
   const [showModal, setShowModal] = useState(false)
-  const handleMouseEnter = e => {
+  const handleMouseEnter = () => {
     setShowModal(true)
   }
-  const handleMouseLeave = e => {
+  const handleMouseLeave = () => {
     setShowModal(false)
   }
 
@@ -115,11 +114,10 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
 
   return(
     <>
-    {likeOpen && <PostLikeModal likeOpen={likeOpen} SetLikeOpen={SetLikeOpen} postId={postId} />}
+    {likeOpen && <PostDetailLikeModal AccessToken={AccessToken} SetLikeOpen={SetLikeOpen} commentId={commentId} />}
     {openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
     
-    <div className="postDetail_comments" onMouseEnter={handleMouseEnter}
-							onMouseLeave={handleMouseLeave}>
+    <div className="postDetail_comments" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
     <div className="postDetail_comment_pp">
       <img src={user_img}/>
     </div>
@@ -167,15 +165,15 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
         Rewriter={reply.writer.userId} ReCommentId={reply._id} postId={postId} Id={commentId} ReprofileImage={reply.writer.profileImage}
         />
       ))}
+        </div>
       </div>
-      </div>)
-    : (<div  onClick={ReplyClickHandler}>
-        {childComments && childComments.length > 0 ? 
-        (<div className="postDetail_replycomment"> ㅡㅡ 답글보기 (<span>{childComments.length}</span>개)</div>)
-      : (<div className="postDetail_replycomment"></div>) }
+      ) : (
+      <div  onClick={ReplyClickHandler}>
+        {childComments && childComments.length > 0 && (
+          <div className="postDetail_replycomment"> ㅡㅡ 답글보기 (<span>{childComments.length}</span>개)</div>
+        )}
       </div>)}
     </div>
-    
     </div>
   </>
   )

@@ -8,6 +8,7 @@
   position: absolute;
   z-index: 100;
   margin : 50px;
+  
 
   .modal_common_header {
     font-weight: 600;
@@ -31,6 +32,36 @@
 
   }
 }
+
+.modal_postdetail_container {
+  width: 405px;
+  height: 405px;
+  background: $instaWhite;
+  border-radius: 15px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+  position: fixed;
+  z-index: 4000;
+  margin-right: 300px;
+
+  .modal_common_header {
+    font-weight: 600;
+    border-bottom:  1px solid $instaGray;
+    height: 40px;
+    line-height: 40px;
+    display: flex;
+    justify-content: flex-end;
+
+    & > span:first-child{
+      margin-right: 140px;
+    }
+    & > span:nth-child(2) {
+      margin-right: 15px;
+      margin-top: 7px;
+      cursor: pointer;
+    }
+  }
+}
+
 
 //팔로우 취소 모달
 .small_modal {
