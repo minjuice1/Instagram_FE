@@ -211,13 +211,10 @@ const PostDetail = () => {
 									{/* <div className="postDetail_likeList_pic">
 										<img src={menu_profile} alt="menu_profile" />
 									</div> */}
-									{postDetail.isLike?
-										(<div className="postDetail_likeList_likeInfo">
-										좋아요 <span>{(postDetail.likeCount)+1}</span>개
-									</div>) : (<div className="postDetail_likeList_likeInfo">
-										좋아요 <span>{postDetail.likeCount}</span>개
+									<div className="postDetail_likeList_likeInfo">
+										좋아요
+										<span>{postDetail.likeCount}</span>개
 									</div>
-									)}
 									{/* 팔로우 좋아요를 눌렀을 경우 */}
 									{/* // <div className="postDetail_likeList_likeInfo">
 									<span>testtest</span>님 <span>외 <span>{postDetail.likeCount}</span>명</span>이

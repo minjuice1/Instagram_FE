@@ -62,7 +62,13 @@ const postSlice = createSlice({
           state.posts[idx].likeCount = state.posts[idx].likeCount -1;
         }
       } else {
-        // state.postDetail[0].isLike = !state.postDetail[0].isLike;
+        if(!state.postDetail[0].isLike) {
+          state.postDetail[0].isLike = true;
+          state.postDetail[0].likeCount = state.postDetail[0].likeCount +1;
+        } else {
+          state.postDetail[0].isLike = false;
+          state.postDetail[0].likeCount = state.postDetail[0].likeCount -1;
+        }
       }
     },
 

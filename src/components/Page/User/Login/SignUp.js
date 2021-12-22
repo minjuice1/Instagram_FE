@@ -37,7 +37,9 @@ const SignUp = () => {
 		navigate("/login");
 	};
 
-	const SingUpEnterHandler = () => {
+	const SingUpEnterHandler = (e) => {
+		if (e.key == 'Enter') {
+			alert('가입 되었습니다.');
 		dispatch(
 			singUp({
 				email,
@@ -48,6 +50,7 @@ const SignUp = () => {
 			[dispatch],
 		);
 		navigate("/login");
+		};
 	};
 
 	const EmailOnChange = (e) => {

@@ -35,13 +35,15 @@ const Login = () => {
 	};
 
 	//로그인 서버 요청
-	const loginEnterHandler = () => {
+	const loginEnterHandler = (e) => {
+		if (e.key == 'Enter') {
 		dispatch(
 			login({email,
 				password,
 			}),
 			[dispatch],
 		);
+		}
 	};
 
 	const PasswordCheckClickHandler = () => {

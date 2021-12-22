@@ -97,15 +97,10 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
         </div>
         <div className="postDetail_replyComment_info">
           <span>{time}</span>
-          {ReIsLike? (
           <span>
-            좋아요 <span>{Relike}</span>개
+            좋아요
+            <span>{Relike}</span>개
           </span>
-          ) : (
-          <span>
-            좋아요 <span>{Relike}</span>개
-          </span>
-          )}
           <span>답글 달기</span>
           {showModal &&
           <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>}

@@ -149,15 +149,10 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
     </div>
       <div className="postDetail_comment_info">
         <span>{time}</span>
-        {isLike ? (
-          <span onClick={likeListClickHandler}>
-          좋아요 <span>{likeCount}</span>개
-          </span>
-        ) : (
-          <span onClick={likeListClickHandler}>
-          좋아요 <span>{likeCount}</span>개
-          </span>
-        )}
+        <span onClick={likeListClickHandler}>
+          좋아요
+          <span>{likeCount}</span>개
+        </span>
         <span onClick={replyHandler}>답글 달기</span>
         {showModal && <span className="postDetail_comment_info_modal" onClick={show_postModal}><BiDotsHorizontalRounded size={15}/></span>}
           
