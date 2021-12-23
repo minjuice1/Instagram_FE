@@ -39,9 +39,10 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
       }))
   };
 
-  // 포스트 저장
+  // 포스트 저장 + popup
   const AccessToken = localStorage.getItem("user");
-  
+  const [bookmarkPopup, setBookmarkPopup] = useState(false);
+
   const savedPostHandler = () => {
     dispatch(
       savedPost({
@@ -50,6 +51,8 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
         path,
       })
     );
+    !isPostSaved && setBookmarkPopup(true);
+    setTimeout(() => setBookmarkPopup(false), 4000);
   };
 
   //게시글 더보기
@@ -139,11 +142,14 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
             </div>
             <div className="post_center">
               <img className="post_center_image" src={postImage}/>
+              {bookmarkPopup &&
+              <div className="bookmark_popup">
+                <span>항목이 저장되었습니다.</span>
+                <span>저장된 게시물을 확인해보세요</span>
+              </div>
+            }
             </div>
-            <div className="bookmark_popup">
-              <span>항목이 저장되었습니다.</span>
-              <span>저장된 게시물을 확인해보세요</span>
-            </div>
+            
             <div className="post_icon">
             <div className="footer_icon">
                 {isLike ? (

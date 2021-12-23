@@ -40,8 +40,9 @@ const PostDetailLikeModal = ({SetLikeOpen, commentId, AccessToken}) => {
         </div>
         <div className="modal_common_card">
           <div className="modal_content">
-            {like_list && like_list.map((likes) => (
+            {like_list && like_list.map((likes, idx) => (
               <PostLikeCard
+                key={idx}
                 userId={likes.userId}
                 name={likes.name}
                 profileImage={likes.profileImage}
