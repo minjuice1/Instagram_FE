@@ -163,6 +163,10 @@ const PostDetail = () => {
 							</div>
 						
 						{/* bottom */}
+						<div className="bookmark_popup">
+              <span>항목이 저장되었습니다.</span>
+              <span>저장된 게시물을 확인해보세요</span>
+            </div>
 							<div className="postDetail_bottom">
 								<div className="postDetail_comment_funcs">
 									<div className="postDetail_comment_Likefunc">

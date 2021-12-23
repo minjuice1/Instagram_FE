@@ -140,6 +140,10 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
             <div className="post_center">
               <img className="post_center_image" src={postImage}/>
             </div>
+            <div className="bookmark_popup">
+              <span>항목이 저장되었습니다.</span>
+              <span>저장된 게시물을 확인해보세요</span>
+            </div>
             <div className="post_icon">
             <div className="footer_icon">
                 {isLike ? (

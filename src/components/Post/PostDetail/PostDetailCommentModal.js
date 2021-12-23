@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { deleteComment } from '../../../redux/post/comment';
 import "./PostDetailCommentModal.scss";
 
-const PostDetailCommentModal = ({postId, commentId, setOpenModal}) => {
+const PostDetailCommentModal = ({postId, commentId, setOpenModal, Id}) => {
 	const dispatch = useDispatch();
 	const AccessToken = localStorage.getItem("user");
 
@@ -16,6 +16,7 @@ const PostDetailCommentModal = ({postId, commentId, setOpenModal}) => {
 				postId,
         commentId,
 				AccessToken,
+				Id,
       }))
 			cancleClickHandler();			
   };

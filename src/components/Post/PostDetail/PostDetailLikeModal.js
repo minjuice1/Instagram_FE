@@ -33,9 +33,10 @@ const PostDetailLikeModal = ({SetLikeOpen, commentId, AccessToken}) => {
 
   return (
     <>
-      <div className="modal_postdetail_container">
+      <div className="modal_common_container">
         <div className="modal_common_header">
-          <span>좋아요</span><span> <img onClick={cancleClickHandler} src={x_img} alt="cancle"/></span>
+          <span>좋아요</span>
+          <span> <img onClick={cancleClickHandler} src={x_img} alt="cancle"/> </span>
         </div>
         <div className="modal_common_card">
           <div className="modal_content">

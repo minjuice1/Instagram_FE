@@ -55,6 +55,25 @@
  min-width: 485px;
 }
 
+.bookmark_popup{
+  display: flex;
+  border: 1px solid $instaGray;
+  justify-content: space-between;
+  padding: 15px;
+
+  & > span:nth-child(1) {
+    @include fontSize('biglarge');
+    font-weight: bold;
+    color: $instaMenuGray;
+  }
+
+  & > span:nth-child(2) {
+    @include fontSize('biglarge');
+    color: $instaBlue;
+    font-weight: bold;
+  }
+}
+
 .post_text{
  display: flex;
  & > div {

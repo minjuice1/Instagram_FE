@@ -38,15 +38,6 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
       }));
   };
 
-  // 댓글 좋아요 누른 사람 목록 보기
-  const LikedListCommentHandler = () => {
-    dispatch(
-      getLikedListComment({
-        commentId,
-        AccessToken,
-      }));
-  };
-
   // 답글 달기
   const replyHandler = () => {
     const replyInfo = {writer: writer, commentId: commentId}
@@ -54,19 +45,19 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
     
   }
 
-  // 대댓글
+  // 대댓글 달기
   const [clickReply, setClickReply] = useState(false);
   const ReplyClickHandler = () => {
     setClickReply(!clickReply);
   }
 
+  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
+	const user_img = profileImage? profileImage : none_profile;
+
    //유저 정보 프로필 클릭해서 들어가기
 	const UserProfileClickHandler = () => {
 		navigate(`/profile/${writer}`,{state: writer})
 	}
-
-  //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
-	const user_img = profileImage? profileImage : none_profile;
 
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.
   function displayTime(value) {

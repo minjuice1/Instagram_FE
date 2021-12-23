@@ -33,15 +33,6 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
       }));
   };
 
-  // 삭제, 신고버튼 mouseOver 
-  const [showModal, setShowModal] = useState(false)
-  const handleMouseEnter = e => {
-    setShowModal(true)
-  }
-  const handleMouseLeave = e => {
-    setShowModal(false)
-  }
-
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
 	const user_img = ReprofileImage? ReprofileImage : none_profile;
 
@@ -78,6 +69,15 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
 
   const time = displayTime(RecreatedAt);
 
+  // 삭제, 신고버튼 mouseOver 
+  const [showModal, setShowModal] = useState(false)
+  const handleMouseEnter = e => {
+    setShowModal(true)
+  }
+  const handleMouseLeave = e => {
+    setShowModal(false)
+  }
+  
   return(
   <>
   {openModal && <PostDetailReplyCommentModal Id={Id} setOpenModal={setOpenModal} Recontents={Recontents} postId={postId} RecommentId={ReCommentId}/>}
