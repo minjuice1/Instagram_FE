@@ -4,20 +4,20 @@ import {useNavigate, useParams } from "react-router";
 import { history } from '../../../history';
 
 import {getPostDetail, likePost, savedPost} from "../../../redux/post/post";
-import PostDetailComment from './PostDetailComment';
+import PostDetailComment from '../PostDetail/PostDetailComment';
 import PostComment from '../PostCard/PostComment';
 
-// modal
-import PostOptionModal from './PostOptionModal';
+// // modal
+import PostOptionModal from '../PostDetail/PostOptionModal';
 
 // css
-import "./PostDetail.scss";
+import "./PostBoard.scss";
 import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
-import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
+import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile, recomtest} from "../../../common/IconImage";
 import { replyReducer } from '../../../redux/post/postSlice';
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 
-const PostDetail = () => {	
+const PostBoard = () => {	
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const PostDetail = () => {
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
-	// console.log(postDetail);
+	console.log(postDetail);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -116,30 +116,28 @@ const PostDetail = () => {
 
 	return (
 		<>
-			{openModal && <PostOptionModal postId={postId} myId={myId} writer={postDetail.writer.userId} setOpenModal={setOpenModal} />}
-			{postDetail && comments && 
-			<div className="postDetail_background">
-				<div className="postDetail_overlay" onClick={cancleClickHandler}/>
-				<div className="postDetail_exit"><BiX size={40} onClick={cancleClickHandler}/></div>
-				<div className="postDetail_container" >
-					<div className="postDetail_leftsideBox">
+    {openModal && <PostOptionModal postId={postId} myId={myId} writer={postDetail.writer.userId} setOpenModal={setOpenModal} />}
+    {postDetail &&
+    <div className="postBoard_allContainer">
+      <div className="postBoard_topContainer" >
+					<div className="postBoard_leftsideBox">
 						<img src={postDetail.imageUrl} alt="postImg" />
 					</div>
-					<div className="postDetail_rightsideBox">
-						<div className="postDetail_header">
-							<div className="postDetail_header_pic">
+					<div className="postBoard_rightsideBox">
+						<div className="postBoard_header">
+							<div className="postBoard_header_pic" onClick={UserProfileClickHandler}>
 									<img src={user_img} alt="pp" />
 							</div>
-							<div className="postDetail_header_userId">
+							<div className="postBoard_header_userId">
 								<span onClick={UserProfileClickHandler}>{postDetail.writer.userId}</span> * <span> 팔로잉</span>
 							</div>
-							<div className="postDetail_header_btn" onClick={show_postOptionModal}>
+							<div className="postBoard_header_btn" onClick={show_postOptionModal}>
 								<BiDotsHorizontalRounded size={25} />
 							</div>
 						</div>
 						{/* main */}
-						<div className="postDetail_main">						
-							<div className="postDetail_comment_list"
+						<div className="postBoard_main">						
+							<div className="postBoard_comment_list"
 							>
 							{/* 댓글리스트 */}
 								<div className="postDetail_comments">
@@ -171,7 +169,7 @@ const PostDetail = () => {
 							<div className="postDetail_bottom">
 								<div className="postDetail_comment_funcs">
 									<div className="postDetail_comment_Likefunc">
-										{postDetail.isLike? (
+                  {postDetail.isLike? (
 											<img src={post_red_heart} onClick={postLikeClickHandler} alt="heart" />
 										) : (
 											<img src={post_heart} onClick={postLikeClickHandler} alt="heart" />
@@ -184,7 +182,7 @@ const PostDetail = () => {
 										<img src={message} alt="message" />
 									</div>
 									<div className="postDetail_comment_Bookmarkfunc">
-										{postDetail.isPostSaved ? (
+                  {postDetail.isPostSaved ? (
 											<img className="post_saveActive"
 												src={post_saveActive}
 												onClick={savedPostHandler}
@@ -218,16 +216,27 @@ const PostDetail = () => {
 								<div className="postDetail_comment_time">
 									<span>{time}</span>
 								</div>
-								<div className="postDetail_postComment">
+								<div className="postBoard_postComment">
 								<PostComment replyCommentId={replyCommentId} replyUserId={replyUserId} replyTag={replyTag} path={path} postId={postId} commentId={comments._id}/>
 								</div>
 							</div>
 						</div>
 					</div>
 					</div>
-				</div>
-		}	
+      <div className="postBoard_bottomContainer">
+        <div/>
+        <div>
+          <div>
+            <span>{postDetail.writer.userId}</span>님의 게시물 더 보기
+          </div>
+          <div className="postBoard_postRec">
+            <img src={recomtest} />
+          </div>
+          </div>
+        </div>
+      </div>
+    } 
 		</>
 	);
 };
-export default PostDetail;
+export default PostBoard;

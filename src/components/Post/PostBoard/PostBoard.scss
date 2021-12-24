@@ -1,36 +1,17 @@
 @import "../../../common/variables";
 @import "../../../common/mixin";
 
-.postDetail_background {
-  position: fixed;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1000;
-
-	.postDetail_exit {
-		color: $instaWhite;
-		position: absolute;
-		bottom: 100;
-		right: 0;
-		padding: 10px;
-		cursor: pointer;
-		z-index: 1000;
-	}
-
-	.postDetail_container {
+	.postBoard_topContainer {
 		display: flex;
-		margin: 20px auto auto auto ;
-		width: 70vw;
-		height: 93vh;
+		margin: 50px auto auto auto ;
+		width: 62vw;
+		height: 48vh;
 		justify-content: center;
+		border: 1px solid blue;
+		margin-bottom: 50px;
 
-		.postDetail_leftsideBox {
-			width: 65%;
+		.postBoard_leftsideBox {
+			width: 57%;
 			height: 100%;
 
 				& > img {
@@ -39,15 +20,14 @@
 					width: 100%;
 				}
 			}
-		
 
-		.postDetail_rightsideBox {
-			width: 28%;
+		.postBoard_rightsideBox {
+			width: 43%;
 			height: 100%;
 			background-color: $instaWhite;
 			border-left: 1px solid $instaLightGray;
 
-			.postDetail_header {
+			.postBoard_header {
 				display: flex;
 				width: 100%;
 				height: 50px;
@@ -55,12 +35,12 @@
 				margin-bottom: 10px;
 				border-bottom: 1px solid $instaGray;
 				
-				.postDetail_header_pic {
+				.postBoard_header_pic {
 					display: flex;
 					margin-left: 14px;
 
 					& > img {
-						
+						// margin: auto;
 						margin: auto 0;
 						cursor: pointer;
 						width: 32px;
@@ -68,10 +48,10 @@
 					}
 				}
 
-				.postDetail_header_userId {
+				.postBoard_header_userId {
 					justify-content: space-between;
 					width: 88%;
-					line-height: 50px;
+					line-height: 35px;
 					margin-left: 18px;
 
 					& > span {
@@ -80,7 +60,7 @@
 						cursor: pointer;
 					}
 				}
-				.postDetail_header_btn {
+				.postBoard_header_btn {
 					margin-top: 2%;
 					height: 50%;
 					width: 15%;
@@ -89,39 +69,56 @@
 				}				
 			}
 
-			.postDetail_main {
+			.postBoard_main {
 				display: flex;
 				flex-direction: column;
 				width: 100%;
 				height: 89%;
 
-				.postDetail_comment_list{
+				.postBoard_comment_list{
 					height: 100%;
 					overflow-x: hidden;
 					position: relative;
-
-						.postDetail_Reply_liked {
-
-							& > img {
-								margin-top: 5px;
-								margin-left: 3.5px;
-								cursor: pointer;
-							}
-						}
-					}
 				}
 			}
 		}
 	}
 
-	//modal
-.postDetail_overlay {
-	position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-	z-index: -1;
-}
+	.postBoard_bottomContainer {
+
+		& > div:nth-child(1) {
+			border: 1px solid $instaGray;
+			width: 75vw;
+			margin: auto;
+		}
+
+		& > div:last-child {
+			width: 75vw;
+			margin: 50px auto;
+
+			& > div:first-child {
+				margin-bottom: 20px;
+				color: $instaMenuGray;
+				font-weight: bold;
+				@include fontSize("large");
+
+				& > span{
+					color: $instaMenuBlack;
+				}
+			}
+			
+			.postBoard_postRec {
+					display: grid;
+					// position: absolute;
+					grid-template-columns: repeat(3, 1fr);
+					// margin: -50px auto;
+					gap: 25px;
+			}
+		}
+
+	
+	}
+
 
 // InputEmoji
 .postDetail_postComment{
@@ -163,29 +160,29 @@
 }
 
 @include desktop{
-  .postDetail_leftsideBox{
+  .postBoard_leftsideBox{
     width: 65%;
   }
 
-	.postDetail_rightsideBox{
+	.postBoard_rightsideBox{
 		width: 30%;
 	}
 }
 
 @include tablet{
-  .postDetail_leftsideBox{
+  .postBoard_leftsideBox{
     width: 55%;
   }
-	.postDetail_rightsideBox{
+	.postBoard_rightsideBox{
 		width: 40%;
 	}
 }
 
 @include mobile{
-  .postDetail_leftsideBox{
+  .postBoard_leftsideBox{
 		width: 50%;
   }
-	.postDetail_rightsideBox{
+	.postBoard_rightsideBox{
 		width: 45%;
 	}
 }

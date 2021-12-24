@@ -1,0 +1,328 @@
+@import "./src/common/mixin";
+@import "./src/common/variables.scss";
+
+
+// 댓글 리스트
+
+.postDetail_comments {
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+
+  .postDetail_comment_pp {
+    display: flex;
+    height: 10%;
+    width: 10%;
+    
+    & > img {
+      margin-left: 14px;
+      justify-content: space-between;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+    }
+  }
+
+  .postDetail_comments_comment {
+    width: 100%;
+    height: auto;
+    
+
+    & > div:nth-child(1) {
+      display: flex;
+      justify-content: space-between;
+
+      .postDetail_comment_userId {
+        
+        width: 88%;
+        @include fontSize("large");
+
+        & > span:first-child {
+          font-weight: bold;
+          margin: 0 20px;
+          cursor: pointer;
+        }
+
+        .postDetail_comment_contents {
+          margin: 0 -10px;
+          height: auto;
+        }
+      }
+
+      .postDetail_commentList_liked {
+        width: 7%;
+        & > img {
+          margin-top: 5px;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .postDetail_comment_info {
+      height: 20px;
+      width: 100%;
+      @include fontSize("normal");
+      margin: 10px 10px 0 20px;
+      color: $instaMenuGray;
+
+      & > span:nth-child(2) {
+        font-weight: bold;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
+      & > span:nth-child(3) {
+        margin-left: 10px;
+        cursor: pointer;
+      }
+      & > span:last-child {
+        margin-left: 7px;
+        cursor: pointer;
+      }
+    }
+
+    .postDetail_replycomment{
+      @include fontSize("normal");
+      font-weight: 600;
+      color: $instaMenuGray;
+      cursor: pointer;
+      margin: 10px 0 10px 20px;
+    }
+
+    .postDetail_replycomment_hidden {
+      @include fontSize("normal");
+      font-weight: 600;
+      color: $instaMenuGray;
+      cursor: pointer;
+      margin: 10px 0 10px 10px;
+      width: 100%;
+
+      & > span {
+        margin: 0 0 0 10px;
+      }
+    }
+  }
+}
+
+// 나의 포스트 내용
+.postDetail_comments_mycomment{
+  width: 90%;
+  height: auto;
+  margin-left: 20px;
+  line-height: 25px;
+  
+
+  .postDetail_comment_myUserId {
+  width: 88%;
+  @include fontSize("large");
+
+  & > span:first-child {
+    font-weight: bold;
+    margin: 0 20px 5px 0;
+    cursor: pointer;
+    
+  }
+
+  .postDetail_comment_myContents {
+    height: auto;
+    width: auto;
+    margin: 0 -10px;
+  }
+}
+
+.postDetail_comment_myInfo {
+  height: 20px;
+  width: 100%;
+  @include fontSize("normal");
+  margin: 10px 10px 0 0;
+  color: $instaMenuGray;
+
+}
+}
+
+// 대댓글
+.postDetail_replyCommentsBox {
+  .postDetail_replyComments {
+    display: flex;
+    width: 100%;
+    margin: 5px 0;
+    .postDetail_replyComment_pp {
+      display: flex;
+      height: 10%;
+      width: 15%;
+  
+      & > img {
+        margin-left: 10px;
+        justify-content: space-between;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
+    }
+  
+    .postDetail_replyComments_comment {
+      width: 75%;
+  
+      .postDetail_replyComment_userId {
+        width: 97%;
+        @include fontSize("large");
+        color: $instaMenuBlack;
+  
+        & > span:first-child {
+          font-weight: bold;
+          margin: 0 8px;
+          cursor: pointer;
+        }
+  
+        .postDetail_replyComment_contents {
+          height: auto;
+          font-weight: 300;
+        }
+      }
+  
+      .postDetail_replyComment_info {
+        height: 15%;
+        width: 100%;
+        @include fontSize("normal");
+        margin: 3px 10px;
+        color: $instaMenuGray;
+
+        & > span:nth-child(1) {
+          font-weight: lighter;
+        }
+  
+        & > span:nth-child(2) {
+          font-weight: bold;
+          margin-left: 10px;
+          cursor: pointer;
+        }
+  
+        & > span:nth-child(3) {
+          margin-left: 10px;
+          cursor: pointer;
+        }
+
+        & > span:last-child {
+          margin-left: 7px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.postDetail_bottom{
+  margin-left: 5px;
+  border-top: 1px solid $instaLightGray;
+
+  .postDetail_comment_funcs {
+        display: flex;
+        height: 40px;
+        width: 100%;
+        margin: 10px 0;
+
+        .postDetail_comment_Likefunc {
+          height: 100%;
+          width: 10%;
+
+          & > img {
+            height: 32px;
+            width: 32px;
+            margin: 5px 0 0 8px;
+            cursor: pointer;
+          }
+
+          .postHeart {
+            margin-left: 10px;
+            margin-top: 5px;
+          }
+        }
+
+        .postDetail_comment_Commentfunc {
+          height: 100%;
+          width: 10%;
+
+          & > img {
+            height: 32px;
+            width: 32px;
+            margin: 8px 0 0 4px;
+            cursor: pointer;
+          }
+        }
+
+        .postDetail_comment_Replyfunc {
+          height: 100%;
+          width: 65%;
+
+          & > img {
+            height: 32px;
+            width: 32px;
+            margin-top: 5px;
+            cursor: pointer;
+          }
+        }
+
+        .postDetail_comment_Bookmarkfunc {
+          height: 100%;
+          width: 13%;
+          margin-left: 2px;
+
+          .post_save {
+            height: 40px;
+            width: 40px;
+            margin-left: 20px;
+            cursor: pointer;
+          }
+
+          .post_saveActive {
+            height: 36px;
+            width: 44px;
+            margin-left: 18px;
+            margin-top: 3px;
+            cursor: pointer;
+          }
+        }
+      }
+
+      .postDetail_comment_likeList {
+        display: flex;
+        height: 24px;
+        width: 100%;
+        margin: 5px 0;
+
+        .postDetail_likeList_pic {
+          height: 100%;
+          width: 10%;
+
+          & img {
+            height: 60px;
+            width: 65px;
+            margin: -22px -10px;
+            cursor: pointer;
+          }
+        }
+
+        .postDetail_likeList_likeInfo {
+          height: 100%;
+          width: 80%;
+          @include fontSize("large");
+          margin-left: 10px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+
+      .postDetail_comment_time {
+        height: 20px;
+        width: 100%;
+        line-height: 0px;
+        margin: 10px 0 5px 0;
+
+        & > span {
+          padding: 10px;
+          margin-left: 2px;
+          @include fontSize("small");
+        }
+      }
+}

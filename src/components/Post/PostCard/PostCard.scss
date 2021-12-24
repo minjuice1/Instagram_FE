@@ -70,48 +70,8 @@
 
   .post_center_image{
     width: 100%;
-   }
-
-  .bookmark_popup{
-    display: flex;
-    position: absolute;
-    border: 1px solid $instaGray;
-    justify-content: space-between;
-    padding: 15px;
-    animation: fadeout 3s ease-in-out;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box;
-    background: $instaWhite;
-    opacity: 0;
-
-    @keyframes fadeout {
-      0% {
-        opacity: 0;
-      }
-      25%{
-        opacity: 1;
-      }
-      75%{
-        opacity: 1;
-      }
-      100% {
-        opacity: 0;
-      }
-    }
-
-    & > span:nth-child(1) {
-      @include fontSize('biglarge');
-      font-weight: bold;
-      color: $instaMenuGray;
-    }
-  
-    & > span:nth-child(2) {
-      @include fontSize('biglarge');
-      color: $instaBlue;
-      font-weight: bold;
-    }
   }
+
 }  
 
 .post_icon {

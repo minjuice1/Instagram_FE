@@ -1,0 +1,45 @@
+@import "./src/common/mixin";
+@import "./src/common/variables.scss";
+
+// 북마크 토스트
+
+.bookmark_popup{
+  display: flex;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 15px;
+  border: 1px solid $instaGray;
+  box-sizing: border-box;
+  justify-content: space-between;
+  background: $instaWhite;
+  animation: fadeout 3s ease-in-out;
+  opacity: 0;
+
+  @keyframes fadeout {
+    0% {
+      opacity: 0;
+    }
+    25%{
+      opacity: 1;
+    }
+    75%{
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  & > span:nth-child(1) {
+    @include fontSize('biglarge');
+    font-weight: bold;
+    color: $instaMenuGray;
+  }
+
+  & > span:nth-child(2) {
+    @include fontSize('biglarge');
+    color: $instaBlue;
+    font-weight: bold;
+  }
+}

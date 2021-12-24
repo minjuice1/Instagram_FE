@@ -6,7 +6,7 @@ import { getLikedListComment, likedComment } from '../../../redux/post/comment';
 import { replyReducer } from '../../../redux/post/postSlice';
 import PostReplyComment from './PostReplyComment';
 
-// postDetail과 css공유
+import "../../../common/_commentList.scss";
 import {none_profile} from "../../../common/IconImage";
 import { BiDotsHorizontalRounded } from "react-icons/bi";
 import {comment_heart, comment_red_heart} from "../../../common/IconImage";

@@ -187,6 +187,7 @@ const Profile = () => {
                   ))}
                 </div>
               )}
+              
               {ClickedSaved && (
                 <div className="OtherProfile_savedBox">
                   {savedUser && savedUser.map((save) => (

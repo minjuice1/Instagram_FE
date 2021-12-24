@@ -12,6 +12,7 @@ import "./PostCard.scss";
 import {post_heart, post_red_heart, message, text, dot, post_save, post_saveActive, none_profile,} from "../../../common/IconImage";
 import dompurify from "dompurify";
 import PostModal from '../PostModal/PostModal';
+import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 
 const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
                     postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
@@ -39,9 +40,9 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
       }))
   };
 
-  // 포스트 저장 + popup
+  // 포스트 저장 + toast
   const AccessToken = localStorage.getItem("user");
-  const [bookmarkPopup, setBookmarkPopup] = useState(false);
+  const [bookmarkToast, setBookmarkToast] = useState(false);
 
   const savedPostHandler = () => {
     dispatch(
@@ -51,8 +52,8 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
         path,
       })
     );
-    !isPostSaved && setBookmarkPopup(true);
-    setTimeout(() => setBookmarkPopup(false), 4000);
+    !isPostSaved && setBookmarkToast(true);
+    setTimeout(() => setBookmarkToast(false), 4000);
   };
 
   //게시글 더보기
@@ -142,12 +143,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
             </div>
             <div className="post_center">
               <img className="post_center_image" src={postImage}/>
-              {bookmarkPopup &&
-              <div className="bookmark_popup">
-                <span>항목이 저장되었습니다.</span>
-                <span>저장된 게시물을 확인해보세요</span>
-              </div>
-            }
+              <PostBookmarkToast bookmarkToast={bookmarkToast}/>
             </div>
             
             <div className="post_icon">
