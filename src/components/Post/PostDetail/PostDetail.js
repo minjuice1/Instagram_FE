@@ -28,16 +28,22 @@ const PostDetail = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
 
+
 	useEffect(() => {
     dispatch(getPostDetail(postId));
   }, [getPostDetail]);
 
 	// 포스트 좋아요
+
 	const postLikeClickHandler = () => {
+		const _id = postDetail.writer._id
+
+		console.log(_id)
     dispatch(
       likePost({
         postId,
         path,
+				_id,
       }))
   };
 
@@ -55,7 +61,7 @@ const PostDetail = () => {
 
 	// PostDetail 전체 modal
 	const cancleClickHandler = () => {
-		history.go(-1);
+		navigate(-1);
 	};
 
 	// PostDetail의 dot modal

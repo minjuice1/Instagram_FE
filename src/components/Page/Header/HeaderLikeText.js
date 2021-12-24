@@ -1,8 +1,9 @@
 import profile from "../../../image/profile.jpg";
 import React, {useEffect} from "react";
 
-const HeaderLikeText = () => {
+const HeaderLikeText = (props) => {
 
+  console.log("라이크텍스트", props)
   return(
     <>
       <div className="like_cmt">
@@ -28,6 +29,12 @@ const HeaderLikeText = () => {
         <div className="like_oneCmt">
           <div><img className="nav_profile_img" src={profile}/></div>
           <div><a className="like_cmt_id">헹구</a>님이 회원님을 팔로우하기 시작했습니다.<a>3시간전</a>
+            <div className="like_picture">a</div>
+          </div>
+        </div>
+        <div className="like_oneCmt">
+          <div><img className="nav_profile_img" src={profile}/></div>
+          <div><a className="like_cmt_id">헹구</a>님이 회원님의 댓글을 좋아합니다.<a>3시간전</a>
             <div className="like_picture">a</div>
           </div>
         </div>

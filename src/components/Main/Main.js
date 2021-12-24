@@ -10,21 +10,21 @@ import { getPost } from "../../redux/post/post";
 import PostLikeModal from "../Post/PostModal/PostLikeModal";
 import {getProfile} from "../../redux/user/user";
 
+
+
+
 const Main = () => {
 	const dispatch = useDispatch();
-
-
-	const post_like_list = useSelector(state=>state.modal.likeList_modal);
 
 	useEffect(() => {
 		dispatch(getPost());
 	}, [dispatch]);
+
 	useEffect(() => {
-			dispatch(getProfile());
+		dispatch(getProfile());
 	}, [dispatch]);
 
 
-	const is_modal = useSelector((state) => state.modal.is_modal);
 	const post_data = useSelector((state) => state.post.posts);
 
 

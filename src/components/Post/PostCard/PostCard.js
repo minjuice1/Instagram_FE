@@ -37,12 +37,16 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
   //포스트 좋아요
   const likes = isLike
   const [postLike, SetPostLike] = useState(likes);
+  const _id  = writer[0]._id
 
   const postLikeClickHandler = () => {
     SetPostLike(!postLike);
+
     dispatch(
       likePost({
         postId,
+        _id,
+        postLike,
       }))
   };
 
@@ -128,7 +132,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
 
   // postDetail 로
   const toPostDetailHandler = () => {
-    navigate(`/postdetail/${postId}`)
+    navigate(`/postdetail/${postId}`);
   }
 
   // PostDetail의 dot modal
