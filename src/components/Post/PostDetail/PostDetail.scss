@@ -125,14 +125,16 @@
 
 // InputEmoji
 .postDetail_postComment{
-	// position: fixed;
+	position: relative;
 	width: auto;
 	height: auto;
-	// margin-bottom: 50px;
 }
 .postDetail_cmt {
 	display: flex;
 	border-top: 1px solid $instaGray;
+	position: absolute;
+	bottom: 1;
+	width: 100%;
 
 	.postDetail_cmt > input{
 	width: 80%;
@@ -144,21 +146,27 @@
 	
  }
  .postDetail_submit {
-	width: 75px;
+	width: 60px;
+	height: 30px;
 	line-height: 50px;
+	margin-right: 5px;
 	color: $instaBlue;
 	font-weight: 600;
 	border: none;
 	background: $instaWhite;
+	cursor: pointer;
  }
 
  .postDetail_submitOff {
-	width: 75px;
+	width: 60px;
+	height: 30px;
 	line-height: 50px;
+	margin-right: 5px;
 	color: #C5E7FD;
 	font-weight: 600;
 	border: none;
 	background: $instaWhite;
+	cursor: pointer;
  }
 }
 

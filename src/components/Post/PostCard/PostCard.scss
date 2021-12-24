@@ -109,6 +109,7 @@
   font-weight: bold;
   color: $instaMenuBlack;
   cursor: pointer;
+  margin-left: -10px;
  }
  & > img {
   margin-right: 13px;
@@ -140,7 +141,7 @@
 
 .post_time{
  @include fontSize('small');
- margin: 5px 0 15px 10px;
+ margin: 5px 0 15px 0;
  color: $instaMenuGray;
 }
 
@@ -168,6 +169,10 @@
  line-height: 50px;
  color: $instaBlue;
  font-weight: 600;
+}
+
+.postDetail_postComment {
+  margin-bottom: 70px;
 }
 
 //반응형 사이즈

@@ -212,6 +212,7 @@
   }
 }
 
+// 밑에 좋아요, 댓글, 북마크 등
 .postDetail_bottom{
   margin-left: 5px;
   border-top: 1px solid $instaLightGray;
@@ -224,7 +225,7 @@
 
         .postDetail_comment_Likefunc {
           height: 100%;
-          width: 10%;
+          width: 50px;
 
           & > img {
             height: 32px;
@@ -241,7 +242,7 @@
 
         .postDetail_comment_Commentfunc {
           height: 100%;
-          width: 10%;
+          width: 50px;
 
           & > img {
             height: 32px;
@@ -253,7 +254,7 @@
 
         .postDetail_comment_Replyfunc {
           height: 100%;
-          width: 65%;
+          width: 50px;
 
           & > img {
             height: 32px;
@@ -264,9 +265,9 @@
         }
 
         .postDetail_comment_Bookmarkfunc {
+          margin-left: auto;
           height: 100%;
-          width: 13%;
-          margin-left: 2px;
+          margin-right: 2%;
 
           .post_save {
             height: 40px;

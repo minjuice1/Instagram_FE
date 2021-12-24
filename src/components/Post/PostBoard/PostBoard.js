@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {useNavigate, useParams } from "react-router";
-import { history } from '../../../history';
 
-import {getPostDetail, likePost, savedPost} from "../../../redux/post/post";
+import {getPostDetail, likePost, savedPost, getUserPost} from "../../../redux/post/post";
 import PostDetailComment from '../PostDetail/PostDetailComment';
 import PostComment from '../PostCard/PostComment';
+import Footer from '../../Page/Footer/Footer';
 
 // // modal
 import PostOptionModal from '../PostDetail/PostOptionModal';
 
 // css
 import "./PostBoard.scss";
-import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
-import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile, recomtest} from "../../../common/IconImage";
-import { replyReducer } from '../../../redux/post/postSlice';
+import { BiDotsHorizontalRounded } from "react-icons/bi";
+import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
+import ProfilePosts from '../../Page/Profile/CommonProfile/ProfilePosts';
 
 const PostBoard = () => {	
 
@@ -29,11 +29,20 @@ const PostBoard = () => {
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
+  const post_list = useSelector(state=>state.post.post);
+  console.log(post_list);
 
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
-	console.log(postDetail);
+	// console.log(postDetail);
+
+  const id = postDetail && postDetail.writer.userId;
+  console.log(id);
+
+  useEffect(() => {
+    dispatch(getUserPost(id));
+  }, [getUserPost]);
 
 	useEffect(() => {
     dispatch(getPostDetail(postId));
@@ -62,14 +71,6 @@ const PostBoard = () => {
 			!postDetail.isPostSaved && setBookmarkToast(true);
     	setTimeout(() => setBookmarkToast(false), 4000);
     };
-
-	// PostDetail 전체 modal
-	const cancleClickHandler = () => {
-		history.go(-1);
-		if(replyTag) {
-			dispatch(replyReducer(""))
-		}
-	};
 
 	// PostDetail의 dot modal
   const [openModal, setOpenModal] = useState(false); 
@@ -116,7 +117,7 @@ const PostBoard = () => {
 
 	return (
 		<>
-    {openModal && <PostOptionModal postId={postId} myId={myId} writer={postDetail.writer.userId} setOpenModal={setOpenModal} />}
+    {openModal && <PostOptionModal postId={postId} myId={myId} writer={id} setOpenModal={setOpenModal} />}
     {postDetail &&
     <div className="postBoard_allContainer">
       <div className="postBoard_topContainer" >
@@ -129,7 +130,7 @@ const PostBoard = () => {
 									<img src={user_img} alt="pp" />
 							</div>
 							<div className="postBoard_header_userId">
-								<span onClick={UserProfileClickHandler}>{postDetail.writer.userId}</span> * <span> 팔로잉</span>
+								<span onClick={UserProfileClickHandler}>{id}</span> * <span> 팔로잉</span>
 							</div>
 							<div className="postBoard_header_btn" onClick={show_postOptionModal}>
 								<BiDotsHorizontalRounded size={25} />
@@ -227,13 +228,18 @@ const PostBoard = () => {
         <div/>
         <div>
           <div>
-            <span>{postDetail.writer.userId}</span>님의 게시물 더 보기
+            <span>{id}</span>님의 게시물 더 보기
           </div>
           <div className="postBoard_postRec">
-            <img src={recomtest} />
+            {post_list && post_list.map((post, idx) => (
+              <ProfilePosts
+              picture = {post.imageUrl}
+              userId = {post._id}/>
+            ))}
           </div>
           </div>
         </div>
+        <Footer/>
       </div>
     } 
 		</>

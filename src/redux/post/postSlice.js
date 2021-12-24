@@ -16,6 +16,7 @@ const postSlice = createSlice({
     likeUsersCmt: [],
     replyTag: "",
     randomPosts: [],
+    post: [],
   },
   reducers: {
     replyReducer : (state, action) => {

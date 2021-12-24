@@ -1,18 +1,27 @@
 @import "../../../common/variables";
 @import "../../../common/mixin";
 
+
+.postBoard_allContainer{
+	overflow: hidden;
+	background-color: $backgroundGray;
+}
+
 	.postBoard_topContainer {
 		display: flex;
 		margin: 50px auto auto auto ;
-		width: 62vw;
+		width: 36vw;
 		height: 48vh;
 		justify-content: center;
-		border: 1px solid blue;
 		margin-bottom: 50px;
+		
 
 		.postBoard_leftsideBox {
-			width: 57%;
+			width: 65%;
 			height: 100%;
+			border: 1px solid $instaLightGray;
+			border-right: none;
+			
 
 				& > img {
 					object-fit: cover;
@@ -22,10 +31,10 @@
 			}
 
 		.postBoard_rightsideBox {
-			width: 43%;
+			width: 35%;
 			height: 100%;
 			background-color: $instaWhite;
-			border-left: 1px solid $instaLightGray;
+			border: 1px solid $instaLightGray;
 
 			.postBoard_header {
 				display: flex;
@@ -52,7 +61,7 @@
 					justify-content: space-between;
 					width: 88%;
 					line-height: 35px;
-					margin-left: 18px;
+					margin-left: 5px;
 
 					& > span {
 						@include fontSize("large");
@@ -88,12 +97,12 @@
 
 		& > div:nth-child(1) {
 			border: 1px solid $instaGray;
-			width: 75vw;
+			width: 36vw;
 			margin: auto;
 		}
 
 		& > div:last-child {
-			width: 75vw;
+			width: 36vw;
 			margin: 50px auto;
 
 			& > div:first-child {
@@ -115,49 +124,8 @@
 					gap: 25px;
 			}
 		}
-
-	
 	}
 
-
-// InputEmoji
-.postDetail_postComment{
-	// position: fixed;
-	width: auto;
-	height: auto;
-	// margin-bottom: 50px;
-}
-.postDetail_cmt {
-	display: flex;
-	border-top: 1px solid $instaGray;
-
-	.postDetail_cmt > input{
-	width: 80%;
-	
-	border: none;
-	&:focus{
-	 outline: none;
-	}
-	
- }
- .postDetail_submit {
-	width: 75px;
-	line-height: 50px;
-	color: $instaBlue;
-	font-weight: 600;
-	border: none;
-	background: $instaWhite;
- }
-
- .postDetail_submitOff {
-	width: 75px;
-	line-height: 50px;
-	color: #C5E7FD;
-	font-weight: 600;
-	border: none;
-	background: $instaWhite;
- }
-}
 
 @include desktop{
   .postBoard_leftsideBox{

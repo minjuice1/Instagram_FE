@@ -202,8 +202,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
                   댓글 <span>{commentCount}</span>개 모두 보기</span>
                 )}
               </div>
-            </div>
-            {get_comments && get_comments.map((comment) => (
+              {get_comments && get_comments.map((comment) => (
               <PostGetComment contents ={comment.contents}
                               postId={comment.postId}
                               writer={comment.writer}
@@ -211,9 +210,12 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
                               isLike={comment.isLike}/>
             ))}
             <div className="post_time">{time}</div>
-            {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
+            <div className="postDetail_postComment">
+              {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
               <div>이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
-
+            </div>
+            </div>
+            
           </div>
         </div>
       </div>

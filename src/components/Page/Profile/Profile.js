@@ -31,7 +31,7 @@ const Profile = () => {
 
   //개인 데이터 불러오기
   const {id} = useParams();
-  const user_id = useParams(id).user_Id;
+  console.log(id);
 
   //userpost를 가져오면서 본인이 맞는지 아닌지 확인
   const [myProfile, SetMyProfile] = useState(false);
@@ -40,14 +40,14 @@ const Profile = () => {
   useEffect((e) => {
 
     if(!myProfile){
-      dispatch(getUserPost(user_id));
+      dispatch(getUserPost(id));
     }
-    if(myId === user_id){
+    if(myId === id){
       SetMyProfile(true);
     }else{
       SetMyProfile(false);
     }
-  }, [dispatch, myProfile, location, user_id, myId]);
+  }, [dispatch, myProfile, location, id, myId]);
 
 
   const post_list = useSelector(state=>state.post.post);
@@ -119,7 +119,7 @@ const Profile = () => {
           <div className="profile_profileBox">
             {myProfile && user_data &&
             <MyProfileInfo
-              userId = {user_id}
+              userId = {id}
               name = {user_data.name}
               totalFollow = {user_data.totalFollow}
               totalFollower = {user_data.totalFollower}
@@ -129,7 +129,7 @@ const Profile = () => {
             />}
             {!myProfile && user_data &&
             <UserProfileInfo
-              userId = {user_id}
+              userId = {id}
               Id = {user_data._id}
               name = {user_data.name}
               totalFollow = {user_data.totalFollow}
@@ -158,9 +158,8 @@ const Profile = () => {
                 <span onClick={savedClickHandler}>
                   <BiBookmark/> 저장됨
                 </span>
-              </div>}              
-                
-              
+              </div>}         
+
                 <a className={ClickedTagged ? "profile_post_clicked" : "profile_post_unclicked"}>
 									<span onClick={taggedClickHandler}>
 											<RiAccountBoxLine/> 태그됨
@@ -187,7 +186,7 @@ const Profile = () => {
                   ))}
                 </div>
               )}
-              
+
               {ClickedSaved && (
                 <div className="OtherProfile_savedBox">
                   {savedUser && savedUser.map((save) => (
