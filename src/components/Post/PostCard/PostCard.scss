@@ -173,6 +173,14 @@
 
 .postDetail_postComment {
   margin-bottom: 70px;
+
+  .post_blockCmt{
+    margin-bottom: -70px;
+    // margin-top: 30px;
+    color: $instaMenuGray;
+    border-top: 1px solid $instaGray;
+    padding: 15px 0;
+  }
 }
 
 //반응형 사이즈

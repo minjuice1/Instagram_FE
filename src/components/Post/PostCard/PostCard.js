@@ -212,7 +212,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
             <div className="post_time">{time}</div>
             <div className="postDetail_postComment">
               {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
-              <div>이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
+              <div className="post_blockCmt">이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
             </div>
             </div>
             
