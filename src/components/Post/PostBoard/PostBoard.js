@@ -31,11 +31,9 @@ const PostBoard = () => {
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
   console.log(post_list);
-	console.log(myId);
   // console.log(postDetail);
 
   const id = postDetail && postDetail.writer.userId;
-  console.log(id);
 
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
@@ -44,12 +42,7 @@ const PostBoard = () => {
   useEffect(() => {
     dispatch(
       getPostDetail(postId));
-  }, [getPostDetail]);
-
-  useEffect(() => {
-    setTimeout(() => dispatch(getUserPost(id)), 500);
-  }, [getUserPost]);
-
+  }, [postId]);
 	
 	// 포스트 좋아요
 	const postLikeClickHandler = () => {

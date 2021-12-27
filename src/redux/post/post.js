@@ -86,7 +86,9 @@ export const getPostDetail = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
-      console.log(response)
+      if(response.data.ok){
+        thunkAPI.dispatch(getUserPost(response.data.post[0].writer.userId));
+      }
       return response.data;
     } catch (e) {
       
