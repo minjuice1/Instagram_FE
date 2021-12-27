@@ -44,6 +44,33 @@
 		}	
 	}
 
+	.postDetailComment_others_modal {
+		width: 400px;
+		height: 96px;
+		border: 1px solid $instaGray;
+		border-radius: 10px;
+		position: absolute;
+		z-index: 100;
+		background-color: $instaWhite;
+		cursor: pointer;
+
+		& > div {
+			border-bottom: 1px solid $instaGray;
+			height: 48px;
+			line-height: 48px;
+			@include fontSize("large");
+			color: $instaMenuBlack;
+		}
+    & > div:nth-child(1) {
+			color: $instaRed;
+			font-weight: 700;
+		}
+
+		& > div:last-child {
+			border: none;
+		}	
+	}
+
 }
 
 .postDetailComment_modal_overlay {

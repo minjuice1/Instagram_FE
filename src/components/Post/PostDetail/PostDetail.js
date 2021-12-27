@@ -161,7 +161,7 @@ const PostDetail = () => {
 									{comments && comments.map((comment, idx) => (
 										<PostDetailComment key={idx} postId={postId} commentId={comment._id} contents = {comment.contents}
 										writer={comment.writer.userId} isLike={comment.isLike} likeCount={comment.likeCount} date={comment.createdAt}
-										childComments={comment.childComments} profileImage={comment.writer.profileImage}
+										childComments={comment.childComments} profileImage={comment.writer.profileImage} myId={myId}
 										/>
 									))}
 									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>

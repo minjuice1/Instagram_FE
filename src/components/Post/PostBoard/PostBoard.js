@@ -8,7 +8,6 @@ import PostComment from '../PostCard/PostComment';
 import Footer from '../../Page/Footer/Footer';
 
 // // modal
-import PostOptionModal from '../PostDetail/PostOptionModal';
 
 // css
 import "./PostBoard.scss";
@@ -16,6 +15,7 @@ import { BiDotsHorizontalRounded } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 import ProfilePosts from '../../Page/Profile/CommonProfile/ProfilePosts';
+import PostBoardOptionModal from './PostBoardOptionModal';
 
 const PostBoard = () => {	
 
@@ -31,6 +31,7 @@ const PostBoard = () => {
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
   console.log(post_list);
+	console.log(myId);
   // console.log(postDetail);
 
   const id = postDetail && postDetail.writer.userId;
@@ -119,7 +120,7 @@ const PostBoard = () => {
 
 	return (
 		<>
-    {openModal && <PostOptionModal postId={postId} myId={myId} writer={id} setOpenModal={setOpenModal} />}
+    {openModal && <PostBoardOptionModal postId={postId} myId={myId} writer={id} setOpenModal={setOpenModal} />}
     {postDetail &&
     <div className="postBoard_allContainer">
       <div className="postBoard_topContainer" >
@@ -162,7 +163,7 @@ const PostBoard = () => {
 									{comments && comments.map((comment, idx) => (
 										<PostDetailComment key={idx} postId={postId} commentId={comment._id} contents = {comment.contents}
 										writer={comment.writer.userId} isLike={comment.isLike} likeCount={comment.likeCount} date={comment.createdAt}
-										childComments={comment.childComments} profileImage={comment.writer.profileImage}
+										childComments={comment.childComments} profileImage={comment.writer.profileImage} myId={myId}
 										/>
 									))}
 									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>

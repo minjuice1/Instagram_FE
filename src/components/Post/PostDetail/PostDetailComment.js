@@ -15,8 +15,8 @@ import {comment_heart, comment_red_heart} from "../../../common/IconImage";
 import PostDetailCommentModal from "./PostDetailCommentModal";
 import PostDetailLikeModal from '../PostDetail/PostDetailLikeModal';
 
-const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount, writer, childComments, profileImage}) => {
-  
+const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount, writer, childComments, profileImage, myId}) => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -106,7 +106,7 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, likeCount
   return(
     <>
     {likeOpen && <PostDetailLikeModal AccessToken={AccessToken} SetLikeOpen={SetLikeOpen} commentId={commentId} />}
-    {openModal && <PostDetailCommentModal setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId}/>}
+    {openModal && <PostDetailCommentModal  setOpenModal={setOpenModal} contents={contents} postId={postId} commentId={commentId} myId={myId} writer={writer}/>}
     
     <div className="postDetail_comments" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
     <div className="postDetail_comment_pp">
