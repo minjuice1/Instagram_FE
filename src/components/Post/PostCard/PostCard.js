@@ -5,23 +5,28 @@ import {Link} from "react-router-dom";
 
 import {likeList_modal, modal_check} from "../../../redux/modal/modalSlice";
 import {likePost, deletePost, savedPost} from "../../../redux/post/post";
-import { replyReducer } from '../../../redux/post/postSlice';
+import {replyReducer} from '../../../redux/post/postSlice';
 
 import PostComment from "./PostComment";
 import PostGetComment from "./PostGetComment";
 import PostDetail from '../PostDetail/PostDetail';
+import PostModal from "../PostModal/PostModal";
 import PostLikeModal from "../PostModal/PostLikeModal";
 
 import "./PostCard.scss";
-import {post_heart, post_red_heart, message, text, dot, post_save, post_saveActive, none_profile,} from "../../../common/IconImage";
+import {post_heart, post_red_heart, message, text, dot, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 import dompurify from "dompurify";
 
-const PostCard = ({contents, createdAt, writer, postId, likeUsers,
-                    postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
-
+const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, ostImage, postImage,
+                    isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const myId = useSelector(state=>state.user.user.userId);
 
+
+
+  // postDetail이랑 path로 action 구분
+  const path = "main";
 
   // 게시글에 \n으로 되어있는 부분을 html코드인 <br/>로 변경해서 줄바꿈 표시함.
   const sanitizer = dompurify.sanitize;
@@ -32,25 +37,27 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers,
   //포스트 좋아요
   const likes = isLike
   const [postLike, SetPostLike] = useState(likes);
+  const _id  = writer[0]._id
 
   const postLikeClickHandler = () => {
     SetPostLike(!postLike);
+
     dispatch(
       likePost({
         postId,
+        _id,
+        postLike,
       }))
   };
 
   const AccessToken = localStorage.getItem("user");
-  const path = "main";
   const savedPostHandler = () => {
     dispatch(
       savedPost({
         postId,
         AccessToken,
         path,
-      })
-    );
+      }))
   };
 
   //게시글 더보기
@@ -59,7 +66,6 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers,
   const morePostClickHandler = () => {
     SetMorePost(!morePost);
   };
-
 
   // 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
   const comment_slice = comments.slice(0, 2);
@@ -94,7 +100,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers,
   const time = displayTime(createdAt);
 
   //모달 리덕스에서 관리
-  const is_postDetailmodal = useSelector((state) => state.modal.postDetail_modal);
+  const is_modal = useSelector((state) => state.modal.is_modal);
   const show_postModal = () => {
     dispatch(modal_check());
   };
@@ -108,12 +114,13 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers,
   //유저 정보 프로필 클릭해서 들어가기
   const UserProfileClickHandler = () => {
     const id = writer[0].userId
-    navigate(`/profile/${id}`,{state: id, replace: true})
+    navigate(`/profile/${id}`, {state: id, replace: true})
   }
+
 
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
   const profile_img = writer[0].profileImage;
-  const user_img = profile_img? profile_img : none_profile;
+  const user_img = profile_img ? profile_img : none_profile;
 
 
   //좋아요 리스트 모달
@@ -123,22 +130,32 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers,
     SetLikeOpen(true)
   }
 
+  // postDetail 로
+  const toPostDetailHandler = () => {
+    navigate(`/postdetail/${postId}`);
+  }
+
+  // PostDetail의 dot modal
+  const [openModal, setOpenModal] = useState(false);
+  const show_postOptionModal = () => {
+    setOpenModal(true);
+  };
 
   return (
     <>
 
-      {likeOpen && <PostLikeModal likeOpen={likeOpen} SetLikeOpen={SetLikeOpen} postId={postId} />}
-      {openModal && <PostModal postId={postId} setOpenModal={setOpenModal} writer={writer[0].userId} myId={myId} />}
+      {likeOpen && <PostLikeModal likeOpen={likeOpen} SetLikeOpen={SetLikeOpen} postId={postId}/>}
+      {openModal && <PostModal postId={postId} setOpenModal={setOpenModal} writer={writer[0].userId} myId={myId}/>}
 
       <div className="post_cards">
         <div className="post_card">
           <div className="post_header">
             <div className="profile_img">
               <img className="post_user_image" src={user_img}/>
-              <div className="post_user_id"  onClick={UserProfileClickHandler} >{writer[0].userId}</div>
 
+              <div className="post_user_id" onClick={UserProfileClickHandler}>{writer[0].userId}</div>
               <div className="profile_img_dot" onClick={show_postOptionModal}>
-               <img src={dot}/>
+                <img src={dot}/>
 
               </div>
             </div>
@@ -150,7 +167,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers,
                 {postLike ? (
                     <img src={post_red_heart} onClick={postLikeClickHandler}/>) :
                   (<img src={post_heart} onClick={postLikeClickHandler}/>)}
-                <img src={text}/>
+                <img src={text} className="post_cursor" onClick={toPostDetailHandler}/>
                 <img src={message}/>
               </div>
               <div className="footer_collection">
@@ -173,7 +190,13 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers,
               </div>
             </div>
             <div className="post_content">
-              <a className="post_user_id" onClick={likeListClickHandler}>좋아요 1,200개</a>
+              {isLike ? (
+                <a className="post_user_id" onClick={likeListClickHandler}>좋아요 <span>{(likeCount) + 1}</span>개</a>
+              ) : (
+                <a className="post_user_id" onClick={likeListClickHandler}>좋아요 <span>{likeCount}</span>개</a>
+              )}
+
+
               <div className="post_text">
                 <a className="post_user_id">{writer[0].userId}</a>
                 {morePost ? (
@@ -190,23 +213,22 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers,
                   </div>)}
               </div>
               <div>
-                {commentCount > 2 && (
-                  <Link to={`/postdetail/${postId}`} >
-                    댓글 <span>{commentCount}</span>개 모두 보기
-                  </Link>
+                {commentCount >= 2 && (
+                  <span className="post_cursor" onClick={toPostDetailHandler}>
+                  댓글 <span>{commentCount}</span>개 모두 보기</span>
                 )}
               </div>
             </div>
             {get_comments && get_comments.map((comment) => (
-              <PostGetComment contents ={comment.contents}
+              <PostGetComment contents={comment.contents}
                               postId={comment.postId}
                               writer={comment.writer}
-                              commentId={comment._id}/>
+                              commentId={comment._id}
+                              isLike={comment.isLike}/>
             ))}
             <div className="post_time">{time}</div>
-            {commentIsAllowed ? <PostComment path={path} postId={postId}/>:
+            {commentIsAllowed ? <PostComment path={path} postId={postId}/> :
               <div>이 게시물에 대한 댓글 기능이 제한되었습니다.</div>}
-
           </div>
         </div>
       </div>

@@ -3,9 +3,20 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {none_profile} from "../../../common/IconImage"
+import {userFollow} from "../../../redux/user/user";
+import {useNavigate} from "react-router";
 
-const AskFollowModal = ({askModal, SetAskModal, userId, profileImage}) => {
+const AskFollowModal = ({askModal, SetAskModal, userId, profileImage, Id, SetIsFollowing, isFollowing}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const askFollowClickHandler = () => {
+    dispatch(userFollow({
+      Id, isFollowing
+    }))
+    // SetAskModal(false);
+    SetAskModal(false);
+  }
 
 
   const cancleClickHandler = () => {
@@ -25,7 +36,7 @@ const AskFollowModal = ({askModal, SetAskModal, userId, profileImage}) => {
 
         </div>
         <div className="modal_common_card">
-
+          <div onClick={askFollowClickHandler}>팔로우끊기</div>
         </div>
       </div>
       <div className="overlay" onClick={cancleClickHandler}/>

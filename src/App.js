@@ -20,83 +20,79 @@ import {getProfile} from "./redux/user/user";
 import SearchHash from "./components/Page/Header/HeaderSearch/SearchHash";
 
 
-
-
 const CustomRouter = ({history, ...props}) => {
-	const [state, setState] = useState({
-		action: history.action,
-		location: history.location
-	});
+  const [state, setState] = useState({
+    action: history.action,
+    location: history.location
+  });
 
-	useLayoutEffect(() => history.listen(setState), [history]);
+  useLayoutEffect(() => history.listen(setState), [history]);
 
-	return (
-		<Router
-			{...props}
+  return (
+    <Router
+      {...props}
       location={state.location}
-			navigationType={state.action}
-			navigator={history}
-		/>
-	);
+      navigationType={state.action}
+      navigator={history}
+    />
+  );
 };
-
 
 
 function App() {
   const dispatch = useDispatch();
-	const is_login = useSelector(state=>state.user.isLogin);
+  const is_login = useSelector(state => state.user.isLogin);
   const token = localStorage.getItem("user")
   const write_modal = useSelector(state => state.modal.add_modal);
 
   const userInfo = useSelector(state => state.user.user);
 
   //내정보 불러오기
-  useEffect(() => {
-    if(token){
-      dispatch(getProfile());
-    }
-  }, [dispatch]);
-
+  // useEffect(() => {
+  //   if (token) {
+  //     dispatch(getProfile());
+  //   }
+  // }, [dispatch]);
 
 
   //헤더 띄우기용
-  const show_header = is_login || token ;
+  const show_header = is_login || token;
 
 
   return (
 
     <div className="App">
       <Suspense fallback={<div>Loading</div>}>
-      <CustomRouter history={history}>
-        {show_header &&  <Header/>}
-        {write_modal && <AddPost/>}
-        <Routes>
-          <Route path="/" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
-          <Route path="/*" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
-          <Route path="/login" element={<RejectAuth redirectTo="/"> <Login/> </RejectAuth>}/>
-          <Route path="/accounts/password" element={<RequireAuth redirectTo="/login"> <FindPassword/> </RequireAuth>}/>
-          <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
-          <Route path="/recom" element={<RequireAuth redirectTo="/login"> <Recommendation/> </RequireAuth>}/>
-          <Route path="/postdetail/:postId" element={<RequireAuth redirectTo="/login"> <PostDetail/> </RequireAuth>}/>
-          <Route path="/accounts/signup" element={<RejectAuth redirectTo="/"> <SignUp/> </RejectAuth>}/>
-          <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
-          <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
-          <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser /> </RequireAuth>}/>
-					<Route path="/profile/*"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}>
-            <Route path=":user_Id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            <Route path="channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            <Route path="saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            <Route path="tagged"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-          </Route>
-          <Route path="/searchhash/*"	element={<RequireAuth redirectTo="/login"> <SearchHash /> </RequireAuth>}>
-            <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash /> </RequireAuth>}/>
-          </Route>
+        <CustomRouter history={history}>
+          {show_header && <Header/>}
+          {write_modal && <AddPost/>}
+          <Routes>
+            <Route path="/" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
+            <Route path="/*" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
+            <Route path="/login" element={<RejectAuth redirectTo="/"> <Login/> </RejectAuth>}/>
+            <Route path="/accounts/password" element={<RequireAuth redirectTo="/login"> <FindPassword/> </RequireAuth>}/>
+            <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
+            <Route path="/recom" element={<RequireAuth redirectTo="/login"> <Recommendation/> </RequireAuth>}/>
+            <Route path="/postdetail/:postId" element={<RequireAuth redirectTo="/login"> <PostDetail/> </RequireAuth>}/>
+            <Route path="/accounts/signup" element={<RejectAuth redirectTo="/"> <SignUp/> </RejectAuth>}/>
+            <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
+            <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
+            <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser/> </RequireAuth>}/>
+            <Route path="/profile/*" element={<RequireAuth redirectTo="/login"> <Profile/></RequireAuth>}>
+              <Route path=":user_Id" element={<RequireAuth redirectTo="/login"> <Profile/> </RequireAuth>}/>
+              <Route path="channel" element={<RequireAuth redirectTo="/login"> <Profile/> </RequireAuth>}/>
+              <Route path="saved" element={<RequireAuth redirectTo="/login"> <Profile/> </RequireAuth>}/>
+              <Route path="tagged" element={<RequireAuth redirectTo="/login"> <Profile/> </RequireAuth>}/>
+            </Route>
+            <Route path="/searchhash/*" element={<RequireAuth redirectTo="/login"> <SearchHash/> </RequireAuth>}>
+              <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash/> </RequireAuth>}/>
+            </Route>
 
 
-        </Routes>
+          </Routes>
 
-      </CustomRouter>
-    </Suspense>
+        </CustomRouter>
+      </Suspense>
     </div>
 
   );

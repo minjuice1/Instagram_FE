@@ -31,7 +31,6 @@ const OtherProfile = ({
   const dispatch = useDispatch();
   const location = useLocation();
 
-  console.log(my_follow);
 
   // 프로필 편집, 팔로워, 팔로우 모달
   const SimilarAccount_Modal = useSelector(
@@ -52,11 +51,9 @@ const OtherProfile = ({
   const show_recomAccountbtn = () => {
     SetRecomAccountbtn(!recomAccountbtn);
   };
-  const followerList = useSelector(state => state.user.FollowerList);
-  console.log(followerList)
 
   //팔로우or언팔로우 하기
-  const [isfollowing, SetIsFollowing] = useState(false);
+  const [isFollowing, SetIsFollowing] = useState(false);
   const [followerCount, SetFollowerCount] = useState(totalFollower);
 
   useEffect(() => {
@@ -73,15 +70,16 @@ const OtherProfile = ({
   }, [dispatch, totalFollower, my_follow, location]);
 
   const followClickHandler = () => {
+    SetIsFollowing(!isFollowing);
     dispatch(userFollow({
-      Id,
+      Id, isFollowing,
     }))
-    SetIsFollowing(!isfollowing);
-    if (isfollowing) {
+    if (isFollowing) {
       SetFollowerCount(followerCount - 1);
     } else {
       SetFollowerCount(followerCount + 1);
     }
+
   }
   const [askModal, SetAskModal] = useState(false);
   const askFollowClickHandler = () => {
@@ -89,7 +87,9 @@ const OtherProfile = ({
   }
   return (
     <>
-      {askModal && <AskFollowModal askModal={askModal} SetAskModal={SetAskModal} profileImage={profileImage} userId={userId}/>}
+      {askModal && <AskFollowModal askModal={askModal} SetAskModal={SetAskModal}
+                                   profileImage={profileImage} userId={userId} Id={Id}
+                                   isFollowing={isFollowing} SetIsFollowing={SetIsFollowing}/>}
       {SimilarAccount_Modal && <SimilarAccountModal/>}
       <div className="otherProfile_profileBox">
         <div className="otherProfile_header">
@@ -99,7 +99,7 @@ const OtherProfile = ({
 
           </div>
           <section className="otherProfile_header_main">
-            {isfollowing ? (
+            {isFollowing ? (
               <div className="otherProfile_header_top">
                 <span>{userId}</span>
                 <span className="otherProfile_header_sengMsg">
@@ -232,7 +232,7 @@ const OtherProfile = ({
                       </button>
                       <div className="otherProfile_recomBox_userBox">
                         <div className="otherProfile_recomBox_pp">
-                          <img src={pp} alt="profile"></img>
+                          <img src={pp} alt="profile"/>
                         </div>
                         <div className="otherProfile_recomBox_Id">
                           testtest

@@ -13,7 +13,6 @@ const Recommendation = () => {
 
   const random_list = useSelector(state=>state.post.randomPosts);
 
-  console.log(random_list)
 
   return (
     <>

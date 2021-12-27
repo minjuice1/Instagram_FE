@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
 import {history} from "../../history";
+import {socket} from "../../common/socket";
 
 
 //회원가입
@@ -159,17 +160,22 @@ export const changePassword = createAsyncThunk(
 //팔로우 기능
 export const userFollow = createAsyncThunk(
   "user/follow",
-  async(data, thunkAPI) => {
+  async({Id, isFollowing}, thunkAPI) => {
+    console.log(isFollowing);
     const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
-        url: `/user/follow/${data.Id}`,
+        url: `/user/follow/${Id}`,
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${AccessToken}`,
         }
       })
       console.log(response);
+      if(!isFollowing) {
+        socket.emit("follow", Id);
+      }
+      // socket.emit("follow", Id);
       return response;
     }catch (e) {
       console.log(e.response)

@@ -28,7 +28,7 @@ const FollowerModal = () => {
 
 	const info = useSelector(state=>state.user.FollowerList);
 
-	console.log(info);
+
 
 	const myInfoData = sessionStorage.getItem("info");
 	const myInfo = JSON.parse(myInfoData);

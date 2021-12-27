@@ -10,6 +10,8 @@ import {profile_setting} from "../../../common/IconImage";
 import UserFollow from "./Follow/UserFollow";
 import ProfileChangeImage from "../User/EditUser/ProfileChangeImage";
 import ProfileImgModal from "../User/EditUser/ProfileImgModal";
+import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
+import ProfileModal from "./CommonProfile/ProfileSettingModal";
 
 
 //프로필이 자기일 때 보여주는 화면
@@ -17,23 +19,25 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //모달관리 (프로필이미지 변경, 설정)
   const [imageChange, SetImageChange] = useState(false);
+  const [setting, SetSetting] = useState(false);
 
   const imageChangeClickHandler = () => {
     SetImageChange(!imageChange);
-
   }
-
-  const show_postModal = () => {
-    dispatch(modal_check());
+  const settingClickHandler = () => {
+    SetSetting(true);
   };
 
   const editProfileClickHandler = () => {
     navigate("/edituser");
   }
   return(
+    <>
+    {imageChange && <ProfileImgModal/>}
+      {setting && <ProfileModal Setsetting={SetSetting}/>}
     <div className="profile_header">
-      {/*{SetImageChange && <ProfileImgModal SetImageChange={SetImageChange} imageChange={imageChange}/>}*/}
       <div className="profile_header_image" onClick={imageChangeClickHandler}>
         {profileImage? <img src={profileImage} alt="profile"/>:
           <img src={pp} alt={"profile"}/>}
@@ -43,7 +47,7 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
         <div className="profile_header_top">
           <span>{userId}</span>
           <span onClick={editProfileClickHandler}>프로필 편집</span>
-          <img className="profile_settings" src={profile_setting}  onClick={show_postModal}/>
+          <img className="profile_settings" src={profile_setting}  onClick={settingClickHandler}/>
 
         </div>
         <ul className="profile_header_mid">
@@ -60,7 +64,7 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
       </section>
 
     </div>
-
+    </>
   )
 }
 

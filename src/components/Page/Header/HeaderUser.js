@@ -12,10 +12,10 @@ const HeaderUser = () => {
   const userLogoutClickHandler = () => {
     dispatch(logout());
     navigate(`/login}`, {replace: true})
-
   }
 
   const id = useSelector(state=>state.user.user.userId);
+
   const editUserClickHandler = () => {
     navigate(`/profile/${id}`,{state: id})
   }
