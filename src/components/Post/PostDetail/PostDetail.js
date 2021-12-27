@@ -164,7 +164,7 @@ const PostDetail = () => {
 										childComments={comment.childComments} profileImage={comment.writer.profileImage}
 										/>
 									))}
-									<PostBookmarkToast bookmarkToast={bookmarkToast}/>
+									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
 							</div>
 						
 						{/* bottom */}

@@ -143,7 +143,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
             </div>
             <div className="post_center">
               <img className="post_center_image" src={postImage}/>
-              <PostBookmarkToast bookmarkToast={bookmarkToast}/>
+              <PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
             </div>
             
             <div className="post_icon">

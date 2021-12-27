@@ -31,23 +31,25 @@ const PostBoard = () => {
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
   console.log(post_list);
-
-	const replyTag = useSelector((state) => state.post.replyTag); 
-	const replyUserId = useSelector(state => state.post.replyTag?.writer);
-	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
-	// console.log(postDetail);
+  // console.log(postDetail);
 
   const id = postDetail && postDetail.writer.userId;
   console.log(id);
 
-  useEffect(() => {
-    dispatch(getUserPost(id));
-  }, [getUserPost]);
+	const replyTag = useSelector((state) => state.post.replyTag); 
+	const replyUserId = useSelector(state => state.post.replyTag?.writer);
+	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
 
-	useEffect(() => {
-    dispatch(getPostDetail(postId));
+  useEffect(() => {
+    dispatch(
+      getPostDetail(postId));
   }, [getPostDetail]);
 
+  useEffect(() => {
+    setTimeout(() => dispatch(getUserPost(id)), 500);
+  }, [getUserPost]);
+
+	
 	// 포스트 좋아요
 	const postLikeClickHandler = () => {
     dispatch(
@@ -163,7 +165,7 @@ const PostBoard = () => {
 										childComments={comment.childComments} profileImage={comment.writer.profileImage}
 										/>
 									))}
-									<PostBookmarkToast bookmarkToast={bookmarkToast}/>
+									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
 							</div>
 						
 						{/* bottom */}
@@ -217,7 +219,7 @@ const PostBoard = () => {
 								<div className="postDetail_comment_time">
 									<span>{time}</span>
 								</div>
-								<div className="postBoard_postComment">
+								<div className="postDetail_postComment">
 								<PostComment replyCommentId={replyCommentId} replyUserId={replyUserId} replyTag={replyTag} path={path} postId={postId} commentId={comments._id}/>
 								</div>
 							</div>
@@ -225,7 +227,7 @@ const PostBoard = () => {
 					</div>
 					</div>
       <div className="postBoard_bottomContainer">
-        <div/>
+        {/* 경계선 */} <div/>
         <div>
           <div>
             <span>{id}</span>님의 게시물 더 보기
@@ -233,6 +235,7 @@ const PostBoard = () => {
           <div className="postBoard_postRec">
             {post_list && post_list.map((post, idx) => (
               <ProfilePosts
+              key = {idx}
               picture = {post.imageUrl}
               userId = {post._id}/>
             ))}

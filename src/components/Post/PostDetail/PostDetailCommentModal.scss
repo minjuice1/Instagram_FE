@@ -13,8 +13,8 @@
 	position: fixed;
 
 	.postDetailComment_modal_modal {
-		width: 260px;
-		height: 90px;
+		width: 400px;
+		height: 145px;
 		border: 1px solid $instaGray;
 		border-radius: 10px;
 		position: absolute;
@@ -24,20 +24,19 @@
 
 		& > div {
 			border-bottom: 1px solid $instaGray;
-			height: 30px;
-			text-align: center;
-			line-height: 25px;
-			@include fontSize("small");
+			height: 48px;
+			line-height: 48px;
+			@include fontSize("large");
 			color: $instaMenuBlack;
 		}
     & > div:nth-child(1) {
 			color: $instaRed;
-			font-weight: bold;
+			font-weight: 700;
 		}
 
 		& > div:nth-child(2) {
 			color: $instaRed;
-			font-weight: bold;
+			font-weight: 700;
 		}
 
 		& > div:last-child {
