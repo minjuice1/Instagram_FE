@@ -40,7 +40,6 @@ const Profile = () => {
   const get_my_data = sessionStorage.getItem("info");
   const myId = JSON.parse(get_my_data).userId
 
-
   useEffect((e) => {
     if (!myProfile) {
       dispatch(getUserPost(user_id));

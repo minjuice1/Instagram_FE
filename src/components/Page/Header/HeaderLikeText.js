@@ -1,9 +1,8 @@
 import profile from "../../../image/profile.jpg";
 import React, {useEffect} from "react";
 
-const HeaderLikeText = (props) => {
+const HeaderLikeText = () => {
 
-  console.log("라이크텍스트", props)
   return(
     <>
       <div className="like_cmt">

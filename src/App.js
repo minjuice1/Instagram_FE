@@ -18,6 +18,7 @@ import Profile from "./components/Page/Profile/Profile";
 import EditUser from "./components/Page/User/EditUser/EditUser";
 import {getProfile} from "./redux/user/user";
 import SearchHash from "./components/Page/Header/HeaderSearch/SearchHash";
+import Socket from "./components/Main/Socket";
 
 
 const CustomRouter = ({history, ...props}) => {
@@ -65,6 +66,7 @@ function App() {
       <Suspense fallback={<div>Loading</div>}>
         <CustomRouter history={history}>
           {show_header && <Header/>}
+          {show_header && <Socket/>}
           {write_modal && <AddPost/>}
           <Routes>
             <Route path="/" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>

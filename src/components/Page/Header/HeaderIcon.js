@@ -14,7 +14,7 @@ import {add_modal} from "../../../redux/modal/modalSlice";
 import HeaderUser from "./HeaderUser";
 
 
-const HeaderIcon = ({followSocket}) => {
+const HeaderIcon = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -116,7 +116,7 @@ const HeaderIcon = ({followSocket}) => {
             <img className="nav_heart" src={heart} alt="nav_icon" onClick={likeClickHandler}/>}
           {like &&
           <div className="like_menu">
-            <HeaderLikeText followSocket={followSocket}/>
+            <HeaderLikeText/>
           </div>
           }
         </div>
