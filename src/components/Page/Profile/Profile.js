@@ -40,6 +40,7 @@ const Profile = () => {
   const get_my_data = sessionStorage.getItem("info");
   const myId = JSON.parse(get_my_data).userId
 
+
   useEffect((e) => {
     if (!myProfile) {
       dispatch(getUserPost(user_id));
@@ -55,7 +56,7 @@ const Profile = () => {
   const post_list = useSelector(state => state.post.post);
 
 
-  // 	// 게시물, 동영상, 저장됨, 태그됨
+  // 게시물, 동영상, 저장됨, 태그됨
   const [ClickedPosts, setClickedPosts] = useState(true);
   const [ClickedVideo, setClickedVideo] = useState(false);
   const [ClickedSaved, setClickedSaved] = useState(false);
