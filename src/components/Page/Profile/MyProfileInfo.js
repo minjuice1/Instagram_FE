@@ -4,10 +4,10 @@ import {followers_modal_check, following_modal_check, modal_check} from "../../.
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import pp from "../../../image/profile.png";
-import UserFollower from "./Follow/UserFollower";
+import UserFollower from "../User/Follow/UserFollower";
 import {useState} from "react";
 import {profile_setting} from "../../../common/IconImage";
-import UserFollow from "./Follow/UserFollow";
+import UserFollow from "../User/Follow/UserFollow";
 import ProfileChangeImage from "../User/EditUser/ProfileChangeImage";
 import ProfileImgModal from "../User/EditUser/ProfileImgModal";
 import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
@@ -35,9 +35,12 @@ const MyProfileInfo = ({userId, name, totalFollow, totalFollower, totalPost, int
   }
   return(
     <>
-    {imageChange && <ProfileImgModal/>}
+      <div className="imageChange_modal">
+      {imageChange && <ProfileImgModal SetImageChange={SetImageChange} imageChange={imageChange} />}
+      </div>
       {setting && <ProfileModal Setsetting={SetSetting}/>}
     <div className="profile_header">
+
       <div className="profile_header_image" onClick={imageChangeClickHandler}>
         {profileImage? <img src={profileImage} alt="profile"/>:
           <img src={pp} alt={"profile"}/>}

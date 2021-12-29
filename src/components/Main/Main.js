@@ -24,13 +24,13 @@ const Main = () => {
 		dispatch(getProfile());
 	}, [dispatch]);
 
+	const user_recommend = useSelector(state=> state.post.recommendedUser);
 
 	const post_data = useSelector((state) => state.post.posts);
-
-
-	// 처음 홈화면에서는 댓글을 2개까지만 보여주기 때문에 댓글이 많을 경우 미리 잘라줌.
-	// const get_comments = comments.slice(0-2);
 	const like_modal = useSelector(state=>state.modal.likeList_modal);
+
+
+
 	return (
 		<>
 			<div className="container">
@@ -57,7 +57,7 @@ const Main = () => {
 					</div>
 
 					<div className="Main_side">
-						<SideMain />
+						<SideMain user_recommend={user_recommend}/>
 					</div>
 				</div>
 			</div>

@@ -2,11 +2,12 @@
 
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {none_profile} from "../../../common/IconImage"
-import {userFollow} from "../../../redux/user/user";
+import {none_profile} from "../../../../common/IconImage"
+import {userFollow} from "../../../../redux/user/user";
 import {useNavigate} from "react-router";
+import "./_Follow.scss";
 
-const AskFollowModal = ({askModal, SetAskModal, userId, profileImage, Id, SetIsFollowing, isFollowing}) => {
+const AskFollowModal = ({SetAskModal, userId, profileImage, Id, isFollowing}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -14,8 +15,7 @@ const AskFollowModal = ({askModal, SetAskModal, userId, profileImage, Id, SetIsF
     dispatch(userFollow({
       Id, isFollowing
     }))
-    // SetAskModal(false);
-    SetAskModal(false);
+    navigate(0)
   }
 
 
@@ -27,7 +27,7 @@ const AskFollowModal = ({askModal, SetAskModal, userId, profileImage, Id, SetIsF
 
   return (
     <>
-      <div className="small_modal">
+      <div className="ask_follow_modal">
         <div className="modal_common_header">
           {/*<span>팔로우</span><span> <img onClick={cancleClickHandler} src={x_img} alt="cancle"/></span>*/}
           {profileImage?  <img src={profileImage} alt="profile_image"/>:  <img src={none_profile} alt="profile_image"/>}
@@ -36,7 +36,8 @@ const AskFollowModal = ({askModal, SetAskModal, userId, profileImage, Id, SetIsF
 
         </div>
         <div className="modal_common_card">
-          <div onClick={askFollowClickHandler}>팔로우끊기</div>
+          <div onClick={askFollowClickHandler}>팔로우 취소</div>
+          <div onClick={cancleClickHandler}> 취소 </div>
         </div>
       </div>
       <div className="overlay" onClick={cancleClickHandler}/>

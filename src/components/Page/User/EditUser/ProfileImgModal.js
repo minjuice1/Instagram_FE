@@ -1,31 +1,23 @@
 //프로필 이미지 변경 모달
 
-import React, {useEffect, useState} from "react";
-import {modal_check} from "../../../../redux/modal/modalSlice";
+import React from "react";
 import {useDispatch} from "react-redux";
 import "./ProfileModal.scss";
-
-import {useNavigate} from "react-router";
 import ProfileChangeImage from "./ProfileChangeImage";
 import {deleteProfileImg} from "../../../../redux/user/user";
 
 const ProfileImgModal = ({imageChange, SetImageChange} ) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
 
   const cancleClickHandler = () => {
-    dispatch(modal_check());
+    SetImageChange(false);
   };
 
   const deleteImgClickHandler = (event) => {
     event.preventDefault();
     dispatch(deleteProfileImg());
   }
-
-
-
-
 
   return(
     <>

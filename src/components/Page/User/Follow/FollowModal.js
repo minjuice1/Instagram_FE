@@ -4,13 +4,12 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {following_modal_check} from "../../../../redux/modal/modalSlice";
-import "./FollowModal.scss";
-
+import "./_Follow.scss";
 import {x_img} from "../../../../common/IconImage";
 import FollowCard from "./FollowCard";
 import {getFollow} from "../../../../redux/user/user";
 
-const FollowerModal = () => {
+const FollowerModal = ({isFollowing}) => {
   const dispatch = useDispatch();
 
 
@@ -29,8 +28,6 @@ const FollowerModal = () => {
   const FollowList = useSelector(state=>state.user.FollowList);
 
 
-
-
   return (
     <>
       <div className="modal_common_container">
@@ -40,10 +37,12 @@ const FollowerModal = () => {
         <div className="modal_common_card">
           {FollowList && FollowList.map((follow) => (
             <FollowCard
+              _id={follow._id}
             name ={follow.name}
             userId={follow.userId}
             profileImage={follow.profileImage}
             isFollow={follow.isFollow}
+              isFollowing={isFollowing}
             />
           ))}
 

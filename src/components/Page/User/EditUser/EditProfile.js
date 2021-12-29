@@ -11,6 +11,7 @@ const EditProfile = () => {
 
   //프로필 정보수정
   const result = useMemo(() => sessionStorage.getItem("info"), []);
+  const [imageChange, SetImageChange] = useState(false);
 
   const my_info = JSON.parse(result);
 
@@ -62,9 +63,9 @@ const EditProfile = () => {
 
   //프로필 사진바꾸기 모달
   const imgChangeClickHandler = () => {
-    dispatch(modal_check());
+    SetImageChange(!imageChange)
   }
-  const is_modal = useSelector(state => state.modal.is_modal);
+
   const profile_image = useSelector(state => state.user.user.profileImage);
 
   const deleteUserClickHandler = () => {
@@ -74,7 +75,7 @@ const EditProfile = () => {
 
   return (
     <>
-      {is_modal && <ProfileImgModal userId={userId}/>}
+      {imageChange && <ProfileImgModal SetImageChange={SetImageChange} imageChange={imageChange}/>}
 
       <div className="edit_form">
         <div className="edit_forms">

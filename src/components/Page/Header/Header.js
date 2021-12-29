@@ -8,7 +8,7 @@ import HeaderSearch from "./HeaderSearch/HeaderSearch";
 
 const Header = () => {
   const navigate = useNavigate();
-	const toastId = React.useRef(null)
+
 
   const LogoClickHandler = () => {
     navigate(`/`, {replace: true})

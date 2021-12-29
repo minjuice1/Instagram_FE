@@ -243,7 +243,7 @@ export const deleteOneFollower = createAsyncThunk(
         }
       })
       console.log(response);
-      return response;
+      return {response: response, _id: data._id};
     }catch (e) {
       console.log(e.response)
       return false
@@ -323,6 +323,29 @@ export const deleteUser = createAsyncThunk(
         alert("회원탈퇴 완료")
         history.push({ pathname: '/login'});
       }
+      return response;
+    }catch (e) {
+      console.log(e.response)
+      return false
+    }
+  }
+)
+
+//알림보기
+
+export const getNotification = createAsyncThunk(
+  "user/getNotification",
+  async(data, thunkAPI) => {
+    const AccessToken = localStorage.getItem("user")
+    try{
+      const response = await Api({
+        url: `/user/notification`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
+      })
+      console.log(response);
       return response;
     }catch (e) {
       console.log(e.response)

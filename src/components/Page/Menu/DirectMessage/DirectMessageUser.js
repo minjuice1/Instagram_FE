@@ -1,17 +1,21 @@
-import "./DirectMessage.scss";
+import "./_DirectMessage.scss";
+import {useNavigate} from "react-router";
+import {useState} from "react";
+import DirectMessageCard from "./DirectMessageCard";
 
-const DirectMessageUser = () => {
-  
+const DirectMessageUser = ({chat, SetChat, SetMainDirect}) => {
+  const navigate = useNavigate();
+  const userId = "hyemgu";
+
+  const chatClickHandler = () => {
+    navigate(`/direct/${userId}`);
+    SetChat(true);
+    SetMainDirect(false);
+  }
   return(
     <>
-      <div className="direct_message_user">
-        <div className="direct_userimage">
-          {/*<img src={}/>*/}
-        </div>
-        <div>
-          <div>poseson02</div>
-          <div>최근 활동: 어제</div>
-        </div>
+      <div onClick={chatClickHandler}>
+      <DirectMessageCard/>
       </div>
     </>
   )

@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import "./HeaderIcon.scss";
-import HeaderLikeText from "./HeaderLikeText";
+import HeaderNotification from "./HeaderNotification/HeaderNotification";
 import {Link, useNavigate} from "react-router-dom";
 
 import {
@@ -12,6 +12,7 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {add_modal} from "../../../redux/modal/modalSlice";
 import HeaderUser from "./HeaderUser";
+import {getProfile} from "../../../redux/user/user";
 
 
 const HeaderIcon = () => {
@@ -49,7 +50,6 @@ const HeaderIcon = () => {
           SetLike(false);
         }
       }
-
       document.addEventListener("mousedown", handleClickOutside);
 
       return () => {
@@ -57,6 +57,10 @@ const HeaderIcon = () => {
       };
     }, [ref]);
   }
+
+  useEffect(() => {
+    dispatch(getProfile())
+  },[dispatch])
 
   const likeSideRef = useRef(null);
   LikeOutsideClick(likeSideRef);
@@ -103,7 +107,7 @@ const HeaderIcon = () => {
       <div className="header_icon">
         {homeIcon ? <div className="nav_icon"><img src={blackhome} alt="nav_icon" onClick={homeClickHandler}/></div> :
           <div className="nav_icon"><img src={home} alt="nav_icon" onClick={homeClickHandler}/></div>}
-        <Link to={"/message"}>
+        <Link to={"/direct"}>
           <div className="nav_icon"><img src={message} alt="nav_icon"/></div>
         </Link>
         <div className="nav_icon"><img src={write} alt="nav_icon" onClick={postWriteClickHandler}/></div>
@@ -116,14 +120,14 @@ const HeaderIcon = () => {
             <img className="nav_heart" src={heart} alt="nav_icon" onClick={likeClickHandler}/>}
           {like &&
           <div className="like_menu">
-            <HeaderLikeText/>
+            <HeaderNotification/>
           </div>
           }
         </div>
         <div className="profile_icons" ref={profileSideRef}>
           {myProfile ? <img className="nav_profile" src={my_img} alt="nav_icon" onClick={myProfileClickHandler}/> :
             <img src={my_img} alt="nav_icon" onClick={myProfileClickHandler}/>}
-          {myProfile && <HeaderUser/>}
+          {myProfile && <HeaderUser SetMyProfile={SetMyProfile}/>}
         </div>
       </div>
     </>
