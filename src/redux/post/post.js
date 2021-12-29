@@ -87,12 +87,12 @@ export const getPostDetail = createAsyncThunk(
         }
       })
       if(response.data.ok){
-        thunkAPI.dispatch(getUserPost(response.data.post[0].writer.userId));
+        thunkAPI.dispatch(
+          getUserPost(response.data.post[0].writer.userId));
       }
       return response.data;
     } catch (e) {
-      
-      alert("로그인을 다시해주세요")
+      console.log('getPostDetail 에러');
       return false;
     }
   }
