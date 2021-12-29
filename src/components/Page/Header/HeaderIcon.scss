@@ -32,6 +32,7 @@
   height: 500px;
   width: 530px;
   box-shadow: 2px 2px 8px $instaLightGray;
+  z-index: 99;
 
   &:after, &:before {
     bottom: 100%;
@@ -64,56 +65,7 @@
 }
 
 
-.like_today {
-  margin: 12px;
-  font-weight: bold;
-  color: $instaMenuBlack;
-}
 
-.like_cmt {
-  height: 500px;
-  overflow-y: scroll;
-}
-
-.like_oneCmt {
-  display: flex;
-  margin-bottom: 10px;
-  margin-top: 5px;
-
-  & > div:last-child {
-    margin: 10px auto auto 10px;
-    color: black;
-    display: flex;
-    a {
-      color: $instaMenuGray;
-      padding-left: 5px;
-    }
-  }
-  .like_cmt_id {
-    font-weight: bold;
-    color: black;
-  }
-}
-
-.like_picture {
-  border: 1px solid black;
-  width: 40px;
-  height: 40px;
-  background-color: black;
-  margin-top: -10px;
-  margin-left: 35px;
-}
-
-.nav_profile {
-  border: 1px solid $instaMenuBlack;
-  border-radius: 50px;
-}
-
-.nav_profile_img {
-  width: 45px;
-  padding-left: 15px;
-
-}
 
 .myprofile {
   position: absolute;

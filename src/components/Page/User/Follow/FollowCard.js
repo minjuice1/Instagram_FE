@@ -3,11 +3,12 @@
 import profile from "../../../../image/profile.png";
 import React from "react";
 import "./CardStyle.scss";
+import FollowButton from "../../../../common/FollowButton";
 
 
-const FollowCard = ({name, userId, profileImage, isFollow}) => {
+const FollowCard = ({name, userId, profileImage, isFollow, _id, isFollowing}) => {
 
-
+  console.log(isFollow);
 
   return (
     <>
@@ -20,11 +21,8 @@ const FollowCard = ({name, userId, profileImage, isFollow}) => {
             <div>{name}</div>
           </div>
         </div>
-
         <div className="card_button">
-          {isFollow?<button className="card_following_button_">팔로잉</button> : <button className="card_follow_button">팔로우</button> }
-
-
+         <FollowButton isFollow={isFollow} _id={_id} isFollowing={isFollowing}/>
         </div>
 
       </div>

@@ -8,7 +8,7 @@ import React from "react";
 
 
 const PostLikeCard = ({name, userId, profileImage, isFollow}) => {
-  console.log(name, userId, profileImage, isFollow)
+
 
   return (
     <>

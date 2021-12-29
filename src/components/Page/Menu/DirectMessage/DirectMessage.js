@@ -1,8 +1,18 @@
-import "./DirectMessage.scss";
+import "./_DirectMessage.scss";
 import {my_message} from "../../../../common/IconImage";
 import DirectMessageUser from "./DirectMessageUser";
+import {useState} from "react";
+import NewMessageModal from "./NewMessageModal";
+import {useNavigate} from "react-router";
+import NewMessage from "./NewMessage";
+import DirectChat from "./DirectChat";
 
 const DirectMessage = () => {
+
+
+  const [newMessage, SetNewMessage] = useState(false);
+  const [mainDirect, SetMainDirect] = useState(true);
+  const [chat, SetChat] = useState(false);
 
   return(
     <>
@@ -10,16 +20,13 @@ const DirectMessage = () => {
         <div className="direct_message">
           <div>hyemin085</div>
           <div>
-            <DirectMessageUser/>
+            <DirectMessageUser chat={chat} SetChat={SetChat} SetMainDirect={SetMainDirect}/>
           </div>
         </div>
         <div className="my_message">
-        <div>
-          <img src={my_message}/>
-        </div>
-          <div>내 메세지</div>
-          <div>친구나 그룹에 비공개 사진과 메시지를 보내보세요.</div>
-          <button>메시지 보내기</button>
+          {mainDirect && <NewMessage newMessage={newMessage} SetNewMessage={SetNewMessage}/> }
+          {chat && <DirectChat/>}
+
         </div>
       </div>
     </>

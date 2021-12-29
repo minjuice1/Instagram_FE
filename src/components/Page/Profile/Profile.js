@@ -9,6 +9,8 @@ import ProfileSaved from "./CommonProfile/ProfileSaved";
 
 // 모달
 import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
+import ProfileCollectionModal from './SavedProfile/ProfileCollectionModal';
+
 // scss, icon, img
 import "./Profile.scss";
 import pp from "../../../image/profile.jpg";
@@ -21,7 +23,6 @@ import MyProfileInfo from "./MyProfileInfo";
 import {useLocation, useParams} from "react-router";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
-// import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
 
 
 const Profile = () => {
@@ -33,24 +34,26 @@ const Profile = () => {
   const {id} = useParams();
   const user_id = useParams(id).user_Id;
 
+
   //userpost를 가져오면서 본인이 맞는지 아닌지 확인
   const [myProfile, SetMyProfile] = useState(false);
-  const myId = useSelector(state=>state.user.user.userId);
+  const get_my_data = sessionStorage.getItem("info");
+  const myId = JSON.parse(get_my_data).userId
+
 
   useEffect((e) => {
-
-    if(!myProfile){
+    if (!myProfile) {
       dispatch(getUserPost(user_id));
     }
-    if(myId === user_id){
+    if (myId === user_id) {
       SetMyProfile(true);
-    }else{
+    } else {
       SetMyProfile(false);
     }
   }, [dispatch, myProfile, location, user_id, myId]);
 
 
-  const post_list = useSelector(state=>state.post.post);
+  const post_list = useSelector(state => state.post.post);
 
 
   // 게시물, 동영상, 저장됨, 태그됨
@@ -58,7 +61,6 @@ const Profile = () => {
   const [ClickedVideo, setClickedVideo] = useState(false);
   const [ClickedSaved, setClickedSaved] = useState(false);
   const [ClickedTagged, setClickedTagged] = useState(false);
-
 
 
   // 게시물, 동영상, 태그됨
@@ -92,50 +94,50 @@ const Profile = () => {
 
   // 프로필 편집, 팔로워, 팔로우 모달
   const is_modal = useSelector((state) => state.modal.is_modal);
-  const user_info = useSelector(state=> state.post.user);
+  const user_info = useSelector(state => state.post.user);
   const user_data = user_info && user_info[0];
   const my_follow = user_data && user_data.isFollow;
 
 
-  console.log("포스트", post_list);
 
 
 // 저장된 게시물 불러오기
   const savedUser = useSelector((state) => state.post.savedPost);
-// 컬렉션 생성
-  const [openModal, setOpenModal] = useState(false);
-  const addCollectionHandler = () => {
-    setOpenModal(true);
-  }
 
+// 컬렉션 생성
+  const [openCollectionModal, setOpenCollectionModal] = useState(false);
+  const addCollectionHandler = () => {
+    setOpenCollectionModal(true);
+  }
 
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
-      {/*{openModal && <ProfileCollectionModal setOpenModal={setOpenModal}/>}*/}
+      {openCollectionModal && <ProfileCollectionModal setOpenCollectionModal={setOpenCollectionModal}/>}
+
 
       <div className="profile_all">
         <div className="profile_content">
           <div className="profile_profileBox">
             {myProfile && user_data &&
             <MyProfileInfo
-              userId = {user_id}
-              name = {user_data.name}
-              totalFollow = {user_data.totalFollow}
-              totalFollower = {user_data.totalFollower}
-              totalPost = {user_data.totalPost}
-              introdution = {user_data.introdution}
+              userId={user_id}
+              name={user_data.name}
+              totalFollow={user_data.totalFollow}
+              totalFollower={user_data.totalFollower}
+              totalPost={user_data.totalPost}
+              introdution={user_data.introdution}
               profileImage={user_data.profileImage}
             />}
             {!myProfile && user_data &&
             <UserProfileInfo
-              userId = {user_id}
-              Id = {user_data._id}
-              name = {user_data.name}
-              totalFollow = {user_data.totalFollow}
-              totalFollower = {user_data.totalFollower}
-              totalPost = {user_data.totalPost}
-              introdution = {user_data.introdution}
+              userId={user_id}
+              Id={user_data._id}
+              name={user_data.name}
+              totalFollow={user_data.totalFollow}
+              totalFollower={user_data.totalFollower}
+              totalPost={user_data.totalPost}
+              introdution={user_data.introdution}
               profileImage={user_data.profileImage}
               my_follow={my_follow}
             />}
@@ -213,8 +215,8 @@ const Profile = () => {
                   {post_list && post_list.map((img) => (
                     <Link to={`/postdetail/${img._id}`}>
                       <ProfilePosts
-                        picture = {img.imageUrl}
-                        userId = {img._id}/>
+                        picture={img.imageUrl}
+                        userId={img._id}/>
                     </Link>
                   ))}
                 </div>
@@ -224,8 +226,8 @@ const Profile = () => {
                   {savedUser && savedUser.map((save) => (
                     <Link to={`/postdetail/${save._id}`}>
                       <ProfileSaved
-                        savedPost = {save.imageUrl}
-                        userId = {save._id}  />
+                        savedPost={save.imageUrl}
+                        userId={save._id}/>
                     </Link>
                   ))}
                 </div>
@@ -236,7 +238,6 @@ const Profile = () => {
                 </div>
               )}
             </div>
-
 
             {/*{saved && (*/}
             {/*  <div className="OtherProfile_postsBox">*/}
@@ -251,9 +252,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-
-
     </>
+
   );
 };
 

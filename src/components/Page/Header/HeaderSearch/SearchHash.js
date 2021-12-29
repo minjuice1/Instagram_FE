@@ -27,9 +27,7 @@ const SearchHash = () => {
   const hash_result = useSelector(state=>state.search.posts);
   const hash_tag = useSelector(state=>state.search.searchHashtag);
 
-  console.log(hash_tag)
 
-  console.log("이건가",hash_result);
 
   const hashTagFollowClickHandler = () => {
     dispatch(hashFollow({

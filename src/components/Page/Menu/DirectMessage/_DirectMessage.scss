@@ -4,7 +4,7 @@
 .insta_layout {
   margin: 20px auto;
   width: 935px;
-  height: 95vh;
+  height: 90vh;
   display: grid;
   grid-template-columns: repeat(2, 351px 30vw);
   border: 1px solid $instaGray;
@@ -50,7 +50,9 @@
     margin-top: 30px;
   }
 }
-
+.message_recommend{
+  overflow-y: auto;
+}
 .direct_message_user {
   display: flex;
   margin-left: 10px;
@@ -72,4 +74,58 @@
       color: $instaMenuGray;
     }
   }
+}
+//CheckUser.js
+
+.checkUser{
+  background-color: #e0f1ff;
+  margin: 5px;
+  width: 6rem;
+  height: 35px;
+  border-radius: 5px;
+  font-weight: 200;
+  color: $instaBlue;
+  line-height: 30px;
+  text-align: center;
+
+  @include fontSize("large");
+}
+
+//message_card.JS
+
+.message_modal_card {
+  display: flex;
+  margin : 10px;
+  & > div > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+  }
+  & > div:nth-child(2) {
+    margin-left: 10px;
+    margin-top: 7px;
+    & > div:first-child{
+      @include fontSize('large');
+      font-weight: 600;
+    }
+  }
+  & > div:nth-child(3) {
+    position: absolute;
+    margin-left: 335px;
+    margin-top: 10px;
+    & > input {
+      width: 20px;
+      height: 20px;
+      border-radius: 100px;
+    }
+  }
+}
+
+//DirectChat.js
+
+.direct_input {
+  //border: 1px solid blue;
+  //width: 550px;
+  //height: 45px;
+  //margin-left: -100px;
 }

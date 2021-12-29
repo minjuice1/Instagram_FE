@@ -5,8 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {followers_modal_check, modal_check} from "../../../../redux/modal/modalSlice";
-import "./FollowModal.scss";
-import FollowerCard from "../Follow/FollowerCard";
+import "./_Follow.scss";
+import FollowerCard from "./FollowerCard";
 import {x_img} from "../../../../common/IconImage";
 import {getFollower} from "../../../../redux/user/user";
 
@@ -28,7 +28,7 @@ const FollowerModal = () => {
 
 	const info = useSelector(state=>state.user.FollowerList);
 
-	console.log(info);
+
 
 	const myInfoData = sessionStorage.getItem("info");
 	const myInfo = JSON.parse(myInfoData);

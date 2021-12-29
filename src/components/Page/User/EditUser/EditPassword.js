@@ -39,8 +39,8 @@ const EditPassword = () => {
         <div className="edit_password">
           <div className="password_info">
             <div>
-            {profile_image ? <img src={my_info.profileImage} alt="profile_img"/> :
-              <img src={profile_image} alt="profile_image"/>}
+              {profile_image ? <img src={my_info.profileImage} alt="profile_img"/> :
+                <img src={profile_image} alt="profile_image"/>}
             </div>
             <div>
               {my_info.userId}

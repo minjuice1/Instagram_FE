@@ -29,7 +29,6 @@ const PostDetailComment = ({postId, commentId, contents, date, isLike, like, wri
   const AccessToken = localStorage.getItem("user");
   const path = "detailCmt"
   const LikedCommentHandler = () => {
-    console.log(postId);
     dispatch(
       likedComment({
         commentId,
