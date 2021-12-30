@@ -26,8 +26,11 @@
 
 .my_message {
   text-align: center;
-  margin-top: 200px;
-  margin-left: 113px;
+  width: 582px;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
  & > div:nth-child(2){
    font-size: 22px;
@@ -122,10 +125,33 @@
 }
 
 //DirectChat.js
+.direct_chat {
+  border-bottom: 1px solid $instaGray;
+  height: 60px;
+  line-height: 60px;
+}
+.direct_room {
+  height: 700px;
+  overflow-y: auto;
+}
 
 .direct_input {
-  //border: 1px solid blue;
-  //width: 550px;
-  //height: 45px;
-  //margin-left: -100px;
+  border: 1px solid $instaGray;
+  width: 550px;
+  height: 50px;
+  border-radius: 20px;
+  position: absolute;
+  margin: 15px 0 0 15px;
+  overflow: hidden;
+  display: flex;
+
+  .direct_button {
+    border: none;
+    color: $instaBlue;
+    width: 50px;
+    font-weight: 600;
+    margin-right: 10px;
+    background-color: transparent;
+  }
+
 }

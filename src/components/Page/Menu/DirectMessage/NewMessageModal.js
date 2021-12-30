@@ -6,15 +6,12 @@ import {headerSearch} from "../../../../redux/search/search";
 import {useDispatch, useSelector} from "react-redux";
 import CheckUser from "./CheckUser";
 
-const NewMessageModal = ({SetNewMessage}) => {
+const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
   const dispatch = useDispatch();
 
   const user_list = useSelector(state=>state.search.user);
-  const [userInfo, SetUserInfo] = useState([]);
 
-  const user_id = (user) => {
-    userInfo.push(user);
-  }
+
   //검색어 입력
   const [searchUser, SetSearchUser] = useState();
   const searchUserOnChange = (e) => {
@@ -22,15 +19,14 @@ const NewMessageModal = ({SetNewMessage}) => {
   }
 
 
-  useEffect(() => {
-
-  },[userInfo]);
-
 
   const CancellationClickHandler = () => {
-    SetNewMessage(false);
+    if(SetNewMessage){
+      SetNewMessage(false);
+    }else {
+      SetNewMessages(false);
+    }
   }
-
 
   const [check, SetCheck] = useState(false);
   //엔터로 검색
@@ -43,19 +39,12 @@ const NewMessageModal = ({SetNewMessage}) => {
     }
   }
 
+  const check_user = useSelector(state=>state.socket.userList);
+  const a = useSelector(state=> state);
+  console.log("체크유저", a);
 
-  const [checkedItems, setCheckedItems] = useState(new Set());
 
-  const checkedItemHandler = (id, isChecked) => {
-    if (isChecked) {
-      checkedItems.add(id);
-      setCheckedItems(checkedItems);
-    } else if (!isChecked && checkedItems.has(id)) {
-      checkedItems.delete(id);
-      setCheckedItems(checkedItems);
-    }
-  };
-
+  const [checkUser, SetCheckUser] = useState([]);
 
 
   return(
@@ -68,11 +57,12 @@ const NewMessageModal = ({SetNewMessage}) => {
         </div>
         <div className="message_search">
           <div>받는 사람:
-            <div className="check_user">
-            {userInfo && userInfo.map((user) => (
-              <CheckUser userId={user} userInfo={userInfo} SetUserInfo={SetUserInfo}/>
-            ))}
-          </div>
+          {/*  <div className="check_user">*/}
+          {/*    {check_user && check_user.map((user) => (*/}
+          {/*    <CheckUser userId={user.userList}/>*/}
+          {/*  ))}*/}
+
+          {/*</div>*/}
           </div>
           <div>
             <label>
@@ -84,8 +74,7 @@ const NewMessageModal = ({SetNewMessage}) => {
           <div className="message_card">
             {user_list && user_list.map((user, index) => (
               <MessageModalCard _id={user._id} name={user.name} userId={user.userId} profileImage={user.profileImage}
-                                user_id={user_id} SetCheck={SetCheck} check={check} index={index}
-                                userInfo={userInfo} SetUserInfo={SetUserInfo} checkedItemHandler={checkedItemHandler}/>
+                                SetCheck={SetCheck} check={check} checkUser={checkUser}/>
             ))}
 
           </div>

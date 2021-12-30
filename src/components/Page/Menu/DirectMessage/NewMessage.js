@@ -1,6 +1,7 @@
 import {my_message} from "../../../../common/IconImage";
 import NewMessageModal from "./NewMessageModal";
 
+
 const NewMessage = ({SetNewMessage, newMessage}) => {
 
   const sendMessageClickHandler = () => {

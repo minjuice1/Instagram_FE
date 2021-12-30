@@ -101,15 +101,17 @@ const HeaderIcon = () => {
 
   //내정보 불러오기
 
+  const directClickHandler = () => {
+    navigate(`/direct`, {replace: true})
+  }
+
 
   return (
     <>
       <div className="header_icon">
         {homeIcon ? <div className="nav_icon"><img src={blackhome} alt="nav_icon" onClick={homeClickHandler}/></div> :
           <div className="nav_icon"><img src={home} alt="nav_icon" onClick={homeClickHandler}/></div>}
-        <Link to={"/direct"}>
-          <div className="nav_icon"><img src={message} alt="nav_icon"/></div>
-        </Link>
+          <div className="nav_icon" onClick={directClickHandler}><img src={message} alt="nav_icon"/></div>
         <div className="nav_icon"><img src={write} alt="nav_icon" onClick={postWriteClickHandler}/></div>
         {compassIcon ?
           <div className="nav_icon"><img src={blackcompass} alt="nav_icon" onClick={recommendClickHandler}/></div> :
