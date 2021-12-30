@@ -1,12 +1,11 @@
 import React from "react";
 import "./CommonProfile.scss";
 
-const ProfilePosts = ({picture, imageUrl}) => {
+const ProfilePosts = ({list, category}) => {
   return (
     <>
       <div className="otherProfile_post">
-        {picture && <img src={picture}/>}
-        {imageUrl && <img src={imageUrl}/>}
+        <img src={list.imageUrl}/>
       </div>
     </>
   );

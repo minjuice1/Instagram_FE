@@ -16,7 +16,7 @@ const HeaderUser = () => {
   // 프로필으로 이동
   const id = useSelector(state=>state.user.user.userId);
   const editUserClickHandler = () => {
-    navigate(`/profile/${id}`,{state: id})
+    navigate(`/profile/${id}/posts`,{state: id})
   }
 
   // 저장됨으로 이동

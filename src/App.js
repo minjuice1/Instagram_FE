@@ -19,7 +19,6 @@ import EditUser from "./components/Page/User/EditUser/EditUser";
 import {getProfile} from "./redux/user/user";
 import SearchHash from "./components/Page/Header/HeaderSearch/SearchHash";
 import PostBoard from './components/Post/PostBoard/PostBoard';
-import ProfileSaved from './components/Page/Profile/CommonProfile/ProfileSaved';
 
 
 
@@ -85,16 +84,15 @@ function App() {
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
           <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser /> </RequireAuth>}/>
 					<Route path="/profile/*"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}>
-            <Route path=":id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            <Route path=":id/channel" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            <Route path=":id/saved" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            <Route path=":id/tagged"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+            <Route path=":id/:category"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+            {/* <Route path=":id" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+            <Route path=":id" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
+            <Route path=":id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/> */}
           </Route>
           <Route path="/searchhash/*"	element={<RequireAuth redirectTo="/login"> <SearchHash /> </RequireAuth>}>
             <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash /> </RequireAuth>}/>
           </Route>
           <Route path="/postboard/:postId" element={<RequireAuth redirectTo="/login"> <PostBoard/> </RequireAuth>}/>
-          <Route path=":id/saved" element={<RequireAuth redirectTo="/login"> <ProfileSaved /> </RequireAuth>}/>
 
         </Routes>
 
