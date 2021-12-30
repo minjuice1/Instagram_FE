@@ -4,7 +4,6 @@ import {logout} from "../../../redux/user/user";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 
-
 const HeaderUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -12,9 +11,9 @@ const HeaderUser = () => {
   const userLogoutClickHandler = () => {
     dispatch(logout());
     navigate(`/login}`, {replace: true})
-
   }
 
+  // 프로필으로 이동
   const id = useSelector(state=>state.user.user.userId);
   const editUserClickHandler = () => {
     navigate(`/profile/${id}`,{state: id})
@@ -22,10 +21,8 @@ const HeaderUser = () => {
 
   // 저장됨으로 이동
   const savedProfileClickHandler = () => {
-    navigate(`/profile/${id}/saved`, {replace: true})
-    // history.replace(`/myprofile/${id}`, {replace: true});
+    navigate(`/profile/${id}/saved`);
   }
-
 
   return(
     <div className="myprofile">

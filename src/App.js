@@ -19,6 +19,7 @@ import EditUser from "./components/Page/User/EditUser/EditUser";
 import {getProfile} from "./redux/user/user";
 import SearchHash from "./components/Page/Header/HeaderSearch/SearchHash";
 import PostBoard from './components/Post/PostBoard/PostBoard';
+import ProfileSaved from './components/Page/Profile/CommonProfile/ProfileSaved';
 
 
 
@@ -93,7 +94,7 @@ function App() {
             <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash /> </RequireAuth>}/>
           </Route>
           <Route path="/postboard/:postId" element={<RequireAuth redirectTo="/login"> <PostBoard/> </RequireAuth>}/>
-
+          <Route path=":id/saved" element={<RequireAuth redirectTo="/login"> <ProfileSaved /> </RequireAuth>}/>
 
         </Routes>
 

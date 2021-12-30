@@ -17,10 +17,14 @@ const postSlice = createSlice({
     replyTag: "",
     randomPosts: [],
     post: [],
+    profileSaved: "",
   },
   reducers: {
     replyReducer : (state, action) => {
       state.replyTag = action.payload;
+    },
+    selectSaved : (state, action) => {
+      state.profileSaved = action.payload;
     },
   },
   extraReducers: {

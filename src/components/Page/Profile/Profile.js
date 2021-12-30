@@ -2,17 +2,13 @@ import {React, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 
-import ProfileVideo from "./CommonProfile/ProfileVideo";
 import ProfilePosts from "./CommonProfile/ProfilePosts";
-import ProfileTagged from "./CommonProfile/ProfileTagged";
-import ProfileSaved from "./CommonProfile/ProfileSaved";
 
 // 모달
 import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
 // scss, icon, img
 import "./Profile.scss";
-import pp from "../../../image/profile.jpg";
-import {FiSettings, FiPlayCircle} from "react-icons/fi";
+import {FiPlayCircle} from "react-icons/fi";
 import {BiBookmark} from "react-icons/bi";
 import {RiAccountBoxLine} from "react-icons/ri";
 import {MdGridOn} from "react-icons/md";
@@ -38,8 +34,7 @@ const Profile = () => {
   const [myProfile, SetMyProfile] = useState(false);
   const myId = useSelector(state=>state.user.user.userId);
 
-  useEffect((e) => {
-
+  useEffect(() => {
     if(!myProfile){
       dispatch(getUserPost(id));
     }
@@ -50,41 +45,34 @@ const Profile = () => {
     }
   }, [dispatch, myProfile, location, id, myId]);
 
-  // useEffect= ((e) => {
-  //   e.preventDefault();
-  //   if(location.pathname.split('/')[3] === 'saved'){
-  //     savedClickHandler();
-  //   } return;
-  // }, []);
-
   const post_list = useSelector(state=>state.post.post);
 
-  // const obj = {
-  //   0: <ProfilePosts/>,
-  //   1: <ProfileSaved/>,
-  //   2: <ProfileVideo/>,
-  //   3: <ProfileTagged/>
-  // }
-
   // 탭 구분
-  const [IsClicked, setClicked] = useState(1);
 
-  console.log(location.pathname.split('/')[3]);
+  const savedPath = (location.pathname.split('/')[3] === 'saved');
+  console.log(savedPath);
+
+  const [IsSelected, setSelected] = useState(1);
+  const [IsSelectedSaved, setSelectedSaved] = useState(3);
 
   const postClickHandler = () => {
-    setClicked(1)
+    setSelected(1);
+    setSelectedSaved(1);
     navigate(`/profile/${id}`);
   }
   const videoClickHandler = () => {
-    setClicked(2)
+    setSelected(2);
+    setSelectedSaved(2);
     navigate(`/profile/${id}/channel`);
   }
   const savedClickHandler = () => {
-    setClicked(3)
+    setSelected(3);
+    setSelectedSaved(3);
     navigate(`/profile/${id}/saved`);
   }
   const taggedClickHandler = () => {
-    setClicked(4)
+    setSelected(4);
+    setSelectedSaved(4);
     navigate(`/profile/${id}/tagged`);
   }
 
@@ -134,112 +122,152 @@ const Profile = () => {
               my_follow={my_follow}
             />}
             {/*<ProfileStory/>*/}
-            <div className="profile_post_dir" role="tablist">
-                  <a className={IsClicked === 1 ? "profile_post_clicked" : "profile_post_unclicked"}>
-									<span onClick={postClickHandler}>
-											<MdGridOn/> 게시물
-									</span>
-                  </a>
 
-                <a className={IsClicked === 2 ? "profile_post_clicked" : "profile_post_unclicked"}>
-									<span onClick={videoClickHandler} >
-											<FiPlayCircle/> 동영상
-									</span>
-                </a>
-              
-              {myProfile &&
-              <div className={IsClicked === 3 ? "profile_post_clicked" : "profile_post_unclicked"}>
-                <span onClick={savedClickHandler}>
-                  <BiBookmark/> 저장됨
+            {savedPath ? (
+              <div className="profile_post_dir" role="tablist">
+
+                <a className={IsSelectedSaved === 1 ? "profile_post_clicked" : "profile_post_unclicked"}>
+                <span onClick={postClickHandler}>
+                    <MdGridOn/> 게시물
                 </span>
-              </div>}         
-
-                <a className={IsClicked === 4 ? "profile_post_clicked" : "profile_post_unclicked"}>
-									<span onClick={taggedClickHandler}>
-											<RiAccountBoxLine/> 태그됨
-									</span>
                 </a>
-            </div>
 
-            <div className="post_layout">
+                <a className={IsSelectedSaved === 2 ? "profile_post_clicked" : "profile_post_unclicked"}>
+                  <span onClick={videoClickHandler} >
+                      <FiPlayCircle/> 동영상
+                  </span>
+                </a>
+          
+                {myProfile &&
+                <div className={IsSelectedSaved === 3 ? "profile_post_clicked" : "profile_post_unclicked"}>
+                  <span onClick={savedClickHandler}>
+                    <BiBookmark/> 저장됨
+                  </span>
+                </div>}         
 
-              {/* {IsClicked === 1 && (
-                <div className="OtherProfile_postsBox">
-                  {post_list && post_list.map((img) => (
-                    <Link to={`/postdetail/${img._id}`} >
-                      <ProfilePosts
-                        picture = {img.imageUrl}
-                        userId = {img._id}/>
-                    </Link>
-                  ))}
-                </div>
-              )} */}
+                <a className={IsSelectedSaved === 4 ? "profile_post_clicked" : "profile_post_unclicked"}>
+                  <span onClick={taggedClickHandler}>
+                      <RiAccountBoxLine/> 태그됨
+                  </span>
+                </a>
+              </div>
+            ) : (
+              <div className="profile_post_dir" role="tablist">
 
-              
-                <div className={IsClicked === 3 ? "savedPostBox" : "OtherProfile_postsBox"}>
+                <a className={IsSelected === 1 ? "profile_post_clicked" : "profile_post_unclicked"}>
+                <span onClick={postClickHandler}>
+                    <MdGridOn/> 게시물
+                </span>
+                </a>
 
-                {IsClicked === 1 && (
-                  <>
-                  {post_list && post_list.map((img) => (
-                    <Link to={`/postdetail/${img._id}`} >
-                      <ProfilePosts
-                        picture = {img.imageUrl}
-                        userId = {img._id}/>
-                    </Link>
-                  ))}
-                  </>
-                )}
+                <a className={IsSelected === 2 ? "profile_post_clicked" : "profile_post_unclicked"}>
+                  <span onClick={videoClickHandler} >
+                      <FiPlayCircle/> 동영상
+                  </span>
+                </a>
+          
+                {myProfile &&
+                <div className={IsSelected === 3 ? "profile_post_clicked" : "profile_post_unclicked"}>
+                  <span onClick={savedClickHandler}>
+                    <BiBookmark/> 저장됨
+                  </span>
+                </div>}         
 
-                {IsClicked === 2 && (<ProfileVideo/>)}
+                <a className={IsSelected === 4 ? "profile_post_clicked" : "profile_post_unclicked"}>
+                  <span onClick={taggedClickHandler}>
+                      <RiAccountBoxLine/> 태그됨
+                  </span>
+                </a>
+              </div>
+            )}
+            
 
-                {IsClicked === 3 && (
+            {savedPath ? (
+              <div className="post_layout">
+                <div className={IsSelectedSaved === 3 ? "savedPostBox" : "OtherProfile_postsBox"}>
+
+              {IsSelectedSaved === 1 && (
                 <>
-                  <div className="savedPostBox">
-                    <div className="desc_savedPost">저장한 내용은 회원님만 볼 수 있습니다</div>
-                    <div className="add_savedPostBox" onClick={addCollectionHandler}>+ 새 컬렉션</div>
-                  </div>
-                  <div className="OtherProfile_savedBox">
-                    {savedUser && savedUser.map((save) => (
-                      <Link to={`/postdetail/${save._id}`}>
-                        <ProfileSaved
-                          savedPost = {save.imageUrl}
-                          userId = {save._id}  />
-                      </Link>
-                    ))}
-                  </div>
+                {post_list && post_list.map((img, imgId) => (
+                  <Link to={`/postdetail/${img._id}`} >
+                    <ProfilePosts
+                      key = {imgId}
+                      picture = {img.imageUrl}
+                      userId = {img._id}/>
+                  </Link>
+                ))}
                 </>
-                )}
+              )}
 
-                {IsClicked === 4 && (<ProfileTagged/>)}
+              {IsSelectedSaved === 2 && (<ProfilePosts/>)}
 
-                </div>
-
-              {/* {IsClicked === 3 && (
-                <>
+              {IsSelectedSaved === 3 && (
+              <>
                 <div className="savedPostBox">
                   <div className="desc_savedPost">저장한 내용은 회원님만 볼 수 있습니다</div>
                   <div className="add_savedPostBox" onClick={addCollectionHandler}>+ 새 컬렉션</div>
                 </div>
                 <div className="OtherProfile_savedBox">
-                  {savedUser && savedUser.map((save) => (
+                  {savedUser && savedUser.map((save, saveId) => (
                     <Link to={`/postdetail/${save._id}`}>
-                      <ProfileSaved
-                        savedPost = {save.imageUrl}
+                      <ProfilePosts
+                        key = {saveId}
+                        picture = {save.imageUrl}
                         userId = {save._id}  />
                     </Link>
                   ))}
                 </div>
-                </>
-              )} */}
+              </>
+              )}
 
-              {/* {IsClicked === 4 && (
-                <div className="OtherProfile_postsBox">
-                  <ProfileTagged/>
-                </div>
-              )} */}
+              {IsSelectedSaved === 4 && (<ProfilePosts/>)}
+
+              </div>
             </div>
+            ) : (
+              <div className="post_layout">
+              <div className={IsSelected === 3 ? "savedPostBox" : "OtherProfile_postsBox"}>
 
-            
+              {IsSelected === 1 && (
+                <>
+                {post_list && post_list.map((img, imgId) => (
+                  <Link to={`/postdetail/${img._id}`} >
+                    <ProfilePosts
+                      key = {imgId}
+                      picture = {img.imageUrl}
+                      userId = {img._id}/>
+                  </Link>
+                ))}
+                </>
+              )}
+
+              {IsSelected === 2 && (<ProfilePosts/>)}
+
+              {IsSelected === 3 && (
+              <>
+                <div className="savedPostBox">
+                  <div className="desc_savedPost">저장한 내용은 회원님만 볼 수 있습니다</div>
+                  <div className="add_savedPostBox" onClick={addCollectionHandler}>+ 새 컬렉션</div>
+                </div>
+                <div className="OtherProfile_savedBox">
+                  {savedUser && savedUser.map((save, saveId) => (
+                    <Link to={`/postdetail/${save._id}`}>
+                      <ProfilePosts
+                        key = {saveId}
+                        picture = {save.imageUrl}
+                        userId = {save._id}  />
+                    </Link>
+                  ))}
+                </div>
+              </>
+              )}
+
+              {IsSelected === 4 && (<ProfilePosts/>)}
+
+              </div>
+            </div>
+            )}
+              
           </div>
         </div>
       </div>
