@@ -5,19 +5,21 @@ const socketSlice = createSlice({
   name: 'search',
   initialState: {
     userList: [],
-    userTest:[],
   },
   reducers: {
     saveUser : (state, action) => {
       console.log(action.payload)
-      if(state.userList.indexOf(action.payload)){
-        return;
-      }
-        state.userList = state.userList.push(action.payload);
+      state.userList.push(action.payload);
+      // console.log(action.payload);
+      // state.userList = action.payload.checkUser;
+      // const user_list = action.payload;
+      // state.userList = user_list;
 
     },
-    deleteUser: (state, action) => {
-      state.userList = state.userList.filter( userList => userList !== action.payload)
+    deleteUser: (state,{payload}) => {
+      // console.log(payload.userId);
+      console.log(payload);
+      state.userList = state.userList.filter((user) => user.userId !== payload);
     },
 
   },

@@ -32,19 +32,19 @@ const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
   //엔터로 검색
   const searchEnter = (e) =>{
     if(e.key==='Enter'){
+      const path = "directSearch"
       dispatch(headerSearch({
-        searchResult : searchUser
+        searchResult : searchUser,
+        path: path,
       }))
       SetCheck(false);
     }
   }
 
   const check_user = useSelector(state=>state.socket.userList);
-  const a = useSelector(state=> state);
-  console.log("체크유저", a);
+  console.log("체크유저", check_user);
 
 
-  const [checkUser, SetCheckUser] = useState([]);
 
 
   return(
@@ -57,12 +57,12 @@ const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
         </div>
         <div className="message_search">
           <div>받는 사람:
-          {/*  <div className="check_user">*/}
-          {/*    {check_user && check_user.map((user) => (*/}
-          {/*    <CheckUser userId={user.userList}/>*/}
-          {/*  ))}*/}
+            <div className="check_user">
+              {check_user && check_user.map((user) => (
+              <CheckUser userId={user.userId}/>
+            ))}
 
-          {/*</div>*/}
+          </div>
           </div>
           <div>
             <label>
@@ -74,7 +74,7 @@ const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
           <div className="message_card">
             {user_list && user_list.map((user, index) => (
               <MessageModalCard _id={user._id} name={user.name} userId={user.userId} profileImage={user.profileImage}
-                                SetCheck={SetCheck} check={check} checkUser={checkUser}/>
+                                SetCheck={SetCheck} />
             ))}
 
           </div>

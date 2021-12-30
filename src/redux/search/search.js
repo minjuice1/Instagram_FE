@@ -3,7 +3,7 @@ import Api from "../../common/api/Api";
 
 export const headerSearch = createAsyncThunk(
   "search/headerSearch",
-  async(data, thunkAPI) => {
+  async(data, thunkAPI,path) => {
     const AccessToken = localStorage.getItem("user")
     console.log(data);
     try {

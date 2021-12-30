@@ -1,15 +1,17 @@
 //새로운 채팅에서 유저 선택
 
 import "./_DirectMessage.scss";
-import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {deleteUser} from "../../../../redux/socket/socketSlice";
 
-const CheckUser = ({userId, userInfo, SetUserInfo}) => {
-  console.log("제발찍혀라",userInfo);
+const CheckUser = ({userId}) => {
+  const dispatch = useDispatch();
 
   const RemoveClickHandler = () => {
-    SetUserInfo(userInfo.filter(user => userId !== user));
+    dispatch(deleteUser(
+      userId
+    ))
   }
-
   return(
     <>
       <div className="checkUser" onClick={RemoveClickHandler}>

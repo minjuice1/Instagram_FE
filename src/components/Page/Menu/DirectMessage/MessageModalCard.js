@@ -5,96 +5,44 @@ import {useDispatch, useSelector} from "react-redux";
 import {deleteUser, saveUser} from "../../../../redux/socket/socketSlice";
 
 
-const MessageModalCard = ({_id, name, profileImage, userId,  SetCheck,
-                          userInfo, SetUserInfo, noOnchange, check, checkUser}) => {
+const MessageModalCard = ({_id, name, profileImage, userId}) => {
   const dispatch = useDispatch();
 
   const [Checked, setChecked] = useState(false);
+  // const [isChecked, SetIsChecked] = useState(false);
 
-  const [checkedItems, setCheckedItems] = useState([]);
-
-  const [userList, SetUserList] = useState([]);
-  const [deleteList, SetDeleteList] = useState([]);
-  console.log(userList)
-  console.log(checkedItems);
+  const user = useSelector(state=> state.socket.userList);
 
 
-  const unCheckUser = [];
+
+console.log(user)
+  useEffect(() => {
+    setChecked(false);
+    if(user.findIndex((find) => find.userId === userId) === -1){
+     setChecked(false);
+    }
+    if(user.findIndex((find) => find.userId === userId) !== -1){
+      setChecked(true);
+    }
+  },)
 
   const checkHandler = ({target}) => {
     setChecked(!Checked);
+
+
     if(target.checked){
-      checkUser.push(userId);
-      console.log(checkUser);
       dispatch(saveUser({
-        checkUser,
-      }))
+        userId,
+        isChecked: true,
+        }
+      ))
     }else if (!target.checked){
-      unCheckUser.push(userId);
-      dispatch(deleteUser({
-        unCheckUser,
-      }))
-      dispatch(deleteUser({
-
-      }))
+      dispatch(deleteUser(
+        userId
+      ))
     }
-    // checkedItemHandler(userId, target.checked);
+
   }
-  // const checkedItemHandler = (Checked) => {
-  //   if (Checked) {
-  //     setCheckedItems([userId]);
-  //     // setCheckedItems(checkedItems);
-  //     // userList.push(...checkedItems);
-  //     dispatch(saveUser({
-  //       userList: checkedItems,
-  //     }))
-    // } else if (!Checked && checkedItems.has(userId)) {
-    //   deleteList.push(...checkedItems);
-    //   dispatch(deleteUser({
-    //     userList: deleteList
-    //   }))
-    //   console.log(deleteList);
-      // checkedItems.delete(id);
-      // setCheckedItems(checkedItems);
-      // SetUserInfo(userInfo.filter(user => userId !== user));
-      // userList.push(...checkedItems);
-      // dispatch(deleteUser({
-      //   userList
-      // }))
-  //   }
-  //   return checkedItems;
-  // };
-
-  // const checkedItemHandler = (id, Checked) => {
-  //   if (Checked) {
-  //     checkedItems.add(id);
-  //     setCheckedItems(checkedItems);
-  //     userList.push(...checkedItems);
-  //     dispatch(saveUser({
-  //       userList
-  //     }))
-  //   } else if (!Checked && checkedItems.has(id)) {
-  //     deleteList.push(...checkedItems);
-  //     dispatch(deleteUser({
-  //       userList: deleteList
-  //     }))
-  //     console.log(deleteList);
-  //     // checkedItems.delete(id);
-  //     // setCheckedItems(checkedItems);
-  //     // SetUserInfo(userInfo.filter(user => userId !== user));
-  //     // userList.push(...checkedItems);
-  //     // dispatch(deleteUser({
-  //     //   userList
-  //     // }))
-  //   }
-  //   return checkedItems;
-  // };
-
-
-  useEffect(() => {
-    setChecked(false);
-  },[userId, setChecked]);
-
 
   return(
     <>
@@ -109,9 +57,7 @@ const MessageModalCard = ({_id, name, profileImage, userId,  SetCheck,
           <div>{name}</div>
         </div>
         <div>
-          <label key={1}>
           <input type="checkbox" value={userId} checked={Checked} onChange={(e) => checkHandler(e)} />
-          </label>
         </div>
       </div>
     </>
