@@ -2,20 +2,29 @@ import "./_DirectMessage.scss";
 import {useNavigate} from "react-router";
 import {useState} from "react";
 import DirectMessageCard from "./DirectMessageCard";
+import {useSelector} from "react-redux";
 
 const DirectMessageUser = ({chat, SetChat, SetMainDirect}) => {
   const navigate = useNavigate();
-  const userId = "hyemgu";
+
+
+  const RoomList = useSelector(state=>state.socket.DirectRoomList);
+
+  console.log(RoomList);
+  const Room = [];
 
   const chatClickHandler = () => {
-    navigate(`/direct/${userId}`);
+    navigate(`${Room}`);
     SetChat(true);
     SetMainDirect(false);
   }
   return(
     <>
       <div onClick={chatClickHandler}>
-      <DirectMessageCard/>
+        {RoomList && RoomList.map((room) => (
+          <DirectMessageCard roomId={room.roomId} Room={Room} user={room.user}/>
+        ))}
+
       </div>
     </>
   )

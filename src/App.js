@@ -70,7 +70,7 @@ function App() {
             <Route path="/accounts/signup" element={<RejectAuth redirectTo="/"> <SignUp/> </RejectAuth>}/>
             <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
             <Route path="/direct/*" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}>
-              <Route path=":userId" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
+              <Route path=":Room" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
             </Route>
             <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser/> </RequireAuth>}/>
             <Route path="/profile/*" element={<RequireAuth redirectTo="/login"> <Profile/></RequireAuth>}>

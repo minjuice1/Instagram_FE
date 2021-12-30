@@ -59,7 +59,7 @@
 .direct_message_user {
   display: flex;
   margin-left: 10px;
-  .direct_userimage{
+  .direct_userimage >img{
     margin: 10px;
     width: 60px;
     height: 60px;

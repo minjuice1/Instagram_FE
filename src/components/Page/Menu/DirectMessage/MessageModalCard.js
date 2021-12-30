@@ -9,19 +9,15 @@ const MessageModalCard = ({_id, name, profileImage, userId}) => {
   const dispatch = useDispatch();
 
   const [Checked, setChecked] = useState(false);
-  // const [isChecked, SetIsChecked] = useState(false);
 
   const user = useSelector(state=> state.socket.userList);
 
-
-
-console.log(user)
   useEffect(() => {
     setChecked(false);
-    if(user.findIndex((find) => find.userId === userId) === -1){
+    if(user.findIndex((find) => find._id=== _id) === -1){
      setChecked(false);
     }
-    if(user.findIndex((find) => find.userId === userId) !== -1){
+    if(user.findIndex((find) => find._id === _id) !== -1){
       setChecked(true);
     }
   },)
@@ -33,12 +29,12 @@ console.log(user)
     if(target.checked){
       dispatch(saveUser({
         userId,
-        isChecked: true,
+        _id,
         }
       ))
     }else if (!target.checked){
       dispatch(deleteUser(
-        userId
+        _id,
       ))
     }
 

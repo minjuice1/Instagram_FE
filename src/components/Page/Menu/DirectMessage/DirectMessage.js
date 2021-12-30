@@ -6,9 +6,12 @@ import NewMessageModal from "./NewMessageModal";
 import {useLocation, useNavigate} from "react-router";
 import NewMessage from "./NewMessage";
 import DirectChat from "./DirectChat";
+import {getRoomListDB} from "../../../../redux/socket/socket";
+import {useDispatch, useSelector} from "react-redux";
 
 const DirectMessage = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if(location.pathname === "/direct"){
@@ -26,6 +29,11 @@ const DirectMessage = () => {
   const newMessageClickHandler = () => {
     SetNewMessages(true);
   }
+  useEffect(() => {
+
+    dispatch(getRoomListDB());
+  },[dispatch])
+
 
   return(
     <>

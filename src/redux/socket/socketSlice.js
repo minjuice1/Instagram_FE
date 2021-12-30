@@ -1,31 +1,30 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {getRoomListDB} from "./socket";
 
 
 const socketSlice = createSlice({
-  name: 'search',
+  name: 'socket',
   initialState: {
     userList: [],
+    DirectRoomList: [],
   },
   reducers: {
     saveUser : (state, action) => {
       console.log(action.payload)
       state.userList.push(action.payload);
-      // console.log(action.payload);
-      // state.userList = action.payload.checkUser;
-      // const user_list = action.payload;
-      // state.userList = user_list;
-
     },
+
     deleteUser: (state,{payload}) => {
-      // console.log(payload.userId);
       console.log(payload);
-      state.userList = state.userList.filter((user) => user.userId !== payload);
+      state.userList = state.userList.filter((user) => user._id !== payload);
     },
 
   },
 
   extraReducers: {
-
+    [getRoomListDB.fulfilled] : (state, action) => {
+      state.DirectRoomList = action.payload.chatList;
+    }
   },
 });
 

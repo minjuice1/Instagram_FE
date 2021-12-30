@@ -1,10 +1,11 @@
-import {useParams} from "react-router";
+import {useLocation, useParams} from "react-router";
 import InputEmoji from "react-input-emoji";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./_DirectMessage.scss";
 
 const DirectChat = () => {
-  const {userId} = useParams();
+  const {Room} = useParams();
+  console.log(Room);
 
   const [chatDirect, SetChatDirect] = useState("");
 
@@ -21,7 +22,7 @@ const DirectChat = () => {
     <>
       <div className="direct_chat">
         <div className="direct_user_info">
-          여기 유저정보
+          여기 유저정보{Room}
         </div>
         <div className="direct_room">
           여기 채팅올라옴

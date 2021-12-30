@@ -5,9 +5,15 @@ import MessageModalCard from "./MessageModalCard";
 import {headerSearch} from "../../../../redux/search/search";
 import {useDispatch, useSelector} from "react-redux";
 import CheckUser from "./CheckUser";
+import {useNavigate} from "react-router";
+import {nanoid} from "nanoid";
+import {createRoomDB, getRoomListDB} from "../../../../redux/socket/socket";
 
 const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
 
   const user_list = useSelector(state=>state.search.user);
 
@@ -23,8 +29,10 @@ const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
   const CancellationClickHandler = () => {
     if(SetNewMessage){
       SetNewMessage(false);
+      navigate(0);
     }else {
       SetNewMessages(false);
+      navigate(0);
     }
   }
 
@@ -35,15 +43,21 @@ const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
       const path = "directSearch"
       dispatch(headerSearch({
         searchResult : searchUser,
-        path: path,
       }))
-      SetCheck(false);
+
     }
   }
 
   const check_user = useSelector(state=>state.socket.userList);
-  console.log("체크유저", check_user);
 
+  const createRoomClickHandler = () => {
+    const RoomId = nanoid();
+    console.log(RoomId);
+    dispatch(createRoomDB({
+      RoomId,
+      check_user,
+    }))
+  }
 
 
 
@@ -53,13 +67,13 @@ const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
         <div className="new_message_header">
           <img src={x_img} alt="cancle" onClick={CancellationClickHandler}/>
           <a>새로운 메시지</a>
-          <a className="message_next">다음</a>
+          <a className="message_next" onClick={createRoomClickHandler}>다음</a>
         </div>
         <div className="message_search">
           <div>받는 사람:
             <div className="check_user">
               {check_user && check_user.map((user) => (
-              <CheckUser userId={user.userId}/>
+              <CheckUser userId={user.userId} _id={user._id} />
             ))}
 
           </div>
@@ -72,7 +86,7 @@ const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
         </div>
         <div className="message_recommend">
           <div className="message_card">
-            {user_list && user_list.map((user, index) => (
+            {user_list && user_list.map((user) => (
               <MessageModalCard _id={user._id} name={user.name} userId={user.userId} profileImage={user.profileImage}
                                 SetCheck={SetCheck} />
             ))}

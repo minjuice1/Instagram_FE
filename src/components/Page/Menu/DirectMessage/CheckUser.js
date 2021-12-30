@@ -4,12 +4,12 @@ import "./_DirectMessage.scss";
 import {useDispatch} from "react-redux";
 import {deleteUser} from "../../../../redux/socket/socketSlice";
 
-const CheckUser = ({userId}) => {
+const CheckUser = ({userId, _id}) => {
   const dispatch = useDispatch();
 
   const RemoveClickHandler = () => {
     dispatch(deleteUser(
-      userId
+      _id,
     ))
   }
   return(
