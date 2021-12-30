@@ -1,6 +1,6 @@
 import {React, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 import ProfilePosts from "./CommonProfile/ProfilePosts";
 
@@ -50,10 +50,10 @@ const Profile = () => {
   useSelector((state) => params.category === "posts" ? state.post.post :
   params.category === "video" ? "" :
   params.category === "saved" ? state.post.savedPost : "")
-  
-  const [IsSelected, setSelected] = useState(1);
 
   // params와 해당 카테고리 일치 시, css(border-top) 변화
+  const [IsSelected, setSelected] = useState(1);
+
   useEffect(() => {
     if(params.category === "posts"){
       setSelected(1);

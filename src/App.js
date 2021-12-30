@@ -85,9 +85,6 @@ function App() {
           <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser /> </RequireAuth>}/>
 					<Route path="/profile/*"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}>
             <Route path=":id/:category"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            {/* <Route path=":id" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            <Route path=":id" element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
-            <Route path=":id"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/> */}
           </Route>
           <Route path="/searchhash/*"	element={<RequireAuth redirectTo="/login"> <SearchHash /> </RequireAuth>}>
             <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash /> </RequireAuth>}/>
