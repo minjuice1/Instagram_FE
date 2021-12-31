@@ -1,20 +1,24 @@
 import "./_DirectMessage.scss";
-import {useNavigate} from "react-router";
-import {useState} from "react";
+import {useLocation, useNavigate} from "react-router";
+import {useEffect, useState} from "react";
 import DirectMessageCard from "./DirectMessageCard";
 import {useSelector} from "react-redux";
+import {chatSocket} from "../../../../common/socket";
+
 
 const DirectMessageUser = ({chat, SetChat, SetMainDirect}) => {
   const navigate = useNavigate();
 
 
+
   const RoomList = useSelector(state=>state.socket.DirectRoomList);
 
-  console.log(RoomList);
   const Room = [];
 
+
+
   const chatClickHandler = () => {
-    navigate(`${Room}`);
+    navigate(`${Room}`, {state: Room,});
     SetChat(true);
     SetMainDirect(false);
   }
@@ -26,6 +30,7 @@ const DirectMessageUser = ({chat, SetChat, SetMainDirect}) => {
         ))}
 
       </div>
+
     </>
   )
 };

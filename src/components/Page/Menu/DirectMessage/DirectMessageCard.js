@@ -1,12 +1,10 @@
 import "./_DirectMessage.scss";
 import {none_profile} from "../../../../common/IconImage";
+import {useEffect} from "react";
+import {chatSocket} from "../../../../common/socket";
+
 
 const DirectMessageCard = ({roomId, Room ,user}) => {
-
-
-  console.log("맵", roomId);
-
-  console.log(user);
 
   const ChatRoomClickHandler = () => {
     Room.push(roomId);

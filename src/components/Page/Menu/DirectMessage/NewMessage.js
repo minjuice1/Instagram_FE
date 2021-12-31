@@ -8,6 +8,7 @@ const NewMessage = ({SetNewMessage, newMessage}) => {
     SetNewMessage(true);
   }
 
+
   return(
     <>
       {newMessage && <NewMessageModal SetNewMessage={SetNewMessage}/>}

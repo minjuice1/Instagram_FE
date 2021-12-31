@@ -4,7 +4,14 @@ import {useState} from "react";
 import {addPost} from "../../../redux/post/post";
 import {useDropzone} from 'react-dropzone';
 import post_write from "../../../image/post_write.png";
+
+//크롭크롭
+
+
 import Cropper from 'react-easy-crop'
+import Slider from '@material-ui/core/Slider';
+
+
 
 import "./AddPost.scss";
 
@@ -12,18 +19,11 @@ import "./AddPost.scss";
 import "../../../image/post_write.png";
 import {add_modal} from "../../../redux/modal/modalSlice";
 
-
 const AddPost = () => {
   const dispatch = useDispatch();
 
   //크롭이미지 할 수 있나 처음부터 했어야 했나
 
-  const [crop, setCrop] = useState({ x: 0, y: 0 })
-  const [zoom, setZoom] = useState(1)
-
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    console.log(croppedArea, croppedAreaPixels)
-  }, [])
 
   const thumbInner = {
     display: 'flex',

@@ -13,7 +13,6 @@ export const getRoomListDB = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
-      console.log(response.data);
       return response.data;
     } catch (e) {
       console.log(e.response.data)
@@ -24,7 +23,6 @@ export const getRoomListDB = createAsyncThunk(
 export const createRoomDB = createAsyncThunk(
   "socket/createRoomDB",
   async({RoomId, check_user}, thunkAPI) => {
-    console.log("방만들기", RoomId, check_user);
     const AccessToken = localStorage.getItem("user");
     try{
       const response = await Api({
@@ -42,26 +40,19 @@ export const createRoomDB = createAsyncThunk(
   }
 )
 
+export const getChatContents = createAsyncThunk(
+  "socket/getChatContents",
+  async(data, thunkAPI) => {
+    console.log(data);
+    try{
+      const response = await Api({
+        url: `/chat/${data.Room}`,
+      })
+      console.log(response.data);
+      return response.data;
+    }catch (e){
+      console.log(e.response.data);
+    }
+  }
+)
 
-// export const headerSearch = createAsyncThunk(
-//   "search/headerSearch",
-//   async(data, thunkAPI,path) => {
-//     const AccessToken = localStorage.getItem("user")
-//     console.log(data);
-//     try {
-//       const response = await Api({
-//         url: `/search?keyword=${data.searchResult}`,
-//         method: 'GET',
-//         headers: {
-//           Authorization: `Bearer ${AccessToken}`,
-//         }
-//       })
-//       console.log(response);
-//       return response.data;
-//
-//     } catch (e) {
-//       console.log(e.response)
-//       return false;
-//     }
-//   }
-// )
