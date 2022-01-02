@@ -126,7 +126,6 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
 
   return (
     <>
-
       {likeOpen && <PostLikeModal likeOpen={likeOpen} SetLikeOpen={SetLikeOpen} postId={postId} />}
       {openModal && <PostModal postId={postId} setOpenModal={setOpenModal} writer={writer[0].userId} myId={myId} />}
 

@@ -90,7 +90,6 @@ function App() {
             <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash /> </RequireAuth>}/>
           </Route>
           <Route path="/postboard/:postId" element={<RequireAuth redirectTo="/login"> <PostBoard/> </RequireAuth>}/>
-
         </Routes>
 
       </CustomRouter>
