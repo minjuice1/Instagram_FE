@@ -33,7 +33,6 @@ const HeaderIcon = () => {
           SetMyProfile(false);
         }
       }
-
       document.addEventListener("mousedown", handleClickOutside);
 
       return () => {
@@ -102,7 +101,7 @@ const HeaderIcon = () => {
   //내정보 불러오기
 
   const directClickHandler = () => {
-    navigate(`/direct`, {replace: true})
+    navigate(`/direct`)
   }
 
 

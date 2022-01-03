@@ -43,10 +43,14 @@ export const createRoomDB = createAsyncThunk(
 export const getChatContents = createAsyncThunk(
   "socket/getChatContents",
   async(data, thunkAPI) => {
-    console.log(data);
+    const AccessToken = localStorage.getItem("user");
     try{
       const response = await Api({
         url: `/chat/${data.Room}`,
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${AccessToken}`,
+        }
       })
       console.log(response.data);
       return response.data;

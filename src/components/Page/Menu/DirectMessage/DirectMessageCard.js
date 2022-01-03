@@ -1,21 +1,26 @@
 import "./_DirectMessage.scss";
 import {none_profile} from "../../../../common/IconImage";
-import {useEffect} from "react";
 import {chatSocket} from "../../../../common/socket";
+import {useParams} from "react-router";
 
 
-const DirectMessageCard = ({roomId, Room ,user}) => {
+const DirectMessageCard = ({roomId, Room, user,}) => {
+
+  const RoomId = useParams().Room;
 
   const ChatRoomClickHandler = () => {
+    if (RoomId !== Room) {
+      chatSocket.disconnect();
+    }
     Room.push(roomId);
   }
 
 
-  return(
+  return (
     <>
-      <div className="direct_message_user" onClick={ChatRoomClickHandler} >
+      <div className="direct_message_user" onClick={ChatRoomClickHandler}>
         <div className="direct_userimage">
-          {user[0].profileImage ?     <img src={user[0].profileImage}/> : <img src={none_profile}/>  }
+          {user[0].profileImage ? <img src={user[0].profileImage}/> : <img src={none_profile}/>}
 
         </div>
         <div>

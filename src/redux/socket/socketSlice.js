@@ -8,6 +8,7 @@ const socketSlice = createSlice({
     userList: [],
     DirectRoomList: [],
     chatData: [],
+    participant: [],
   },
   reducers: {
     saveUser : (state, action) => {
@@ -25,7 +26,9 @@ const socketSlice = createSlice({
       state.DirectRoomList = action.payload.chatList;
     },
     [getChatContents.fulfilled] : (state, action) => {
+      console.log(action.payload)
       state.chatData = action.payload.chatData;
+      state.participant = action.payload.participant;
     },
   }
 });

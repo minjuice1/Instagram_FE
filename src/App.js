@@ -17,7 +17,7 @@ import PostDetail from "./components/Post/PostDetail/PostDetail";
 import Profile from "./components/Page/Profile/Profile";
 import EditUser from "./components/Page/User/EditUser/EditUser";
 import SearchHash from "./components/Page/Header/HeaderSearch/SearchHash";
-import Socket from "./components/Main/Socket";
+import Notification from "./components/Main/notification";
 
 
 const CustomRouter = ({history, ...props}) => {
@@ -57,7 +57,7 @@ function App() {
       <Suspense fallback={<div>Loading</div>}>
         <CustomRouter history={history}>
           {show_header && <Header/>}
-          {show_header && <Socket/>}
+          {show_header && <Notification/>}
           {write_modal && <AddPost/>}
           <Routes>
             <Route path="/" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>

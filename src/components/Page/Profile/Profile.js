@@ -121,12 +121,7 @@ const Profile = () => {
             {myProfile && user_data &&
             <MyProfileInfo
               userId={user_id}
-              name={user_data.name}
-              totalFollow={user_data.totalFollow}
-              totalFollower={user_data.totalFollower}
-              totalPost={user_data.totalPost}
-              introdution={user_data.introdution}
-              profileImage={user_data.profileImage}
+              user_data={user_data}
             />}
             {!myProfile && user_data &&
             <UserProfileInfo

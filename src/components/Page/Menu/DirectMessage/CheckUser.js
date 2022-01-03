@@ -7,6 +7,7 @@ import {deleteUser} from "../../../../redux/socket/socketSlice";
 const CheckUser = ({userId, _id}) => {
   const dispatch = useDispatch();
 
+
   const RemoveClickHandler = () => {
     dispatch(deleteUser(
       _id,

@@ -6,7 +6,7 @@ import "./_Socket.scss";
 import {none_profile} from "../../common/IconImage";
 
 
-const Socket = () => {
+const Notification = () => {
 
   const customId = "custom-id-yes";
 
@@ -61,4 +61,4 @@ const Socket = () => {
     </>
   )
 }
-export default Socket;
+export default Notification;

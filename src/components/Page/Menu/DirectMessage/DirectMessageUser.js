@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {chatSocket} from "../../../../common/socket";
 
 
-const DirectMessageUser = ({chat, SetChat, SetMainDirect}) => {
+const DirectMessageUser = ({SetChat, SetMainDirect}) => {
   const navigate = useNavigate();
 
 
@@ -14,7 +14,6 @@ const DirectMessageUser = ({chat, SetChat, SetMainDirect}) => {
   const RoomList = useSelector(state=>state.socket.DirectRoomList);
 
   const Room = [];
-
 
 
   const chatClickHandler = () => {

@@ -1,6 +1,6 @@
 // 팔로워 리스트 모달
 
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {following_modal_check} from "../../../../redux/modal/modalSlice";
@@ -26,6 +26,9 @@ const FollowerModal = ({isFollowing}) => {
   },[dispatch])
   //
   const FollowList = useSelector(state=>state.user.FollowList);
+  const a = useSelector(state=>state.user);
+
+  console.log(a);
 
 
   return (
