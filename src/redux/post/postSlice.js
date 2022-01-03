@@ -18,6 +18,7 @@ const postSlice = createSlice({
     randomPosts: [],
     post: [],
     profileSaved: "",
+    recommendedUser: [],
   },
   reducers: {
     replyReducer : (state, action) => {
@@ -30,6 +31,7 @@ const postSlice = createSlice({
   extraReducers: {
     [getPost.fulfilled]: (state, action) => {
       state.posts = action.payload.posts;
+      state.recommendedUser = action.payload.recommendedUser;
     },
     [getUserPost.fulfilled] : (state, action) => {
       console.log(action.payload);
@@ -46,8 +48,7 @@ const postSlice = createSlice({
       state.postDetail = action.payload.post;
       state.comment = action.payload.comment;
     },
-    [savedPost.fulfilled]: (state, action) => { 
-      console.log(action);
+    [savedPost.fulfilled]: (state, action) => {
       if (action.payload.path === "main") { 
         const post = state.posts.findIndex( (p) => p._id === action.payload.postId ); 
         state.posts[post].isPostSaved = !state.posts[post].isPostSaved; 
@@ -160,6 +161,6 @@ const postSlice = createSlice({
     }
   },
 });
-export const {delete_post, replyReducer} = postSlice.actions;
+export const {replyReducer} = postSlice.actions;
 
 export default postSlice;

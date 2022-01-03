@@ -1,10 +1,10 @@
 import {menu_change, menu_profile, menu_save, menu_setting} from "../../../common/IconImage";
-import React from "react";
-import {logout} from "../../../redux/user/user";
+import React, {useEffect} from "react";
+import {getProfile, logout} from "../../../redux/user/user";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 
-const HeaderUser = () => {
+const HeaderUser = ({SetMyProfile}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

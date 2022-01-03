@@ -2,6 +2,10 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import Api from "../../common/api/Api";
 import {history} from "../../history";
 import {add_modal} from "../modal/modalSlice";
+import socketIO from "socket.io-client";
+import {socket} from "../../common/socket";
+
+
 
 
 export const addPost = createAsyncThunk(
@@ -101,7 +105,8 @@ export const getPostDetail = createAsyncThunk(
 //좋아요
 export const likePost = createAsyncThunk(
   "post/likePost",
-  async ({postId, path} ) => {
+  async ({postId, path, _id, postLike} ) => {
+    console.log(postLike)
     const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
@@ -112,6 +117,9 @@ export const likePost = createAsyncThunk(
         },
 			})
 			console.log(response);
+      if(!postLike){
+        socket.emit("postLike", postId, _id )
+      }
 			return { path: path, postId: postId, data: response }; 
       
 		} catch (e) {

@@ -9,17 +9,15 @@ import PostGetComment from "./PostGetComment";
 import PostLikeModal from "../PostModal/PostLikeModal";
 
 import "./PostCard.scss";
-import {post_heart, post_red_heart, message, text, dot, post_save, post_saveActive, none_profile,} from "../../../common/IconImage";
+import {post_heart, post_red_heart, message, text, dot, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 import dompurify from "dompurify";
 import PostModal from '../PostModal/PostModal';
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 
-const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
-                    postImage, isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
-
+const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, ostImage, postImage,
+                    isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const myId = useSelector(state=>state.user.user.userId);
 
   // main과 postDetail path로 구분
@@ -98,12 +96,13 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
   //유저 정보 프로필 클릭해서 들어가기
   const UserProfileClickHandler = () => {
     const id = writer[0].userId
-    navigate(`/profile/${id}`,{state: id, replace: true})
+    navigate(`/profile/${id}`, {state: id, replace: true})
   }
+
 
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
   const profile_img = writer[0].profileImage;
-  const user_img = profile_img? profile_img : none_profile;
+  const user_img = profile_img ? profile_img : none_profile;
 
 
   //좋아요 리스트 모달
@@ -134,8 +133,8 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount,
           <div className="post_header">
             <div className="profile_img">
               <img className="post_user_image" src={user_img}/>
-              <div className="post_user_id"  onClick={UserProfileClickHandler} >{writer[0].userId}</div>
 
+              <div className="post_user_id" onClick={UserProfileClickHandler}>{writer[0].userId}</div>
               <div className="profile_img_dot" onClick={show_postOptionModal}>
                <img src={dot}/>
               </div>

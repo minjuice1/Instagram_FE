@@ -1,0 +1,24 @@
+@import "variables";
+@import "mixin";
+@import "cardStyle";
+
+.follow_button_style {
+  & > button {
+    width: 60px;
+    height: 30px;
+    border-radius: 4px;
+    color: $instaMenuBlack;
+    font-weight: 600;
+    background: $instaWhite;
+    border: 1px solid $instaMenuGray;
+    @include fontSize('large');
+  }
+  .card_follow_button {
+    background: $instaBlue;
+    color: $instaWhite;
+    border: none;
+  }
+  .card_following_button {
+    border: 1px solid $instaGray;
+  }
+}

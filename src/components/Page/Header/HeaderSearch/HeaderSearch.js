@@ -51,7 +51,6 @@ const HeaderSearch = () => {
         searchResult
       }))
       SetSearchBefore(true);
-
     }
   }
 

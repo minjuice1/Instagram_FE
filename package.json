@@ -5,6 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -15,12 +17,14 @@
     "framer-motion": "1.10.3",
     "history": "^5.1.0",
     "jwt-decode": "^3.1.2",
+    "nanoid": "^3.1.30",
     "node-sass": "5.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-dropzone": "^11.4.2",
     "react-easy-crop": "^4.0.1",
     "react-icons": "^4.3.1",
+    "react-image-crop": "^9.0.5",
     "react-input-emoji": "^4.0.9",
     "react-intersection-observer": "^8.33.1",
     "react-redux": "^7.2.6",
@@ -28,7 +32,9 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
+    "react-toastify": "^8.1.0",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.4.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

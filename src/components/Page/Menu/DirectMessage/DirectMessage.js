@@ -1,27 +1,59 @@
-import "./DirectMessage.scss";
-import {my_message} from "../../../../common/IconImage";
+import "./_DirectMessage.scss";
 import DirectMessageUser from "./DirectMessageUser";
+import {useEffect, useState} from "react";
+import NewMessageModal from "./NewMessageModal";
+import {useLocation} from "react-router";
+import NewMessage from "./NewMessage";
+import DirectChat from "./DirectChat";
+import {getRoomListDB} from "../../../../redux/socket/socket";
+import {useDispatch} from "react-redux";
+import add_direct from "../../../../image/icon/add_direct.png";
 
 const DirectMessage = () => {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(location.pathname === "/direct"){
+      SetChat(false);
+      SetMainDirect(true);
+    }
+  },[location])
+
+  const [newMessage, SetNewMessage] = useState(false);
+  const [mainDirect, SetMainDirect] = useState(true);
+  const [chat, SetChat] = useState(false);
+
+
+  const newMessageClickHandler = () => {
+    SetNewMessage(true);
+  }
+  useEffect(() => {
+
+    dispatch(getRoomListDB());
+  },[dispatch])
+
 
   return(
     <>
+      {newMessage && <NewMessageModal SetNewMessage={SetNewMessage}/>}
       <div className="insta_layout">
         <div className="direct_message">
-          <div>hyemin085</div>
+          <div className="direct_myInfo">
+            <div>hyemin085 </div>
+            <div><img src={add_direct} alt="create_room" onClick={newMessageClickHandler}/></div>
+          </div>
           <div>
-            <DirectMessageUser/>
+            <DirectMessageUser chat={chat} SetChat={SetChat} SetMainDirect={SetMainDirect}/>
           </div>
         </div>
         <div className="my_message">
-        <div>
-          <img src={my_message}/>
-        </div>
-          <div>내 메세지</div>
-          <div>친구나 그룹에 비공개 사진과 메시지를 보내보세요.</div>
-          <button>메시지 보내기</button>
+          {mainDirect && <NewMessage classname="new_direct_message" newMessage={newMessage} SetNewMessage={SetNewMessage}/> }
+          {chat && <DirectChat/>}
+
         </div>
       </div>
+
     </>
   )
 }

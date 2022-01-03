@@ -116,11 +116,11 @@
 
 	//modal
 .postDetail_overlay {
-	position: absolute;
+  position: absolute;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-	z-index: -1;
+  z-index: -1;
 }
 
 // InputEmoji
@@ -129,6 +129,7 @@
 	width: auto;
 	height: auto;
 }
+
 .postDetail_cmt {
 	display: flex;
 	border-top: 1px solid $instaGray;
@@ -170,30 +171,30 @@
  }
 }
 
-@include desktop{
-  .postDetail_leftsideBox{
+@include desktop {
+  .postDetail_leftsideBox {
     width: 65%;
   }
 
-	.postDetail_rightsideBox{
-		width: 30%;
-	}
+  .postDetail_rightsideBox {
+    width: 30%;
+  }
 }
 
-@include tablet{
-  .postDetail_leftsideBox{
+@include tablet {
+  .postDetail_leftsideBox {
     width: 55%;
   }
-	.postDetail_rightsideBox{
-		width: 40%;
-	}
+  .postDetail_rightsideBox {
+    width: 40%;
+  }
 }
 
-@include mobile{
-  .postDetail_leftsideBox{
-		width: 50%;
+@include mobile {
+  .postDetail_leftsideBox {
+    width: 50%;
   }
-	.postDetail_rightsideBox{
-		width: 45%;
-	}
+  .postDetail_rightsideBox {
+    width: 45%;
+  }
 }

@@ -2,9 +2,10 @@ import "./SideMain.scss";
 import {none_profile} from "../../../common/IconImage";
 import SideRecommend from "./SideRecommend";
 import {useSelector} from "react-redux";
+import {useNavigate} from "react-router";
 
-const SideMain = () => {
-
+const SideMain = ({user_recommend}) => {
+  const navigate = useNavigate();
 
   //개인 유저정보 불러오기
   const user_info = useSelector(state=>state.user.user);
@@ -14,10 +15,16 @@ const SideMain = () => {
   const my_img = profile_img? profile_img : none_profile;
 
 
+
+  const UserClickHandler = () => {
+    navigate(`/profile/${user_info.userId}`,{state: user_info.userId})
+
+  }
+
   return(
     <>
       <div className="side">
-        <div className="side-my">
+        <div className="side-my" onClick={UserClickHandler}>
           <div className="side-image">
             <img src={my_img} alt="my_profile_img"/>
           </div>
@@ -33,7 +40,10 @@ const SideMain = () => {
           <div>회원님을 위한 추천</div>
           <a>모두 보기</a>
         </div>
+        {/*{user_recommend && user_recommend.map((user) => (*/}
           <SideRecommend/>
+        {/*))}*/}
+
       </div>
       </div>
     </>

@@ -6,6 +6,8 @@ import ProfilePosts from "./CommonProfile/ProfilePosts";
 
 // 모달
 import ProfileSettingModal from "./CommonProfile/ProfileSettingModal";
+import ProfileCollectionModal from './SavedProfile/ProfileCollectionModal';
+
 // scss, icon, img
 import "./Profile.scss";
 import {FiPlayCircle} from "react-icons/fi";
@@ -17,7 +19,6 @@ import MyProfileInfo from "./MyProfileInfo";
 import {useLocation, useParams} from "react-router";
 import {getUserPost} from "../../../redux/post/post";
 import UserProfileInfo from "./UserProfileInfo";
-// import ProfileCollectionModal from './ProfileModal/ProfileCollectionModal';
 
 const Profile = () => {
 
@@ -27,10 +28,12 @@ const Profile = () => {
 
   //개인 데이터 불러오기
   const {id} = useParams();
+  const user_id = useParams(id).user_Id;
 
   //userpost를 가져오면서 본인이 맞는지 아닌지 확인
   const [myProfile, SetMyProfile] = useState(false);
-  const myId = useSelector(state=>state.user.user.userId);
+  const get_my_data = sessionStorage.getItem("info");
+  const myId = JSON.parse(get_my_data).userId
 
   useEffect(() => {
     if(!myProfile){
@@ -38,7 +41,7 @@ const Profile = () => {
     }
     if(myId === id){
       SetMyProfile(true);
-    }else{
+    } else {
       SetMyProfile(false);
     }
   }, [dispatch, myProfile, location, id, myId]);
@@ -68,34 +71,32 @@ const Profile = () => {
 
   // 프로필 편집, 팔로워, 팔로우 모달
   const is_modal = useSelector((state) => state.modal.is_modal);
-  const user_info = useSelector(state=> state.post.user);
+  const user_info = useSelector(state => state.post.user);
   const user_data = user_info && user_info[0];
   const my_follow = user_data && user_data.isFollow;
 
   // 컬렉션 생성
   const [openModal, setOpenModal] = useState(false);
+
+// 저장된 게시물 불러오기
+  const savedUser = useSelector((state) => state.post.savedPost);
+
+// 컬렉션 생성
+  const [openCollectionModal, setOpenCollectionModal] = useState(false);
   const addCollectionHandler = () => {
-    setOpenModal(true);
+    setOpenCollectionModal(true);
   }
 
   return (
     <>
       {is_modal && <ProfileSettingModal/>}
-      {/*{openModal && <ProfileCollectionModal setOpenModal={setOpenModal}/>}*/}
+      {openCollectionModal && <ProfileCollectionModal setOpenCollectionModal={setOpenCollectionModal}/>}
 
       <div className="profile_all">
         <div className="profile_content">
           <div className="profile_profileBox">
             {myProfile && user_data &&
-            <MyProfileInfo
-              userId = {id}
-              name = {user_data.name}
-              totalFollow = {user_data.totalFollow}
-              totalFollower = {user_data.totalFollower}
-              totalPost = {user_data.totalPost}
-              introdution = {user_data.introdution}
-              profileImage={user_data.profileImage}
-            />}
+            <MyProfileInfo userId={user_id} user_data={user_data} />}
             {!myProfile && user_data &&
             <UserProfileInfo
               userId = {id}
@@ -160,9 +161,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-
-
     </>
+
   );
 };
 
