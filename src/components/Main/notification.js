@@ -4,9 +4,12 @@ import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "./_Socket.scss";
 import {none_profile} from "../../common/IconImage";
+import {Link} from "react-router-dom";
+import {useNavigate} from "react-router";
 
 
 const Notification = () => {
+  const navigate = useNavigate();
 
   const customId = "custom-id-yes";
 
@@ -35,19 +38,23 @@ const Notification = () => {
   },[socket]);
 
 
+
   socket.on("postLike", (payload) => {
     console.log(payload);
     const profile_img = payload.sendUser.profileImage;
-    const Msg = ({ closeToast, toastProps }) => (
+    const postClickHandler = () => {
+      navigate(`/postdetail/${payload.post.postId}`)
+    }
+    const Msg = ({toastProps }) => (
       <div className="socket_post_like">
         <div className="my_info">
           {profile_img !== null &&  <img src={payload.sendUser.profileImage} alt="profile_img"/>}
           {profile_img === null &&  <img src={none_profile} alt="profile_img"/>}
 
-          <div><a>{payload.sendUser.userId}</a>님이 게시물의 좋아요를 클릭하였습니다. <img src= {payload.post.imageUrl} alt="post_img"/></div>
+          <div onClick={postClickHandler}><a>{payload.sendUser.userId}</a>님이 게시물의 좋아요를 클릭하였습니다. <img src= {payload.post.imageUrl} alt="post_img"/></div>
         </div>
 
-        <button onClick={closeToast}>Close</button>
+        {/*<button onClick={closeToast}>Close</button>*/}
       </div>
     );
     toast(<Msg/>, { toastId: customId})
@@ -56,7 +63,7 @@ const Notification = () => {
 
   return(
     <>
-      <ToastContainer position={"bottom-right"}/>
+      <ToastContainer position={"bottom-right"} closeOnClick={false}/>
 
     </>
   )

@@ -142,8 +142,7 @@ const DirectChat = () => {
       <>
         {participant_list.map((user) => (
           <div className="participant_user">
-            <div>{user.profileImage? <img src={user.profileImage} alt="profile_image"/>:
-              <img src={none_profile} alt="profile_image"/>}</div>
+            <div> <img src={user.profileImage? user.profileImage : none_profile} alt="profile_image"/></div>
           <div>{user.userId}</div>
           </div>
         ))}
