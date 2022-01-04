@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import {modal_check} from "../../../../redux/modal/modalSlice";
 import {logout} from "../../../../redux/user/user";
 
-const ProfileModal = () => {
+const ProfileModal = ({Setsetting}) => {
 	const dispatch = useDispatch();
 
 	const cancleClickHandler = () => {
-		dispatch(modal_check());
+		Setsetting(false);
 	};
 
 	// 로그아웃
@@ -31,7 +31,7 @@ const ProfileModal = () => {
 					<div onClick={cancleClickHandler}>취소</div>
 				</div>
 			</div>
-			<div className="overlay" onClick={cancleClickHandler}></div>
+			<div className="overlay" onClick={cancleClickHandler}/>
 		</>
 	);
 };

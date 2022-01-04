@@ -9,20 +9,17 @@ import PostModal from "../Post/PostModal/PostModal";
 import { getPost } from "../../redux/post/post";
 import PostLikeModal from "../Post/PostModal/PostLikeModal";
 import Pagination from '../PostCommon/Pagination';
+import {getProfile} from "../../redux/user/user";
 
 const Main = () => {
 	const dispatch = useDispatch();
-
-	const post_like_list = useSelector(state=>state.modal.likeList_modal);
 
 	// useEffect(() => {
 	// 	dispatch(getPost());
 	// }, [dispatch]);
 
-	const is_modal = useSelector((state) => state.modal.is_modal);
+	const user_recommend = useSelector(state=> state.post.recommendedUser);
 	const post_data = useSelector((state) => state.post.posts);
-	console.log(post_data);
-
 	const like_modal = useSelector(state=>state.modal.likeList_modal);
 
 	// pagination
@@ -81,6 +78,7 @@ const Main = () => {
 								commentIsAllowed={post.commentIsAllowed}
 								commentCount={post.commentCount}
 								isPostSaved={post.isPostSaved}
+								likeCount={post.likeCount}
 							/>
 						))}
 						<Pagination
@@ -90,7 +88,7 @@ const Main = () => {
 						/>
 					</div>
 					<div className="Main_side">
-						<SideMain />
+						<SideMain user_recommend={user_recommend}/>
 					</div>
 				</div>
 			</div>

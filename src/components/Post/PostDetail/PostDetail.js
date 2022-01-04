@@ -40,11 +40,16 @@ const PostDetail = () => {
   }, [getPostDetail]);
 
 	// 포스트 좋아요
+
 	const postLikeClickHandler = () => {
+		const _id = postDetail.writer._id
+
+		console.log(_id)
     dispatch(
       likePost({
         postId,
         path,
+				_id,
       }))
   };
 

@@ -46,7 +46,7 @@ const PostModal = ({myId, writer, setOpenModal, postId}) => {
 			</div>
 			)}
 			</div>
-			<div className="postModal_overlay" onClick={cancleClickHandler}></div>
+			<div className="postModal_overlay" onClick={cancleClickHandler}/>
 		</>
 	);
 };

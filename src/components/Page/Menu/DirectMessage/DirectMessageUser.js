@@ -1,18 +1,35 @@
-import "./DirectMessage.scss";
+import "./_DirectMessage.scss";
+import {useLocation, useNavigate} from "react-router";
+import {useEffect, useState} from "react";
+import DirectMessageCard from "./DirectMessageCard";
+import {useSelector} from "react-redux";
+import {chatSocket} from "../../../../common/socket";
 
-const DirectMessageUser = () => {
-  
+
+const DirectMessageUser = ({SetChat, SetMainDirect}) => {
+  const navigate = useNavigate();
+
+
+
+  const RoomList = useSelector(state=>state.socket.DirectRoomList);
+
+  const Room = [];
+
+
+  const chatClickHandler = () => {
+    navigate(`${Room}`, {state: Room,});
+    SetChat(true);
+    SetMainDirect(false);
+  }
   return(
     <>
-      <div className="direct_message_user">
-        <div className="direct_userimage">
-          {/*<img src={}/>*/}
-        </div>
-        <div>
-          <div>poseson02</div>
-          <div>최근 활동: 어제</div>
-        </div>
+      <div onClick={chatClickHandler}>
+        {RoomList && RoomList.map((room) => (
+          <DirectMessageCard roomId={room.roomId} Room={Room} user={room.user}/>
+        ))}
+
       </div>
+
     </>
   )
 };
