@@ -26,17 +26,18 @@ const Main = () => {
 	const like_modal = useSelector(state=>state.modal.likeList_modal);
 
 	// pagination
+	const [page, setPage] = useState(1);
   const [posts, setPosts] = useState(post_data);
   const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage] = useState(5);
 
 	useEffect(() => {
     const fetchPosts = async () => {
       setLoading(true);
-      const res = await dispatch(getPost());
+      const res = await dispatch(getPost(page));
       console.log(res);
-      setPosts(res.payload.posts);
+      setPosts((prev) => [...prev, ...res.payload.posts]);
       setLoading(false);
     };
 
@@ -44,13 +45,15 @@ const Main = () => {
   }, []);
 
 	// pagination (Get current posts)
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-	console.log(currentPosts);
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+	// console.log(currentPosts);
 
 	// pagination (Change page)
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  // const paginate = pageNumber => setCurrentPage(pageNumber);
+
+	
 
 	// loading spinner
 	if (loading) {
@@ -64,8 +67,9 @@ const Main = () => {
 					<div className="Main_post">
 						<MainStory />
 						{like_modal&& <PostLikeModal/>}
-						{currentPosts && currentPosts.map((post) => (
+						{posts && posts.map((post, _id) => (
 							<PostCard
+								key={post._id}
 								contents={post.contents}
 								createdAt={post.createdAt}
 								writer={post.writer}
@@ -80,12 +84,11 @@ const Main = () => {
 							/>
 						))}
 						<Pagination
-							postsPerPage={postsPerPage}
-							totalPosts={posts.length}
-							paginate={paginate}
+							// postsPerPage={postsPerPage}
+							// totalPosts={posts.length}
+							// paginate={paginate}
 						/>
 					</div>
-
 					<div className="Main_side">
 						<SideMain />
 					</div>
