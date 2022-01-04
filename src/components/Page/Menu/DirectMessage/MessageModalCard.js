@@ -1,27 +1,44 @@
 import "./_DirectMessage.scss";
 import {none_profile} from "../../../../common/IconImage";
 import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteUser, saveUser} from "../../../../redux/socket/socketSlice";
 
 
-const MessageModalCard = ({_id, name, profileImage, userId, user_id, SetCheck, check, index, checkedItemHandler,
-                          userInfo, SetUserInfo}) => {
+const MessageModalCard = ({_id, name, profileImage, userId}) => {
+  const dispatch = useDispatch();
 
+  const [Checked, setChecked] = useState(false);
 
-  const [bChecked, setChecked] = useState(false);
-  console.log(index);
+  const user = useSelector(state=> state.socket.userList);
 
   useEffect(() => {
     setChecked(false);
-  },[userId]);
+    if(user.findIndex((find) => find._id=== _id) === -1){
+     setChecked(false);
+    }
+    if(user.findIndex((find) => find._id === _id) !== -1){
+      setChecked(true);
+    }
+  },)
+
+  const checkHandler = ({target}) => {
+    setChecked(!Checked);
 
 
-  const checkHandler = ({ target }) => {
-    setChecked(!bChecked);
-    checkedItemHandler(index, target.checked);
-    user_id(userId);
-    SetCheck(true);
+    if(target.checked){
+      dispatch(saveUser({
+        userId,
+        _id,
+        }
+      ))
+    }else if (!target.checked){
+      dispatch(deleteUser(
+        _id,
+      ))
+    }
 
-  };
+  }
 
   return(
     <>
@@ -36,7 +53,7 @@ const MessageModalCard = ({_id, name, profileImage, userId, user_id, SetCheck, c
           <div>{name}</div>
         </div>
         <div>
-          <input type="checkbox"  checked={bChecked} onChange={(e) => checkHandler(e)} />
+          <input type="checkbox" value={userId} checked={Checked} onChange={(e) => checkHandler(e)} />
         </div>
       </div>
     </>

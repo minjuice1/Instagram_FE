@@ -13,6 +13,8 @@ import {getProfile} from "../../redux/user/user";
 
 
 
+
+
 const Main = () => {
 	const dispatch = useDispatch();
 
@@ -29,7 +31,7 @@ const Main = () => {
 	const post_data = useSelector((state) => state.post.posts);
 	const like_modal = useSelector(state=>state.modal.likeList_modal);
 
-
+console.log(post_data);
 
 	return (
 		<>

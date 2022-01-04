@@ -17,7 +17,7 @@ import PostDetail from "./components/Post/PostDetail/PostDetail";
 import Profile from "./components/Page/Profile/Profile";
 import EditUser from "./components/Page/User/EditUser/EditUser";
 import SearchHash from "./components/Page/Header/HeaderSearch/SearchHash";
-import Socket from "./components/Main/Socket";
+import Notification from "./components/Main/notification";
 
 
 const CustomRouter = ({history, ...props}) => {
@@ -57,7 +57,7 @@ function App() {
       <Suspense fallback={<div>Loading</div>}>
         <CustomRouter history={history}>
           {show_header && <Header/>}
-          {show_header && <Socket/>}
+          {show_header && <Notification/>}
           {write_modal && <AddPost/>}
           <Routes>
             <Route path="/" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
@@ -70,7 +70,7 @@ function App() {
             <Route path="/accounts/signup" element={<RejectAuth redirectTo="/"> <SignUp/> </RejectAuth>}/>
             <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
             <Route path="/direct/*" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}>
-              <Route path=":userId" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
+              <Route path=":Room" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
             </Route>
             <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser/> </RequireAuth>}/>
             <Route path="/profile/*" element={<RequireAuth redirectTo="/login"> <Profile/></RequireAuth>}>

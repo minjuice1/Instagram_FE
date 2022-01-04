@@ -5,16 +5,19 @@ import MessageModalCard from "./MessageModalCard";
 import {headerSearch} from "../../../../redux/search/search";
 import {useDispatch, useSelector} from "react-redux";
 import CheckUser from "./CheckUser";
+import {useNavigate} from "react-router";
+import {nanoid} from "nanoid";
+import {createRoomDB, getRoomListDB} from "../../../../redux/socket/socket";
 
-const NewMessageModal = ({SetNewMessage}) => {
+const NewMessageModal = ({SetNewMessage , SetNewMessages}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
 
   const user_list = useSelector(state=>state.search.user);
-  const [userInfo, SetUserInfo] = useState([]);
 
-  const user_id = (user) => {
-    userInfo.push(user);
-  }
+
   //검색어 입력
   const [searchUser, SetSearchUser] = useState();
   const searchUserOnChange = (e) => {
@@ -22,39 +25,39 @@ const NewMessageModal = ({SetNewMessage}) => {
   }
 
 
-  useEffect(() => {
-
-  },[userInfo]);
-
 
   const CancellationClickHandler = () => {
-    SetNewMessage(false);
+    if(SetNewMessage){
+      SetNewMessage(false);
+      navigate(0);
+    }else {
+      SetNewMessages(false);
+      navigate(0);
+    }
   }
-
 
   const [check, SetCheck] = useState(false);
   //엔터로 검색
   const searchEnter = (e) =>{
     if(e.key==='Enter'){
+      const path = "directSearch"
       dispatch(headerSearch({
-        searchResult : searchUser
+        searchResult : searchUser,
       }))
-      SetCheck(false);
+
     }
   }
 
+  const check_user = useSelector(state=>state.socket.userList);
 
-  const [checkedItems, setCheckedItems] = useState(new Set());
-
-  const checkedItemHandler = (id, isChecked) => {
-    if (isChecked) {
-      checkedItems.add(id);
-      setCheckedItems(checkedItems);
-    } else if (!isChecked && checkedItems.has(id)) {
-      checkedItems.delete(id);
-      setCheckedItems(checkedItems);
-    }
-  };
+  const createRoomClickHandler = () => {
+    const RoomId = nanoid();
+    console.log(RoomId);
+    dispatch(createRoomDB({
+      RoomId,
+      check_user,
+    }))
+  }
 
 
 
@@ -64,14 +67,15 @@ const NewMessageModal = ({SetNewMessage}) => {
         <div className="new_message_header">
           <img src={x_img} alt="cancle" onClick={CancellationClickHandler}/>
           <a>새로운 메시지</a>
-          <a className="message_next">다음</a>
+          <a className="message_next" onClick={createRoomClickHandler}>다음</a>
         </div>
         <div className="message_search">
           <div>받는 사람:
             <div className="check_user">
-            {userInfo && userInfo.map((user) => (
-              <CheckUser userId={user} userInfo={userInfo} SetUserInfo={SetUserInfo}/>
+              {check_user && check_user.map((user) => (
+              <CheckUser userId={user.userId} _id={user._id} />
             ))}
+
           </div>
           </div>
           <div>
@@ -82,10 +86,9 @@ const NewMessageModal = ({SetNewMessage}) => {
         </div>
         <div className="message_recommend">
           <div className="message_card">
-            {user_list && user_list.map((user, index) => (
+            {user_list && user_list.map((user) => (
               <MessageModalCard _id={user._id} name={user.name} userId={user.userId} profileImage={user.profileImage}
-                                user_id={user_id} SetCheck={SetCheck} check={check} index={index}
-                                userInfo={userInfo} SetUserInfo={SetUserInfo} checkedItemHandler={checkedItemHandler}/>
+                                SetCheck={SetCheck} />
             ))}
 
           </div>

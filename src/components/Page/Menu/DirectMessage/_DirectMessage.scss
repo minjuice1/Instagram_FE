@@ -1,6 +1,7 @@
 @import "../../../../common/variables";
 @import "../../../../common/mixin";
 
+
 .insta_layout {
   margin: 20px auto;
   width: 935px;
@@ -10,34 +11,45 @@
   border: 1px solid $instaGray;
   background-color: $instaWhite;
 
-  .direct_message:first-child{
+  .direct_message {
     border-right: 1px solid $instaGray;
     text-align: center;
-    & > div:first-child{
+
+    .direct_myInfo {
       color: $instaMenuBlack;
       border-bottom: 1px solid $instaGray;
       height: 60px;
       font-weight: bold;
       font-size: 16px;
       line-height: 60px;
+      display: flex;
+
+      & > div:first-child {
+        margin: auto;
+      }
+
+      & > div:nth-child(2) {
+        margin: 12px 0 0 -30px;
+      }
     }
   }
 }
-
-.my_message {
+.main_direct{
+  width: 582px;
   text-align: center;
-  margin-top: 200px;
-  margin-left: 113px;
+  height: auto;
+  margin-top: 250px;
+  & > div:nth-child(2) {
+    font-size: 22px;
+    font-weight: 100;
+  }
 
- & > div:nth-child(2){
-   font-size: 22px;
-   font-weight: 100;
- }
   & > div:nth-child(3) {
     @include fontSize('large');
     color: $instaMenuGray;
     margin-top: 10px;
   }
+
   & > button {
     background: $instaBlue;
     border: none;
@@ -50,34 +62,43 @@
     margin-top: 30px;
   }
 }
-.message_recommend{
+.my_message {
+  width: 582px;
+}
+
+.message_recommend {
   overflow-y: auto;
 }
+
 .direct_message_user {
   display: flex;
   margin-left: 10px;
-  .direct_userimage{
+
+  .direct_userimage > img {
     margin: 10px;
     width: 60px;
     height: 60px;
     border-radius: 50px;
     background: $instaMenuGray;
   }
-  & > div:nth-child(2){
+
+  & > div:nth-child(2) {
     margin: 15px 0 0 10px;
     @include fontSize('large');
-    & > div:first-child{
-      margin: 3px 0 3px -23px;
-     ;
+
+    & > div:first-child {
+      margin: 3px 0 3px -23px;;
     }
-    & > div:nth-child(2){
+
+    & > div:nth-child(2) {
       color: $instaMenuGray;
     }
   }
 }
+
 //CheckUser.js
 
-.checkUser{
+.checkUser {
   background-color: #e0f1ff;
   margin: 5px;
   width: 6rem;
@@ -95,24 +116,29 @@
 
 .message_modal_card {
   display: flex;
-  margin : 10px;
+  margin: 10px;
+
   & > div > img {
     width: 50px;
     height: 50px;
     border-radius: 50px;
   }
+
   & > div:nth-child(2) {
     margin-left: 10px;
     margin-top: 7px;
-    & > div:first-child{
+
+    & > div:first-child {
       @include fontSize('large');
       font-weight: 600;
     }
   }
+
   & > div:nth-child(3) {
     position: absolute;
     margin-left: 335px;
     margin-top: 10px;
+
     & > input {
       width: 20px;
       height: 20px;
@@ -122,10 +148,108 @@
 }
 
 //DirectChat.js
+.direct_chat {
+  border-bottom: 1px solid $instaGray;
+  height: 60px;
+  line-height: 60px;
+
+  .direct_user_info {
+    display: flex;
+    font-weight: 600;
+  }
+}
+
+.participant_user {
+  display: flex;
+  margin: 10px 0 10px 15px;
+  @include fontSize('large');
+
+  & > div > img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin-right: 8px;
+  }
+
+  & > div:nth-child(2) {
+    margin-top: -10px;
+  }
+}
+
+.direct_room {
+  height: 73vh;
+  overflow-y: auto;
+
+}
 
 .direct_input {
-  //border: 1px solid blue;
-  //width: 550px;
-  //height: 45px;
-  //margin-left: -100px;
+  border: 1px solid $instaGray;
+  width: 550px;
+  height: 50px;
+  border-radius: 20px;
+  position: absolute;
+  margin: 15px 0 0 15px;
+  display: flex;
+
+
+  .direct_button {
+    border: none;
+    color: $instaBlue;
+    width: 50px;
+    font-weight: 600;
+    margin-right: 10px;
+    background-color: transparent;
+  }
+
+}
+
+//채팅창
+.chatting {
+  margin-left: 10px;
+  display: flex;
+  margin-top: 10px;
+  @include fontSize('large');
+
+  & > img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    margin-top: 5px;
+    margin-right: 10px;
+  }
+
+  & > div {
+    width: auto;
+    line-height: 40px;
+    min-width: 30px;
+    min-height: 40px;
+    padding: 2px 15px 2px 15px;
+    border: 1px solid $instaGray;
+    border-radius: 30px;
+    max-width: 300px;
+    display: inline-block;
+
+  }
+
+}
+
+.my_chatting {
+  justify-content: end;
+  margin: 10px;
+  display: flex;
+
+
+  & > div {
+    width: auto;
+    line-height: 40px;
+    min-width: 30px;
+    min-height: 40px;
+    padding: 2px 15px 2px 15px;
+    max-width: 300px;
+    border: none;
+    border-radius: 30px;
+    display: inline-block;
+
+    background-color: #efefef;
+  }
 }
