@@ -2,15 +2,16 @@
 @import "../../../common/mixin";
 
 .postDetailModal_container {
-  left: 0;
-  width: 97vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  z-index: 1300;
-  position: fixed;
+	left: 0;
+	width: 97vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	z-index: 1300;
+	position: fixed;
+	margin-top: 260px;
 
   .postDetailModal {
     width: 400px;
@@ -64,17 +65,45 @@
       @include fontSize('large');
       color: $instaMenuBlack;
       z-index: 1100;
-    }
+		}
+		& > div:first-child {
+			color: $instaRed;
+			font-weight: bold;
+		}
+		& > div:last-child{
+			border: none;
+		}
+	}
 
-    & > div:first-child {
-      color: $instaRed;
-      font-weight: bold;
-    }
+	.postBoardModal_myId {
+		width: 400px;
+    height: 96px;
+    border: 1px solid $instaGray;
+    border-radius: 15px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    z-index: 1100;
+    background: $instaWhite;
+    cursor: pointer;
+    position: fixed;
+		margin-top: 630px;
 
-    & > div:last-child {
-      border: none;
-    }
-  }
+		& > div {
+      border-bottom: 1px solid $instaGray;
+      height: 47px;
+      text-align: center;
+      line-height: 47px;
+      @include fontSize('large');
+      color: $instaMenuBlack;
+      z-index: 1100;
+		}
+		& > div:first-child {
+			color: $instaRed;
+			font-weight: bold;
+		}
+		& > div:last-child{
+			border: none;
+		}
+	}
 }
 
 .postDetailModal_overlay {

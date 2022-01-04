@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { deletePost } from '../../../redux/post/post';
-import "./PostOptionModal.scss";
+import "../PostDetail/PostOptionModal";
 
-const PostOptionModal = ({postId, myId, writer, setOpenModal}) => {
+const PostBoardOptionModal = ({postId, myId, writer, setOpenModal}) => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,16 +30,15 @@ const PostOptionModal = ({postId, myId, writer, setOpenModal}) => {
     <div className="postDetailModal_container">
       {myId === writer ? 
       (
-      <div className="postDetailModal_myId">
+      <div className="postBoardModal_myId">
         <div onClick={deleteClickHandler}>삭제</div>
-        <div onClick={toPostBoardHandler}>게시물로 이동</div>
         <div onClick={cancleOptionClickHandler}>취소</div>
       </div>
       ) : (
       <div className="postDetailModal">
         <div>신고</div>
         <div>팔로우 취소</div>
-        <div onClick={toPostBoardHandler}>게시물로 이동</div>
+        <div>태그된 계정</div>
         <div>공유 대상...</div>
         <div>링크 복사</div>
         <div>퍼가기</div>
@@ -52,4 +51,4 @@ const PostOptionModal = ({postId, myId, writer, setOpenModal}) => {
 	);
 };
 
-export default PostOptionModal;
+export default PostBoardOptionModal;

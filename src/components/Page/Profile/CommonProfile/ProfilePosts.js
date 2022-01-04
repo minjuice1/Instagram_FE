@@ -1,13 +1,15 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "./CommonProfile.scss";
 
-const ProfilePosts = ({picture, commentCount, imageUrl, likeCount, _id}) => {
+const ProfilePosts = ({list, category}) => {
   return (
     <>
+    <Link to={`/postdetail/${list._id}`}>
       <div className="otherProfile_post">
-        {picture &&      <img src={picture}/>}
-        {imageUrl && <img src={imageUrl}/>}
+        <img src={list.imageUrl}/>
       </div>
+    </Link>
     </>
   );
 };

@@ -29,20 +29,9 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
       likedReplyComment({
         commentId: ReCommentId,
         AccessToken,
-        ReIsLike,
-        Relike,
         Id,
       }));
   };
-
-  // 삭제, 신고버튼 mouseOver 
-  const [showModal, setShowModal] = useState(false)
-  const handleMouseEnter = e => {
-    setShowModal(true)
-  }
-  const handleMouseLeave = e => {
-    setShowModal(false)
-  }
 
   //등록한 프로필 사진이 있는 경우와 없는 경우 구분.
 	const user_img = ReprofileImage? ReprofileImage : none_profile;
@@ -80,55 +69,60 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
 
   const time = displayTime(RecreatedAt);
 
+  // 삭제, 신고버튼 mouseOver 
+  const [showModal, setShowModal] = useState(false)
+  const handleMouseEnter = e => {
+    setShowModal(true)
+  }
+  const handleMouseLeave = e => {
+    setShowModal(false)
+  }
+  
   return(
   <>
   {openModal && <PostDetailReplyCommentModal Id={Id} setOpenModal={setOpenModal} Recontents={Recontents} postId={postId} RecommentId={ReCommentId}/>}
   <div>
-  {Recontents &&
-  <div className="postDetail_replyComments"
-    onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-    <div className="postDetail_replyComment_pp">
-      <img src={user_img} alt="pp" />
-    </div>
-    <div className="postDetail_replyComments_comment">
-      <div className="postDetail_replyComment_userId">
-        <span onClick={UserProfileClickHandler}>{Rewriter}</span>
-        <span className="postDetail_replyComment_contents">
-          {Recontents}
-        </span>
+    {Recontents &&
+    <div className="postDetail_replyComments"
+      onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div className="postDetail_replyComment_pp">
+        <img src={user_img} alt="pp" />
       </div>
-      <div className="postDetail_replyComment_info">
-        <span>{time}</span>
+      <div className="postDetail_replyComments_comment">
+        <div className="postDetail_replyComment_userId">
+          <span onClick={UserProfileClickHandler}>{Rewriter}</span>
+          <span className="postDetail_replyComment_contents">
+            {Recontents}
+          </span>
+        </div>
+        <div className="postDetail_replyComment_info">
+          <span>{time}</span>
+          <span>
+            좋아요
+            <span>{Relike}</span>개
+          </span>
+          <span>답글 달기</span>
+          {showModal &&
+          <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>}
+        </div>
+      </div>
+      <div className="postDetail_Reply_liked">
         {ReIsLike ? (
-        <span>
-          좋아요 <span>{(Relike)+1}</span>개
-        </span>
+          <img
+            src={comment_red_heart}
+            onClick={LikedReplyCommentHandler}
+            alt="comment_red_heart"
+          />
         ) : (
-        <span>
-          좋아요 <span>{Relike}</span>개
-        </span>) }
-        <span>답글 달기</span>
-        {showModal &&
-        <span onClick={show_postModal}><BiDotsHorizontalRounded size={15} lineHeight={10}/></span>}
+          <img
+            src={comment_heart}
+            onClick={LikedReplyCommentHandler}
+            alt="comment_heart"
+          />
+        )}
       </div>
     </div>
-    <div className="postDetail_Reply_liked">
-      {ReIsLike ? (
-        <img
-          src={comment_red_heart}
-          onClick={LikedReplyCommentHandler}
-          alt="comment_red_heart"
-        />
-      ) : (
-        <img
-          src={comment_heart}
-          onClick={LikedReplyCommentHandler}
-          alt="comment_heart"
-        />
-      )}
-    </div>
-  </div>
-  }
+    }
   </div>
   </>
   )

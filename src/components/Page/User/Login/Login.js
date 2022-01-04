@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {login} from "../../../../redux/user/user";
 
@@ -23,14 +23,12 @@ const Login = () => {
 		SetPassword(e.target.value);
 	};
 
-
 	//로그인 서버 요청
 	const loginClickHandler = () => {
 		dispatch(
 			login({email,
 				password,
 			}),
-			[dispatch],
 		);
 	};
 
@@ -64,25 +62,19 @@ const Login = () => {
 								</label>
 							</div>
 							<div className="login_login_pwd">
-								{checkPassword ? (
-									<input
-										className="login_login_input_pwd"
-										autoComplete="off"
-										required
-										type="password"
-										value={password}
-										onChange={onChangePassword}
-									/>
-								) : (
-									<input
-										className="login_login_input_pwd"
-										autoComplete="off"
-										required
-										type="text"
-										value={password}
-										onChange={onChangePassword}
-									/>
-								)}
+								<input
+									className="login_login_input_pwd"
+									autoComplete="off"
+									required
+									type={checkPassword ? "password" : "text"}
+									value={password}
+									onChange={onChangePassword}
+									onKeyPress={(e) => {if (e.key === 'Enter') {
+										e.preventDefault();
+										loginClickHandler()
+									}
+								}}
+								/>
 
 								<label className="login_label_pwd">
 									<span className="login_content_pwd">비밀번호</span>
@@ -102,23 +94,13 @@ const Login = () => {
 								)}
 							</div>
 							<div className="login_login_btn">
-								{email && password ? (
-									<button
-										className="login_btn_disabled"
-										type="submit"
-										onClick={loginClickHandler}
-									>
-										로그인
-									</button>
-								) : (
-									<button
-										className="login_btn_active"
-										type="submit"
-										onClick={loginClickHandler}
-									>
-										로그인
-									</button>
-								)}
+								<button
+									className={email && password ? "login_btn_disabled" : "login_btn_active"}
+									type="submit"
+									onClick={loginClickHandler}										
+								>
+									로그인
+								</button>
 							</div>
 							<div className="login_bar">
 								<div className="left" />

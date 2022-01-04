@@ -49,7 +49,9 @@ export const deleteComment = createAsyncThunk(
 
 export const likedComment = createAsyncThunk(
 	"commment/likedComment",
+	
 	async ({ commentId, AccessToken, path, postId }) => {
+		console.log(commentId,postId, path );
 		try {
 			const response = await Api({
 				url: `/comment/${commentId}/like`,
@@ -135,6 +137,26 @@ export const likedReplyComment = createAsyncThunk(
 			return { commentId: commentId, data: response.data };
 		} catch (e) {
 
+			return false;
+		}
+	},
+);
+
+// 댓글, 대댓글 좋아요 누른 사람 목록 보기
+export const getLikedListComment = createAsyncThunk(
+	"comment/getLikedListComment",
+	async ({ commentId, AccessToken }) => {
+		try {
+			const response = await Api({
+				url: `/comment/${commentId}/likeUsers`,
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${AccessToken}`,
+				},
+			})
+			// console.log(response);
+			return { commentId: commentId, data: response.data };
+		} catch (e) {
 			return false;
 		}
 	},

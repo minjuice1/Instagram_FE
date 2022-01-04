@@ -1,5 +1,7 @@
 import { useDispatch } from "react-redux";
 import { deleteReplyComment } from '../../../redux/post/comment';
+
+// PostDetailCommentModal과 공유
 import "./PostDetailCommentModal.scss";
 
 const PostDetailReplyCommentModal = ({postId, RecommentId, setOpenModal, Id}) => {
@@ -21,7 +23,6 @@ const PostDetailReplyCommentModal = ({postId, RecommentId, setOpenModal, Id}) =>
 			cancleClickHandler();			
   };
 
-  
 	return (
 		<>
 			<div className="profile_modal_container">

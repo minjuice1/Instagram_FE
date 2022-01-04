@@ -17,7 +17,8 @@ import ProfileModal from "./CommonProfile/ProfileSettingModal";
 //프로필이 자기일 때 보여주는 화면
 const MyProfileInfo = ({user_data}) => {
   const navigate = useNavigate();
-
+  console.log(user_data);
+  
   //모달관리 (프로필이미지 변경, 설정)
   const [imageChange, SetImageChange] = useState(false);
   const [setting, SetSetting] = useState(false);

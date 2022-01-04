@@ -1,0 +1,155 @@
+@import "../../../common/variables";
+@import "../../../common/mixin";
+
+
+.postBoard_allContainer{
+	overflow: hidden;
+	background-color: $backgroundGray;
+}
+
+	.postBoard_topContainer {
+		display: flex;
+		margin: 50px auto auto auto ;
+		width: 36vw;
+		height: 48vh;
+		justify-content: center;
+		margin-bottom: 50px;
+		
+
+		.postBoard_leftsideBox {
+			width: 65%;
+			height: 100%;
+			border: 1px solid $instaLightGray;
+			border-right: none;
+			
+
+				& > img {
+					object-fit: cover;
+					height: 100%;
+					width: 100%;
+				}
+			}
+
+		.postBoard_rightsideBox {
+			width: 35%;
+			height: 100%;
+			background-color: $instaWhite;
+			border: 1px solid $instaLightGray;
+
+			.postBoard_header {
+				display: flex;
+				width: 100%;
+				height: 50px;
+				padding: 10px 0 0 0;
+				margin-bottom: 10px;
+				border-bottom: 1px solid $instaGray;
+				
+				.postBoard_header_pic {
+					display: flex;
+					margin-left: 14px;
+
+					& > img {
+						// margin: auto;
+						margin: auto 0;
+						cursor: pointer;
+						width: 32px;
+						height: 32px;
+					}
+				}
+
+				.postBoard_header_userId {
+					justify-content: space-between;
+					width: 88%;
+					line-height: 35px;
+					margin-left: 5px;
+
+					& > span {
+						@include fontSize("large");
+						font-weight: bold;
+						cursor: pointer;
+					}
+				}
+				.postBoard_header_btn {
+					margin-top: 2%;
+					height: 50%;
+					width: 15%;
+					text-align: center;
+					cursor: pointer;
+				}				
+			}
+
+			.postBoard_main {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				height: 89%;
+
+				.postBoard_comment_list{
+					height: 100%;
+					overflow-x: hidden;
+					position: relative;
+				}
+			}
+		}
+	}
+
+	.postBoard_bottomContainer {
+
+		& > div:nth-child(1) {
+			border: 1px solid $instaGray;
+			width: 36vw;
+			margin: auto;
+		}
+
+		& > div:last-child {
+			width: 36vw;
+			margin: 50px auto;
+
+			& > div:first-child {
+				margin-bottom: 20px;
+				color: $instaMenuGray;
+				font-weight: bold;
+				@include fontSize("large");
+
+				& > span{
+					color: $instaMenuBlack;
+				}
+			}
+			
+			.postBoard_postRec {
+					display: grid;
+					// position: absolute;
+					grid-template-columns: repeat(3, 1fr);
+					// margin: -50px auto;
+					gap: 25px;
+			}
+		}
+	}
+
+@include desktop{
+  .postBoard_leftsideBox{
+    width: 65%;
+  }
+
+	.postBoard_rightsideBox{
+		width: 30%;
+	}
+}
+
+@include tablet{
+  .postBoard_leftsideBox{
+    width: 55%;
+  }
+	.postBoard_rightsideBox{
+		width: 40%;
+	}
+}
+
+@include mobile{
+  .postBoard_leftsideBox{
+		width: 50%;
+  }
+	.postBoard_rightsideBox{
+		width: 45%;
+	}
+}

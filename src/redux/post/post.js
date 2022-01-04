@@ -44,7 +44,7 @@ export const getPost = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
-      // console.log(response)
+      console.log(response);
       return response.data;
     } catch (e) {
 
@@ -90,11 +90,13 @@ export const getPostDetail = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         }
       })
-      console.log(response)
+      if(response.data.ok){
+        thunkAPI.dispatch(
+          getUserPost(response.data.post[0].writer.userId));
+      }
       return response.data;
     } catch (e) {
-      
-      alert("로그인을 다시해주세요")
+      console.log('getPostDetail 에러');
       return false;
     }
   }
@@ -129,24 +131,23 @@ export const likePost = createAsyncThunk(
 //개인 포스트 가져오기
 export const getUserPost = createAsyncThunk(
   "post/getUserPost",
-  async(data, thunkAPI) => {
-    console.log(data);
+  async(id, thunkAPI) => {
+    console.log(id);
     const AccessToken = localStorage.getItem("user")
     try{
       const response = await Api({
-        url: `user/${data}`,
+        url: `user/${id}`,
         method: 'GET',
         headers: {
           Authorization: `Bearer ${AccessToken}`,
         }
       })
-      if(response.data.ok){
-        console.log(response)
-        return response.data;
-      }
-      return response;
-    }catch (e){
-      console.log(e.response);
+      console.log(response);
+      return response.data;
+    } catch (e) {
+      
+      alert("로그인을 다시해주세요")
+      return false;
     }
   }
 )

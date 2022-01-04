@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 import {deletePost, getLikeList, getPost, getPostDetail, getUserPost, savedPost, likePost, randomPost} from "./post";
-import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment } from './comment';
+import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment, getLikedListComment } from './comment';
 
 const postSlice = createSlice({
   name: 'post',
@@ -9,15 +9,23 @@ const postSlice = createSlice({
     user: [],
     posts: [],
     postDetail: [],
-    comment: [],
+    comment: {
+      childComments: [],
+    },
     likeUsers:[],
+    likeUsersCmt: [],
     replyTag: "",
     randomPosts: [],
+    post: [],
+    profileSaved: "",
     recommendedUser: [],
   },
   reducers: {
     replyReducer : (state, action) => {
       state.replyTag = action.payload;
+    },
+    selectSaved : (state, action) => {
+      state.profileSaved = action.payload;
     },
   },
   extraReducers: {
@@ -49,6 +57,30 @@ const postSlice = createSlice({
       } 
     },
     [likePost.fulfilled]: (state, action) => {
+      console.log(action);
+      if (action.payload.path === "main") {
+        const idx = state.posts.findIndex((p) => p._id === action.payload.postId);
+        if(!state.posts[idx].isLike) {
+          state.posts[idx].isLike = true;
+          state.posts[idx].likeCount = state.posts[idx].likeCount +1;
+        } else {
+          state.posts[idx].isLike = false;
+          state.posts[idx].likeCount = state.posts[idx].likeCount -1;
+        }
+      } else {
+        if(!state.postDetail[0].isLike) {
+          state.postDetail[0].isLike = true;
+          state.postDetail[0].likeCount = state.postDetail[0].likeCount +1;
+        } else {
+          state.postDetail[0].isLike = false;
+          state.postDetail[0].likeCount = state.postDetail[0].likeCount -1;
+        }
+      }
+    },
+
+    //좋아요 리스트 목록 가져오기
+    [getLikeList.fulfilled]: (state, action) => {
+      state.likeUsers = action.payload.data.likeUsers;
     },
 
     // Comment
@@ -57,11 +89,11 @@ const postSlice = createSlice({
         const idx = state.posts.findIndex( (c) => c._id === action.payload.data.comment.postId ); 
         state.posts[idx].commentCount++;
         state.posts[idx].comments.unshift(action.payload.data.comment); 
-      } else { 
-        state.comment.push(action.payload.data.comment); 
+      } else {
+        action.payload.data.comment.likeCount = 0;
+        state.comment.push(action.payload.data.comment);
       } 
     },
-
     [deleteComment.fulfilled]: (state, action) => {			
 			state.comment = state.comment.filter(
 				(cnt) => cnt._id !== action.payload );
@@ -69,28 +101,42 @@ const postSlice = createSlice({
     [likedComment.fulfilled]: (state, action) => {
       console.log(action);
       if (action.payload.path === "detailCmt") {
-        const idx = state.comment.findIndex((c) => c._id === action.meta.arg.commentId);
-        state.comment[idx].isLike = !state.comment[idx].isLike;
+        const idx = state.comment.findIndex((c) => c._id === action.payload.commentId);
+        if(!state.comment[idx].isLike) {
+          state.comment[idx].isLike = true;
+          state.comment[idx].likeCount = state.comment[idx].likeCount + 1;
+        }
+        else {
+          state.comment[idx].isLike = false;
+          state.comment[idx].likeCount = state.comment[idx].likeCount - 1;
+        }
       } else {
         const post = state.posts.findIndex((p) => p._id === action.payload.postId);
         console.log(post);
         const cmt = state.posts[post].comments.findIndex((c) => c._id === action.payload.commentId);
         console.log(cmt);
-        state.posts[post].comments[cmt].isLike = !state.posts[post].comments[cmt].isLike;
+        if(!state.posts[post].comments[cmt].isLike) {
+          state.posts[post].comments[cmt].isLike = true;
+        } else {
+          state.posts[post].comments[cmt].isLike = false;
+        }
+        // state.posts[post].comments[cmt].isLike = !state.posts[post].comments[cmt].isLike;
       }
     },
-
-    //좋아요 리스트 목록 가져오기기
-    [getLikeList.fulfilled]: (state, action) => {
-      state.likeUsers = action.payload.data.likeUsers;
+    // 댓글, 대댓글 좋아요 리스트목록 보기
+    [getLikedListComment.fulfilled]: (state, action) => {
+      console.log(action);
+      state.likeUsersCmt = action.payload.data.likeUsers;
     },
 
      //replyComment
     [addReplyComment.fulfilled] : (state, action) => {
       console.log(action);
+      action.payload.data.reComment.likeCount = 0;
       const idx = state.comment.findIndex((c) => c._id === action.payload.commentId);
       state.comment[idx].childComments.push(action.payload.data.reComment);
     },
+
     [deleteReplyComment.fulfilled]: (state, action) => {
       console.log(action);		
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
@@ -101,8 +147,14 @@ const postSlice = createSlice({
       console.log(action);
       const idx = state.comment.findIndex((c) => c._id === action.meta.arg.Id);
       const re = state.comment[idx].childComments.findIndex((c) => c._id === action.payload.commentId);
-      state.comment[idx].childComments[re].isLike = !state.comment[idx].childComments[re].isLike;
-      state.comment[idx].childComments[re].likeCount = action.meta.arg.Relike;
+      if(!state.comment[idx].childComments[re].isLike) {
+        state.comment[idx].childComments[re].isLike = true;
+        state.comment[idx].childComments[re].likeCount = state.comment[idx].childComments[re].likeCount + 1;
+      }
+      else {
+        state.comment[idx].childComments[re].isLike = false;
+        state.comment[idx].childComments[re].likeCount = state.comment[idx].childComments[re].likeCount - 1;
+      }
     },
     [randomPost.fulfilled]:(state, action) => {
       state.randomPosts =  action.payload.data.randomPost;

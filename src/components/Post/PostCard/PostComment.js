@@ -6,22 +6,15 @@ import {addComment, addReplyComment} from "../../../redux/post/comment";
 import InputEmoji from "react-input-emoji";
 import { replyReducer } from '../../../redux/post/postSlice';
 
-const PostComment = ({ postId, path }) => {
+const PostComment = ({ postId, path, replyCommentId, replyUserId, replyTag }) => {
 
 	const dispatch = useDispatch();
-
-	const replyTag = useSelector((state) => state.post.replyTag); 
-	const replyUserId = useSelector(state => state.post.replyTag?.writer);
-	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
 
 	const [postComment, SetPostComment] = useState("");
 	const AccessToken = localStorage.getItem("user");
 	const _postId = postId;
 
-	useEffect(() => {
-		dispatch(replyReducer(""))
-	}, [dispatch]);
-
+	
 	useEffect(() => {
 		if(replyUserId !== "" && replyUserId !== undefined){
 			SetPostComment("※"+replyUserId+" ");
@@ -49,7 +42,8 @@ const PostComment = ({ postId, path }) => {
 			contents: postComment,
 			AccessToken,
 			path: path,
-		}),
+		},
+		),
 			[dispatch],
 		);
 		SetPostComment("")

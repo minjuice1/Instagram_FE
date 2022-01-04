@@ -16,6 +16,8 @@
  display: flex;
 }
 
+
+
 .profile_img {
  display: flex;
  & > div {
@@ -31,6 +33,7 @@
  @include fontSize('large');
  font-weight: bold;
  color: $instaMenuBlack;
+ cursor: pointer;
 }
 
 .post_user_image {
@@ -41,7 +44,7 @@
 }
 .profile_img_dot{
  cursor: pointer;
- margin-left: 82%;
+ margin-left: 78%;
  & >img {
   width: 13px;
 
@@ -49,19 +52,27 @@
  }
 }
 
-.post_center_image{
- width: 10%;
- min-width: 485px;
-}
-
 .post_text{
  display: flex;
-
+ & > div {
+  margin-left: 5px;
+ }
 }
 
 .post_cursor{
   cursor: pointer;
 }
+
+.post_center { 
+  position: relative;
+  width: 614px;
+  min-width: 484px;
+
+  .post_center_image{
+    width: 100%;
+  }
+
+}  
 
 .post_icon {
  display: flex;
@@ -93,10 +104,12 @@
 .post_one_comment{
  display: flex;
  justify-content: space-between;
- & > div >a:first-child{
+ & > div >span:first-child{
   @include fontSize('large');
   font-weight: bold;
   color: $instaMenuBlack;
+  cursor: pointer;
+  margin-left: -10px;
  }
  & > img {
   margin-right: 13px;
@@ -128,7 +141,7 @@
 
 .post_time{
  @include fontSize('small');
- margin: 5px 0 15px 10px;
+ margin: 5px 0 15px 0;
  color: $instaMenuGray;
 }
 
@@ -156,6 +169,18 @@
  line-height: 50px;
  color: $instaBlue;
  font-weight: 600;
+}
+
+.postDetail_postComment {
+  margin-bottom: 70px;
+
+  .post_blockCmt{
+    margin-bottom: -70px;
+    // margin-top: 30px;
+    color: $instaMenuGray;
+    border-top: 1px solid $instaGray;
+    padding: 15px 0;
+  }
 }
 
 //반응형 사이즈

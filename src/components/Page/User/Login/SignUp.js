@@ -34,8 +34,25 @@ const SignUp = () => {
 			}),
 			[dispatch],
 		);
+		alert('가입 되었습니다.');
 		navigate("/login");
 	};
+
+	// const SingUpEnterHandler = (e) => {
+	// 	if (e.key == 'Enter') {
+	// 	dispatch(
+	// 		singUp({
+	// 			email,
+	// 			name,
+	// 			userId,
+	// 			password,
+	// 		}),
+	// 		[dispatch],
+	// 	);
+	// 	alert('가입 되었습니다.');
+	// 	navigate("/login");
+	// 	};
+	// };
 
 	const EmailOnChange = (e) => {
 		SetEmail(e.target.value);
@@ -115,9 +132,7 @@ const SignUp = () => {
 											휴대폰 번호 또는 이메일 주소
 										</span>
 									</label>
-									{IsEmail ? (
-										""
-									) : (
+									{!IsEmail && (
 										<div className="signup_check_box">
 											<span className="signup_check">
 												<BiXCircle color={"#F04756"} size={25} />
@@ -135,14 +150,12 @@ const SignUp = () => {
 									<label className="signup_label">
 										<span className="signup_label_name">성명</span>
 									</label>
-									{IsName ? (
+									{IsName && (
 										<div className="signup_check_box">
 											<span className="signup_check">
 												<BiCheckCircle color={"#c7c7c7"} size={25} />
 											</span>
 										</div>
-									) : (
-										""
 									)}
 								</div>
 								<div className="signup_content_form">
@@ -155,9 +168,7 @@ const SignUp = () => {
 									<label className="signup_label">
 										<span className="signup_label_name">사용자 이름</span>
 									</label>
-									{ISUserId ? (
-										""
-									) : (
+									{!ISUserId && (
 										<div className="signup_check_box_userId">
 											<span className="signup_check">
 												<BiXCircle color={"#F04756"} size={25} />
@@ -171,38 +182,29 @@ const SignUp = () => {
 									)}
 								</div>
 								<div className="signup_content_form">
-									{checkPassword ? (
-										<input
-											className="signup_pwd"
-											type="password"
-											value={password}
-											onChange={PassWordOnChange}
-											// onKeyUp={PasswordCheck}
+									<input
+										className="signup_pwd"
+										type={checkPassword ? "password" : "text"}
+										value={password}
+										onChange={PassWordOnChange}
+										onKeyPress={(e) => {if (e.key == 'Enter'){
+											e.preventDefault();
+											SingUpClickHandler()
+										}
+									}}
 										/>
-									) : (
-										<input
-											className="signup_pwd"
-											type="text"
-											value={password}
-											onChange={PassWordOnChange}
-										/>
-									)}
 
 									<label className="signup_label">
 										<span className="signup_label_name">비밀번호</span>
 									</label>
 
 									<div className="signup_check_box_pwd">
-										{password.length < 6 ? (
-											""
-										) : (
+										{!password.length < 6 && (
 											<span className="signup_check_pwd">
 												<BiCheckCircle color={"#c7c7c7"} size={25} />
 											</span>
 										)}
-										{!password ? (
-											""
-										) : (
+										{password && (
 											<div>
 												{checkPassword ? (
 													<button
@@ -223,21 +225,12 @@ const SignUp = () => {
 										)}
 									</div>
 								</div>
-								{email && password && userId && name ? (
 									<button
-										className="signup_btn_active"
+										className={email && password && userId && name ? "signup_btn_active" : "signup_btn_disabled"}
 										onClick={SingUpClickHandler}
 									>
 										가입
 									</button>
-								) : (
-									<button
-										className="signup_btn_disabled"
-										onClick={SingUpClickHandler}
-									>
-										가입
-									</button>
-								)}
 							</div>
 						</div>
 						<div className="signup_login">
