@@ -145,7 +145,8 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
     <>
 
       {likeOpen && <PostLikeModal likeOpen={likeOpen} SetLikeOpen={SetLikeOpen} postId={postId}/>}
-      {openModal && <PostModal postId={postId} setOpenModal={setOpenModal} writer={writer[0].userId} myId={myId}/>}
+      {/*myId={myId}*/}
+      {openModal && <PostModal postId={postId} setOpenModal={setOpenModal} writer={writer[0].userId}/>}
 
       <div className="post_cards">
         <div className="post_card">

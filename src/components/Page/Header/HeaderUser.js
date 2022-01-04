@@ -1,11 +1,11 @@
 import {menu_change, menu_profile, menu_save, menu_setting} from "../../../common/IconImage";
-import React from "react";
-import {logout} from "../../../redux/user/user";
+import React, {useEffect} from "react";
+import {getProfile, logout} from "../../../redux/user/user";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
 
 
-const HeaderUser = () => {
+const HeaderUser = ({SetMyProfile}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -14,16 +14,19 @@ const HeaderUser = () => {
     navigate(`/login}`, {replace: true})
   }
 
+
+
+
   const id = useSelector(state=>state.user.user.userId);
 
   const editUserClickHandler = () => {
     navigate(`/profile/${id}`,{state: id})
+    SetMyProfile(false);
   }
 
   // 저장됨으로 이동
   const savedProfileClickHandler = () => {
     navigate(`/profile/${id}/saved`, {replace: true})
-    // history.replace(`/myprofile/${id}`, {replace: true});
   }
 
 

@@ -2,7 +2,6 @@
 @import "../../../common/mixin";
 
 
-
 .profile_all {
   background-color: $backgroundGray;
 
@@ -15,6 +14,7 @@
       height: 100%;
       width: 100%;
       margin: 50px 0 50px 0;
+
       .profile_header {
         justify-content: left;
         display: flex;
@@ -79,7 +79,7 @@
             width: 100%;
             height: 30%;
             margin: 5px 0;
-			  cursor: pointer;
+            cursor: pointer;
 
 
             & > span {
@@ -221,6 +221,7 @@
     }
   }
 }
+
 .post_layout {
   width: 100%;
   height: 100vh;
@@ -228,436 +229,446 @@
   justify-content: center;
 
 }
-  .OtherProfile_postsBox {
-    display: grid;
-    position: absolute;
-    grid-template-columns: repeat(3, 1fr);
-    margin: -50px auto;
-    gap: 25px;
-    background-color: $backgroundGray;
-  }
 
-  .OtherProfile_savedBox {
-    display: grid;
-    position: absolute;
-    grid-template-columns: repeat(3, 1fr);
-    margin: 0px auto;
-    gap: 25px;
-    background-color: $backgroundGray;
-  }
+.OtherProfile_postsBox {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(3, 1fr);
+  margin: -50px auto;
+  gap: 25px;
+  background-color: $backgroundGray;
+}
 
-  .savedPostBox{
+.OtherProfile_savedBox {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0px auto;
+  gap: 25px;
+  background-color: $backgroundGray;
+}
+
+.savedPostBox {
+  display: flex;
+  justify-content: space-between;
+  width: 920px;
+  height: 20px;
+  margin: -30px auto;
+  @include fontSize("normal");
+
+  .desc_savedPost {
     display: flex;
-    justify-content: space-between;
-    width: 920px;
-    height: 20px;
-    margin: -30px auto;
-    @include fontSize("normal");
-
-    .desc_savedPost{
-      display: flex;
-      color: $instaMenuGray;
-    }
-    .add_savedPostBox{
-      display: flex;
-      justify-content: right;
-      color: $instaBlue;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    color: $instaMenuGray;
   }
+
+  .add_savedPostBox {
+    display: flex;
+    justify-content: right;
+    color: $instaBlue;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
 
 
 //UserProfileInfo
 
-    .otherProfile_profileBox {
-      display: flex;
-      width: 80vw;
-      margin: auto;
-      background-color: $backgroundGray;
-      height: 100%;
+.otherProfile_profileBox {
+  display: flex;
+  width: 80vw;
+  margin: auto;
+  background-color: $backgroundGray;
+  height: 100%;
 
-      .otherProfile_header {
-        justify-content: left;
+  .otherProfile_header {
+    justify-content: left;
+    display: flex;
+    width: 882px;
+    height: 15%;
+    margin: auto;
+    margin-bottom: 20px;
+
+    .otherProfile_header_pp {
+      justify-content: center;
+      text-align: center;
+      width: 23%;
+      margin-right: 35px;
+
+      & > img {
+        width: 150px;
+        height: 150px;
+        border-radius: 150px;
+        cursor: pointer;
+      }
+    }
+
+    .otherProfile_header_main {
+      justify-content: center;
+      width: 55%;
+
+      .otherProfile_header_top {
         display: flex;
-        width: 882px;
-        height: 15%;
-        margin: auto;
-        margin-bottom: 20px;
+        height: 25%;
+        margin-top: 10px;
 
-        .otherProfile_header_pp {
-          justify-content: center;
+        & > span:first-child {
+          font-size: 28px;
+          font-weight: 300;
+          margin-right: 20px;
+          cursor: pointer;
+        }
+
+        .otherProfile_header_sengMsg {
+          height: 30px;
+          width: 125px;
+          font-weight: bold;
           text-align: center;
-          width: 23%;
-          margin-right: 35px;
+          border: 1px solid #c7c7c7;
+          background-color: #ffffff;
+          border-radius: 4px;
+          margin-right: 10px;
+          margin-top: 6px;
+          cursor: pointer;
+          @include fontSize("large");
+          line-height: 30px;
+        }
+
+        .otherProfile_header_askFollowing {
+          height: 30px;
+          width: 45px;
+          font-weight: bold;
+          text-align: center;
+          border: 1px solid #c7c7c7;
+          background-color: $backgroundGray;
+          border-radius: 3px;
+          margin-right: 10px;
+          margin-top: 6px;
+          cursor: pointer;
+          @include fontSize("large");
+          line-height: 30px;
+        }
+
+        .otherProfile_header_following {
+          height: 30px;
+          width: 92px;
+          color: $instaWhite;
+          font-weight: bold;
+          text-align: center;
+          border: 1px solid #c7c7c7;
+          background-color: $instaBlue;
+          border-radius: 3px;
+          margin-right: 10px;
+          margin-top: 6px;
+          cursor: pointer;
+          @include fontSize("large");
+          line-height: 30px;
+        }
+
+        .otherProfile_header_moreBtnOn {
+          height: 30px;
+          width: 40px;
+          color: $instaGray;
+          font-weight: bold;
+          text-align: center;
+          border: 1px solid #c7c7c7;
+          background-color: $instaBlue;
+          border-radius: 3px;
+          margin-right: 20px;
+          margin-top: 6px;
+          cursor: pointer;
+          @include fontSize("large");
+          line-height: 35px;
+          opacity: 0.7;
+        }
+
+        .otherProfile_header_moreBtnOff {
+          height: 30px;
+          width: 40px;
+          color: $instaGray;
+          font-weight: bold;
+          text-align: center;
+          border: 1px solid #c7c7c7;
+          background-color: $instaBlue;
+          border-radius: 3px;
+          margin-right: 20px;
+          margin-top: 6px;
+          cursor: pointer;
+          @include fontSize("large");
+          line-height: 35px;
+        }
+
+        .otherProfile_settings {
+          width: 40px;
+          height: 40px;
+          margin-top: 5px;
+          cursor: pointer;
+        }
+      }
+
+      .otherProfile_header_mid {
+        width: 100%;
+        height: 30%;
+        margin: 5px 0;
+
+        & > span {
+          line-height: 50px;
+          margin-right: 40px;
+
+          & > span {
+            @include fontSize("biglarge");
+            font-weight: bold;
+          }
+        }
+
+        & > span:nth-child(2) {
+          cursor: pointer;
+        }
+
+        & > span:nth-child(3) {
+          cursor: pointer;
+        }
+      }
+
+      .otherProfile_header_name {
+        width: 100%;
+        height: auto;
+        @include fontSize("large");
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .otherProfile_header_bottom {
+        width: 100%;
+        height: auto;
+        @include fontSize("large");
+        font-weight: 500;
+      }
+    }
+  }
+
+  .otherProfile_storiesBox {
+    display: flex;
+    height: 10%;
+    width: 882px;
+    justify-content: left;
+    padding: 0 10px;
+    margin: auto;
+
+    .otherProfile_stories {
+      text-align: center;
+      display: flex;
+      width: 70%;
+      height: 15%;
+      margin-bottom: 30px;
+      margin-right: 35px;
+
+      .otherProfile_story {
+        height: 100%;
+        margin: 30px 40px 20px 0;
+
+        .otherProfile_storyBox {
+          margin: auto;
+          width: 80px;
+          height: 50%;
+          cursor: pointer;
 
           & > img {
-            width: 150px;
-            height: 150px;
-            border-radius: 150px;
-            cursor: pointer;
+            width: 77px;
+            height: 77px;
           }
         }
 
-        .otherProfile_header_main {
-          justify-content: center;
-          width: 55%;
-
-          .otherProfile_header_top {
-            display: flex;
-            height: 25%;
-            margin-top: 10px;
-
-            & > span:first-child {
-              font-size: 28px;
-              font-weight: 300;
-              margin-right: 20px;
-              cursor: pointer;
-            }
-
-            .otherProfile_header_sengMsg {
-              height: 30px;
-              width: 125px;
-              font-weight: bold;
-              text-align: center;
-              border: 1px solid #c7c7c7;
-              background-color: #ffffff;
-              border-radius: 4px;
-              margin-right: 10px;
-              margin-top: 6px;
-              cursor: pointer;
-              @include fontSize("large");
-              line-height: 30px;
-            }
-
-            .otherProfile_header_askFollowing {
-              height: 30px;
-              width: 45px;
-              font-weight: bold;
-              text-align: center;
-              border: 1px solid #c7c7c7;
-              background-color: $backgroundGray;
-              border-radius: 3px;
-              margin-right: 10px;
-              margin-top: 6px;
-              cursor: pointer;
-              @include fontSize("large");
-              line-height: 30px;
-            }
-
-            .otherProfile_header_following {
-              height: 30px;
-              width: 92px;
-              color: $instaWhite;
-              font-weight: bold;
-              text-align: center;
-              border: 1px solid #c7c7c7;
-              background-color: $instaBlue;
-              border-radius: 3px;
-              margin-right: 10px;
-              margin-top: 6px;
-              cursor: pointer;
-              @include fontSize("large");
-              line-height: 30px;
-            }
-
-            .otherProfile_header_moreBtnOn {
-              height: 30px;
-              width: 40px;
-              color: $instaGray;
-              font-weight: bold;
-              text-align: center;
-              border: 1px solid #c7c7c7;
-              background-color: $instaBlue;
-              border-radius: 3px;
-              margin-right: 20px;
-              margin-top: 6px;
-              cursor: pointer;
-              @include fontSize("large");
-              line-height: 35px;
-              opacity: 0.7;
-            }
-
-            .otherProfile_header_moreBtnOff {
-              height: 30px;
-              width: 40px;
-              color: $instaGray;
-              font-weight: bold;
-              text-align: center;
-              border: 1px solid #c7c7c7;
-              background-color: $instaBlue;
-              border-radius: 3px;
-              margin-right: 20px;
-              margin-top: 6px;
-              cursor: pointer;
-              @include fontSize("large");
-              line-height: 35px;
-            }
-
-            .otherProfile_settings {
-              width: 40px;
-              height: 40px;
-              margin-top: 5px;
-              cursor: pointer;
-            }
-          }
-
-          .otherProfile_header_mid {
-            width: 100%;
-            height: 30%;
-            margin: 5px 0;
-
-            & > span {
-              line-height: 50px;
-              margin-right: 40px;
-
-              & > span {
-                @include fontSize("biglarge");
-                font-weight: bold;
-              }
-            }
-
-            & > span:nth-child(2) {
-              cursor: pointer;
-            }
-
-            & > span:nth-child(3) {
-              cursor: pointer;
-            }
-          }
-
-          .otherProfile_header_name {
-            width: 100%;
-            height: auto;
-            @include fontSize("large");
-            font-weight: 600;
-            margin-bottom: 10px;
-          }
-
-          .otherProfile_header_bottom {
-            width: 100%;
-            height: auto;
-            @include fontSize("large");
-            font-weight: 500;
-          }
-        }
-      }
-
-      .otherProfile_storiesBox {
-        display: flex;
-        height: 10%;
-        width: 882px;
-        justify-content: left;
-        padding: 0 10px;
-        margin: auto;
-
-        .otherProfile_stories {
+        .otherProfile_storyName {
+          margin-top: 5px;
           text-align: center;
-          display: flex;
-          width: 70%;
-          height: 15%;
-          margin-bottom: 30px;
-          margin-right: 35px;
-
-          .otherProfile_story {
-            height: 100%;
-            margin: 30px 40px 20px 0;
-
-            .otherProfile_storyBox {
-              margin: auto;
-              width: 80px;
-              height: 50%;
-              cursor: pointer;
-
-              & > img {
-                width: 77px;
-                height: 77px;
-              }
-            }
-
-            .otherProfile_storyName {
-              margin-top: 5px;
-              text-align: center;
-              width: 100%;
-              height: auto;
-              color: #262626;
-              font-weight: 600;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-              cursor: pointer;
-            }
-          }
+          width: 100%;
+          height: auto;
+          color: #262626;
+          font-weight: 600;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: pointer;
         }
       }
+    }
+  }
 
-      .otherProfile_header_hiddenBox {
-        width: 882px;
-        height: 235px;
-        margin: 10px auto 30px auto;
-        padding: 20px;
-        background-color: $instaWhite;
-        border: 1px solid $instaGray;
-        border-radius: 4px;
+  .otherProfile_header_hiddenBox {
+    width: 882px;
+    height: 235px;
+    margin: 10px auto 30px auto;
+    padding: 20px;
+    background-color: $instaWhite;
+    border: 1px solid $instaGray;
+    border-radius: 4px;
 
-        .otherProfile_recomBox {
+    .otherProfile_recomBox {
+      display: flex;
+      @include fontSize("large");
+      font-weight: 600;
+      margin-bottom: 12px;
+
+      .otherProfile_recomBox_title {
+        width: 90%;
+        color: $instaMenuGray;
+      }
+
+      .otherProfile_recomBox_allBtn {
+        width: 10%;
+        color: $instaBlue;
+        text-align: right;
+      }
+    }
+
+    .otherProfile_recomBox_eachBox {
+      display: flex;
+      height: 208px;
+
+      .otherProfile_recomBox_each {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        & ul {
           display: flex;
-          @include fontSize("large");
-          font-weight: 600;
-          margin-bottom: 12px;
-          .otherProfile_recomBox_title {
-            width: 90%;
-            color: $instaMenuGray;
-          }
-          .otherProfile_recomBox_allBtn {
-            width: 10%;
-            color: $instaBlue;
-            text-align: right;
-          }
-        }
 
-        .otherProfile_recomBox_eachBox {
-          display: flex;
-          height: 208px;
-          .otherProfile_recomBox_each {
+          & li {
             display: flex;
-            height: 100%;
-            width: 100%;
-            overflow-y: auto;
-            overflow-x: hidden;
+            margin-right: 20px;
 
-            & ul {
+            .otherProfile_recomBox_exit {
               display: flex;
+              height: 198px;
+              width: 176px;
+              border: 1px solid $instaGray;
+              border-radius: 4px;
 
-              & li {
-                display: flex;
-                margin-right: 20px;
+              .otherProfile_recomBox_removeBtn {
+                width: 20px;
+                height: 35px;
+                background: 0 0;
+                border: 0;
+                position: absolute;
+                left: 345px;
+                top: -1;
+                cursor: pointer;
+                padding: 5px 5px 5px 0;
+              }
 
-                .otherProfile_recomBox_exit {
-                  display: flex;
-                  height: 198px;
-                  width: 176px;
-                  border: 1px solid $instaGray;
+              .otherProfile_recomBox_userBox {
+                height: 158px;
+                width: 136px;
+                padding: 20px;
+                text-align: center;
+                align-items: center;
+
+                .otherProfile_recomBox_pp {
+                  justify-content: center;
+                  align-items: center;
+                  margin-bottom: 15px;
+
+                  & > img {
+                    height: 54px;
+                    width: 54px;
+                  }
+                }
+
+                .otherProfile_recomBox_name {
+                  color: $instaMenuGray;
+                  font-weight: 400;
+                  margin-bottom: 15px;
+                }
+
+                .otherProfile_recomBox_btn {
+                  width: 134px;
+                  height: 30px;
+                  @include fontSize("large");
+                  font-weight: 600;
+                  color: $instaWhite;
+                  background: $instaBlue;
+                  border: none;
                   border-radius: 4px;
-
-                  .otherProfile_recomBox_removeBtn {
-                    width: 20px;
-                    height: 35px;
-                    background: 0 0;
-                    border: 0;
-                    position: absolute;
-                    left: 345px;
-                    top: -1;
-                    cursor: pointer;
-                    padding: 5px 5px 5px 0;
-                  }
-
-                  .otherProfile_recomBox_userBox {
-                    height: 158px;
-                    width: 136px;
-                    padding: 20px;
-                    text-align: center;
-                    align-items: center;
-
-                    .otherProfile_recomBox_pp {
-                      justify-content: center;
-                      align-items: center;
-                      margin-bottom: 15px;
-                      & > img {
-                        height: 54px;
-                        width: 54px;
-                      }
-                    }
-
-                    .otherProfile_recomBox_name {
-                      color: $instaMenuGray;
-                      font-weight: 400;
-                      margin-bottom: 15px;
-                    }
-
-                    .otherProfile_recomBox_btn {
-                      width: 134px;
-                      height: 30px;
-                      @include fontSize("large");
-                      font-weight: 600;
-                      color: $instaWhite;
-                      background: $instaBlue;
-                      border: none;
-                      border-radius: 4px;
-                    }
-                  }
                 }
               }
             }
           }
-          .otherProfile_recomBox_moreBtn {
-            display: block;
-            background: 0;
-            overflow: hidden;
-            padding: 16px 8px;
-            border: none;
-            cursor: pointer;
-            right: 0;
-            color: $instaMenuGray;
-          }
         }
       }
 
-      .otherProfile_post_dir {
-        display: flex;
-        width: 920px;
-        justify-content: center;
-        margin: auto;
-        border-top: 1px solid $instaGray;
-
-        .otherProfile_post_clicked {
-          display: flex;
-          width: 65px;
-          height: 52px;
-          line-height: 48px;
-          margin-right: 65px;
-          color: $instaMenuBlack;
-          @include fontSize("normal");
-          font-weight: 550;
-          text-decoration: none;
-          text-align: center;
-          letter-spacing: 0.5px;
-          cursor: pointer;
-          align-items: center;
-          justify-content: center;
-          border-top: 1px solid $instaMenuGray;
-        }
-
-        .otherProfile_post_unclicked {
-          display: flex;
-          width: 65px;
-          height: 52px;
-          line-height: 48px;
-          margin-right: 65px;
-          color: $instaMenuGray;
-          @include fontSize("normal");
-          font-weight: 550;
-          text-decoration: none;
-          text-align: center;
-          letter-spacing: 0.5px;
-          cursor: pointer;
-          align-items: center;
-          justify-content: center;
-          border-top: 1px solid $instaGray;
-        }
-
-        .otherProfile_post_clickOn {
-          color: $instaMenuBlack;
-          text-decoration: none;
-        }
-
-        .otherProfile_post_clickOff {
-          color: $instaMenuGray;
-          text-decoration: none;
-        }
+      .otherProfile_recomBox_moreBtn {
+        display: block;
+        background: 0;
+        overflow: hidden;
+        padding: 16px 8px;
+        border: none;
+        cursor: pointer;
+        right: 0;
+        color: $instaMenuGray;
       }
+    }
+  }
 
+  .otherProfile_post_dir {
+    display: flex;
+    width: 920px;
+    justify-content: center;
+    margin: auto;
+    border-top: 1px solid $instaGray;
+
+    .otherProfile_post_clicked {
+      display: flex;
+      width: 65px;
+      height: 52px;
+      line-height: 48px;
+      margin-right: 65px;
+      color: $instaMenuBlack;
+      @include fontSize("normal");
+      font-weight: 550;
+      text-decoration: none;
+      text-align: center;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid $instaMenuGray;
     }
 
+    .otherProfile_post_unclicked {
+      display: flex;
+      width: 65px;
+      height: 52px;
+      line-height: 48px;
+      margin-right: 65px;
+      color: $instaMenuGray;
+      @include fontSize("normal");
+      font-weight: 550;
+      text-decoration: none;
+      text-align: center;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid $instaGray;
+    }
+
+    .otherProfile_post_clickOn {
+      color: $instaMenuBlack;
+      text-decoration: none;
+    }
+
+    .otherProfile_post_clickOff {
+      color: $instaMenuGray;
+      text-decoration: none;
+    }
+  }
+
+}
 
 
+//프로필 사진 변경 모달 위치
+.imageChange_modal {
+  margin-left: 500px;
+}

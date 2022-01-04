@@ -1,0 +1,46 @@
+@import "./src/common/mixin";
+@import "./src/common/variables";
+@import "./src/common/cardStyle";
+
+
+//HeaderNotification
+
+.header_notification{
+  color: $instaMenuBlack;
+}
+
+//HeaderNotification Card css
+.notification_post, .notification_follow{
+  display: flex;
+  margin: 15px 0 0 15px;
+
+  & .noti_profile_img img {
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+  }
+
+  & .noti_post_like{
+    @include fontSize('large');
+    line-height: 45px;
+    margin-left: 10px;
+    & .noti_user{
+      font-weight: 600;
+    }
+    & .noti_time {
+      color: $instaMenuGray;
+      margin-left: 5px;
+    }
+  }
+
+  & .noti_post_picture img {
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    margin-left: 40px;
+  }
+
+  & .noti_button {
+    margin: 5px 0 0 10px;
+  }
+}

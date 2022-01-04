@@ -16,8 +16,8 @@ import AddPost from "./components/Post/PostWrite/AddPost";
 import PostDetail from "./components/Post/PostDetail/PostDetail";
 import Profile from "./components/Page/Profile/Profile";
 import EditUser from "./components/Page/User/EditUser/EditUser";
-import {getProfile} from "./redux/user/user";
 import SearchHash from "./components/Page/Header/HeaderSearch/SearchHash";
+import Notification from "./components/Main/notification";
 
 
 const CustomRouter = ({history, ...props}) => {
@@ -45,19 +45,11 @@ function App() {
   const token = localStorage.getItem("user")
   const write_modal = useSelector(state => state.modal.add_modal);
 
-  const userInfo = useSelector(state => state.user.user);
 
-  //내정보 불러오기
-  // useEffect(() => {
-  //   if (token) {
-  //     dispatch(getProfile());
-  //   }
-  // }, [dispatch]);
 
 
   //헤더 띄우기용
   const show_header = is_login || token;
-
 
   return (
 
@@ -65,6 +57,7 @@ function App() {
       <Suspense fallback={<div>Loading</div>}>
         <CustomRouter history={history}>
           {show_header && <Header/>}
+          {show_header && <Notification/>}
           {write_modal && <AddPost/>}
           <Routes>
             <Route path="/" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
@@ -76,7 +69,9 @@ function App() {
             <Route path="/postdetail/:postId" element={<RequireAuth redirectTo="/login"> <PostDetail/> </RequireAuth>}/>
             <Route path="/accounts/signup" element={<RejectAuth redirectTo="/"> <SignUp/> </RejectAuth>}/>
             <Route path="/postform" element={<RequireAuth redirectTo="/login"> <AddPost/> </RequireAuth>}/>
-            <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
+            <Route path="/direct/*" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}>
+              <Route path=":Room" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
+            </Route>
             <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser/> </RequireAuth>}/>
             <Route path="/profile/*" element={<RequireAuth redirectTo="/login"> <Profile/></RequireAuth>}>
               <Route path=":user_Id" element={<RequireAuth redirectTo="/login"> <Profile/> </RequireAuth>}/>
@@ -87,7 +82,6 @@ function App() {
             <Route path="/searchhash/*" element={<RequireAuth redirectTo="/login"> <SearchHash/> </RequireAuth>}>
               <Route path=":searchResult" element={<RequireAuth redirectTo="/login"><SearchHash/> </RequireAuth>}/>
             </Route>
-
 
           </Routes>
 

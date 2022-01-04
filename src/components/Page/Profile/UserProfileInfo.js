@@ -18,10 +18,10 @@ import {BsFillPersonCheckFill} from "react-icons/bs";
 
 import {FaUserCheck, FaChevronCircleRight} from "react-icons/fa";
 import {getFollower, userFollow} from "../../../redux/user/user";
-import UserFollower from "./Follow/UserFollower";
-import UserFollow from "./Follow/UserFollow";
+import UserFollower from "../User/Follow/UserFollower";
+import UserFollow from "../User/Follow/UserFollow";
 import {useLocation} from "react-router";
-import AskFollowModal from "./AskFollowModal";
+import AskFollowModal from "../User/Follow/AskFollowModal";
 
 
 const OtherProfile = ({
@@ -56,6 +56,11 @@ const OtherProfile = ({
   const [isFollowing, SetIsFollowing] = useState(false);
   const [followerCount, SetFollowerCount] = useState(totalFollower);
 
+
+  const [askModal, SetAskModal] = useState(false);
+  const askFollowClickHandler = () => {
+    SetAskModal(true);
+  }
   useEffect(() => {
     SetFollowerCount(totalFollower);
     dispatch(getFollower({
@@ -67,7 +72,7 @@ const OtherProfile = ({
     } else {
       SetIsFollowing(false);
     }
-  }, [dispatch, totalFollower, my_follow, location]);
+  }, [dispatch, totalFollower, my_follow]);
 
   const followClickHandler = () => {
     SetIsFollowing(!isFollowing);
@@ -81,10 +86,7 @@ const OtherProfile = ({
     }
 
   }
-  const [askModal, SetAskModal] = useState(false);
-  const askFollowClickHandler = () => {
-    SetAskModal(true);
-  }
+
   return (
     <>
       {askModal && <AskFollowModal askModal={askModal} SetAskModal={SetAskModal}
@@ -127,7 +129,7 @@ const OtherProfile = ({
             ) : (
               <div className="otherProfile_header_top">
                 <span>{userId}</span>
-                <span className="otherProfile_header_following" onClick={followClickHandler}>
+                <span className="otherProfile_header_following" onClick={followClickHandler} >
 											<a>팔로우</a>
 										</span>
                 {recomAccountbtn ? (
@@ -158,7 +160,7 @@ const OtherProfile = ({
 									</span>
               {/*팔로워*/}
               <UserFollower totalFollower={followerCount}/>
-              <UserFollow totalFollow={totalFollow}/>
+              <UserFollow totalFollow={totalFollow} isFollowing={isFollowing}/>
             </ul>
             <div className="otherProfile_header_name">
               {name}
