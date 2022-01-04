@@ -200,12 +200,13 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
                   댓글 <span>{commentCount}</span>개 모두 보기</span>
                 )}
               </div>
-              {get_comments && get_comments.map((comment) => (
-              <PostGetComment contents ={comment.contents}
-                              postId={comment.postId}
-                              writer={comment.writer}
-                              commentId={comment._id}
-                              isLike={comment.isLike}/>
+              {get_comments && get_comments.map((comment, idx) => (
+              <PostGetComment key={idx}
+                contents ={comment.contents}
+                postId={comment.postId}
+                writer={comment.writer}
+                commentId={comment._id}
+                isLike={comment.isLike}/>
             ))}
             <div className="post_time">{time}</div>
             <div className="postDetail_postComment">
