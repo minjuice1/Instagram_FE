@@ -132,9 +132,11 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
         <div className="post_card">
           <div className="post_header">
             <div className="profile_img">
-              <img className="post_user_image" src={user_img}/>
-
-              <div className="post_user_id" onClick={UserProfileClickHandler}>{writer[0].userId}</div>
+              <div className="post_userBox">
+                <img className="post_user_image" src={user_img}/>
+                <div className="post_user_id" onClick={UserProfileClickHandler}>{writer[0].userId}</div>
+              </div>
+              
               <div className="profile_img_dot" onClick={show_postOptionModal}>
                <img src={dot}/>
               </div>

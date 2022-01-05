@@ -20,8 +20,6 @@ const Main = () => {
   // 무한 스크롤
   const [page, setPage] = useState(1);
 
-	
-
   useEffect(() => {
 		const pageSection = "fristPage";
     dispatch(loading(true));
