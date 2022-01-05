@@ -34,11 +34,12 @@ export const addPost = createAsyncThunk(
 
 export const getPost = createAsyncThunk(
   "post/getPost",
-  async (data, thunkAPI) => {
+  async (page, data, thunkAPI) => {
+    console.log(page);
     const AccessToken = localStorage.getItem("user")
     try {
       const response = await Api({
-        url: `/post`,
+        url: `/post?page=${page}`,
         method: "GET",
         headers: {
           Authorization: `Bearer ${AccessToken}`,
