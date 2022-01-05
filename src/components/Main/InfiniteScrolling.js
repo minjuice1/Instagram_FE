@@ -12,22 +12,20 @@ export default function InfiniteScrolling(page) {
   const [posts, setPosts] = useState([])
   const [hasMore, setHasMore] = useState(false);
 
-  const fetchPosts = async () => {
-    setLoading(true);
-    // const res = await dispatch(getPost(page));
-    console.log(res);
-    console.log(page);
-    setPosts((prevPosts) => [...prevPosts, ...res.payload.posts]);
-    setHasMore(res.payload.posts.length > 0)
-    setLoading(false);
-  };
-
-  fetchPosts();
+  // const fetchPosts = async () => {
+  //   setLoading(true);
+  //   const res = await dispatch(getPost(page));
+  //   console.log(res);
+  //   console.log(page);
+  //   setPosts((prevPosts) => [...prevPosts, ...res.payload.posts]);
+  //   setHasMore(res.payload.posts.length > 0)
+  //   setLoading(false);
+  // };
 
   // useEffect(() => {
   //   fetchPosts();
   // }, [fetchPosts, page])
-  console.log(page);
+  // console.log(page);
 
   return { loading, posts, hasMore }
 }
