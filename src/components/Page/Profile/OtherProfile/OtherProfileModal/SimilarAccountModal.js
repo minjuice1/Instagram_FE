@@ -23,7 +23,7 @@ const FollowersModal = () => {
 							<div>비슷한 계정</div>
 							<button onClick={cancleClickHandler}>X</button>
 						</div>
-						<div className="following_category"></div>
+						<div className="following_category"/>
 						<div className="following_listBox">
 							<ul>
 								<div>

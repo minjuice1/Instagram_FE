@@ -14,7 +14,7 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
   const navigate = useNavigate();
 
   // userId 추출
-  const userId = writer[0] ?
+  const id = writer[0] ?
     (writer[0].userId) :
     (writer.userId);
 
@@ -24,7 +24,7 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
 
   //유저 정보 프로필 클릭해서 들어가기
   const UserProfileClickHandler = () => {
-    navigate(`/profile/${userId}`,{state: userId, replace: true})
+    navigate(`/profile/${id}/posts`,{state: id});
   }
     
   // 댓글 좋아요
@@ -43,7 +43,7 @@ const PostGetComment = ({contents, writer, postId, commentId, isLike}) => {
     <>
       <div className="post_comment">
         <div className="post_one_comment">
-          <div> <span onClick={UserProfileClickHandler}>{userId}</span>  <a>{contents}</a> </div>
+          <div> <span onClick={UserProfileClickHandler}>{id}</span>  <a>{contents}</a> </div>
           {isLike ? (
             <img src={comment_red_heart} onClick={commentLikeClickHandler}/>
             ) : (

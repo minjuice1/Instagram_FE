@@ -7,12 +7,14 @@ import {randomPost} from "../../../../redux/post/post";
 const Recommendation = () => {
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(randomPost())
-  },[dispatch])
+  }, [dispatch])
 
-  const random_list = useSelector(state=>state.post.randomPosts);
 
+  const random_list = useSelector(state => state.post.randomPosts);
+  console.log(random_list)
 
   return (
     <>
@@ -20,12 +22,12 @@ const Recommendation = () => {
         <div className="recommendation">
           {random_list && random_list.map((random) => (
             <RecommendCard
-            _id={random._id}
-            imageUrl={random.imageUrl}
-            likeCount={random.likeCount}
-            commentCount={random.commentCount}
+              _id={random._id}
+              imageUrl={random.imageUrl}
+              likeCount={random.likeCount}
+              commentCount={random.commentCount}
             />
-            ))}
+          ))}
 
         </div>
       </div>

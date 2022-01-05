@@ -38,7 +38,7 @@ const HeaderSearchCard = ({name, userId, profileImage, tagName, postCount}) => {
           <div>
             <a>{tagName}<br/></a> <a>게시물 {postCount}</a>
           </div>
-         </div>}
+        </div>}
       </div>
     </>
   )

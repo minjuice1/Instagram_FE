@@ -1,0 +1,78 @@
+@import "../../../common/variables";
+@import "../../../common/mixin";
+
+.mobile_profile{
+  display: none;
+}
+
+@include mobile(){
+  .otherProfile_profileBox{
+    display: none;
+  }
+  .mobile_profile{
+    display: contents;
+    .mobile_header{
+      display: flex;
+      & > img {
+        width: 80px;
+        height: 80px;
+        border-radius: 80px;
+        border: 1px solid $instaGray;
+      }
+      .mobile_header_top{
+        margin-left: 20px;
+        font-size: 28px;
+        font-weight: 300;
+        color: $instaMenuBlack;
+        display: flex;
+        & > div {
+          margin-right: 20px;
+        }
+        .otherProfile_settings{
+          margin-top: 8px;
+        }
+        }
+      .mobile_follow{
+        position: absolute;
+        .mobile_following{
+          @include buttonStyle("blue");
+          width: 210px;
+          margin-left: 100px;
+          margin-top: 50px;
+        }
+        .mobile_unfollow{
+          margin-left: 100px;
+          margin-top: 50px;
+          .mobile_direct{
+            @include buttonStyle("white");
+            width: 100px;
+          }
+          .mobile_ask_unfollow{
+            @include buttonStyle("white");
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    .mobile_header_mid{
+      display: flex;
+      margin-top: 30px;
+      margin-left: -60px;
+      height: 60px;
+      justify-content: space-around;
+      border-top: 1px solid $instaGray;
+      border-bottom: 1px solid $instaGray;
+      width: 130%;
+    }
+    &> div {
+      @include fontSize('large');
+      color: $instaMenuGray;
+      padding-top: 10px;
+      & > div:first-child > div {
+        color: $instaMenuBlack;
+        font-weight: 600;
+        padding-left: 15px;
+      }
+    }
+  }
+}

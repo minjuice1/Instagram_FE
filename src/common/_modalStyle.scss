@@ -4,7 +4,7 @@
 //FollowerModal, FollowModal, AskFollowModal, NewMessageModal css
 
 //팔로우, 팔로워 컨테이너
-.modal_common_container {
+.modal_common_container, .modal_follower_container {
   width: 405px;
   height: 405px;
   background: $instaWhite;
@@ -12,28 +12,30 @@
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   position: absolute;
   z-index: 100;
-  margin : 50px;
-  
+  margin: 50px;
+
 
   .modal_common_header {
     font-weight: 600;
-    border-bottom:  1px solid $instaGray;
+    border-bottom: 1px solid $instaGray;
     height: 40px;
     line-height: 40px;
     display: flex;
     justify-content: flex-end;
 
 
-    & > span:first-child{
+    & > span:first-child {
       margin-right: 140px;
     }
+
     & > span:nth-child(2) {
       margin-right: 15px;
       margin-top: 7px;
       cursor: pointer;
     }
   }
-  .modal_content{
+
+  .modal_content {
 
   }
 }
@@ -47,23 +49,26 @@
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   position: absolute;
   z-index: 100;
-  margin : 50px;
+  margin: 50px;
 
-  .modal_common_header{
+  .modal_common_header {
     text-align: center;
     margin-top: 20px;
     height: 190px;
+
     & > img {
       width: 100px;
       height: 100px;
       border-radius: 100px;
       margin: 10px 0 10px 0;
     }
+
     & div {
       @include fontSize("large");
     }
   }
-  .modal_common_card{
+
+  .modal_common_card {
     @include fontSize('large');
     font-weight: 600;
     text-align: center;
@@ -73,12 +78,14 @@
       height: 50px;
       line-height: 50px;
     }
-    & div:first-child{
+
+    & div:first-child {
       color: $instaRed;
 
     }
   }
 }
+
 //다이렉트 메세지 NewMessageModal.js
 .new_message {
   width: 405px;
@@ -91,41 +98,48 @@
   margin: 5% 0 0 40%;
 
 
-  .new_message_header{
+  .new_message_header {
     display: flex;
     justify-content: space-between;
     height: 45px;
     border-bottom: 1px solid $instaGray;
+
     & > img {
       width: 25px;
       height: 23px;
       margin: 10px;
     }
+
     & > a {
       font-weight: bold;
       margin: 10px;
     }
-    .message_next{
+
+    .message_next {
       color: $instaBeforeBlue;
       @include fontSize('large');
       margin: 12px 13px 0 0;
     }
   }
 
-  .message_search{
+  .message_search {
     border-bottom: 1px solid $instaGray;
     overflow-y: scroll;
     overflow-x: hidden;
-    .check_user{
+
+    .check_user {
       display: flex;
 
     }
-    & > div:first-child{
+
+    & > div:first-child {
       font-weight: bold;
-      margin : 10px;
+      margin: 10px;
     }
+
     & > div:nth-child(2) {
       height: 40px;
+
       & > label > input {
         border: none;
         height: 100%;
@@ -133,7 +147,7 @@
         outline: none;
         padding-left: 10px;
 
-        &::placeholder{
+        &::placeholder {
           color: $instaLightGray;
           @include fontSize('large');
           padding-left: 15px;
@@ -142,19 +156,7 @@
 
     }
   }
-
-  .message_recommend {
-
-    //&> div:first-child{
-    //  @include fontSize('large');
-    //  font-weight: 600;
-    //  margin: 13px;
-    //}
-  }
-
-
 }
-
 
 
 //공통포함 overlay
@@ -171,3 +173,26 @@
 
 }
 
+@include mobile(){
+  .modal_common_container{
+    width: 405px;
+    height: 405px;
+    background: $instaWhite;
+    border-radius: 15px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 100;
+    margin: 0 50px 50px -350px;
+  }
+  .modal_follower_container{
+    width: 405px;
+    height: 405px;
+    background: $instaWhite;
+    border-radius: 15px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 100;
+    margin: 0 50px 50px -180px;
+  }
+
+}

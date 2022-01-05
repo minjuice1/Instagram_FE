@@ -11,7 +11,7 @@
 .recommendation {
   display: grid;
   grid-template-columns: repeat(3, minmax(20px, max-content));
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 10px;
   position: relative;
 
@@ -26,6 +26,7 @@
 //랜덤 포스트 카드
 .recommendCard {
   width: 20vw;
+  max-width: 295px;
   height: auto;
   min-width: 150px;
   min-height: 150px;
@@ -33,18 +34,22 @@
   .hoverRecommend {
     display: none;
   }
+
   .recommendImage {
     width: 100%;
     height: 100%;
+
     & > img {
       width: 100%;
       height: 100%;
+
       &:hover {
         filter: brightness(70%);
         z-index: 0;
       }
     }
   }
+
   &:hover {
     position: relative;
     z-index: 0;
@@ -55,21 +60,64 @@
       font-size: 20px;
       color: $instaWhite;
       z-index: 99;
-      margin: -170px auto auto 90px;
+      margin: -60% auto auto 32%;
 
       & > img {
         width: 20px;
       }
     }
   }
-
-
 }
 
 @include mobile {
   .recom {
     margin: 0;
   }
+  .recommendCard {
+    width: 20vw;
+    max-width: 295px;
+    height: auto;
+    min-width: 150px;
+    min-height: 150px;
+
+    .hoverRecommend {
+      display: none;
+    }
+
+    .recommendImage {
+      width: 100%;
+      height: 100%;
+
+      & > img {
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+          filter: brightness(70%);
+          z-index: 0;
+        }
+      }
+    }
+
+    &:hover {
+      position: relative;
+      z-index: 0;
+
+      .hoverRecommend {
+        display: block;
+        position: absolute;
+        font-size: 20px;
+        color: $instaWhite;
+        z-index: 99;
+        margin: -63% auto auto 22%;
+
+        & > img {
+          width: 20px;
+        }
+      }
+    }
+  }
+
 }
 
 @include tablet {

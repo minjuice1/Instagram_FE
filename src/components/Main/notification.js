@@ -4,7 +4,6 @@ import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import "./_Socket.scss";
 import {none_profile} from "../../common/IconImage";
-import {Link} from "react-router-dom";
 import {useNavigate} from "react-router";
 
 
