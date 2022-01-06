@@ -25,8 +25,8 @@
 	.postDetail_container {
 		display: flex;
 		margin: 20px auto auto auto ;
-		width: 70vw;
-		height: 93vh;
+		width: 63vw;
+		height: 95vh;
 		justify-content: center;
 
 		.postDetail_leftsideBox {
@@ -99,6 +99,7 @@
 					height: 100%;
 					overflow-x: hidden;
 					position: relative;
+					overflow-y: hidden;
 
 						.postDetail_Reply_liked {
 
@@ -171,30 +172,10 @@
  }
 }
 
-@include desktop {
-  .postDetail_leftsideBox {
-    width: 65%;
-  }
-
-  .postDetail_rightsideBox {
-    width: 30%;
-  }
-}
-
+//반응형 사이즈
 @include tablet {
-  .postDetail_leftsideBox {
-    width: 55%;
-  }
-  .postDetail_rightsideBox {
-    width: 40%;
-  }
 }
 
 @include mobile {
-  .postDetail_leftsideBox {
-    width: 50%;
-  }
-  .postDetail_rightsideBox {
-    width: 45%;
-  }
+
 }

@@ -1,24 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import {
-  deletePost,
-  getLikeList,
-  getPost,
-  getPostDetail,
-  getUserPost,
-  savedPost,
-  likePost,
-  randomPost,
-} from "./post";
-import {
-  addComment,
-  deleteComment,
-  likedComment,
-  addReplyComment,
-  deleteReplyComment,
-  likedReplyComment,
-  getLikedListComment,
-} from "./comment";
+import { deletePost, getLikeList, getPost, getPostDetail, getUserPost, savedPost, likePost, randomPost, } from "./post";
+import { addComment, deleteComment, likedComment, addReplyComment, deleteReplyComment, likedReplyComment, getLikedListComment,} from "./comment";
 
 const postSlice = createSlice({
   name: "post",

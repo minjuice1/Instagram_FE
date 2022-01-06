@@ -25,7 +25,6 @@ const Main = () => {
     dispatch(loading(true));
     dispatch(getPost(page, pageSection));
     setPage(page + 1);
-		console.log(pageSection);
   }, []);
 
   const observerRef = useRef();
@@ -39,13 +38,11 @@ const Main = () => {
         dispatch(loading(true));
         dispatch(getPost(page, pageSection));
         setPage((page) => page + 1);
-				console.log(pageSection);
       }
     });
     node && observerRef.current.observe(node);
   };
 
-	console.log(post_data.length);
   return (
     <>
       <div className="container">

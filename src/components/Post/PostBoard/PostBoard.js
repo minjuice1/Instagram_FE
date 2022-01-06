@@ -23,8 +23,6 @@ const PostBoard = () => {
 	const dispatch = useDispatch();
 	const {postId} = useParams();
 
-	console.log(postId);
-
 	// main이랑 path로 action 구분
 	const path = "postDetail";
 
@@ -32,12 +30,10 @@ const PostBoard = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
-  console.log(post_list);
-	console.log(myId);
+  // console.log(post_list);
   // console.log(postDetail);
 
   const id = postDetail && postDetail.writer.userId;
-  console.log(id);
 
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);

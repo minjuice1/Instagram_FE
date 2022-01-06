@@ -27,28 +27,27 @@ const PostDetail = () => {
 	const path = "postDetail";
 
 	const postDetail = useSelector((state) => state.post.postDetail[0]);
-	console.log(postDetail);
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
-	console.log(postDetail);
 
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
 	// console.log(postDetail);
 
-	// 무한 스크롤
-  const [page, setPage] = useState(1);
-
+	const [page, setPage] = useState(1);
 	useEffect(() => {
-		// const pageSection = "fristPage";
-    dispatch(getPostDetail(page, postId));
+		console.log(page);
+    dispatch(getPostDetail(postId, page));
+		
   }, []);
-
+	
+	
 	// 포스트 좋아요
 
 	const postLikeClickHandler = () => {
 		const _id = postDetail.writer._id
+
 		console.log(_id)
     dispatch(
       likePost({
