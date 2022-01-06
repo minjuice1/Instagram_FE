@@ -12,9 +12,9 @@ import PostOptionModal from './PostOptionModal';
 
 // css
 import "./PostDetail.scss";
-import { BiDotsHorizontalRounded, BiX } from "react-icons/bi";
+import { BiDotsHorizontalRounded, BiX, BiPlusCircle } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
-import { replyReducer } from '../../../redux/post/postSlice';
+import { loading, replyReducer } from '../../../redux/post/postSlice';
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 
 const PostDetail = () => {	
@@ -34,17 +34,29 @@ const PostDetail = () => {
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
 	// console.log(postDetail);
+	console.log(comments);
+	console.log(comments.length);
 
+	// 페이지 네이션
 	const [page, setPage] = useState(1);
+
 	useEffect(() => {
-		console.log(page);
-    dispatch(getPostDetail(postId, page));
-		
+		const pageSection = "fristPage";
+		dispatch(loading(true));
+    dispatch(getPostDetail({postId, page, pageSection}));
+		setPage(page + 1);
+		console.log("1페이지")
   }, []);
-	
+
+	const paginationHandler = () => {
+		const pageSection = "more";
+		dispatch(loading(true));
+    dispatch(getPostDetail({postId, page, pageSection}));
+		setPage(page + 1);
+		console.log("more페이지")
+	}
 	
 	// 포스트 좋아요
-
 	const postLikeClickHandler = () => {
 		const _id = postDetail.writer._id
 
@@ -173,6 +185,12 @@ const PostDetail = () => {
 										childComments={comment.childComments} profileImage={comment.writer.profileImage} myId={myId}
 										/>
 									))}
+									<div className="postDetail_commentMore">
+										{(comments.length % 10 === 0) && (
+											<button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
+										)}
+									
+									</div>
 									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
 							</div>
 						

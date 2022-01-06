@@ -5,7 +5,6 @@ import SideMain from "./Side/SideMain";
 import "./Main.scss";
 import MainStory from "./MainStory/MainStory";
 import { useDispatch, useSelector } from "react-redux";
-import PostModal from "../Post/PostModal/PostModal";
 import { getPost } from "../../redux/post/post";
 import PostLikeModal from "../Post/PostModal/PostLikeModal";
 import { loading } from "../../redux/post/postSlice";
@@ -21,10 +20,14 @@ const Main = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-		const pageSection = "fristPage";
-    dispatch(loading(true));
-    dispatch(getPost(page, pageSection));
-    setPage(page + 1);
+    if (post_data.length > 0) {
+      return;
+    } else {
+      const pageSection = "fristPage";
+      dispatch(loading(true));
+      dispatch(getPost({page, pageSection}));
+      setPage(page + 1);
+    }
   }, []);
 
   const observerRef = useRef();
@@ -36,7 +39,7 @@ const Main = () => {
       if (entry.isIntersecting) {
         const pageSection = "more";
         dispatch(loading(true));
-        dispatch(getPost(page, pageSection));
+        dispatch(getPost({page, pageSection}));
         setPage((page) => page + 1);
       }
     });

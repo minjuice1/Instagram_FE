@@ -31,7 +31,7 @@ export const addPost = createAsyncThunk(
 
 export const getPost = createAsyncThunk(
   "post/getPost",
-  async (page, pageSection, data, thunkAPI) => {
+  async ({page, pageSection}, data, thunkAPI) => {
     const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
@@ -76,11 +76,10 @@ export const deletePost = createAsyncThunk(
 // 개별 페이지 불러오기
 export const getPostDetail = createAsyncThunk(
   "post/getPostDetail",
-  async (postId, page, thunkAPI) => {
+  async ({postId, page, pageSection}, thunkAPI) => {
     console.log(page);
     const AccessToken = localStorage.getItem("user");
     try {
-      console.log(page);
       const response = await Api({
         url: `/post/${postId}?page=${page}`,
         method: "GET",
@@ -92,7 +91,7 @@ export const getPostDetail = createAsyncThunk(
       // if (response.data.ok) {
       //   thunkAPI.dispatch(getUserPost(response.data.post[0].writer.userId));
       // }
-      return response.data;
+      return { data: response.data, pageSection: pageSection };
     } catch (e) {
       console.log("getPostDetail 에러");
       return false;
