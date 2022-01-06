@@ -37,6 +37,8 @@ const DirectMessage = () => {
   return(
     <>
       {newMessage && <NewMessageModal SetNewMessage={SetNewMessage}/>}
+      <div className="container">
+        <div className="container_top_wrapper"/>
       <div className="insta_layout">
         <div className="direct_message">
           <div className="direct_myInfo">
@@ -53,6 +55,9 @@ const DirectMessage = () => {
 
         </div>
       </div>
+        <div className="container_bottom_wrapper"/>
+      </div>
+
 
     </>
   )

@@ -1,5 +1,5 @@
-import React, {createRef, useCallback, useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect} from 'react';
+import {useDispatch} from "react-redux";
 import {useState} from "react";
 import {addPost} from "../../../redux/post/post";
 import {useDropzone} from 'react-dropzone';
@@ -33,7 +33,7 @@ const AddPost = () => {
   }
 
 
-  const {getRootProps, getInputProps, open, acceptedFiles} = useDropzone({
+  const {getRootProps, getInputProps, open} = useDropzone({
     accept: 'image/*',
     onDrop: acceptedFiles => {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -53,15 +53,14 @@ const AddPost = () => {
   const thumbInner = {
     display: 'flex',
     minWidth: 0,
-    overflow: 'hidden'
+    overflow: 'hidden',
   };
 
   const thumbs = files.map(file => (
     <div className="thumb" key={file.name}>
       <div style={thumbInner}>
-        <img className="img_preview"
-             src={file.preview}
-        />
+        <img className="img_preview_after"
+             src={file.preview} alt="img_preview"/>
       </div>
     </div>
   ));
@@ -71,15 +70,13 @@ const AddPost = () => {
     files.map(file => (
       <div className="thumb" key={file.name}>
         <div style={thumbInner}>
-          <img className="img_preview_after"
-               src={file.preview}
-          />
+          <img className="img_preview"
+               src={file.preview}/>
         </div>
       </div>
     ));
 
   useEffect(() => () => {
-    // Make sure to revoke the data uris to avoid memory leaks
     files.forEach(file => URL.revokeObjectURL(file.preview));
   }, [files]);
 
@@ -127,7 +124,7 @@ const AddPost = () => {
   };
 
   //모달 취소
-  const cancleClickHandler = () => {
+  const cancellationClickHandler = () => {
     dispatch(add_modal());
   }
 
@@ -141,7 +138,7 @@ const AddPost = () => {
         {/*이미지 drag&drop 버튼 클릭해서 등록하기 구현*/}
         <div>
           <div className="add_post_title">
-            <div onClick={cancleClickHandler}><img src={back_arrow} alt="back_arrow"/></div>
+            <div onClick={cancellationClickHandler}><img src={back_arrow} alt="back_arrow"/></div>
             <div>새 게시물 만들기</div> <div className="write_end" onClick={postWriteClickHandler}>등록하기</div>
           </div>
 
@@ -175,7 +172,7 @@ const AddPost = () => {
 
         </div>
       </section>
-      <div className="add_overlay" onClick={cancleClickHandler}>
+      <div className="add_overlay" onClick={cancellationClickHandler}>
 
       </div>
 
@@ -190,7 +187,7 @@ const AddPost = () => {
           <div className="add_post_title">
             {noneImage ?
               <div className="add_image">
-                <div onClick={cancleClickHandler}><img src={back_arrow} alt="back_arrow"/></div>
+                <div onClick={cancellationClickHandler}><img src={back_arrow} alt="back_arrow"/></div>
                 <div>미리보기</div>
                 <div onClick={addNextClickHandler}>다음</div>
               </div> :
@@ -214,7 +211,7 @@ const AddPost = () => {
 
         </div>
       </section>
-      <div className="add_overlay" onClick={cancleClickHandler}>
+      <div className="add_overlay" onClick={cancellationClickHandler}>
 
       </div>
 

@@ -46,28 +46,31 @@ const SearchHash = () => {
 
   return(
     <>
+      <div className="container">
       <div className="search_hash">
         <div className="search_hash_header">
           <img src={test_image} alt="search_hashtag"/>
           <div>
             <div>{hash_tag.hashtag}</div>
             <div>게시물 <a>{hash_tag.postCount}</a></div>
-            {hashTag ?  <button onClick={hashTagFollowClickHandler}>팔로잉</button> :
-              <button onClick={hashTagFollowClickHandler}>팔로우</button>}
+            {hashTag ?  <button className="following_button" onClick={hashTagFollowClickHandler}>팔로잉</button> :
+              <button className="follow_button_style" onClick={hashTagFollowClickHandler}>팔로우</button>}
            
           </div>
 
         </div>
 
         <div className="hash_posts">
+          <div className="hash_post_result">
           {hash_result && hash_result.map((posts) => (
             <SearchHashCard
            posts={posts}/>
           ))}
+          </div>
 
         </div>
       </div>
-
+      </div>
     </>
   )
 }

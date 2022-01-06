@@ -18,6 +18,8 @@ const Recommendation = () => {
 
   return (
     <>
+      <div className="container">
+        <div className="container_top_wrapper"/>
       <div className="recom">
         <div className="recommendation">
           {random_list && random_list.map((random) => (
@@ -28,7 +30,7 @@ const Recommendation = () => {
               commentCount={random.commentCount}
             />
           ))}
-
+        </div>
         </div>
       </div>
     </>
