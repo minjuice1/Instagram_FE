@@ -34,7 +34,7 @@
 			border-right: none;
 
 				& > img {
-					object-fit: contain;
+					object-fit: fill;
 					height: 100%;
 					width: 100%;
 				}
@@ -222,7 +222,7 @@
 			margin-top: 10px;
 
 			& > img {
-				object-fit: cover;
+				object-fit: fill;
 			}
 		}
 		.postBoard_rightsideBox {

@@ -136,17 +136,17 @@ const PostBoard = () => {
 
 				{/* 반응형 모바일 사이즈에만 적용 */}
 				<div className="postBoard_header mobileBox">
-				<div className="postBoard_header mobile">
-					<div className="postBoard_header_pic" onClick={UserProfileClickHandler}>
-							<img src={user_img} alt="pp" />
+					<div className="postBoard_header mobile">
+						<div className="postBoard_header_pic" onClick={UserProfileClickHandler}>
+								<img src={user_img} alt="pp" />
+						</div>
+						<div className="postBoard_header_userId">
+							<span onClick={UserProfileClickHandler}>{id}</span> * <span> 팔로잉</span>
+						</div>
+						<div className="postBoard_header_btn" onClick={show_postOptionModal}>
+							<BiDotsHorizontalRounded size={25} />
+						</div>
 					</div>
-					<div className="postBoard_header_userId">
-						<span onClick={UserProfileClickHandler}>{id}</span> * <span> 팔로잉</span>
-					</div>
-					<div className="postBoard_header_btn" onClick={show_postOptionModal}>
-						<BiDotsHorizontalRounded size={25} />
-					</div>
-				</div>
 				</div>
 				
 
