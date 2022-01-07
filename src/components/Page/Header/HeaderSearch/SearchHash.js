@@ -1,10 +1,11 @@
 import test_image from "../../../../image/hash_test_image.png";
 import "./_SearchHash.scss";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation, useParams} from "react-router";
 import {hashFollow, SearchHashResult} from "../../../../redux/search/search";
 import ProfilePosts from "../../Profile/CommonProfile/ProfilePosts";
+import SearchHashCard from "./SearchHashCard";
 
 
 const SearchHash = () => {
@@ -16,16 +17,23 @@ const SearchHash = () => {
   const current = decodeURI(window.location.href);
   const search = current.split("searchhash/")[1];
   let HashResult = search && search.replace('#', '%23');
+  const hash_result = useSelector(state=>state.search.posts);
+  const hash_tag = useSelector(state=>state.search.searchHashtag);
 
-  useEffect(()=>{
+  console.log(hash_tag)
+
+  const [hashTag, SetHashTag] = useState(false);
+  useEffect(() => {
     dispatch(SearchHashResult({
       HashResult
     }))
+    if(hash_tag.isFollow){
+      SetHashTag(true);
+    }else{
+      SetHashTag(false);
+    }
   },[dispatch,location])
 
-
-  const hash_result = useSelector(state=>state.search.posts);
-  const hash_tag = useSelector(state=>state.search.searchHashtag);
 
 
 
@@ -33,35 +41,36 @@ const SearchHash = () => {
     dispatch(hashFollow({
       HashResult
     }))
+    SetHashTag(hashTag => !hashTag);
   }
 
   return(
     <>
+      <div className="container">
       <div className="search_hash">
         <div className="search_hash_header">
           <img src={test_image} alt="search_hashtag"/>
           <div>
             <div>{hash_tag.hashtag}</div>
             <div>게시물 <a>{hash_tag.postCount}</a></div>
-            {hash_tag && hash_tag.isFollow ?  <button onClick={hashTagFollowClickHandler}>팔로잉</button> :
-              <button onClick={hashTagFollowClickHandler}>팔로우</button>}
+            {hashTag ?  <button className="following_button" onClick={hashTagFollowClickHandler}>팔로잉</button> :
+              <button className="follow_button_style" onClick={hashTagFollowClickHandler}>팔로우</button>}
            
           </div>
 
         </div>
 
         <div className="hash_posts">
+          <div className="hash_post_result">
           {hash_result && hash_result.map((posts) => (
-            <ProfilePosts
-            commentCount={posts.commentCount}
-            imageUrl={posts.imageUrl}
-            likeCount={posts.likeCount}
-            _id={posts._id}/>
+            <SearchHashCard
+           posts={posts}/>
           ))}
+          </div>
 
         </div>
       </div>
-
+      </div>
     </>
   )
 }

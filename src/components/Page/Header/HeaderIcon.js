@@ -33,6 +33,7 @@ const HeaderIcon = () => {
           SetMyProfile(false);
         }
       }
+
       document.addEventListener("mousedown", handleClickOutside);
 
       return () => {
@@ -49,6 +50,7 @@ const HeaderIcon = () => {
           SetLike(false);
         }
       }
+
       document.addEventListener("mousedown", handleClickOutside);
 
       return () => {
@@ -59,7 +61,7 @@ const HeaderIcon = () => {
 
   useEffect(() => {
     dispatch(getProfile())
-  },[dispatch])
+  }, [dispatch])
 
   const likeSideRef = useRef(null);
   LikeOutsideClick(likeSideRef);
@@ -74,17 +76,17 @@ const HeaderIcon = () => {
   }
 
   const myProfileClickHandler = () => {
-    SetMyProfile(!myProfile);
+    SetMyProfile(myProfile => !myProfile);
     SetHomeIcon(false);
     SetCompassIcon(false);
   }
   const homeClickHandler = () => {
-    SetHomeIcon(!homeIcon);
+    SetHomeIcon(homeIcon => !homeIcon);
     SetCompassIcon(false);
     navigate("/");
   }
   const recommendClickHandler = (event) => {
-    SetCompassIcon(!compassIcon);
+    SetCompassIcon(compassIcon => !compassIcon);
     SetHomeIcon(false);
     navigate("/recom");
   }
@@ -99,7 +101,6 @@ const HeaderIcon = () => {
   const my_img = profile_img && profile_img ? profile_img : none_profile;
 
   //내정보 불러오기
-
   const directClickHandler = () => {
     navigate(`/direct`)
   }
@@ -110,7 +111,7 @@ const HeaderIcon = () => {
       <div className="header_icon">
         {homeIcon ? <div className="nav_icon"><img src={blackhome} alt="nav_icon" onClick={homeClickHandler}/></div> :
           <div className="nav_icon"><img src={home} alt="nav_icon" onClick={homeClickHandler}/></div>}
-          <div className="nav_icon" onClick={directClickHandler}><img src={message} alt="nav_icon"/></div>
+        <div className="nav_icon" onClick={directClickHandler}><img src={message} alt="nav_icon"/></div>
         <div className="nav_icon"><img src={write} alt="nav_icon" onClick={postWriteClickHandler}/></div>
         {compassIcon ?
           <div className="nav_icon"><img src={blackcompass} alt="nav_icon" onClick={recommendClickHandler}/></div> :

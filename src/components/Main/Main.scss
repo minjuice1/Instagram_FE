@@ -1,17 +1,32 @@
 @import "./src/common/variables.scss";
 @import "./src/common/mixin";
+.loading_image {
+  width: 100%;
+  height: 1000px;
+  text-align: center;
+  line-height: 800px;
+}
+
 
 .container {
   background-color: $backgroundGray;
 }
+
+.container_top_wrapper{
+  width: 100%;
+  height: 20px;
+}
+.container_bottom_wrapper{
+  width: 100%;
+  height: 20px;
+}
+
+
 .Main {
   display: grid;
   grid-template-columns: repeat(24, 500px 300px );
   width: 1000px;
   margin: auto;
-  .Main_post {
-
-  }
   .Main_side {
    margin-left: 150px;
   }

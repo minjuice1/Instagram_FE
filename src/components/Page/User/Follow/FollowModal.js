@@ -1,6 +1,6 @@
 // 팔로워 리스트 모달
 
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {following_modal_check} from "../../../../redux/modal/modalSlice";
@@ -30,15 +30,31 @@ const FollowerModal = ({isFollowing}) => {
 
   console.log(a);
 
+  const [people, SetPeople] = useState(true);
+  const [hashTag, SetHashTag]= useState(false);
+
+  const peopleClickHandler = () => {
+    SetPeople(true);
+    SetHashTag(false);
+  }
+  const hashTagClickHandler = () => {
+    SetPeople(false);
+    SetHashTag(true);
+  }
+
 
   return (
     <>
       <div className="modal_common_container">
         <div className="modal_common_header">
-          <span>팔로우</span><span> <img onClick={cancleClickHandler} src={x_img} alt="cancle"/></span>
+          <span>팔로잉</span><span> <img onClick={cancleClickHandler} src={x_img} alt="cancle"/></span>
+        </div>
+        <div className="following_select">
+          <div className={people? "active_people" : "none_people"} onClick={peopleClickHandler}>사람</div>
+          <div className={hashTag? "active_hashTag" : "none_hashTag"} onClick={hashTagClickHandler}>해쉬태그</div>
         </div>
         <div className="modal_common_card">
-          {FollowList && FollowList.map((follow) => (
+          {people && FollowList.map((follow) => (
             <FollowCard
               _id={follow._id}
             name ={follow.name}
@@ -48,6 +64,7 @@ const FollowerModal = ({isFollowing}) => {
               isFollowing={isFollowing}
             />
           ))}
+
 
         </div>
       </div>

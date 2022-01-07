@@ -15,12 +15,19 @@ const UserFollower = ({totalFollower}) => {
 
   return(
     <>
-      {followers_modal && <FollowerModal/>}
+
+        {followers_modal && <FollowerModal/>}
+
          <span
            onClick={show_followers_modal}
            className="otherProfile_followers_modal">
 										팔로워 <span>{totalFollower}</span>
 									</span>
+
+      <div className="mobile_follower_modal" onClick={show_followers_modal}>
+										팔로워
+        <div>{totalFollower}</div>
+									</div>
     </>
   )
 }

@@ -4,29 +4,277 @@
 
 .search_hash_header {
   display: flex;
-  width: 1000px;
-  margin: auto;
+  width: 100%;
+  margin-left: 25%;
+ padding-top: 50px;
+
   & > img {
     width: 150px;
     height: 150px;
     border-radius: 150px;
   }
-  & > div> div:first-child{
-    font-size: 28px;
-    font-weight:  300;
+
+  &> div {
+    margin-left: 30px;
   }
-  & > div> div:nth-child(2) > a {
+
+  & > div > div:first-child {
+    font-size: 28px;
+    font-weight: 300;
+  }
+
+  & > div > div:nth-child(2) > a {
     font-weight: 600;
   }
 
   & > div > button {
     @include buttonStyle("blue");
+    margin-top: 10px;
+    width: 100px;
+  }
+  .following_button{
+    @include buttonStyle("white");
+    margin-top: 10px;
+    width: 100px;
   }
 }
+
+//SearchHashCard.js
+
+
 .hash_posts {
-  margin: auto;
-  display: grid;
-  width: 1000px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-row-gap: 25px;
+  width: 100%;
+  margin-top: 30px;
+  margin-left: 25%;
+
 }
+
+.hash_post_result {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(20px, max-content));
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  position: relative;
+
+  .item {
+    & > img {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
+}
+
+.result_hash {
+  width: 20vw;
+  max-width: 295px;
+  height: auto;
+  min-width: 150px;
+  min-height: 150px;
+  .result_hash_hover {
+    display: none;
+  }
+
+  .result_hash_image {
+    width: 100%;
+    height: 100%;
+
+    & > img {
+      width: 100%;
+      height: 100%;
+
+      &:hover {
+        filter: brightness(70%);
+        z-index: 0;
+      }
+    }
+
+
+  }
+
+  &:hover {
+    position: relative;
+    z-index: 0;
+
+    .result_hash_hover {
+      display: block;
+      position: absolute;
+      font-size: 20px;
+      color: $instaWhite;
+      z-index: 99;
+      margin: -60% auto auto 32%;
+
+      & > img {
+        width: 20px;
+      }
+    }
+  }
+}
+
+@include mobile {
+  .hash_posts {
+    margin: 0;
+  }
+  .result_hash {
+    width: 20vw;
+    max-width: 295px;
+    height: auto;
+    min-width: 150px;
+    min-height: 150px;
+
+    .result_hash_hover {
+      display: none;
+    }
+
+    .result_hash_image {
+      width: 100%;
+      height: 100%;
+
+      & > img {
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+          filter: brightness(70%);
+          z-index: 0;
+        }
+      }
+    }
+
+    &:hover {
+      position: relative;
+      z-index: 0;
+
+      .result_hash_hover {
+        display: block;
+        position: absolute;
+        font-size: 20px;
+        color: $instaWhite;
+        z-index: 99;
+        margin: -63% auto auto 22%;
+
+        & > img {
+          width: 20px;
+        }
+      }
+    }
+  }
+
+}
+
+@include tablet {
+  .hash_posts {
+    margin-left: 10%;
+  }
+}
+
+
+//.hash_posts {
+//  display: grid;
+//  width: 47.9%;
+//  margin: auto;
+//
+//  border: 1px solid blue;
+//  grid-template-columns: repeat(3, minmax(20px, max-content));
+//  grid-template-rows: repeat(4, 1fr);
+//  gap: 10px;
+//  position: relative;
+//  .item {
+//    & > img {
+//      width: 100%;
+//      max-width: 300px;
+//    }
+//
+//}
+//}
+//
+//.result_hash {
+//  width: 20vw;
+//  max-width: 295px;
+//  height: 31vh;
+//  max-height: 295px;
+//  min-width: 150px;
+//  min-height: 150px;
+//
+//  .result_hash_hover {
+//    display: none;
+//  }
+//
+//  .result_hash_image {
+//    width: 100%;
+//    height: 100%;
+//    & > img {
+//      width: 100%;
+//      height: 100%;
+//      &:hover {
+//        filter: brightness(70%);
+//        z-index: 0;
+//      }
+//    }
+//  }
+//
+//  &:hover {
+//    position: relative;
+//    z-index: 0;
+//
+//    .result_hash_hover {
+//      display: block;
+//      position: absolute;
+//      font-size: 20px;
+//      color: $instaWhite;
+//      z-index: 99;
+//      margin: -60% auto auto 32%;
+//
+//      & > img {
+//        width: 20px;
+//      }
+//    }
+//  }
+//}
+
+//@include mobile {
+//  .result_hash {
+//    width: 20vw;
+//    max-width: 295px;
+//    height: auto;
+//    min-width: 150px;
+//    min-height: 150px;
+//
+//    .result_hash_hover {
+//      display: none;
+//    }
+//
+//    .result_hash_image {
+//      width: 100%;
+//      height: 100%;
+//
+//      & > img {
+//        width: 100%;
+//        height: 100%;
+//
+//        &:hover {
+//          filter: brightness(70%);
+//          z-index: 0;
+//        }
+//      }
+//    }
+//
+//    &:hover {
+//      position: relative;
+//      z-index: 0;
+//
+//      .result_hash_hover {
+//        display: block;
+//        position: absolute;
+//        font-size: 20px;
+//        color: $instaWhite;
+//        z-index: 99;
+//        margin: -63% auto auto 22%;
+//
+//        & > img {
+//          width: 20px;
+//        }
+//      }
+//    }
+//  }
+//
+//}

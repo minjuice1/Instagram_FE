@@ -1,7 +1,7 @@
 @import "./variables";
 
 
-
+//미디어쿼리
 @mixin mobile {
 	@media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
 		@content;
@@ -18,6 +18,7 @@
 	}
 }
 
+//폰트사이즈
 @mixin fontSize($size) {
 	@if $size == "small" {
 		font-size: 10px;
@@ -30,6 +31,7 @@
 	}
 }
 
+//버튼스타일
 @mixin buttonStyle($color) {
 	@if $color == "white" {
 		width: 50px;
@@ -37,7 +39,7 @@
 		color: $instaMenuBlack;
 		font-weight: 600;
 		background: $instaWhite;
-		border: 1px solid $instaMenuGray;
+		border: 1px solid $instaGray;
 		border-radius: 5px;
 		@include fontSize('large');
 	} @else if $color == "blue" {
@@ -49,5 +51,14 @@
 		border: none;
 		border-radius: 5px;
 		@include fontSize('large');
+	}
+}
+//프로필사진
+@mixin profilePicture($size){
+	@if $size == "small" {
+		width: 25px;
+		height: 25px;
+		border-radius: 25px;
+		border: 1px solid $instaLightGray;
 	}
 }

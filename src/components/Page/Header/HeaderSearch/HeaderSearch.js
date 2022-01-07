@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
-import {likeList_modal} from "../../../../redux/modal/modalSlice";
 import HeaderSearchResult from "./HeaderSearchResult";
 import "../Header.scss";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {headerSearch} from "../../../../redux/search/search";
-import HeaderSearchCard from "./HeaderSearchCard";
+import search_icon from "../../../../image/icon/search_icon.png";
+
 
 
 const HeaderSearch = () => {
@@ -13,9 +13,10 @@ const HeaderSearch = () => {
 //인풋창 클릭 후 검색결과창 나오게 하는 함수
   //만약 인풋창 밖을 클릭했을 경우 검색결과창이 닫힐 수 있게 외부클릭 감지도 넣어줌.
   const [activeSearch, SetActiveSearch] = useState(false);
-
+  const [active, SetActive] = useState(true);
   const activeSearchOnClick = () => {
     SetActiveSearch(true);
+    SetActive(false);
 
   }
   function SearchOutsideClick(ref) {
@@ -24,6 +25,7 @@ const HeaderSearch = () => {
         if (ref.current && !ref.current.contains(event.target)) {
           SetActiveSearch(false);
           SetSearchBefore(false);
+          SetActive(true);
         }
       }
       document.addEventListener("mousedown", handleClickOutside);
@@ -54,22 +56,23 @@ const HeaderSearch = () => {
     }
   }
 
+
   return(
     <>
       <label className="header_search" onClick={activeSearchOnClick}  ref={searchSideRef}>
-      <input placeholder="검색" onKeyPress={searchEnter} onChange={searchTextOnChange} />
+        {active &&  <img className="search_icon" src={search_icon} alt="search_icon"/>}
+      <input className="search_input" placeholder="검색" onKeyPress={searchEnter} onChange={searchTextOnChange} />
         {activeSearch&&
         <div className="active_input">
           <div>
             {!searchBefore && <div>검색전</div>}
 
-            {searchBefore&&
-            <div><HeaderSearchResult/></div>}
+            {searchBefore&& <div><HeaderSearchResult/></div>}
           </div>
 
         </div>}
       </label>
-    }
+
     </>
   )
 }

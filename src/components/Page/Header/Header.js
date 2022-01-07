@@ -4,6 +4,7 @@ import HeaderIcon from "./HeaderIcon";
 import Logo from "../../../image/InstaLogo.png";
 import {useNavigate} from "react-router";
 import HeaderSearch from "./HeaderSearch/HeaderSearch";
+import search_icon from "../../../image/icon/search_icon.png";
 
 
 const Header = () => {
@@ -13,7 +14,10 @@ const Header = () => {
   const LogoClickHandler = () => {
     navigate(`/`, {replace: true})
   }
-
+  const [search, SetSearch] = useState(true);
+  const searchIconClickHandler = () => {
+    SetSearch(search => !search);
+  }
 
   return (
     <>
@@ -23,10 +27,10 @@ const Header = () => {
           <div className="nav_logo" onClick={LogoClickHandler}>
             <img src={Logo} alt="logo"/>
           </div>
-          <div className="nav_input">
+          <div className="nav_input" onClick={searchIconClickHandler}>
             <HeaderSearch/>
           </div>
-          <div className="nav_icon">
+          <div className="nav_icon" >
             <HeaderIcon/>
           </div>
         </div>

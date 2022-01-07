@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getChatContents} from "../../../../redux/socket/socket";
 import {chatSocket} from "../../../../common/socket";
 import {none_profile} from "../../../../common/IconImage";
-
+import {Link} from "react-router-dom";
 
 
 
@@ -141,10 +141,12 @@ const DirectChat = () => {
     return(
       <>
         {participant_list.map((user) => (
+          <Link to={`/profile/${user.userId}/posts`}>
           <div className="participant_user">
             <div> <img src={user.profileImage? user.profileImage : none_profile} alt="profile_image"/></div>
           <div>{user.userId}</div>
           </div>
+          </Link>
         ))}
       </>
     )

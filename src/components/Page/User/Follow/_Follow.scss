@@ -2,3 +2,30 @@
 @import "../../../../common/mixin";
 @import "../../../../common/modalStyle";
 
+
+.following_select{
+  display: flex;
+  height: 52px;
+  justify-content: space-around;
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+
+  & > div{
+    width: 50%;
+  }
+}
+
+.active_people, .active_hashTag{
+  border-bottom: 1px solid $instaMenuBlack;
+  color: #00376b;
+  @include fontSize('large');
+  font-weight: 600;
+}
+.none_people, .none_hashTag {
+  border-bottom: 1px solid #bebebe;
+  @include fontSize('large');
+  font-weight: 600;
+  color: #b3c3d3;
+
+}

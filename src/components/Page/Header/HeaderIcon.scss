@@ -64,9 +64,7 @@
   }
 }
 
-
-
-
+//HeaderUser
 .myprofile {
   position: absolute;
   background: $instaWhite;
@@ -78,6 +76,7 @@
   width: 230px;
   box-shadow: 2px 2px 8px $instaLightGray;
   color: $instaMenuBlack;
+  z-index: 100;
 
   &:after, &:before {
     bottom: 100%;
