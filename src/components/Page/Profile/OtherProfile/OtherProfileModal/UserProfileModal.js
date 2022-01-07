@@ -2,7 +2,7 @@ import "../../CommonProfile/CommonProfileSettingModal.scss";
 import { useDispatch } from "react-redux";
 import {modal_check} from "../../../../../redux/modal/modalSlice";
 
-const OtherProfileSettingModal = () => {
+const UserProfileModal = () => {
 	const dispatch = useDispatch();
 
 	const cancleClickHandler = () => {
@@ -19,9 +19,9 @@ const OtherProfileSettingModal = () => {
 					<div onClick={cancleClickHandler}>취소</div>
 				</div>
 			</div>
-			<div className="overlay" onClick={cancleClickHandler}></div>
+			<div className="overlay" onClick={cancleClickHandler}/>
 		</>
 	);
 };
 
-export default OtherProfileSettingModal;
+export default UserProfileModal;

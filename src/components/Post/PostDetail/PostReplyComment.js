@@ -38,7 +38,8 @@ const PostReplyComment = ({Recontents, RecreatedAt, ReIsLike, Relike, Rewriter, 
 
     //유저 정보 프로필 클릭해서 들어가기
 	const UserProfileClickHandler = () => {
-		navigate(`/profile/${Rewriter}`,{state: Rewriter})
+    const id = Rewriter;
+    navigate(`/profile/${id}/posts`,{state: id});
 	}
 
   //글쓴 시간 계산. ex) 방금전, 몇분전 으로 표시하기 위해 사용함.

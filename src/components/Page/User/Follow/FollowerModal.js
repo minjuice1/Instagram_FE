@@ -37,7 +37,7 @@ const FollowerModal = () => {
 
 	return (
 		<>
-			<div className="modal_common_container">
+			<div className="modal_follower_container">
 				<div className="modal_common_header">
 					<span>팔로워</span><span> <img onClick={cancleClickHandler} src={x_img} alt="cancle"/></span>
 				</div>

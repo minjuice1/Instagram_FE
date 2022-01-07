@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import FollowModal from "./FollowModal";
 
 
-const UserFollow= ({totalFollow, isFollowing}) => {
+const UserFollow = ({totalFollow, isFollowing}) => {
   const dispatch = useDispatch();
 
   const follow_modal = useSelector((state) => state.modal.following_modal);
@@ -14,8 +14,7 @@ const UserFollow= ({totalFollow, isFollowing}) => {
   };
 
 
-
-  return(
+  return (
     <>
       {follow_modal && <FollowModal isFollowing={isFollowing}/>}
       <span
@@ -23,6 +22,11 @@ const UserFollow= ({totalFollow, isFollowing}) => {
         className="otherProfile_followers_modal">
 										팔로우 <span>{totalFollow}</span>
 									</span>
+
+      <div className="mobile_follower_modal" onClick={show_follow_modal}>
+        팔로우
+        <div>{totalFollow}</div>
+      </div>
     </>
   )
 }

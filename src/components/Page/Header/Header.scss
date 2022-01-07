@@ -2,7 +2,7 @@
 @import "../../../common/mixin";
 
 //header css
-.nav_logo{
+.nav_logo {
   margin-left: 8vw;
 }
 
@@ -11,7 +11,7 @@
   color: $instaWhite;
 }
 
-.nav{
+.nav {
   width: 80%;
   display: flex;
   justify-content: space-between;
@@ -23,33 +23,48 @@
   margin-right: 15%;
 }
 
-.nav_input{
-  width: 230px;
-  height: 30px;
+.nav_input {
+  width: 270px;
+  height: 35px;
   margin-left: 150px;
   margin-right: 20px;
   align-items: center;
   display: flex;
-  border: 1px solid $instaLightGray;
-  background-color: #fafafa;
+  border-radius: 5px;
+  border: none;
+  background-color: #efefef;
 }
 
 
 //nav_input안에 HeaderSearch
 .header_search {
 
+  .search_icon {
+    position: absolute;
+    margin-left: 10px;
+  }
+
   & > input {
     width: 200px;
     margin-left: 20px;
     border: none;
-    height: 30px;
-
+    height: 25px;
+    background-color: #efefef;
+    outline: none;
+    &::placeholder{
+      padding-left: 25px;
+      font-size: 16px;
+      color: $instaMenuGray;
+    }
     &:focus{
-      outline: none;
+      &::placeholder{
+        padding-left: 0;
+      }
     }
   }
 
-  .active_input{
+
+  .active_input {
     border: none;
     border-radius: 5px;
     background: $instaWhite;
@@ -61,11 +76,10 @@
     position: fixed;
     margin-top: 10px;
 
-    & > div{
+    & > div {
       overflow: auto;
       overflow-x: hidden;
     }
-    //overflow-x: hidden;
 
     &:after, &:before {
       bottom: 100%;
@@ -94,7 +108,8 @@
   }
 
 }
-.nav_icon{
+
+.nav_icon {
   background-color: $instaWhite;
   display: flex;
 
@@ -107,74 +122,78 @@
 
 
 //header_search_card
-.header_search_user{
+.header_search_user {
   overflow: auto;
   display: flex;
   margin: 10px;
+
   & > img {
     width: 40px;
     height: 40px;
     border-radius: 40px;
   }
+
   & > div {
     margin-left: 10px;
 
     //카드 유저 이름
-    & > a:first-child{
+    & > a:first-child {
       font-weight: 600;
     }
-    & > a:nth-child(2){
+
+    & > a:nth-child(2) {
       color: $instaMenuGray;
     }
   }
 }
+
 //해쉬태그 카드
-.header_search_hash{
+.header_search_hash {
   display: flex;
   margin: 10px;
 
-  & > div:nth-child(2){
+  & > div:nth-child(2) {
     margin: 3px 0 0 8px;
-    & > a:first-child{
+
+    & > a:first-child {
       font-weight: 600;
     }
-    & > a:nth-child(2){
+
+    & > a:nth-child(2) {
       color: $instaMenuGray;
     }
   }
 }
 
 
-
-
-@include desktop{
-  .nav_header{
+@include desktop {
+  .nav_header {
     background-color: $instaWhite;
   }
 }
 
-@include tablet{
-  .nav_header{
+@include tablet {
+  .nav_header {
     background-color: $instaWhite;
   }
-  .nav_logo{
+  .nav_logo {
     margin-left: -10vw;
   }
-  .nav_icon{
+  .nav_icon {
   }
 }
 
 @include mobile {
-  .nav_logo{
+  .nav_logo {
     margin-left: -70px
   }
-  .nav_icon{
+  .nav_icon {
     margin-right: -10px;
   }
-  .nav_input{
+  .nav_input {
     display: none;
   }
-  .nav_header{
+  .nav_header {
     background-color: $instaWhite;
   }
 }

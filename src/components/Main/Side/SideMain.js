@@ -17,7 +17,8 @@ const SideMain = ({user_recommend}) => {
 
 
   const UserClickHandler = () => {
-    navigate(`/profile/${user_info.userId}`,{state: user_info.userId})
+    const id = user_info.userId
+    navigate(`/profile/${id}/saved`);
 
   }
 

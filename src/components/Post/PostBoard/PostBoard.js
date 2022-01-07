@@ -91,8 +91,8 @@ const PostBoard = () => {
 	
 	 //유저 정보 프로필 클릭해서 들어가기
 	const UserProfileClickHandler = () => {
-		const user_Id = postDetail.writer.userId
-		navigate(`/profile/${user_Id}`, {state: user_Id})
+		const id = postDetail.writer.userId
+		navigate(`/profile/${id}/saved`);
 	}
 	
 	 //등록한 프로필 사진이 있는 경우와 없는 경우 구분.

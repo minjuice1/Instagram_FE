@@ -2,10 +2,11 @@
 @import "../../../../common/mixin";
 
 
+
 .insta_layout {
-  margin: 20px auto;
+  margin: auto;
   width: 935px;
-  height: 90vh;
+  height: 840px;
   display: grid;
   grid-template-columns: repeat(2, 351px 30vw);
   border: 1px solid $instaGray;

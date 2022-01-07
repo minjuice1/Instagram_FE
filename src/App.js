@@ -65,7 +65,9 @@ function App() {
           <Route path="/*" element={<RequireAuth redirectTo="/login"> <Home/> </RequireAuth>}/>
           <Route path="/login" element={<RejectAuth redirectTo="/"> <Login/> </RejectAuth>}/>
           <Route path="/accounts/password" element={<RequireAuth redirectTo="/login"> <FindPassword/> </RequireAuth>}/>
-          <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
+          <Route path="/direct/*" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}>
+            <Route path=":Room" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
+          </Route>
           <Route path="/recom" element={<RequireAuth redirectTo="/login"> <Recommendation/> </RequireAuth>}/>
           <Route path="/postdetail/:postId" element={<RequireAuth redirectTo="/login"> <PostDetail/> </RequireAuth>}/>
           <Route path="/accounts/signup" element={<RejectAuth redirectTo="/"> <SignUp/> </RejectAuth>}/>
@@ -73,7 +75,7 @@ function App() {
           <Route path="/message" element={<RequireAuth redirectTo="/login"> <DirectMessage/> </RequireAuth>}/>
           <Route path="/edituser" element={<RequireAuth redirectTo="/login"> <EditUser /> </RequireAuth>}/>
 					<Route path="/profile/*"	element={<RequireAuth redirectTo="/login"> <Profile /></RequireAuth>}>
-          <Route path=":user_Id" element={<RequireAuth redirectTo="/login"> <Profile/> </RequireAuth>}/>
+          {/*<Route path=":user_Id" element={<RequireAuth redirectTo="/login"> <Profile/> </RequireAuth>}/>*/}
             <Route path=":id/:category"	element={<RequireAuth redirectTo="/login"> <Profile /> </RequireAuth>}/>
           </Route>
           <Route path="/searchhash/*"	element={<RequireAuth redirectTo="/login"> <SearchHash /> </RequireAuth>}>

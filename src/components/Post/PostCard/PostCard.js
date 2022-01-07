@@ -14,7 +14,7 @@ import dompurify from "dompurify";
 import PostModal from '../PostModal/PostModal';
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 
-const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, ostImage, postImage,
+const PostCard = ({contents, createdAt, writer, postId, likeCount, postImage,
                     isLike, comments, commentIsAllowed, commentCount, isPostSaved}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -96,7 +96,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeUsers, likeCount, os
   //유저 정보 프로필 클릭해서 들어가기
   const UserProfileClickHandler = () => {
     const id = writer[0].userId
-    navigate(`/profile/${id}`, {state: id, replace: true})
+    navigate(`/profile/${id}/posts`,{state: id})
   }
 
 

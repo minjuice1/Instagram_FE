@@ -9,7 +9,6 @@ const HeaderSearchResult = () => {
 
 
 
-
   return (
     <>
       <div>
