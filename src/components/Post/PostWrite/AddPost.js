@@ -59,7 +59,7 @@ const AddPost = () => {
   const thumbs = files.map(file => (
     <div className="thumb" key={file.name}>
       <div style={thumbInner}>
-        <img className="img_preview_after"
+        <img className="img_preview"
              src={file.preview} alt="img_preview"/>
       </div>
     </div>
@@ -70,7 +70,7 @@ const AddPost = () => {
     files.map(file => (
       <div className="thumb" key={file.name}>
         <div style={thumbInner}>
-          <img className="img_preview"
+          <img className="img_preview_after"
                src={file.preview}/>
         </div>
       </div>
