@@ -20,12 +20,7 @@
 
 		.postBoard_header.mobileBox {
 			display: none;
-			.postBoard_header.mobile {
-				display: none;
-			}
 		}
-		
-		
 
 		.postBoard_leftsideBox {
 			width: 600px;
@@ -159,6 +154,11 @@
 			height: 100%;
 		}
 	}
+	.postBoard_bottomContainer{
+		& > div:nth-child(2) {
+			margin-left: 20px;
+		}
+	}
 }
 
 @include mobile {
@@ -169,19 +169,20 @@
 	}
 
 	.postBoard_topContainer {
-		width: 99vw;
-		height: 30vh;
 		flex-direction: column;
-
+		height: auto;
+		margin-top: -0px;
+		margin-bottom: -60px;
 		.postBoard_header.mobileBox {
 			display: block;
+			height: 60px;
 			.postBoard_header.mobile {
 				display: flex;
 				margin-top: 15px;
 				.postBoard_header_pic {
 					display: flex;
-					margin-left: 10px;
-	
+					margin: 0 10px 0 15px;
+					height: 32px;
 					& > img {
 						// margin: auto;
 						margin: auto 0;
@@ -190,13 +191,11 @@
 						height: 32px;
 					}
 				}
-	
 				.postBoard_header_userId {
 					justify-content: space-between;
 					width: 88%;
 					line-height: 35px;
 					margin-left: 5px;
-	
 					& > span {
 						@include fontSize("large");
 						font-weight: bold;
@@ -212,15 +211,12 @@
 				}			
 			}
 		}
-		
-
 		.postBoard_leftsideBox {
 			flex: 1;
 			width: 100%;
 			height: 100%;
 			border: none;
 			margin-top: 10px;
-
 			& > img {
 				object-fit: fill;
 			}
@@ -229,31 +225,28 @@
 			border: none;
 			width: 95%;
 			margin-bottom: 10px;
-
 			.postBoard_header{
 				display: none;
 			}
 			.postBoard_main{
 				background: $backgroundGray;
-				padding-bottom: 15px;
 				.postBoard_comment_list{
 					display: none;
 				}
 			}
 		}
 	}
-
 	.postBoard_bottomContainer{
 		margin-top: 100px;
-
 		& > div:nth-child(2) {
 			margin-left: 10px;
 		}
 	}
-
 	.postDetail_comment_Bookmarkfunc {
-		// margin-left: auto;
 		height: 100%;
 		width: 10%;
+	}
+	.postDetail_bottom{
+		padding-right: 30px;
 	}
 }

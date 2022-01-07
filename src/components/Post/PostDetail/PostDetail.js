@@ -197,7 +197,7 @@ const PostDetail = () => {
 										/>
 									))}
 									<div className="postDetail_commentMore">
-										{(comments.length % 10 === 0) && (
+										{comments.length % 10 === 0 && (
 											<button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
 										)}
 									</div>

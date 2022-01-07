@@ -106,8 +106,16 @@
  margin-right: 10px;
  margin-top: 5px;
 }
-.post_content, .post_comment {
- margin-left: 10px;
+
+.post_content {
+  .post_user_id,
+  .post_cursor,
+  .post_time {
+    margin-left: 10px;
+  }
+}
+.post_user_comment{
+  margin-left: 20px;
 }
 
 //postGetComment 부분

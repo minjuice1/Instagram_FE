@@ -10,6 +10,7 @@ const PostModal = ({myId, writer, setOpenModal, postId}) => {
 
 	const cancleClickHandler = () => {
 		setOpenModal(false);
+		console.log(setOpenModal);
 	};
 
 	const deleteClickHandler = () => {
