@@ -6,6 +6,7 @@ import { history } from '../../../history';
 import {getPostDetail, likePost, savedPost} from "../../../redux/post/post";
 import PostDetailComment from './PostDetailComment';
 import PostComment from '../PostCard/PostComment';
+import { loading, replyReducer } from '../../../redux/post/postSlice';
 
 // modal
 import PostOptionModal from './PostOptionModal';
@@ -14,7 +15,6 @@ import PostOptionModal from './PostOptionModal';
 import "./PostDetail.scss";
 import { BiDotsHorizontalRounded, BiX, BiPlusCircle } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
-import { loading, replyReducer } from '../../../redux/post/postSlice';
 import PostBookmarkToast from '../PostModal/PostBookmarkToast';
 
 const PostDetail = () => {	
@@ -33,11 +33,8 @@ const PostDetail = () => {
 	const replyTag = useSelector((state) => state.post.replyTag); 
 	const replyUserId = useSelector(state => state.post.replyTag?.writer);
 	const replyCommentId = useSelector(state => state.post.replyTag?.commentId);
-	// console.log(postDetail);
-	console.log(comments);
-	console.log(comments.length);
 
-	// 페이지 네이션
+	// 페이지네이션
 	const [page, setPage] = useState(1);
 
 	useEffect(() => {
@@ -45,7 +42,6 @@ const PostDetail = () => {
 		dispatch(loading(true));
     dispatch(getPostDetail({postId, page, pageSection}));
 		setPage(page + 1);
-		console.log("1페이지")
   }, []);
 
 	const paginationHandler = () => {
@@ -53,14 +49,12 @@ const PostDetail = () => {
 		dispatch(loading(true));
     dispatch(getPostDetail({postId, page, pageSection}));
 		setPage(page + 1);
-		console.log("more페이지")
 	}
 	
 	// 포스트 좋아요
 	const postLikeClickHandler = () => {
-		const _id = postDetail.writer._id
+		const _id = postDetail.writer._id;
 
-		console.log(_id)
     dispatch(
       likePost({
         postId,
@@ -189,7 +183,6 @@ const PostDetail = () => {
 										{(comments.length % 10 === 0) && (
 											<button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
 										)}
-									
 									</div>
 									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
 							</div>

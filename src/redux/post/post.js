@@ -77,7 +77,6 @@ export const deletePost = createAsyncThunk(
 export const getPostDetail = createAsyncThunk(
   "post/getPostDetail",
   async ({postId, page, pageSection}, thunkAPI) => {
-    console.log(page);
     const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
@@ -87,7 +86,8 @@ export const getPostDetail = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         },
       });
-      console.log(response.data);
+      console.log(response);
+      console.log(response.data.post[0].writer.userId);
       // if (response.data.ok) {
       //   thunkAPI.dispatch(getUserPost(response.data.post[0].writer.userId));
       // }
