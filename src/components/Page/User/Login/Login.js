@@ -64,7 +64,6 @@ const Login = () => {
 							<div className="login_login_pwd">
 								<input
 									className="login_login_input_pwd"
-									autoComplete="off"
 									required
 									type={checkPassword ? "password" : "text"}
 									value={password}

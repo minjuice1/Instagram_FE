@@ -61,6 +61,7 @@
 		color: #8e8e8e;
 		outline: none;
 		@include fontSize("normal");
+		border: 1px solid green;
 
 		& > label {
 			height: 36px;
@@ -71,6 +72,7 @@
 			pointer-events: none;
 			position: absolute;
 			// overflow: hidden;
+			border: 1px solid pink;
 		}
 
 		.login_content_username {
@@ -78,7 +80,7 @@
 			left: 0;
 			bottom: 10px;
 			@include fontSize("normal");
-			// transition: trnasform all 0.3s ease;
+			transition: trnasform all 0.3s ease;
 		}
 
 		& > input {
@@ -109,6 +111,7 @@
 .login_login_user input:focus + .login_label_username .login_content_username,
 .login_login_user input:valid + .login_label_username .login_content_username {
 	transform: translateY(-45%);
+	border: 1px solid red;
 	@include fontSize("small");
 }
 
@@ -192,6 +195,7 @@
 .login_login_pwd input:focus + .login_label_pwd .login_content_pwd,
 .login_login_pwd input:valid + .login_label_pwd .login_content_pwd {
 	transform: translateY(-20%);
+	border: 1px solid red;
 	font-size: 6px;
 }
 

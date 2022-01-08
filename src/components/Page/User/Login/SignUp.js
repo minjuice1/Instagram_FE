@@ -143,6 +143,7 @@ const SignUp = () => {
 								<div className="signup_content_form">
 									<input
 										type="text"
+										autoComplete="off"
 										value={name}
 										onChange={NameOnChange}
 										onKeyUp={NameCheck}
@@ -161,6 +162,7 @@ const SignUp = () => {
 								<div className="signup_content_form">
 									<input
 										type="text"
+										autoComplete="off"
 										value={userId}
 										onChange={UserIdOnChange}
 										onKeyUp={UserIdCheck}
@@ -183,7 +185,7 @@ const SignUp = () => {
 								</div>
 								<div className="signup_content_form">
 									<input
-										className="signup_pwd"
+										autoComplete="off"
 										type={checkPassword ? "password" : "text"}
 										value={password}
 										onChange={PassWordOnChange}

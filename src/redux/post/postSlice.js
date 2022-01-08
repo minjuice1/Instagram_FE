@@ -57,17 +57,12 @@ const postSlice = createSlice({
       state.posts = post_list;
     },
     [getPostDetail.fulfilled]: (state, action) => {
-      console.log(action);
-      console.log([action.payload.data.post[0]]);
-      // state.postDetail = action.payload.post;
-      // state.comment = action.payload.comment;
-      // state.postDetail = action.payload.data.post;
+      console.log(action.payload);
       if (action.payload.pageSection === "fristPage") {
         state.postDetail = action.payload.data.post;
         state.comment = action.payload.data.comment;
         state.isLoaded = false;
       } else {
-          // state.postDetail = action.payload.data.post;
           return{
             ...state,
             postDetail : [...state.postDetail, ...action.payload.data.post],

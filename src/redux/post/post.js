@@ -76,7 +76,7 @@ export const deletePost = createAsyncThunk(
 // 개별 페이지 불러오기
 export const getPostDetail = createAsyncThunk(
   "post/getPostDetail",
-  async ({postId, page, pageSection, thunkAPI} ) => {
+  async ({postId, page, pageSection, thunkAPI, dispatch} ) => {
     const AccessToken = localStorage.getItem("user");
     try {
       const response = await Api({
@@ -86,14 +86,19 @@ export const getPostDetail = createAsyncThunk(
           Authorization: `Bearer ${AccessToken}`,
         },
       });
-      console.log(response);
-      console.log(response.data);
-      console.log(response.data.post[0].writer.userId);
+      // console.log(response);
       // if (response.data.ok) {
       //   const id = response.data.post[0].writer.userId;
-      //   thunkAPI.dispatch(getUserPost(id));
+      //   await thunkAPI.dispatch(getUserPost(id));
+      //   console.log(id);
+      //   // return { data: response.data, pageSection: pageSection },
+      //   // dispatch(getUserPost(id));
       // }
-      return { data: response.data, pageSection: pageSection };
+      console.log(response);
+      // const id = response.data.post[0].writer.userId;
+      // dispatch(getUserPost(id));
+      console.log(response);
+      return response;     
     } catch (e) {
       console.log("getPostDetail 에러");
       return false;

@@ -122,6 +122,7 @@ const PostCard = ({contents, createdAt, writer, postId, likeCount, postImage,
   const [openModal, setOpenModal] = useState(false); 
   const show_postOptionModal = () => {
     setOpenModal(true);
+    document.body.style.overflow = "hidden";
   };
 
   return (

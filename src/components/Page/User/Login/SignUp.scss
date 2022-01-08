@@ -99,10 +99,31 @@
 	margin: auto auto 5px auto;
 	background-color: #fafafa;
 	border-radius: 5px;
-	border: 1px solid $instaLightGray;
+	// border: 1px solid $instaLightGray;
 	color: #8e8e8e;
 	outline: none;
 	@include fontSize("normal");
+	border: 1px solid blue;
+
+	& > label {
+		display: flex;
+		justify-content: space-between;
+		@include fontSize("small");
+		position: absolute;
+		width: 200px;
+		height: 36px;
+		pointer-events: none;
+		border: 1px solid pink;
+	}
+
+	.signup_label_name {
+		@include fontSize("normal");
+		left: 10px;
+		position: absolute;
+		bottom: 12px;
+		transition: all 0.3s ease;
+		border: 5px solid skyblue;
+	}
 
 	& > input {
 		@include fontSize("normal");
@@ -113,29 +134,21 @@
 		border: none;
 		outline: none;
 		background-color: #fafafa;
+		border: 1px solid green;
 	}
 
-	.signup_pwd {
-		@include fontSize("normal");
-		height: 14px;
-		width: 120px;
-		padding: 10px 0 0 8px;
-		margin: 8px 0 0 2px;
-		border: none;
-		outline: none;
-		background-color: #fafafa;
-	}
+	// .signup_pwd {
+	// 	@include fontSize("normal");
+	// 	height: 14px;
+	// 	width: 120px;
+	// 	padding: 10px 0 0 8px;
+	// 	margin: 8px 0 0 2px;
+	// 	border: none;
+	// 	outline: none;
+	// 	background-color: #fafafa;
+	// }
 
-	& > label {
-		display: flex;
-		justify-content: space-between;
-		@include fontSize("small");
-		position: absolute;
-		width: 180px;
-		height: 36px;
-		pointer-events: none;
-		// overflow: hidden;
-	}
+	
 
 	// & > label::after {
 	// 	content: "";
@@ -149,14 +162,7 @@
 	// 	transform: translateX(-100%);
 	// }
 
-	.signup_label_name {
-		@include fontSize("normal");
-		left: 10px;
-		position: absolute;
-		bottom: 12px;
-		@include fontSize("normal");
-		// transition: all 0.3s ease;
-	}
+	
 
 	.signup_check_box {
 		display: flex;
@@ -216,15 +222,21 @@
 	}
 }
 
-.signup_content_form input:focus + .signup_label .signup_label_name {
+.signup_content_form input:focus + .signup_label .signup_label_name,
+.signup_content_form input:valid + .signup_label .signup_label_name {
 	transform: translateY(-45%);
+	border: 1px solid red;
 	@include fontSize("small");
 }
 
-// .signup_content_form input:focus + .signup_label_email::after,
-// .signup_content_form input:valid + .signup_label_email::after {
-// 	transform: translateX(0%);
+// .signup_content_form input:focus + .signup_label .signup_label_name,
+// .signup_content_form input:valid + .signup_label .signup_label_name {
+// 	transform: translateY(0%);
+// 	border: 1px solid purple;
+// 	@include fontSize("small");
 // }
+
+
 
 .signup_btn_active {
 	width: 271px;
