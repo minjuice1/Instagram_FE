@@ -47,7 +47,6 @@ const postSlice = createSlice({
       }
     },
     [getUserPost.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.post = action.payload.post;
       state.user = action.payload.user;
       state.savedPost = action.payload.savedPost;
@@ -57,7 +56,6 @@ const postSlice = createSlice({
       state.posts = post_list;
     },
     [getPostDetail.fulfilled]: (state, action) => {
-      console.log(action.payload);
       if (action.payload.pageSection === "fristPage") {
         state.postDetail = action.payload.data.post;
         state.comment = action.payload.data.comment;
