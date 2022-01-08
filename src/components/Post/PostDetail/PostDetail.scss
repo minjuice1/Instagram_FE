@@ -28,11 +28,6 @@
 		width: 70%;
 		height: 95vh;
 		justify-content: center;
-		// box-sizing: border-box;
-		// position: absolute;
-		// top: 50%;
-		// left: 50%;
-		// transform: translateX(-50%) translateY(-50%);
 
 		.postDetail_header.mobileBox {
 			display: none;
@@ -172,8 +167,9 @@
 		.postDetail_container {
 			width: 80vw;
 			height: 40vh;	
-			transform: translateY(+75%);
-
+			transform: translateY(+70%);
+			border: 3px solid green;
+			
 			.postDetail_leftsideBox {
 				& > img {
 					border-radius: 0;
@@ -181,7 +177,7 @@
 				}
 			}
 			.postDetail_rightsideBox {
-				width: 50%;
+				width: 110%;
 				.postDetail_main{
 					height: 85%;
 				}

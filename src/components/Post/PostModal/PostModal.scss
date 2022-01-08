@@ -23,6 +23,7 @@
     background: $instaWhite;
     cursor: pointer;
     position: fixed;
+    transform: translateX(+10%) translateY(+110%);
 
     & > div {
       border-bottom: 1px solid $instaGray;
@@ -76,9 +77,6 @@
   }
 }
 
-//post_like_list
-
-
 .like_list_container {
   width: 400px;
   height: 335px;
@@ -102,22 +100,13 @@
   z-index: 99;
 }
 
-
-@include desktop {
-  .post_modal_container {
-    top: 50%;
-  }
-}
-
 @include tablet {
-  .post_modal_container {
-    top: 65%;
-  }
 }
 
 @include mobile {
   .post_modal_container {
-    left: 10%;
-    top: 65%;
+  .post_modal {
+    transform: translateX(-1%) translateY(+110%);
   }
+}
 }

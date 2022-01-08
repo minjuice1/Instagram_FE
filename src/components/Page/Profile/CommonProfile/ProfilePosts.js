@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import "./CommonProfile.scss";
 
 const ProfilePosts = ({list, category}) => {
-  console.log(list);
   return (
     <>
     <Link to={`/postdetail/${list._id}`}>

@@ -34,7 +34,6 @@ const PostBoard = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
-  console.log(post_list);
 
   const id = postDetail && postDetail.writer.userId;
 
@@ -195,6 +194,7 @@ const PostBoard = () => {
 									))}
 									<div className="postDetail_commentMore">
 										{comments.length === 0 ? "" :
+										postDetail.commentCount === 10 ? "" :
 										comments.length % 10 === 0 ? <button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
 										: ""}
 									</div>

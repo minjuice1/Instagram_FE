@@ -34,7 +34,6 @@ const postSlice = createSlice({
   },
   extraReducers: {
     [getPost.fulfilled]: (state, action) => {
-      console.log(action.payload.data.posts);
       if (action.payload.pageSection === "fristPage") {
         state.posts = action.payload.data.posts;
         state.recommendedUser = action.payload.data.recommendedUser;

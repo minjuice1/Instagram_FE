@@ -1,13 +1,11 @@
 @import "../../../common/variables";
 @import "../../../common/mixin";
 
-
 .postBoard_allContainer{
 	overflow: hidden;
 	background-color: $backgroundGray;
 	width: 99vw;
 	height: 94vh;
-	// margin: auto;
 }
 
 	.postBoard_topContainer {
@@ -137,8 +135,46 @@
 			}
 		}
 	}
-	//반응형 사이즈
 
+	.postBoard_postComment{
+		position: relative;
+		.postDetail_cmt {
+			display: flex;
+			border-top: 1px solid $instaGray;
+			.postDetail_cmt > input{
+			position: absolute;
+			border: none;
+			&:focus{
+			 outline: none;
+			}
+		 }
+		 .postDetail_submit {
+			width: 60px;
+			height: 46px;
+			line-height: 55px;
+			margin-right: 5px;
+			color: $instaBlue;
+			font-weight: 600;
+			border: none;
+			background: $instaWhite;
+			cursor: pointer;
+		 }
+		
+		 .postDetail_submitOff {
+			width: 60px;
+			height: 46px;
+			line-height: 55px;
+			margin-right: 5px;
+			color: #C5E7FD;
+			font-weight: 600;
+			border: none;
+			background: $instaWhite;
+			cursor: pointer;
+		 }
+		}
+	}
+
+	//반응형 사이즈
 @include tablet {
 	.postBoard_topContainer {
 		width: 95vw;
@@ -157,6 +193,9 @@
 		& > div:nth-child(2) {
 			margin-left: 20px;
 		}
+	}
+	.postBoard_postComment{
+		width: 500px;
 	}
 }
 
@@ -244,5 +283,8 @@
 	.postDetail_comment_Bookmarkfunc {
 		height: 100%;
 		width: 10%;
+	}
+	.postBoard_postComment{
+		width: 485px;
 	}
 }
