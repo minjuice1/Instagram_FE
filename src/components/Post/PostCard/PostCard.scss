@@ -81,7 +81,6 @@
   .post_center_image{
     width: 100%;
   }
-
 }  
 
 .post_icon {
@@ -164,41 +163,12 @@
  color: $instaMenuGray;
 }
 
-
-//댓글에 이모티콘 추가
-.react-emoji {
- border-color: #ffffff;
- display: flex;
-
-
- &> div:first-child {
-  order: 2;
- }
- .react-emoji-picker--container {
-  margin-left: -230px;
-  opacity: 0.9;
- }
-
- &> button{
-  margin-right: -20px;
- }
-}
-.comment_submit {
- width: 50px;
- line-height: 50px;
- color: $instaBlue;
- font-weight: 600;
-}
-
 .postDetail_postComment {
-  margin-bottom: 70px;
-
   .post_blockCmt{
-    margin-bottom: -70px;
-    // margin-top: 30px;
     color: $instaMenuGray;
     border-top: 1px solid $instaGray;
     padding: 15px 0;
+    text-align: center;
   }
 }
 
@@ -230,7 +200,9 @@
  .post_one_comment{
   margin-right: 110px;
  }
-
+ .postDetail_postComment{
+  width: 500px;
+ }
 }
 
 @include mobile{

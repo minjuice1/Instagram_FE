@@ -28,7 +28,9 @@ const Profile = () => {
 
   //개인 데이터 불러오기
   const {id} = useParams();
+  console.log(id);
   const user_id = useParams(id).user_Id;
+  console.log(user_id);
 
   //userpost를 가져오면서 본인이 맞는지 아닌지 확인
   const [myProfile, SetMyProfile] = useState(false);

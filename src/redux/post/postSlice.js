@@ -34,7 +34,7 @@ const postSlice = createSlice({
   },
   extraReducers: {
     [getPost.fulfilled]: (state, action) => {
-      console.log(action.payload);
+      console.log(action.payload.data.posts);
       if (action.payload.pageSection === "fristPage") {
         state.posts = action.payload.data.posts;
         state.recommendedUser = action.payload.data.recommendedUser;
@@ -58,19 +58,23 @@ const postSlice = createSlice({
       state.posts = post_list;
     },
     [getPostDetail.fulfilled]: (state, action) => {
-      console.log(action.payload);
-      
+      console.log(action);
+      console.log([action.payload.data.post[0]]);
+      // state.postDetail = action.payload.post;
+      // state.comment = action.payload.comment;
+      // state.postDetail = action.payload.data.post;
       if (action.payload.pageSection === "fristPage") {
         state.postDetail = action.payload.data.post;
         state.comment = action.payload.data.comment;
         state.isLoaded = false;
       } else {
-        return {
-          ...state,
-          postDetail : [...state.postDetail, ...action.payload.data.post],
-          comment : [...state.comment, ...action.payload.data.comment],
-          isLoaded: false,
-        };
+          // state.postDetail = action.payload.data.post;
+          return{
+            ...state,
+            postDetail : [...state.postDetail, ...action.payload.data.post],
+            comment : [...state.comment, ...action.payload.data.comment],
+            isLoaded: false,
+          }
       }
       
     },

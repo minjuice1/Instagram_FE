@@ -88,7 +88,7 @@
 				display: flex;
 				flex-direction: column;
 				width: 100%;
-				height: 89%;
+				height: 88%;
 
 				.postBoard_comment_list{
 					height: 100%;
@@ -137,7 +137,6 @@
 			}
 		}
 	}
-
 	//반응형 사이즈
 
 @include tablet {
@@ -245,8 +244,5 @@
 	.postDetail_comment_Bookmarkfunc {
 		height: 100%;
 		width: 10%;
-	}
-	.postDetail_bottom{
-		padding-right: 30px;
 	}
 }

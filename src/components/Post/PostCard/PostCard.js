@@ -8,6 +8,7 @@ import PostComment from "./PostComment";
 import PostGetComment from "./PostGetComment";
 import PostLikeModal from "../PostModal/PostLikeModal";
 
+import "../../../common/_postComment.scss";
 import "./PostCard.scss";
 import {post_heart, post_red_heart, message, text, dot, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
 import dompurify from "dompurify";

@@ -104,7 +104,7 @@
 				display: flex;
 				flex-direction: column;
 				width: 100%;
-				height: 89%;
+				height: 92.5%;
 
 				.postDetail_comment_list{
 					height: 100%;
@@ -130,7 +130,6 @@
 		}
 	}
 
-
 	// pagination
 	.postDetail_commentMore{
 		height: 40px;
@@ -153,53 +152,6 @@
   z-index: -1000;
 }
 
-// InputEmoji
-.postDetail_postComment{
-	position: relative;
-	width: auto;
-	height: auto;
-}
-
-.postDetail_cmt {
-	display: flex;
-	border-top: 1px solid $instaGray;
-	position: absolute;
-	bottom: 1;
-	width: 100%;
-
-	.postDetail_cmt > input{
-	width: 80%;
-	border: none;
-	&:focus{
-	 outline: none;
-	}
-	
- }
- .postDetail_submit {
-	width: 60px;
-	height: 30px;
-	line-height: 50px;
-	margin-right: 5px;
-	color: $instaBlue;
-	font-weight: 600;
-	border: none;
-	background: $instaWhite;
-	cursor: pointer;
- }
-
- .postDetail_submitOff {
-	width: 60px;
-	height: 30px;
-	line-height: 50px;
-	margin-right: 5px;
-	color: #C5E7FD;
-	font-weight: 600;
-	border: none;
-	background: $instaWhite;
-	cursor: pointer;
- }
-}
-
 //반응형 사이즈
 @include desktop {
 	.postDetail_background {
@@ -207,48 +159,32 @@
 		width: 75vw;
 		height: 75vh;		
 		transform: translateY(+17%);
-	}
-}
-}
 
-@media (min-width: 1024px) and (max-width: 1600px) {
-	.postDetail_background {
-		.postDetail_container {
-			width: 60vw;
-			height: 60vh;		
-			transform: translateY(+35%);
-			border: 1px solid orange;
-
-			.postDetail_leftsideBox {
-				width: 95%;
-
-				& > img {
-					border-radius: 0;
-					object-fit: fill;
-				}
-			}
+		.postDetail_leftsideBox {
+			width: 75%;
 		}
 	}
+}
 }
 
 @include tablet {
 	.postDetail_background {
 		.postDetail_container {
-			width: 50vw;
-			height: 50vh;		
-			transform: translateY(+45%);
-			border: 1px solid green;
-			.postDetail_leftsideBox {
-				width: 50%;
+			width: 80vw;
+			height: 40vh;	
+			transform: translateY(+75%);
 
+			.postDetail_leftsideBox {
 				& > img {
 					border-radius: 0;
-					object-fit: cover;
+					object-fit: fill;
 				}
 			}
 			.postDetail_rightsideBox {
 				width: 50%;
-				height: 100%;
+				.postDetail_main{
+					height: 85%;
+				}
 			}
 		}
 	}

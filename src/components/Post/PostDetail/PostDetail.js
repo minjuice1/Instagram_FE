@@ -12,6 +12,7 @@ import { loading, replyReducer } from '../../../redux/post/postSlice';
 import PostOptionModal from './PostOptionModal';
 
 // css
+import "../../../common/_postComment.scss";
 import "./PostDetail.scss";
 import { BiDotsHorizontalRounded, BiX, BiPlusCircle } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";

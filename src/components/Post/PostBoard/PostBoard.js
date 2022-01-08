@@ -12,6 +12,7 @@ import Footer from '../../Page/Footer/Footer';
 // // modal
 
 // css
+import "../../../common/_postComment.scss";
 import "./PostBoard.scss";
 import { BiDotsHorizontalRounded, BiPlusCircle } from "react-icons/bi";
 import {post_red_heart, post_heart, message, text, post_save, post_saveActive, none_profile} from "../../../common/IconImage";
@@ -33,8 +34,7 @@ const PostBoard = () => {
 	const comments = useSelector((state) => state.post.comment);
 	const myId = useSelector(state=>state.user.user.userId);
   const post_list = useSelector(state=>state.post.post);
-  // console.log(post_list);
-  // console.log(postDetail);
+  console.log(post_list);
 
   const id = postDetail && postDetail.writer.userId;
 
@@ -49,6 +49,7 @@ const PostBoard = () => {
 	 const pageSection = "fristPage";
 	 dispatch(loading(true));
 	 dispatch(getPostDetail({postId, page, pageSection}));
+	//  dispatch(getUserPost(id));
 	 setPage(page + 1);
  }, []);
 
@@ -193,9 +194,9 @@ const PostBoard = () => {
 										/>
 									))}
 									<div className="postDetail_commentMore">
-										{(comments.length % 10 === 0) && (
-											<button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
-										)}
+										{comments.length === 0 ? "" :
+										comments.length % 10 === 0 ? <button onClick={paginationHandler}><BiPlusCircle size={26}/></button>
+										: ""}
 									</div>
 									<PostBookmarkToast postId={postId} bookmarkToast={bookmarkToast}/>
 							</div>
@@ -269,8 +270,10 @@ const PostBoard = () => {
 							{post_list && post_list.map((post, idx) => (
 								<ProfilePosts
 								key = {idx}
-								picture = {post.imageUrl}
-								userId = {post._id}/>
+								list={post}
+								// picture = {post.imageUrl}
+								// userId = {post._id}
+								/>
 							))}
 						</div>
           </div>
