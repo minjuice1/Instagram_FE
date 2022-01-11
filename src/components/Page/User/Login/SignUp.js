@@ -17,6 +17,7 @@ const SignUp = () => {
 	// 비밀번호표시
 	const [checkPassword, SetCheckPassword] = useState(true);
 
+	// 회원가입 서버 요청
 	const onSubmit = (value) => {
 		console.log(value);
 		dispatch(
@@ -75,6 +76,12 @@ const SignUp = () => {
 												<BiXCircle color={"#F04756"} size={25} />
 											</span>
 										</div>}
+									{errors.email && errors.email.type === "required"  &&
+									<div className="signup_check_box">
+										<span className="signup_check">
+											<BiXCircle color={"#F04756"} size={25} />
+										</span>
+									</div>}
 									<label className="signup_label">
 										<span className="signup_title">
 											이메일 주소
